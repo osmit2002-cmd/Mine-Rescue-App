@@ -205,3 +205,5 @@ table.counts td:not(:first-child), table.counts th:not(:first-child) { text-alig
 .timer-controls label { display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem; margin: 0.35rem 0; }
 .timer-controls input[type=checkbox] { width: 1.2rem; height: 1.2rem; }
 .timer-controls input[type=number] { width: 5rem; font: inherit; padding: 0.3rem 0.4rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--fg); }
+.quiz-kinds { margin: 0.25rem 0 0.75rem; }
+.rule-ref { margin: 0.4rem 0; }

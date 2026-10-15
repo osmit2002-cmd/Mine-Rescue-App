@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect } from 'react';
-import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { ErrorBoundary, SampleBanner } from './components/common';
 import { PwaStatus } from './components/PwaStatus';
 import { ALL_EVENTS, DataProvider, EventProvider, useData, useEvent, useLoadState } from './data/DataContext';
@@ -21,6 +21,11 @@ function ScrollTop() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+}
+
+function LegacyFactRedirect() {
+  const { id = '' } = useParams();
+  return <Navigate to={`/statements/${encodeURIComponent(id)}`} replace />;
 }
 
 function DataGate() {
@@ -52,8 +57,11 @@ function Shell() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/rules/:id" element={<RuleDetail />} />
             <Route path="/section/:id" element={<SectionPage />} />
-            <Route path="/facts" element={<FactList />} />
-            <Route path="/facts/:id" element={<FactDetail />} />
+            <Route path="/statements" element={<FactList />} />
+            <Route path="/statements/:id" element={<FactDetail />} />
+            {/* Old links (v0.1.0) keep working. */}
+            <Route path="/facts" element={<Navigate to="/statements" replace />} />
+            <Route path="/facts/:id" element={<LegacyFactRedirect />} />
             <Route path="/search" element={<Search />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/figures" element={<Figures />} />
@@ -93,7 +101,7 @@ function Header() {
       <nav className="nav" aria-label="Main">
         <NavLink to="/" end>Home</NavLink>
         <NavLink to="/rules">Rules</NavLink>
-        <NavLink to="/facts">Facts</NavLink>
+        <NavLink to="/statements">Statements</NavLink>
         <NavLink to="/quiz">Quiz</NavLink>
         <NavLink to="/search">Search</NavLink>
         {hasParts && <NavLink to="/parts">Parts</NavLink>}

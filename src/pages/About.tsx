@@ -46,7 +46,7 @@ export default function About() {
         {document.publisher && (<><dt>Publisher</dt><dd>{document.publisher}</dd></>)}
         <dt>Loaded</dt>
         <dd>
-          {rules.length} rules in {sections.length || 'their'} sections, {facts.length} statements of fact, {parts.length} parts tables ({parts.reduce((n, t) => n + t.rows.length, 0)} parts), {figures.length} figure pages
+          {rules.length} rules in {sections.length || 'their'} sections, {facts.length} statements, {parts.length} parts tables ({parts.reduce((n, t) => n + t.rows.length, 0)} parts), {figures.length} figure pages
         </dd>
         {figInfo && (
           <>
@@ -87,7 +87,7 @@ export default function About() {
         </>
       )}
       <p className="small">
-        A study aid only. The rule book wording and statements of fact are shown verbatim, including typos as printed. Always
+        A study aid only. The rule book wording and the statements (MSHA “statements of fact”) are shown verbatim, including typos as printed. Always
         check the official MSHA rule book for the contest you are entering. Mine Rescue Rules are designed as a training tool for
         contests; use discretion in actual mine emergencies.
       </p>

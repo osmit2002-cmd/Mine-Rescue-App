@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-import { EventPicker } from '../components/EventPicker';
 import { NotFound } from '../components/common';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import type { PartTable } from '../data/types';
@@ -22,7 +21,7 @@ export function PartsList() {
       <h1>Identification of Parts</h1>
       {!tables.length && (
         <div className="card">
-          <p>{all ? 'No parts tables are loaded.' : `${eventName(event)} has no parts tables.`} Parts tables belong to the bench events:</p>
+          <p>{all ? 'No parts tables are loaded.' : `${eventName(event)} has no parts tables.`} Parts tables belong to the bench events; choose one in the header menu:</p>
           <ul>
             {benchEvents.map((e) => (
               <li key={e.id}>{e.name}</li>
@@ -30,7 +29,6 @@ export function PartsList() {
           </ul>
         </div>
       )}
-      <EventPicker />
       {[...byEvent.entries()].map(([ev, ts]) => (
         <section key={ev}>
           {(all || byEvent.size > 1) && <h2>{eventName(ev) ?? 'Parts'}</h2>}

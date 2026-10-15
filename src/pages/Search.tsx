@@ -3,7 +3,6 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Highlight } from '../components/Highlight';
 import { ruleLabel, ruleLink } from '../components/common';
-import { EventPicker } from '../components/EventPicker';
 import { ALL_EVENTS, useData, useEvent, type Data } from '../data/DataContext';
 import { escapeRegExp } from '../quiz/text';
 
@@ -22,7 +21,7 @@ interface Doc {
 function buildIndex(data: Data) {
   const docs: Doc[] = [
     ...data.rules.map((r) => ({ id: `r:${r.id}`, type: 'rule' as const, refId: r.id, title: ruleLabel(r), number: r.number, text: r.text, group: r.sectionPath[0] ?? '', event: r.event ?? '' })),
-    ...data.facts.map((f) => ({ id: `f:${f.id}`, type: 'fact' as const, refId: f.id, title: f.number ? `Statement ${f.number}` : 'Statement', number: f.number ?? '', text: f.statement, group: f.category ?? f.section ?? 'Statements of fact', event: f.event ?? '' })),
+    ...data.facts.map((f) => ({ id: `f:${f.id}`, type: 'fact' as const, refId: f.id, title: f.number ? `Statement ${f.number}` : 'Statement', number: f.number ?? '', text: f.statement, group: f.category ?? f.section ?? 'Statements', event: f.event ?? '' })),
     ...data.sections
       .filter((s) => s.intro || s.note)
       .map((s) => ({ id: `s:${s.id}`, type: 'section' as const, refId: s.id, title: s.title, number: '', text: [s.intro, s.note, ...s.figures.map((f) => `${f.caption} ${f.title ?? ''} ${f.labels}`)].filter(Boolean).join('\n'), group: s.title, event: s.event ?? '' })),
@@ -50,7 +49,7 @@ function snippet(text: string, terms: string[], size = 220): string {
   return `${start > 0 ? '…' : ''}${flat.slice(start, start + size)}${start + size < flat.length ? '…' : ''}`;
 }
 
-const TYPE_LABEL: Record<DocType, string> = { rule: 'Rule', fact: 'Statement of fact', section: 'Section', part: 'Parts table' };
+const TYPE_LABEL: Record<DocType, string> = { rule: 'Rule', fact: 'Statement', section: 'Section', part: 'Parts table' };
 
 export default function Search() {
   const data = useData();
@@ -100,7 +99,6 @@ export default function Search() {
       <div className="toolbar">
         <input type="search" autoFocus placeholder="Search rules and statements… e.g. methane, 20 minutes, lifeline" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Search" />
       </div>
-      <EventPicker />
       {query.trim() && (
         <>
           <div className="chips" role="group" aria-label="Filter by type">
@@ -125,7 +123,7 @@ export default function Search() {
       <ul className="results">
         {shown.map((r) => {
           const terms = r.terms as string[];
-          const to = r.type === 'rule' ? ruleLink(data.rulesById.get(r.refId)!, terms.join(' ')) : r.type === 'fact' ? `/facts/${encodeURIComponent(r.refId)}` : r.type === 'part' ? `/parts/${encodeURIComponent(r.refId)}` : `/section/${encodeURIComponent(r.refId)}`;
+          const to = r.type === 'rule' ? ruleLink(data.rulesById.get(r.refId)!, terms.join(' ')) : r.type === 'fact' ? `/statements/${encodeURIComponent(r.refId)}` : r.type === 'part' ? `/parts/${encodeURIComponent(r.refId)}` : `/section/${encodeURIComponent(r.refId)}`;
           return (
             <li key={r.id}>
               <Link to={to}>
@@ -138,7 +136,7 @@ export default function Search() {
         })}
       </ul>
       {query.trim() && shown.length === 0 && <p className="muted">No matches for “{query}”.</p>}
-      {!query.trim() && <p className="muted">Searches {event === ALL_EVENTS ? 'all events' : data.eventName(event)}: rules, statements of fact{data.parts.length ? ', parts tables' : ''} and section notes, offline.</p>}
+      {!query.trim() && <p className="muted">Searches {event === ALL_EVENTS ? 'all events' : data.eventName(event)}: rules, statements{data.parts.length ? ', parts tables' : ''} and section notes, offline.</p>}
     </div>
   );
 }

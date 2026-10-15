@@ -6,7 +6,7 @@ import type { Figure, Rule } from '../data/types';
 export function SampleBanner() {
   const { sample } = useData();
   if (!sample.rules && !sample.facts) return null;
-  const which = sample.rules && sample.facts ? 'rules and statements of fact' : sample.rules ? 'rules' : 'statements of fact';
+  const which = sample.rules && sample.facts ? 'rules and statements' : sample.rules ? 'rules' : 'statements';
   return (
     <div className="sample-banner" role="status">
       <strong>SAMPLE DATA</strong> — the {which} shown are generic placeholders, not the real rule book. Add the real JSON to{' '}

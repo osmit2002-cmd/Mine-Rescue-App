@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { EventPicker } from '../components/EventPicker';
+import { pagesLabel, ruleLabel, ruleLink } from '../components/common';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import type { Fact } from '../data/types';
 import { checkAnswer } from '../quiz/check';
@@ -8,6 +8,7 @@ import { buildCandidateIndex, generateQuestion, type Question, type QuestionType
 import { generatePartQuestion, partItems, type PartItem } from '../quiz/parts';
 import { loadTimerSettings, mockPlan, saveTimerSettings, sessionMinutes, timerMinutes, timerOn, withTimerMinutes, withTimerOn, type TimerMode } from '../quiz/mock';
 import { buildSession } from '../quiz/picker';
+import { generateRuleQuestion, ruleSentenceIndex, spreadByRule, type RuleSentence } from '../quiz/rulesQuiz';
 import { quizConfig } from '../quiz/quizConfig';
 import { shuffle } from '../quiz/rng';
 import { loadStats, recordAnswer, saveStats } from '../quiz/stats';
@@ -15,7 +16,8 @@ import { loadStats, recordAnswer, saveStats } from '../quiz/stats';
 type Mode = 'mc' | 'fill' | 'mock';
 type Size = number | 'all';
 type Source = 'facts' | 'parts' | 'both';
-type Item = { id: string; fact?: Fact; part?: PartItem; category?: string };
+type Item = { id: string; fact?: Fact; part?: PartItem; sentence?: RuleSentence; category?: string };
+type QuizKind = 'statements' | 'rules';
 
 interface Answered {
   q: Question;
@@ -72,7 +74,7 @@ const fmtTime = (ms: number) => {
 
 export default function Quiz() {
   const data = useData();
-  const { facts: allFacts, factsById, factEvents, parts, partsById } = data;
+  const { facts: allFacts, factsById, factEvents, parts, partsById, rules: allRules } = data;
   const { event: globalEvent, setEvent } = useEvent();
   const [params, setParams] = useSearchParams();
 
@@ -91,6 +93,12 @@ export default function Quiz() {
   const categories = useMemo(() => [...new Set(facts.map((f) => f.category).filter((c): c is string => !!c))], [facts]);
   const blocks = useMemo(() => blocksOf(facts), [facts]);
 
+  const [kind, setKind] = useState<QuizKind>(() => (params.get('kind') === 'rules' ? 'rules' : 'statements'));
+  const eventRules = useMemo(() => (eventId ? allRules.filter((r) => r.event === eventId) : []), [allRules, eventId]);
+  // Built only when the Rules quiz is shown (a few hundred ms for a large rule book).
+  const ruleIndex = useMemo(() => (kind === 'rules' && eventRules.length ? ruleSentenceIndex(eventRules) : []), [kind, eventRules]);
+  const [ruleMode, setRuleMode] = useState<'mc' | 'fill'>('mc');
+  const [ruleSize, setRuleSize] = useState<Size>(quizConfig.defaultSessionSize);
   const [mode, setMode] = useState<Mode>(() => {
     const m = params.get('mode');
     return m === 'mc' || m === 'fill' || m === 'mock' ? m : quizConfig.defaultMode === 'fill' ? 'fill' : 'mc';
@@ -111,6 +119,7 @@ export default function Quiz() {
   const sessionFacts = useMemo(() => (sessionEvent ? allFacts.filter((f) => f.event === sessionEvent) : allFacts), [allFacts, sessionEvent]);
   const sessionTables = useMemo(() => (sessionEvent ? parts.filter((t) => t.event === sessionEvent) : parts), [parts, sessionEvent]);
   const index = useMemo(() => (phase === 'setup' ? null : buildCandidateIndex(sessionFacts)), [sessionFacts, phase === 'setup']);
+  const [sessionRules, setSessionRules] = useState<RuleSentence[]>([]);
   const [runMode, setRunMode] = useState<Mode>('mc');
   const [session, setSession] = useState<Item[]>([]);
   const [pos, setPos] = useState(0);
@@ -144,7 +153,7 @@ export default function Quiz() {
 
   const start = useCallback((list: Item[], m: Mode, minutes: number | null = null) => {
     if (!list.length) return;
-    setSessionEvent(list[0].fact?.event ?? list[0].part?.table.event ?? '');
+    setSessionEvent(list[0].fact?.event ?? list[0].part?.table.event ?? list[0].sentence?.rule.event ?? '');
     setSession(list);
     setRunMode(m);
     setPos(0);
@@ -162,6 +171,14 @@ export default function Quiz() {
 
   const startFromSetup = () => {
     const recent = loadStats().recent;
+    if (kind === 'rules') {
+      setSessionRules(ruleIndex);
+      const s = buildSession(ruleIndex.map((x) => ({ id: x.id, sentence: x, rule: x.rule })), { size: 'all', recent }, Math.random);
+      const ordered = spreadByRule(s);
+      const n = ruleSize === 'all' ? ordered.length : Math.min(ruleSize, ordered.length);
+      start(ordered.slice(0, n), ruleMode, sessionMinutes(timer, 'rules', eventId, plan.officialMinutes));
+      return;
+    }
     if (mode === 'mock') {
       // Statements first, then parts, like the bench written exam.
       const f = buildSession(facts.map((x) => ({ id: x.id, fact: x })), { size: mockFacts, recent }, Math.random);
@@ -176,11 +193,15 @@ export default function Quiz() {
   // A link to /quiz?mode=… while the page is open (e.g. the Home "Mock exam" tile) switches the setup mode,
   // unless a session is running.
   const modeParam = params.get('mode');
+  const kindParam = params.get('kind');
   useEffect(() => {
-    if (modeParam !== 'mc' && modeParam !== 'fill' && modeParam !== 'mock') return;
-    setMode(modeParam);
-    setPhase((ph) => (ph === 'done' ? 'setup' : ph));
-  }, [modeParam]);
+    if (kindParam === 'rules' || kindParam === 'statements') setKind(kindParam);
+    if (modeParam === 'mc' || modeParam === 'fill' || modeParam === 'mock') {
+      setMode(modeParam);
+      setKind('statements');
+    }
+    if (kindParam || modeParam) setPhase((ph) => (ph === 'done' ? 'setup' : ph));
+  }, [modeParam, kindParam]);
 
   // Deep link: /quiz?fact=<id> practises one statement.
   useEffect(() => {
@@ -210,7 +231,13 @@ export default function Quiz() {
     const qt: QuestionType = runMode === 'fill' ? 'fill' : 'mc';
     while (p < session.length) {
       const it = session[p];
-      const q = it.fact ? generateQuestion(it.fact, qt, { facts: sessionFacts, index, rng: Math.random }) : it.part ? generatePartQuestion(it.part, sessionTables, qt, Math.random) : null;
+      const q = it.fact
+        ? generateQuestion(it.fact, qt, { facts: sessionFacts, index, rng: Math.random })
+        : it.part
+          ? generatePartQuestion(it.part, sessionTables, qt, Math.random)
+          : it.sentence
+            ? generateRuleQuestion(it.sentence, sessionRules, qt, Math.random)
+            : null;
       if (q) {
         if (p !== pos) {
           // Drop items that cannot produce a question (e.g. too few distractors) so they are not
@@ -257,7 +284,7 @@ export default function Quiz() {
   const submit = useCallback(
     (given: string) => {
       if (!question || current || phase !== 'run') return;
-      const res = question.type === 'mc' ? { correct: given === question.answer, typo: false } : checkAnswer(given, question.answer);
+      const res = question.type === 'mc' ? { correct: given === question.answer, typo: false } : checkAnswer(given, question.answer, question.alternatives);
       const a: Answered = { q: question, given, correct: res.correct, typo: res.typo };
       const nextStreak = res.correct ? streak + 1 : 0;
       setStreak(nextStreak);
@@ -288,21 +315,101 @@ export default function Quiz() {
     return (
       <div className="card">
         <h1>Quiz</h1>
-        <p>Choose the contest event to study. Questions and wrong options always come from one event.</p>
-        <EventPicker allowAll={false} />
+        <p data-testid="pick-event">
+          <strong>Choose a contest event in the header</strong> (the event menu at the top). Quizzes run within one event, so its
+          questions and wrong options never mix contests.
+        </p>
       </div>
     );
-  if (!facts.length && !pItems.length) return <div className="card"><h1>Quiz</h1><p>No statements of fact are loaded for this event.</p></div>;
+
+  const kindTabs = (
+    <div className="chips quiz-kinds" role="radiogroup" aria-label="Quiz type">
+      {(['statements', 'rules'] as QuizKind[]).map((k) => (
+        <button key={k} role="radio" aria-checked={kind === k} className={`chip ${kind === k ? 'on' : ''}`} onClick={() => setKind(k)} data-testid={`kind-${k}`}>
+          {k === 'statements' ? 'Statements quiz' : 'Rules quiz'}
+        </button>
+      ))}
+    </div>
+  );
+
+  if (phase === 'setup' && kind === 'rules') {
+    const rulesYielding = new Set(ruleIndex.map((r) => r.rule.id)).size;
+    return (
+      <div className="card">
+        <h1>Rules quiz{ev ? ` — ${ev.name}` : ''}</h1>
+        {kindTabs}
+        <p className="muted small">
+          A key word, term or number with its unit is blanked in one sentence of a rule, quoted exactly as printed. Wrong options are the same kind of
+          token from other rules of this event. Skill sheets and forms are left out.
+        </p>
+        {ruleIndex.length === 0 ? (
+          <p>No rule sentences in this event can be turned into questions.</p>
+        ) : (
+          <>
+            <p className="small" data-testid="rules-pool">
+              {ruleIndex.length} sentences from {rulesYielding} of {eventRules.length} rules.
+            </p>
+            <h2>Answer type</h2>
+            <div className="chips" role="radiogroup" aria-label="Answer type">
+              {(['mc', 'fill'] as const).map((m) => (
+                <button key={m} role="radio" aria-checked={ruleMode === m} className={`chip ${ruleMode === m ? 'on' : ''}`} onClick={() => setRuleMode(m)}>
+                  {MODE_LABEL[m]}
+                </button>
+              ))}
+            </div>
+            <h2>Length</h2>
+            <div className="chips" role="radiogroup" aria-label="Length">
+              {quizConfig.sessionSizes.map((sz) => (
+                <button key={String(sz)} role="radio" aria-checked={ruleSize === sz} className={`chip ${ruleSize === sz ? 'on' : ''}`} onClick={() => setRuleSize(sz)}>
+                  {sz === 'all' ? `All (${ruleIndex.length})` : sz}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+        <TimerControls
+          mode="rules"
+          on={timerOn(timer, 'rules', eventId, plan.officialMinutes)}
+          minutes={timerMinutes(timer, eventId, plan.officialMinutes)}
+          official={plan.officialMinutes}
+          onToggle={(on) => {
+            const next = withTimerOn(timer, 'rules', eventId, on);
+            setTimer(next);
+            saveTimerSettings(next);
+          }}
+          onMinutes={(m) => {
+            const next = withTimerMinutes(timer, eventId, m);
+            setTimer(next);
+            saveTimerSettings(next);
+          }}
+        />
+        <div className="actions">
+          <button className="primary" onClick={startFromSetup} disabled={ruleIndex.length === 0}>
+            Start
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!facts.length && !pItems.length && phase === 'setup')
+    return (
+      <div className="card">
+        <h1>Quiz</h1>
+        {kindTabs}
+        <p>No statements are loaded for this event. Try the Rules quiz.</p>
+      </div>
+    );
 
   if (phase === 'setup') {
     const stats = loadStats();
     const mockTotal = mockFacts + mockParts;
     return (
       <div className="card">
-        <h1>Quiz{ev ? ` — ${ev.name}` : ''}</h1>
-        {factEvents.length > 1 && <EventPicker allowAll={false} compact />}
+        <h1>Statements quiz{ev ? ` — ${ev.name}` : ''}</h1>
+        {kindTabs}
         <p className="muted small">
-          Questions blank a key term or number in a verbatim statement of fact, like the written exam
+          Questions blank a key term or number in a verbatim statement, like the written exam
           {pItems.length > 0 && ', or ask for a part name from the Identification of Parts'}.
           {stats.answered > 0 && ` Lifetime: ${stats.correct}/${stats.answered} correct, best streak ${stats.bestStreak}.`}
         </p>
@@ -316,7 +423,7 @@ export default function Quiz() {
         </div>
         {mode === 'mock' ? (
           <p className="small">
-            {mockFacts} random statements of fact{mockParts ? ` + ${mockParts} Identification of Parts questions` : ''}, {quizConfig.distractorCount + 1} choices each, no feedback until the end,
+            {mockFacts} random statements{mockParts ? ` + ${mockParts} Identification of Parts questions` : ''}, {quizConfig.distractorCount + 1} choices each, no feedback until the end,
             scored out of {mockTotal}.{plan.officialMinutes ? ` Official time limit: ${plan.officialMinutes} minutes.` : ' No official time limit.'}
             {ev?.examDetail && <span className="muted"> Exam format: {ev.examDetail}</span>}
           </p>
@@ -428,13 +535,13 @@ export default function Quiz() {
             {session.slice(answers.length).map((it, i) => (
               <span key={it.id}>
                 {i > 0 && ', '}
-                {it.fact ? <Link to={`/facts/${encodeURIComponent(it.fact.id)}`}>Statement {it.fact.number ?? ''}</Link> : it.part ? <Link to={`/parts/${encodeURIComponent(it.part.table.id)}`}>Part {it.part.table.rows[it.part.row].no}</Link> : null}
+                {it.fact ? <Link to={`/statements/${encodeURIComponent(it.fact.id)}`}>Statement {it.fact.number ?? ''}</Link> : it.part ? <Link to={`/parts/${encodeURIComponent(it.part.table.id)}`}>Part {it.part.table.rows[it.part.row].no}</Link> : it.sentence ? <Link to={`/rules/${encodeURIComponent(it.sentence.rule.id)}`}>{ruleLabel(it.sentence.rule)}</Link> : null}
               </span>
             ))}
           </p>
         )}
         <div className="actions">
-          {missed.length > 0 && <button onClick={() => start(missed, runMode === 'fill' ? 'fill' : 'mc', sessionMinutes(timer, 'practice', sessionEvent, mockPlan(sessionEvent, data.eventInfo(sessionEvent), false).officialMinutes))}>Retry missed ({missed.length})</button>}
+          {missed.length > 0 && <button onClick={() => start(missed, runMode === 'fill' ? 'fill' : 'mc', sessionMinutes(timer, missed[0]?.sentence ? 'rules' : 'practice', sessionEvent, mockPlan(sessionEvent, data.eventInfo(sessionEvent), false).officialMinutes))}>Retry missed ({missed.length})</button>}
           <button className="primary" onClick={() => setPhase('setup')}>New quiz</button>
         </div>
       </div>
@@ -465,8 +572,8 @@ export default function Quiz() {
       {question && (
         <>
           <p className="muted small">
-            {question.source === 'part' ? 'Identification of Parts' : fact?.number ? `Statement ${fact.number}` : 'Statement'}
-            {question.source === 'cloze' ? ' — fill the blank' : ''}
+            {question.source === 'part' ? 'Identification of Parts' : question.source === 'rule' ? 'Rule book' : fact?.number ? `Statement ${fact.number}` : 'Statement'}
+            {question.source === 'cloze' || question.source === 'rule' ? ' — fill the blank' : ''}
           </p>
           <Prompt q={question} />
           {question.type === 'mc' ? (
@@ -517,6 +624,17 @@ export default function Quiz() {
                   {fact.page !== undefined && <span className="muted"> — rule book p. {fact.page}</span>}
                 </p>
               )}
+              {question.source === 'rule' && (
+                <p className="statement small">
+                  {question.segments.map((seg, k) => (
+                    <span key={k}>
+                      {seg}
+                      {k < question.segments.length - 1 && <mark>{question.answer}</mark>}
+                    </span>
+                  ))}
+                </p>
+              )}
+              {question.ruleId && <RuleRef ruleId={question.ruleId} answer={question.answer} />}
               {table && (
                 <p className="small">
                   <Link to={`/parts/${encodeURIComponent(table.id)}`}>View the {table.assembly} parts table</Link>
@@ -544,6 +662,21 @@ export default function Quiz() {
   );
 }
 
+/** "Coal Mine Rescue › Section › Rule 3 — Title · p. 7" with a link to the rule (the answer highlighted). */
+function RuleRef({ ruleId, answer }: { ruleId: string; answer: string }) {
+  const { rulesById, eventName, factEvents } = useData();
+  const r = rulesById.get(ruleId);
+  if (!r) return null;
+  const where = [factEvents.length > 1 ? eventName(r.event) : undefined, ...r.sectionPath].filter(Boolean).join(' › ');
+  return (
+    <p className="small rule-ref" data-testid="rule-ref">
+      <span className="muted">{where} › </span>
+      <Link to={ruleLink(r, answer)}>{ruleLabel(r)}</Link>
+      {pagesLabel(r.pages) && <span className="muted"> · rule book {pagesLabel(r.pages)}</span>}
+    </p>
+  );
+}
+
 function TimerControls(props: { mode: TimerMode; on: boolean; minutes: number; official: number | null; onToggle: (on: boolean) => void; onMinutes: (m: number) => void }) {
   const { mode, on, minutes, official, onToggle, onMinutes } = props;
   const [draft, setDraft] = useState(String(minutes));
@@ -559,7 +692,7 @@ function TimerControls(props: { mode: TimerMode; on: boolean; minutes: number; o
       <legend>Timer</legend>
       <label className="switch">
         <input type="checkbox" checked={on} onChange={(e) => onToggle(e.target.checked)} data-testid="timer-toggle" />{' '}
-        {mode === 'mock' ? 'Time the mock exam' : 'Time this practice session'}
+        {mode === 'mock' ? 'Time the mock exam' : mode === 'rules' ? 'Time this Rules quiz' : 'Time this practice session'}
       </label>
       {on && (
         <label className="minutes">
@@ -595,7 +728,7 @@ function TimerControls(props: { mode: TimerMode; on: boolean; minutes: number; o
           </span>
         </label>
       )}
-      <p className="muted small">Answers are submitted automatically when time runs out. Saved on this device{mode === 'mock' ? ' for mock exams' : ' for practice'}; the length is shared per event.</p>
+      <p className="muted small">Answers are submitted automatically when time runs out. Saved on this device{mode === 'mock' ? ' for mock exams' : mode === 'rules' ? ' for the Rules quiz' : ' for practice'}; the length is shared per event.</p>
     </fieldset>
   );
 }
@@ -630,9 +763,10 @@ function ReviewItem({ a, fact }: { a: Answered; fact?: Fact }) {
       </p>
       {fact && (
         <p className="small muted">
-          <Link to={`/facts/${encodeURIComponent(fact.id)}`}>{fact.number ? `Statement ${fact.number}` : 'Statement'}</Link>: {fact.statement}
+          <Link to={`/statements/${encodeURIComponent(fact.id)}`}>{fact.number ? `Statement ${fact.number}` : 'Statement'}</Link>: {fact.statement}
         </p>
       )}
+      {a.q.ruleId && <RuleRef ruleId={a.q.ruleId} answer={a.q.answer} />}
       {a.q.partTableId && (
         <p className="small muted">
           <Link to={`/parts/${encodeURIComponent(a.q.partTableId)}`}>Parts table</Link>

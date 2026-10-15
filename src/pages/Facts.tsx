@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { NotFound } from '../components/common';
-import { EventPicker } from '../components/EventPicker';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import type { Fact } from '../data/types';
 import { normalizeAnswer } from '../quiz/text';
@@ -21,11 +20,10 @@ export function FactList() {
   const shown = facts.filter((f) => (!ev || f.event === ev) && (!cat || f.category === cat) && (!q || normalizeAnswer(`${f.number ?? ''} ${f.statement}`).includes(q)));
   return (
     <div>
-      <h1>Statements of fact</h1>
+      <h1>Statements{ev && factEvents.length > 1 ? ` — ${eventName(ev)}` : ''}</h1>
       <div className="toolbar">
         <input type="search" placeholder="Filter statements…" value={filter} onChange={(e) => setFilter(e.target.value)} aria-label="Filter statements" />
       </div>
-      <EventPicker />
       {categories.length > 0 && (
         <div className="chips">
           <button aria-pressed={!cat} className={`chip ${!cat ? 'on' : ''}`} onClick={() => setCat('')}>All</button>
@@ -37,7 +35,7 @@ export function FactList() {
       <ol className="fact-list">
         {shown.map((f) => (
           <li key={f.id}>
-            <Link to={`/facts/${encodeURIComponent(f.id)}`}>
+            <Link to={`/statements/${encodeURIComponent(f.id)}`}>
               <span className="rule-num">{f.number ?? '•'}</span>
               <span>
                 {!ev && factEvents.length > 1 && <span className="muted small">{eventName(f.event)} · </span>}
@@ -67,7 +65,7 @@ export function FactDetail() {
   return (
     <article className="card">
       <nav className="breadcrumbs">
-        <Link to="/facts">Statements of fact</Link> › {factLabel(f)}
+        <Link to="/statements">Statements</Link> › {factLabel(f)}
       </nav>
       <h1>{factLabel(f)}</h1>
       <p className="statement">{f.statement}</p>
@@ -98,9 +96,9 @@ export function FactDetail() {
       {f.note && <p className="note small"><strong>Edit note:</strong> {f.note}</p>}
       <p className="muted small">Shown exactly as printed, including any typos in the source.</p>
       <div className="pager">
-        {prev ? <Link to={`/facts/${encodeURIComponent(prev.id)}`}>‹ {prev.number ?? 'Previous'}</Link> : <span />}
+        {prev ? <Link to={`/statements/${encodeURIComponent(prev.id)}`}>‹ {prev.number ?? 'Previous'}</Link> : <span />}
         <Link to={`/quiz?fact=${encodeURIComponent(f.id)}`} className="button">Practice this one</Link>
-        {next ? <Link to={`/facts/${encodeURIComponent(next.id)}`}>{next.number ?? 'Next'} ›</Link> : <span />}
+        {next ? <Link to={`/statements/${encodeURIComponent(next.id)}`}>{next.number ?? 'Next'} ›</Link> : <span />}
       </div>
     </article>
   );

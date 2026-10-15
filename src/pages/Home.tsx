@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { EventPicker } from '../components/EventPicker';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import { quizConfig } from '../quiz/quizConfig';
 import { loadTimerSettings, mockPlan, sessionMinutes } from '../quiz/mock';
@@ -25,19 +24,14 @@ export default function Home() {
     <div>
       <section className="hero">
         <h1>Mine Rescue Study</h1>
-        <p>{ev?.documentTitle ?? document.title ?? 'Mine rescue contest rules and statements of fact'}</p>
+        <p>{ev?.documentTitle ?? document.title ?? 'Mine rescue contest rules and statements'}</p>
         {edition && <p className="edition-badge">{edition}</p>}
       </section>
-      {factEvents.length > 1 && (
-        <>
-          <h2 className="small">Contest event</h2>
-          <EventPicker />
-        </>
-      )}
+      {all && factEvents.length > 1 && <p className="note small">Showing all events. Choose an event in the header menu to take a quiz or mock exam.</p>}
       <div className="tiles">
         <Link className="tile" to="/quiz">
           <strong>Quiz</strong>
-          <span>{quizConfig.distractorCount + 1}-choice questions from the statements of fact{evParts.length ? ' and parts tables' : ''}</span>
+          <span>{quizConfig.distractorCount + 1}-choice questions from the statements{evParts.length ? ' and parts tables' : ''}</span>
         </Link>
         {!all && (
           <Link className="tile" to="/quiz?mode=mock">
@@ -47,12 +41,18 @@ export default function Home() {
             </span>
           </Link>
         )}
+        {!all && evRules.length > 0 && (
+          <Link className="tile" to="/quiz?kind=rules">
+            <strong>Rules quiz</strong>
+            <span>Fill the blank in sentences from the {ev?.name ?? ''} rule book</span>
+          </Link>
+        )}
         <Link className="tile" to="/rules">
           <strong>Rule book</strong>
           <span>{evRules.length} rules by section</span>
         </Link>
-        <Link className="tile" to="/facts">
-          <strong>Statements of fact</strong>
+        <Link className="tile" to="/statements">
+          <strong>Statements</strong>
           <span>{evFacts.length} statements</span>
         </Link>
         {evParts.length > 0 && (
