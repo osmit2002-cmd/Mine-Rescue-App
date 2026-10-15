@@ -86,10 +86,10 @@ await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
 ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.2.0', 'footer shows v0.2.0');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.2.1', 'footer shows v0.2.1');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.2.0'), 'About shows v0.2.0');
+ok((await page.textContent('main')).includes('v0.2.1'), 'About shows v0.2.1');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
@@ -194,6 +194,71 @@ await page.waitForTimeout(300);
 ok((await page.$$('[data-testid=choice]')).length === 3, 'changing the event mid-quiz keeps the running question intact');
 await page.goto(url + '#/');
 
+// v0.2.1: Rules page search bar (shared with Statements), with the section filter as an option below it.
+await page.goto(url + '#/rules');
+await page.reload();
+await page.waitForSelector('input[aria-label="Search rules"]');
+const rq = 'input[aria-label="Search rules"]';
+const count = async () => (await page.textContent('[data-testid=search-count]')).trim();
+ok(/^100 rules/.test(await count()), `Rules page result count without a search: "${await count()}"`);
+const firstInMain = await page.evaluate(() => { const els = [...document.querySelectorAll('main input, main button, main select, main details')]; return els[0]?.getAttribute('aria-label'); });
+ok(firstInMain === 'Search rules', 'search bar is the first control on the Rules page');
+const boxIn = await page.locator(rq).boundingBox();
+const boxFilter = await page.locator('[data-testid=rule-section-filter]').boundingBox();
+ok(boxFilter && boxFilter.y >= boxIn.y + boxIn.height && boxFilter.y - (boxIn.y + boxIn.height) < 40, 'section filter sits directly below the search bar');
+await page.fill(rq, 'lifeline');
+await page.waitForSelector('[data-testid=rule-hit]');
+const fullCount = await count();
+const nFull = Number(fullCount.split(' ')[0]);
+ok(/^\d+ of 100 rules match/.test(fullCount) && nFull > 0, `live search "lifeline": ${fullCount}`);
+ok((await page.$$('[data-testid=rule-hit]')).length === nFull, 'every matching rule is listed (filtered tree)');
+ok((await page.$$('[data-testid=rule-hit]:not(:has(mark))')).length === 0, 'every matching rule has highlighted words');
+ok((await page.$$('main details:not([open])')).length === 0, 'sections holding matches are expanded');
+const snip = (await page.textContent('[data-testid=rule-snippet] >> nth=0')).replace(/^…|…$/g, '');
+const hitHref = await page.getAttribute('[data-testid=rule-snippet] >> nth=0 >> xpath=ancestor::a', 'href');
+await page.fill(rq, 'lifel');
+await page.waitForTimeout(200);
+ok(Number((await count()).split(' ')[0]) >= nFull, `prefix "lifel" matches too (${await count()})`);
+await page.fill(rq, 'lifelinr');
+await page.waitForTimeout(200);
+ok(Number((await count()).split(' ')[0]) > 0, `typo "lifelinr" still matches (${await count()})`);
+await page.fill(rq, 'lifeline');
+await page.waitForTimeout(200);
+const chips = page.locator('[data-testid=rule-section-filter] button');
+let narrowed = null;
+for (let i = 1; i < (await chips.count()); i++) {
+  await chips.nth(i).click();
+  const c = await count();
+  if (/in this section/.test(c) && Number(c.split(' ')[0]) > 0) { narrowed = c; break; }
+}
+ok(narrowed && Number(narrowed.split(' ')[0]) <= nFull, `section filter narrows the search results (${narrowed})`);
+await chips.nth(0).click();
+await page.waitForTimeout(300);
+await page.reload();
+await page.waitForSelector('[data-testid=rule-hit]');
+ok((await page.inputValue(rq)) === 'lifeline', 'the search survives a reload (#/rules?q=…)');
+await page.click('.search-clear');
+ok((await page.inputValue(rq)) === '' && /^100 rules/.test(await count()), 'clear button empties the search');
+await page.click('text=Expand all');
+ok((await page.$$('.rule-link')).length >= 100 && (await page.$$('main mark')).length === 0, 'empty search brings back the full tree');
+await page.goto(url + hitHref);
+await page.waitForSelector('.rule-text');
+const hitRuleText = (await page.textContent('.rule-text')).replace(/\s+/g, ' ');
+ok(hitRuleText.includes(snip.replace(/\s+/g, ' ').trim()), 'matched snippet is verbatim rule text');
+ok((await page.$$('.rule-text mark')).length > 0, 'the rule opened from a search highlights the words');
+await page.selectOption('[data-testid=event-select]', 'bench-biopak');
+await page.goto(url + '#/rules?q=diaphragm');
+await page.reload();
+await page.waitForSelector('[data-testid=rule-hit]');
+ok((await page.$$('.rule-snippet.pre mark')).length > 0, "search covers 'pre' parts lists and skill sheets (BioPak: diaphragm)");
+ok(/of 63 rules match/.test(await count()), `search is scoped to the header event (${await count()})`);
+await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+await page.goto(url + '#/statements?q=lifelin');
+await page.reload();
+await page.waitForSelector('.fact-list li');
+ok((await page.$$('.fact-list mark')).length > 0 && (await page.$$('.search-clear')).length === 1 && /^\d+ of \d+ statements/.test(await count()), `Statements uses the same search bar: highlights, clear button, count (${await count()})`);
+await page.goto(url + '#/');
+
 // Offline: reload and navigate.
 await ctx.setOffline(true);
 await page.goto(url + '#/statements/coal-mr-sof-102');
@@ -232,6 +297,10 @@ await page.waitForSelector('[data-testid=rules-pool]');
 await page.click('button.primary:has-text("Start")');
 await page.waitForSelector('[data-testid=choice]');
 ok(true, 'Rules quiz runs offline');
+await page.goto(url + '#/rules?q=oxygen');
+await page.reload();
+await page.waitForSelector('[data-testid=rule-hit]', { timeout: 10000 });
+ok(/of 100 rules match/.test(await count()), `Rules search works offline (${await count()})`);
 await ctx.setOffline(false);
 
 // Timer auto-submit (fake clock): preshift mock is 10 questions / 15 minutes.

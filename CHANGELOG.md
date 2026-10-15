@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1
+
+- **Search bar on the Rules page**, at the top, the same component as on the Statements page (`src/components/SearchBar.tsx` + `src/lib/textSearch.ts`). It searches the rule number, title and verbatim wording of every rule, skill sheets and parts lists (`format: "pre"`) included, scoped to the event in the header.
+  - Live results as you type: every word must match, words match as prefixes, and longer words (5+ letters) tolerate a small typo. A clear button (or Esc) empties the box; the result count ("N of M rules match") is announced to screen readers. The search is kept in the URL (`#/rules?q=…`).
+  - Results show as the rule tree narrowed to the matching rules (parents kept as context), sections expanded, matched words highlighted, and a verbatim excerpt of the rule wording around the match. Opening a rule highlights the words there too. An empty search brings back the full tree.
+- **The rule filter is now an option directly below the search bar:** section chips (All sections + each top-level section) narrow the tree, with or without a search, next to Expand all / Collapse all.
+- **The Statements page uses the same search bar:** it now matches word prefixes and small typos, highlights matched words, and has the clear button. The "N of M statements" count moved under the box.
+- Text is still shown exactly as printed (plain text, no HTML), and everything works offline.
+
 ## 0.2.0
 
 - **The header event menu is the only event control.** The per-page event chips are gone from Home, Statements, Search, Parts and Quiz; every page follows the header (Rules, Figures and Parts included). "All events" exists only in the header menu. With "All events" selected, the Quiz asks you to choose an event in the header.
