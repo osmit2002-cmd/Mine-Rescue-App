@@ -1,0 +1,144 @@
+{
+ "sample": true,
+ "note": "SAMPLE PLACEHOLDER DATA - generic text for testing the app only. Not real rules or statements of fact. Replaced automatically when ../content/*.json exists.",
+ "facts": [
+  {
+   "id": "sample-f1",
+   "text": "SAMPLE: Placeholder fact: the example alarm in this sample sounds at 25 ppm.",
+   "category": "Sample Gases",
+   "source": "Sample source p.1"
+  },
+  {
+   "id": "sample-f2",
+   "text": "SAMPLE: Placeholder fact: Example Gas X is lighter than air in this sample.",
+   "category": "Sample Gases",
+   "source": "Sample source p.2"
+  },
+  {
+   "id": "sample-f3",
+   "text": "SAMPLE: Placeholder fact: the sample detector reads in percent by volume.",
+   "category": "Sample Gases",
+   "source": "Sample source p.3"
+  },
+  {
+   "id": "sample-f4",
+   "text": "SAMPLE: Placeholder fact: an example reading above 19.5 percent is treated as normal in this sample.",
+   "category": "Sample Gases",
+   "source": "Sample source p.4"
+  },
+  {
+   "id": "sample-f5",
+   "text": "SAMPLE: Placeholder fact: three example items form the sample triangle: fuel, oxygen, and heat.",
+   "category": "Sample Fires",
+   "source": "Sample source p.5"
+  },
+  {
+   "id": "sample-f6",
+   "text": "SAMPLE: Placeholder fact: \"Class Z\" example fires are put out with sample foam.",
+   "category": "Sample Fires",
+   "source": "Sample source p.6"
+  },
+  {
+   "id": "sample-f7",
+   "text": "SAMPLE: Placeholder fact: the example seal is placed 1,000 feet from the sample fire area.",
+   "category": "Sample Fires",
+   "source": "Sample source p.7"
+  },
+  {
+   "id": "sample-f8",
+   "text": "SAMPLE: Placeholder fact: the first example priority in this sample is team safety.",
+   "category": "Sample Priorities",
+   "source": "Sample source p.8"
+  },
+  {
+   "id": "sample-f9",
+   "text": "SAMPLE: Placeholder fact: the second example priority in this sample is the rescue of survivors.",
+   "category": "Sample Priorities",
+   "source": "Sample source p.9"
+  },
+  {
+   "id": "sample-f10",
+   "text": "SAMPLE: Placeholder fact: the example fresh air base is set up where sample conditions change.",
+   "category": "Sample Priorities",
+   "source": "Sample source p.10"
+  },
+  {
+   "id": "sample-f11",
+   "text": "SAMPLE: Placeholder fact: the sample team checks apparatus every 20 minutes.",
+   "category": "Sample Apparatus",
+   "source": "Sample source p.11"
+  },
+  {
+   "id": "sample-f12",
+   "text": "SAMPLE: Placeholder fact: the example captain leads the sample team underground.",
+   "category": "Sample Apparatus",
+   "source": "Sample source p.12"
+  },
+  {
+   "id": "sample-f13",
+   "text": "SAMPLE: Placeholder fact: the sample apparatus cylinder holds 3,000 psi in this example.",
+   "category": "Sample Apparatus",
+   "source": "Sample source p.13"
+  },
+  {
+   "id": "sample-f14",
+   "text": "SAMPLE: Placeholder fact: sample ventilation changes require orders from the example command center.",
+   "category": "Sample Ventilation",
+   "source": "Sample source p.14"
+  },
+  {
+   "id": "sample-f15",
+   "text": "SAMPLE: Placeholder fact: an example overcast carries sample air over another airway.",
+   "category": "Sample Ventilation",
+   "source": "Sample source p.15"
+  },
+  {
+   "id": "sample-f16",
+   "text": "SAMPLE: Placeholder fact: the sample regulator controls example airflow in this placeholder.",
+   "category": "Sample Ventilation",
+   "source": "Sample source p.16"
+  },
+  {
+   "id": "sample-f17",
+   "text": "SAMPLE: Placeholder question: which sample colour marks the example lifeline?",
+   "category": "Sample Equipment",
+   "source": "Sample source p.17",
+   "answer": "Sample Orange",
+   "distractors": [
+    "Sample Blue",
+    "Sample Green",
+    "Sample Purple"
+   ]
+  },
+  {
+   "id": "sample-f18",
+   "text": "SAMPLE: Placeholder question: how many sample tags hang on the example board?",
+   "category": "Sample Equipment",
+   "source": "Sample source p.18",
+   "answer": "6",
+   "distractors": [
+    "4",
+    "8",
+    "12"
+   ]
+  },
+  {
+   "id": "sample-f19",
+   "text": "SAMPLE: Placeholder fact: the example lifeline is tied with a sample knot.",
+   "category": "Sample Equipment",
+   "source": "Sample source p.19",
+   "keyTerms": [
+    "lifeline"
+   ]
+  },
+  {
+   "id": "sample-f20",
+   "text": "SAMPLE: Placeholder fact: the sample stretcher is carried by 4 example team members.",
+   "category": "Sample Equipment",
+   "source": "Sample source p.20",
+   "keyTerms": [
+    "stretcher"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,129 @@
+import { lazy, Suspense, useEffect } from 'react';
+import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
+import { ErrorBoundary, SampleBanner } from './components/common';
+import { PwaStatus } from './components/PwaStatus';
+import { ALL_EVENTS, DataProvider, EventProvider, useData, useEvent, useLoadState } from './data/DataContext';
+import Home from './pages/Home';
+import { FactDetail, FactList } from './pages/Facts';
+import Rules from './pages/Rules';
+import RuleDetail from './pages/RuleDetail';
+import SectionPage from './pages/SectionPage';
+import Search from './pages/Search';
+import Quiz from './pages/Quiz';
+import Figures from './pages/Figures';
+import { PartsList, PartsTable } from './pages/Parts';
+
+const About = lazy(() => import('./pages/About'));
+
+function ScrollTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function DataGate() {
+  const { state, reload } = useLoadState();
+  if (state.status === 'loading') return <p className="muted center">Loading…</p>;
+  if (state.status === 'error')
+    return (
+      <div className="card error">
+        <h2>Could not load content</h2>
+        <p>{state.message}</p>
+        <button onClick={reload}>Try again</button>
+      </div>
+    );
+  return <Shell />;
+}
+
+function Shell() {
+  const { editionFor, sample, parts } = useData();
+  const { event } = useEvent();
+  const loc = useLocation();
+  const edition = editionFor(event === ALL_EVENTS ? undefined : event);
+  return (
+    <>
+      <SampleBanner />
+      <ErrorBoundary key={loc.pathname}>
+        <Suspense fallback={<p className="muted center">Loading…</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/rules" element={<Rules />} />
+            <Route path="/rules/:id" element={<RuleDetail />} />
+            <Route path="/section/:id" element={<SectionPage />} />
+            <Route path="/facts" element={<FactList />} />
+            <Route path="/facts/:id" element={<FactDetail />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/figures" element={<Figures />} />
+            <Route path="/parts" element={<PartsList />} />
+            <Route path="/parts/:id" element={<PartsTable />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<div className="card"><h2>Page not found</h2><Link to="/">Home</Link></div>} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
+      <footer className="footer">
+        <span>{edition ?? (sample.rules || sample.facts ? 'SAMPLE data — not the real rule book' : '')}</span>
+        <span>
+          <Link to="/figures">Figures</Link>{parts.length > 0 && <> · <Link to="/parts">Parts</Link></>} · <Link to="/about">About &amp; sources</Link> · <span data-testid="footer-version">v{__APP_VERSION__}</span>
+        </span>
+      </footer>
+    </>
+  );
+}
+
+function Header() {
+  const { state } = useLoadState();
+  const { event, setEvent } = useEvent();
+  const data = state.status === 'ready' ? state.data : undefined;
+  const edition = data?.editionFor(event === ALL_EVENTS ? undefined : event);
+  const events = data?.factEvents ?? [];
+  const hasParts = !!data?.parts.some((t) => event === ALL_EVENTS || t.event === event);
+  return (
+    <header className="header">
+      <Link to="/" className="brand">
+        <img src={`${import.meta.env.BASE_URL}icons/icon-192.png`} alt="" width={28} height={28} />
+        <span>
+          Mine Rescue Study
+          {edition && <small className="edition">{edition}</small>}
+        </span>
+      </Link>
+      <nav className="nav" aria-label="Main">
+        <NavLink to="/" end>Home</NavLink>
+        <NavLink to="/rules">Rules</NavLink>
+        <NavLink to="/facts">Facts</NavLink>
+        <NavLink to="/quiz">Quiz</NavLink>
+        <NavLink to="/search">Search</NavLink>
+        {hasParts && <NavLink to="/parts">Parts</NavLink>}
+      </nav>
+      {events.length > 1 && (
+        <label className="event-select">
+          <span className="sr-only">Contest event</span>
+          <select value={event} onChange={(e) => setEvent(e.target.value)} aria-label="Contest event" data-testid="event-select">
+            {events.map((e) => (
+              <option key={e.id} value={e.id}>{e.name}</option>
+            ))}
+            <option value={ALL_EVENTS}>All events</option>
+          </select>
+        </label>
+      )}
+    </header>
+  );
+}
+
+export default function App() {
+  return (
+    <DataProvider>
+      <EventProvider>
+        <ScrollTop />
+        <Header />
+        <main className="main">
+          <DataGate />
+        </main>
+        <PwaStatus />
+      </EventProvider>
+    </DataProvider>
+  );
+}

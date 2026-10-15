@@ -1,0 +1,1843 @@
+{
+ "parts": [
+  {
+   "id": "bench-biopak-parts-p21",
+   "event": "bench-biopak",
+   "assembly": "BioPak 240 Revolution Complete",
+   "title_note": null,
+   "page": 21,
+   "figure": "figures/bench-biopak/page-21.png",
+   "parts": [
+    {
+     "cons_no": "2",
+     "designation": "Upper Housing Assembly"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Coolant Lid"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Ice Canister"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Breathing Hose"
+    },
+    {
+     "cons_no": "12",
+     "designation": "O2 Cylinder"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Lower Housing Assembly"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Harness Assembly"
+    },
+    {
+     "cons_no": "15",
+     "designation": "Ice Canister Freeze Form"
+    },
+    {
+     "cons_no": "19",
+     "designation": "Facemask Storage Plug"
+    },
+    {
+     "cons_no": "21",
+     "designation": "PCM Heat Exchanger"
+    },
+    {
+     "cons_no": "22",
+     "designation": "Moisture Absorbent Pad Set"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p22",
+   "event": "bench-biopak",
+   "assembly": "Lower Housing Assembly",
+   "title_note": null,
+   "page": 22,
+   "figure": "figures/bench-biopak/page-22.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Lower Housing Shell"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Diaphragm Springs"
+    },
+    {
+     "cons_no": "3",
+     "designation": "External Oxygen Knob"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Vent Spacer"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Latch Foam Pad"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Oxygen Cylinder Hold-Down Strap"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Carrying Handle"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p23",
+   "event": "bench-biopak",
+   "assembly": "Pneumatic Assembly",
+   "title_note": null,
+   "page": 23,
+   "figure": "figures/bench-biopak/page-23.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Bypass Feed Tube"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Bypass Return Tube"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Oxygen Feed Tube"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Bypass Valve Push Button"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Bypass Valve"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Oxygen Regulator Assembly"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Remote Gauge Shut Off Assembly"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Remote Gauge Assembly"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Remote Gauge Feed Tube Assembly"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p24",
+   "event": "bench-biopak",
+   "assembly": "Manifold Assembly",
+   "title_note": null,
+   "page": 24,
+   "figure": "figures/bench-biopak/page-24.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Manifold Block w/Pressure Switch"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Constant Add Flow Restrictor Assembly"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Swivel Elbow Fitting"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p25",
+   "event": "bench-biopak",
+   "assembly": "Center Section Assembly",
+   "title_note": null,
+   "page": 25,
+   "figure": "figures/bench-biopak/page-25.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Lid O-Ring"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Demand Feed Tube"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Center Section Body Assembly"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Constant Add Fitting"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Demand Add Fitting"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Demand Valve Gasket"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Demand Valve Assembly"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Flexible Diaphragm"
+    },
+    {
+     "cons_no": "15",
+     "designation": "Diaphragm Clamp"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p26",
+   "event": "bench-biopak",
+   "assembly": "Center Section Lid Assembly",
+   "title_note": null,
+   "page": 26,
+   "figure": "figures/bench-biopak/page-26.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Coolant Lid"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Center Section Lid"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Flow Baffle"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Self-Tapping Screws"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p27",
+   "event": "bench-biopak",
+   "assembly": "Diaphragm Assembly",
+   "title_note": null,
+   "page": 27,
+   "figure": "figures/bench-biopak/page-27.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Flexible Diaphragm"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Vent Cap"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Vent Body O-Ring"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Vent Body"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Vent Seat O-Ring"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Vent Valve Spring"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Vent Valve Seat"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p28",
+   "event": "bench-biopak",
+   "assembly": "Breathing Hose",
+   "title_note": null,
+   "page": 28,
+   "figure": "figures/bench-biopak/page-28.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Breathing Hose"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Worm Gear Hose Clamp"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Stepless Ear Clamp"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p29",
+   "event": "bench-biopak",
+   "assembly": "Ice Canister Freeze Form",
+   "title_note": null,
+   "page": 29,
+   "figure": "figures/bench-biopak/page-29.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Base Assembly"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Freeze Tube"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Top Plate"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Wing Nut"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p30",
+   "event": "bench-biopak",
+   "assembly": "Oxygen Cylinder Assembly",
+   "title_note": null,
+   "page": 30,
+   "figure": "figures/bench-biopak/page-30.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Green Cylinder"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Exterior O-Ring"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Valve Collar"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Interior O-Ring"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Valve Assembly"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p31",
+   "event": "bench-biopak",
+   "assembly": "RMS Monitoring System",
+   "title_note": null,
+   "page": 31,
+   "figure": "figures/bench-biopak/page-31.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Battery Door"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Battery Door Gasket"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Battery Door Warning Label"
+    },
+    {
+     "cons_no": "5",
+     "designation": "9Vdc Battery"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p32",
+   "event": "bench-biopak",
+   "assembly": "Biomarine Pro PP Mask (Revised Drawing)",
+   "title_note": null,
+   "page": 32,
+   "figure": "figures/bench-biopak/page-32.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Front Cover & Screws"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Front Cover Screw"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Speech Channel Body"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Speech Diaphragm"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Speech Diaphragm O-Ring"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Outer Mask Assembly"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Visor"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Visor Frame & Screws"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Inner Mask & Ring"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Inner Mask Retaining Ring"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Valve Frame"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Valve Flap"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Web Head-Harness"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Buckle & Roller"
+    },
+    {
+     "cons_no": "15",
+     "designation": "Neck Strap Assembly"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Neck Strap Mounting Clip"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Spectacle Frame"
+    }
+   ]
+  },
+  {
+   "id": "bench-biopak-parts-p33",
+   "event": "bench-biopak",
+   "assembly": "Tool Kit",
+   "title_note": null,
+   "page": 33,
+   "figure": "figures/bench-biopak/page-33.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Case Assembly"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Flow Test Fixture"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Test Key"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Vent Valve Wrench"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Center Section Pneumatic Plug"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Combination Pick Tool"
+    },
+    {
+     "cons_no": "13",
+     "designation": "1/4 - Inch Hex Driver"
+    },
+    {
+     "cons_no": "20",
+     "designation": "Leak Detection Fluid"
+    },
+    {
+     "cons_no": "22",
+     "designation": "3/8 – Inch OD Rubber Tubing"
+    },
+    {
+     "cons_no": "26",
+     "designation": "Leak Check Adapter Fitting"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p20",
+   "event": "bench-bg4",
+   "assembly": "BG-4",
+   "title_note": null,
+   "page": 20,
+   "figure": "figures/bench-bg4/page-22.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Carrying Housing"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Cover Shell, complete"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Shoulder Pad Assembly"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Cooler"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Relief valve, Complete"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Minimum Valve"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Drain Valve"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Sentinel"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Switch Box"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Pressure Sensor"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Breathing Bag"
+    },
+    {
+     "cons_no": "15",
+     "designation": "Lever, Complete"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Factory/refillable cartridge"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Pressure Reducer BG4"
+    },
+    {
+     "cons_no": "19",
+     "designation": "Oxygen Cylinder"
+    },
+    {
+     "cons_no": "21",
+     "designation": "Distribution Hose"
+    },
+    {
+     "cons_no": "22",
+     "designation": "FPS 7000 Mask"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p21",
+   "event": "bench-bg4",
+   "assembly": "Cover",
+   "title_note": null,
+   "page": 21,
+   "figure": "figures/bench-bg4/page-23.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Cover Shell"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Hinge"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Grip Cap"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Button"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p22",
+   "event": "bench-bg4",
+   "assembly": "Harness Assembly",
+   "title_note": null,
+   "page": 22,
+   "figure": "figures/bench-bg4/page-24.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Shoulder Pad Assembly"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Shoulder Adjusting Strap"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Hose Clip"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Hose Strap Harness"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Adjusting Belt Assembly"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Waist belt"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Belt Assembly"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Buckle"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p23",
+   "event": "bench-bg4",
+   "assembly": "Breathing Hose Assembly",
+   "title_note": null,
+   "page": 23,
+   "figure": "figures/bench-bg4/page-25.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Coupling"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Inhalation Valve Seat"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Exhalation Valve Seat"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Valve Disc"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Corrugated Hose"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Bayonet Ring"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Anti-Crush rings"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Toroidal Sealing Ring"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Sealing Cap"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p24",
+   "event": "bench-bg4",
+   "assembly": "Cooling Canister (Revised Drawing)",
+   "title_note": null,
+   "page": 24,
+   "figure": "figures/bench-bg4/page-26.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Cooler"
+    },
+    {
+     "cons_no": "2",
+     "designation": "O-Ring, Cooler"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Cover"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Angle Connector"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Reaction Ring"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p25",
+   "event": "bench-bg4",
+   "assembly": "Drain/Relief/Minimum Valve Assembly (Revised Drawing)",
+   "title_note": null,
+   "page": 25,
+   "figure": "figures/bench-bg4/page-27.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Valve Disc"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Crater Housing"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Valve Disc"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Spring"
+    },
+    {
+     "cons_no": "5",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Cap"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Reaction Ring"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Coupling"
+    },
+    {
+     "cons_no": "13",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "14-16, 3-4",
+     "designation": "Drainage Valve"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Cap, Drain Valve"
+    },
+    {
+     "cons_no": "15-16",
+     "designation": "Drain Valve & Filter"
+    },
+    {
+     "cons_no": "17-24",
+     "designation": "Minimum Valve"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Crater"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Washer"
+    },
+    {
+     "cons_no": "19-20",
+     "designation": "Rocker Arm"
+    },
+    {
+     "cons_no": "21",
+     "designation": "Spring"
+    },
+    {
+     "cons_no": "24",
+     "designation": "Angle Connector"
+    },
+    {
+     "cons_no": "25",
+     "designation": "Holding Clamp"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p26",
+   "event": "bench-bg4",
+   "assembly": "Sentinel",
+   "title_note": null,
+   "page": 26,
+   "figure": "figures/bench-bg4/page-28.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Sentinel"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Switch Box"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Angle Connector"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Pressure Sensor"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Copper Ring"
+    },
+    {
+     "cons_no": "9",
+     "designation": "9-volt battery"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Tally Key"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p27",
+   "event": "bench-bg4",
+   "assembly": "Refillable Cartridge",
+   "title_note": null,
+   "page": 27,
+   "figure": "figures/bench-bg4/page-29.png",
+   "parts": [
+    {
+     "cons_no": "1-8",
+     "designation": "Refillable Cartridge"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Lid"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Seal, Refillable Cartridge"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Strap with Tension Spring Hook"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Refillable Scrubber Screen"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Filter Mats"
+    },
+    {
+     "cons_no": "8",
+     "designation": "NIOSH Approval Label"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p28",
+   "event": "bench-bg4",
+   "assembly": "FPS 7000 Mask",
+   "title_note": null,
+   "page": 28,
+   "figure": "figures/bench-bg4/page-30.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Mask Body FPS 7000"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Upper Visor Frame"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Visor 15A Head Strap"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Lower Visor Frame 15B Hairnet"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Clamp"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Connector Piece"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Cover"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Turning Knob"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Disc"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Inner Mask"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Button"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Sliding Buckle"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Double Button"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Neck Strap"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p29",
+   "event": "bench-bg4",
+   "assembly": "Oxygen Cylinder",
+   "title_note": null,
+   "page": 29,
+   "figure": "figures/bench-bg4/page-31.png",
+   "parts": [
+    {
+     "cons_no": "3",
+     "designation": "Valve Housing"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Hand-wheel"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Safety Ring"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Sealing Ring"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Manometer"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Lock Washer"
+    },
+    {
+     "cons_no": "19",
+     "designation": "Lock Nut"
+    },
+    {
+     "cons_no": "20",
+     "designation": "Bursting Disc"
+    },
+    {
+     "cons_no": "21",
+     "designation": "Oxygen Cylinder"
+    },
+    {
+     "cons_no": "22",
+     "designation": "Label"
+    }
+   ]
+  },
+  {
+   "id": "bench-bg4-parts-p30",
+   "event": "bench-bg4",
+   "assembly": "Test Kit",
+   "title_note": null,
+   "page": 30,
+   "figure": "figures/bench-bg4/page-32.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Plug For Breathing Bag"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Nozzle For Breathing Bag"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Sealing Plug (Corrugated Hose)"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Test Socket for Corrugated Hose"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Sealing Cap for Corrugated Hose"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Sealing Cap"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Testing Plug"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Test Cap for Corrugated Hose"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Test Connection for Control"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Sealing Plug for Mask"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Test Adaptor"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Sealing Plug for Plug in Conn."
+    },
+    {
+     "cons_no": "14",
+     "designation": "Test Hose/Metering Control"
+    },
+    {
+     "cons_no": "19",
+     "designation": "Sealing Ring Lifters"
+    },
+    {
+     "cons_no": "22",
+     "designation": "Spanner Valve"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p21",
+   "event": "bench-proair",
+   "assembly": "Refill Absorber",
+   "title_note": null,
+   "page": 21,
+   "figure": "figures/bench-proair/page-23.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Refill Absorber Lid"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Cooler/Absorber Lock"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Retaining Washer"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Cylinder Pin"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Snap-Fit Cooler, Absorber"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Sealing"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Frame"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Top Sieve"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Filter Pad"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Bottom Sieve"
+    },
+    {
+     "cons_no": "11-13",
+     "designation": "Refill Absorber Housing"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Type Label"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Absorber RFID"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p22",
+   "event": "bench-proair",
+   "assembly": "Ice Cooler, Complete",
+   "title_note": null,
+   "page": 22,
+   "figure": "figures/bench-proair/page-24.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Snap-Fit"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Ice Cooler Lid"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Ice Cooler Cartridge"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p23",
+   "event": "bench-proair",
+   "assembly": "Breathing Connection",
+   "title_note": null,
+   "page": 23,
+   "figure": "figures/bench-proair/page-25.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Valve Disc"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Directional Valve Housing"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Connector Piece"
+    },
+    {
+     "cons_no": "4",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Bayonet Ring"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Breathing Hose"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Sealing Cap"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Split Ring"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p24",
+   "event": "bench-proair",
+   "assembly": "Breathing Bag",
+   "title_note": null,
+   "page": 24,
+   "figure": "figures/bench-proair/page-26.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Breathing Bag"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Breathing Bag Lock"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Relief Valve"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Relief Valve Disc"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Relief Valve Seal"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Valve Disc"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Spring"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Valve Cap"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Drain Valve"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Drain Valve Cap"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Connector Seal"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p25",
+   "event": "bench-proair",
+   "assembly": "Cylinder Holder",
+   "title_note": null,
+   "page": 25,
+   "figure": "figures/bench-proair/page-27.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Cylinder Strap"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Flat Head Screw"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p26",
+   "event": "bench-proair",
+   "assembly": "Spring Bridge",
+   "title_note": null,
+   "page": 26,
+   "figure": "figures/bench-proair/page-28.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Pressure Plate"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Breathing Bag Spring"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Pressure Relief Valve Limit Stop"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Wire Bow"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Snap-In Hook, Left"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Snap-In Hook, Right"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Assembly Clip"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Spring Bridge"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Locking Lever"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p27",
+   "event": "bench-proair",
+   "assembly": "Waist Belt",
+   "title_note": null,
+   "page": 27,
+   "figure": "figures/bench-proair/page-29.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Buckle"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Flat Head Screw"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Splint"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p28",
+   "event": "bench-proair",
+   "assembly": "Shoulder Harness",
+   "title_note": null,
+   "page": 28,
+   "figure": "figures/bench-proair/page-30.png",
+   "parts": [
+    {
+     "cons_no": "1-5",
+     "designation": "Shoulder Harness, Comfort"
+    },
+    {
+     "cons_no": "1",
+     "designation": "Chest Strap"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Webbing With Loop Head"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Harness Anchor"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Hose Loop (100 mm)"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Hose Loop (210 mm)"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p29",
+   "event": "bench-proair",
+   "assembly": "Electronics",
+   "title_note": null,
+   "page": 29,
+   "figure": "figures/bench-proair/page-31.png",
+   "parts": [
+    {
+     "cons_no": "1-4",
+     "designation": "Electronics Assembly"
+    },
+    {
+     "cons_no": "2-3",
+     "designation": "Battery Carrier, Complete"
+    },
+    {
+     "cons_no": "3",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Ventilation Diaphragm"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p30",
+   "event": "bench-proair",
+   "assembly": "Housing – Upper Shell",
+   "title_note": null,
+   "page": 30,
+   "figure": "figures/bench-proair/page-32.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Lock"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Flat Head Screw"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Buddy Light Window"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Hinge Top"
+    },
+    {
+     "cons_no": "1-4",
+     "designation": "Upper Shell Compl."
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p31",
+   "event": "bench-proair",
+   "assembly": "Minimum Valve",
+   "title_note": null,
+   "page": 31,
+   "figure": "figures/bench-proair/page-33.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Dust Cover"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Valve Lever"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Valve Lever Cover"
+    },
+    {
+     "cons_no": "1-3",
+     "designation": "Minimum Valve, Compl."
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p32",
+   "event": "bench-proair",
+   "assembly": "Pressure Reducer",
+   "title_note": null,
+   "page": 32,
+   "figure": "figures/bench-proair/page-34.png",
+   "parts": [
+    {
+     "cons_no": "4",
+     "designation": "Pressure Reducer, CGA 540"
+    },
+    {
+     "cons_no": "5",
+     "designation": "PSP 5 Pressure Sensor"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Screw"
+    },
+    {
+     "cons_no": "7",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Clamp"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Bracket"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Sealing Ring"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Angle Connection"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Hand Wheel"
+    },
+    {
+     "cons_no": "13",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Sinter Filter"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p33",
+   "event": "bench-proair",
+   "assembly": "Pneumatics",
+   "title_note": null,
+   "page": 33,
+   "figure": "figures/bench-proair/page-35.png",
+   "parts": [
+    {
+     "cons_no": "2",
+     "designation": "Pre-Flush"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Bypass"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p34",
+   "event": "bench-proair",
+   "assembly": "Tubes/Air Lines",
+   "title_note": null,
+   "page": 34,
+   "figure": "figures/bench-proair/page-36.png",
+   "parts": [
+    {
+     "cons_no": "1-1.3",
+     "designation": "Tube Assembly, Preflush"
+    },
+    {
+     "cons_no": "1.1",
+     "designation": "Spare Part Tube, Black"
+    },
+    {
+     "cons_no": "1.2",
+     "designation": "L-Push-In Connector, 1-Sided"
+    },
+    {
+     "cons_no": "1.3",
+     "designation": "T-Push-In Connector, 1-Sided"
+    },
+    {
+     "cons_no": "2-2.1",
+     "designation": "Tube, Bypass"
+    },
+    {
+     "cons_no": "2.1",
+     "designation": "Spare Part Tube, Red"
+    },
+    {
+     "cons_no": "3-3.4",
+     "designation": "Tube Assembly, Absorber"
+    },
+    {
+     "cons_no": "3.1",
+     "designation": "L-Push-In Connector"
+    },
+    {
+     "cons_no": "3.2",
+     "designation": "Spare Part Tube, Black"
+    },
+    {
+     "cons_no": "3.3",
+     "designation": "Y-Push-In Connector"
+    },
+    {
+     "cons_no": "3.4",
+     "designation": "Spare Part Tube, Blue"
+    },
+    {
+     "cons_no": "4-4.3",
+     "designation": "Tube Assembly, MP"
+    },
+    {
+     "cons_no": "4.1",
+     "designation": "L-Push-In Connector"
+    },
+    {
+     "cons_no": "4.2",
+     "designation": "T-Push-In connector"
+    },
+    {
+     "cons_no": "5-5.1",
+     "designation": "Tube, E-Box"
+    },
+    {
+     "cons_no": "5.1",
+     "designation": "Spare Part Tube, Blue"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p35",
+   "event": "bench-proair",
+   "assembly": "Connect ECU (Electronic Control Unit)",
+   "title_note": null,
+   "page": 35,
+   "figure": "figures/bench-proair/page-37.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "ECU Connect Aftersales"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Connect UI Module Rubber Cover"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Sacrificial Screen Display"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Tally Key"
+    },
+    {
+     "cons_no": "4a",
+     "designation": "Split Ring"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Sacrificial Screen LED"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p36",
+   "event": "bench-proair",
+   "assembly": "FPS 7000 Mask",
+   "title_note": null,
+   "page": 36,
+   "figure": "figures/bench-proair/page-38.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Mask Body FPS 7000"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Upper Visor Frame"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Visor 15A Head Strap"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Lower Visor Frame 15B Hairnet"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Clamp"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Connector Piece"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Cover"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Turning Knob"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Disc"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Inner Mask"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Button"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Sliding Buckle"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Double Button"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Neck Strap"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p37",
+   "event": "bench-proair",
+   "assembly": "Oxygen Cylinder",
+   "title_note": null,
+   "page": 37,
+   "figure": "figures/bench-proair/page-39.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Cylinder, O2 2/200 DOT"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Cylinder Valve"
+    },
+    {
+     "cons_no": "3",
+     "designation": "O-Ring"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Approval Label, Cylinder"
+    },
+    {
+     "cons_no": "5",
+     "designation": "Transparent Over Label"
+    }
+   ]
+  },
+  {
+   "id": "bench-proair-parts-p38",
+   "event": "bench-proair",
+   "assembly": null,
+   "title_note": "No assembly title is printed on this page; the parts are the BG ProAir test set / tool kit.",
+   "page": 38,
+   "figure": "figures/bench-proair/page-40.png",
+   "parts": [
+    {
+     "cons_no": "1",
+     "designation": "Case, BG ProAir Test Set"
+    },
+    {
+     "cons_no": "2",
+     "designation": "Adapter RZ 7000"
+    },
+    {
+     "cons_no": "3",
+     "designation": "Plug, Male Coupling"
+    },
+    {
+     "cons_no": "4",
+     "designation": "Blind Plug"
+    },
+    {
+     "cons_no": "5",
+     "designation": "O-Ring Removal Tool"
+    },
+    {
+     "cons_no": "6",
+     "designation": "Adapter, Quick Coupling"
+    },
+    {
+     "cons_no": "7",
+     "designation": "Breathing Hose Sealing Plug"
+    },
+    {
+     "cons_no": "8",
+     "designation": "Breathing Bag Lock Plug"
+    },
+    {
+     "cons_no": "9",
+     "designation": "Test Connection, Breathing Hose"
+    },
+    {
+     "cons_no": "10",
+     "designation": "Test Adapter, Hose Connection"
+    },
+    {
+     "cons_no": "11",
+     "designation": "Plug c/a Breathing Bag Side"
+    },
+    {
+     "cons_no": "12",
+     "designation": "Torque TORX Blade T10"
+    },
+    {
+     "cons_no": "13",
+     "designation": "Torque TORX Blade T20"
+    },
+    {
+     "cons_no": "14",
+     "designation": "Torque TORX Blade T25"
+    },
+    {
+     "cons_no": "15",
+     "designation": "Torque Change Blade 6Kt 2.5"
+    },
+    {
+     "cons_no": "16",
+     "designation": "Torque Screwdriver"
+    },
+    {
+     "cons_no": "17",
+     "designation": "Torque Screwdriver 0.8 – 5.0 Nm"
+    },
+    {
+     "cons_no": "18",
+     "designation": "Face Spanner"
+    },
+    {
+     "cons_no": "19",
+     "designation": "Test Hose"
+    },
+    {
+     "cons_no": "20",
+     "designation": "Bypass Adapter"
+    },
+    {
+     "cons_no": "21",
+     "designation": "Breathing Bag Adapter"
+    },
+    {
+     "cons_no": "22",
+     "designation": "Breathing Bag Plug"
+    },
+    {
+     "cons_no": "23",
+     "designation": "Plug"
+    },
+    {
+     "cons_no": "24",
+     "designation": "Drain Valve Plug"
+    }
+   ]
+  }
+ ],
+ "count_tables": 42,
+ "count_rows": 354,
+ "note": "Bench \"Identification of Parts\" tables (Cons. No. → Designation) per assembly diagram, verbatim. 10 of the 20 bench written-exam questions are taken verbatim from these. Figures are the diagram pages."
+}

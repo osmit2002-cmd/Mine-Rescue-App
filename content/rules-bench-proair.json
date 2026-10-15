@@ -1,0 +1,1303 @@
+{
+ "document": {
+  "id": "msha-2026-bench-bg-proair-rules",
+  "title": "2026 Bench Rules – BG ProAir on Demand Oxygen Dosage (Section VI of the 2026 Unified Mine Rescue Rules)",
+  "edition": "2026, \"Approved – 1/5/2026\"",
+  "publisher": "MSHA (2026 Unified Mine Rescue Rules and Resources; rules developed by the Holmes Mine Rescue Association rules sub-committees)",
+  "url": "https://www.msha.gov/sites/default/files/Mine%20Rescue/VI-2026%20LDV%20BG-ProAir%20Bench%20Rules.pdf",
+  "index_url": "https://www.msha.gov/training/mine-rescue-training/mine-rescue-contests/2026-unified-mine-rescue-rules-and",
+  "event": "bench-proair"
+ },
+ "event": "bench-proair",
+ "generated": "2026-10-15",
+ "redline_note": "The official PDF is a redline: red text is new for 2026 and red struck-through text is deleted. Deleted text was removed automatically (red glyphs crossed by a strike rule); additions are kept. Deletions removed: PDF p13: “r pump bellows”; PDF p15: “pump”",
+ "written_exam": {
+  "questions": 20,
+  "from_statements_of_fact": 10,
+  "from_identification_of_parts": 10,
+  "format": "multiple choice, three choices (statements of fact); parts questions verbatim from Identification of Parts",
+  "time_limit_min": 20,
+  "source_rule": "Bench rules A.1 (p. 3)",
+  "detail": "Same format as the BioPak bench: 10 SOF questions (multiple choice, three choices) + 10 verbatim from Identification of Parts; 20 minutes."
+ },
+ "sections": [
+  {
+   "id": "rules-governing",
+   "title": "Rules Governing 2026 Bench BG Proair On Demand Oxygen Dosage Contest And Interpretations Of Discount Cards",
+   "event": "bench-proair",
+   "pages": [
+    1,
+    3
+   ],
+   "items": [
+    {
+     "id": "bench-proair-rules-governing-1",
+     "number": 1,
+     "text": "Each participant must be under guard before the start of the Contest in a location assigned by the Chief Judge and must remain continuously under guard until time to work the problem. Information for bench problem design is available on the MSHA website (https://www.msha.gov) in the Mine Rescue section under BG ProAir Designers Resources. Participants under guard must be in a location where they will be unable to obtain any information concerning the problem to be worked. Any participant receiving information concerning a Contest problem prior to starting to work the problem will be disqualified by the Chief Judge and the Assistant Chief Judge (no cell phones, iPad, smart watches, etc.). No person, except guards and Contest officials assigned to give the written examination, will be allowed to communicate with any participant under guard. Those who have performed will not be permitted to communicate with any participant awaiting their turn to perform.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-2",
+     "number": 2,
+     "text": "Any indication of receiving unauthorized information during the working of the problem may result in disqualification as determined by the Chief Judge and the Assistant Chief Judge (no cell phones, iPad, smart watches, etc.). No one except judges, Contest officials, and working participants will be permitted in the bench station, unless special approval is given by the Chief Judge. Communication with bench participants, except for the judges, is prohibited. News media and photographers who wish to be in the working area must receive permission from the Director(s) and be accompanied by a Contest Official.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-3",
+     "number": 3,
+     "text": "Any bench participant not in place and ready at the time specified will be disqualified from the Contest.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-4",
+     "number": 4,
+     "text": "The bench participant will be provided with two BG ProAir on Demand Oxygen Dosage apparatus (one disassembled, one assembled), an RZ-25 tester, RZ-7000 tester, a stopwatch, defogging solution, leak detector fluid, test kit, and tool kit, bench record (optional and included in the 30-minute working time) and writing device. Only the tools and fluid provided will be used for testing and assembly of the apparatus. The problem at the bench station will consist of (1) a visual examination of a disassembled BG ProAir on Demand Oxygen Dosage and the proper assembly and preparation for use in rescue work. This will include correcting any predetermined problem(s) so that the apparatus is in proper working order. Simulating defogging of the facepiece lens and simulating adding Dragersorb to the refillable cartridge and ice packs to the cooler will be done as part of the visual examination. This visual examination, correcting predetermined problem(s), and proper assembly can be done at any time allowed for working of the problem. (2) Test the assembled BG ProAir on Demand Oxygen Dosage apparatus with a tester and correct the predetermined/functional problem(s) so that the apparatus is in proper working condition. Except for removing the sealing cap from the coupling and removing the Cover shell, the assembled BG ProAir apparatus cannot be disassembled to look for problems/deficiencies, until the hoses are attached to the tester and the apparatus fails a test. When testing is completed on the assembled BG ProAir on Demand Oxygen Dosage apparatus, the hoses shall be removed from the tester, connected to the facepiece, and the back cover installed. This shall be done before the clock is stopped.",
+     "pages": [
+      1,
+      2
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-5",
+     "number": 5,
+     "text": "Spare parts to correct the predetermined problem(s)/deficiencies will be provided once the bench participant has specifically identified the problem/deficiency. This will require the participant to point out the exact location of the problem/deficiency. (Example: Positive pressure leak in the breathing bag. Participant will identify the location of the hole.)",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-6",
+     "number": 6,
+     "text": "When an unplanned problem/deficiency is encountered with the apparatus, the participant will be notified by the judges that the deficiency is not part of the problem. The judge will stop the clock, and any time used to correct the deficiency will not be charged to the working time. However, the process of verbal elimination shall not be used by the bench participant to find the predetermined problem(s). If it becomes obvious to the judges that this is occurring, the first offense will result in a warning, the second offense a discount, and the third offense could result in disqualification as determined by the Chief Judge. (Example: Participant verbally identifies a deficiency with every part of the facepiece when only one predetermined problem/deficiency exists.)",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-7",
+     "number": 7,
+     "text": "The bench participant will not be allowed to bring any materials, written information, or records to the bench station.",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-8",
+     "number": 8,
+     "text": "Tests will be performed in sequence on the assembled BG ProAir on Demand Oxygen Dosage apparatus using the standard functional test procedures with a tester as outlined in the Draeger Instruction for Use manual for BG ProAir on Demand Oxygen Dosage (Drager User’s Manual Revision Draft, October 2024. This revision can be found on the Holme’s Association website https://www.holmessafety.org/holmes-mine-rescue-association-rules-and-contest-resources/. In addition to this guidance, the alternative relief valve test may be performed).\nA maximum of 30 minutes will be allowed to complete the problem. The bench judge will inform the participant when he/she has Five minutes remaining to work the problem. At the completion of the problem, the judge(s) and the participant will note the working time of the problem with the official timekeeper. Work done after the clock is stopped will not be recognized.",
+     "pages": [
+      2,
+      3
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-rules-governing-9",
+     "number": 9,
+     "text": "Any bench contestant who intentionally disturbs, breaks or destroys any tester, apparatus or component of the aforementioned items on a bench problem will receive a warning. Manually abusing or intentionally over or under pressurizing the tester substantially will be considered abusing the equipment. The first offense will result in a warning. The judge will stop the clock and inform the contestant that this is their first warning. Judge must state what the warning is for (the keyword is intentionally). The second offense will result in a warning, the clock will not be stopped, and a 100-point discount will be given. The third offense will result in the judge stopping the clock, locating the Chief Judge of the bench and determine if the contestant will be disqualified.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-proair"
+    }
+   ]
+  },
+  {
+   "id": "written-exam",
+   "title": "A. Written Examination of Bench Participant",
+   "event": "bench-proair",
+   "pages": [
+    3,
+    4
+   ],
+   "items": [
+    {
+     "id": "bench-proair-written-exam-1",
+     "number": 1,
+     "text": "The written examination shall consist of 20 questions. Ten questions for the written examination will be taken from the Statements of Fact which will be multiple choice with three choices, and each blank shall represent a key word with no more than two consecutive blanks per statement. Ten questions will be taken verbatim from identification of parts. Intentional misspelling of words by the test developer will not be allowed. Multiple choice answers with numbers will either be in the form of numbers written out or numerical. Either version is acceptable. “None of the above” is not acceptable as one of the answers. Twenty minutes will be allowed for the written examination.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-written-exam-2",
+     "number": 2,
+     "text": "In special circumstances, individual bench participants may be given oral instead of written examinations by at least two judges. Requests for consideration shall be presented to the Director(s) of the Contest at the time of registration.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-written-exam-3",
+     "number": 3,
+     "text": "Bench participants will be separated to the extent possible, and every effort will be made to prohibit discussion of questions and answers among the bench participants.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    }
+   ]
+  },
+  {
+   "id": "misc",
+   "title": "B. Miscellaneous",
+   "event": "bench-proair",
+   "pages": [
+    4,
+    5
+   ],
+   "items": [
+    {
+     "id": "bench-proair-misc-1",
+     "number": 1,
+     "text": "In the event of ties in the Bench Contest, the number of discounts at bench will be the first tie breaker; the number of discounts on written examination will be the second tie breaker; and the official working time at bench in minutes and seconds will be the third tie breaker.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-2",
+     "number": 2,
+     "text": "The bench participant and trainer will report to a designated location to review and prepare protests within one hour of notification. Twenty minutes will be given to review and prepare written protests. All protests will be considered by the Chief Judge and his/her Assistant, and their decision will be binding.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-3",
+     "number": 3,
+     "text": "If a wireless internet connection is available, the Contest Director(s) may approve an option where the bench participant can review their results electronically. In those cases, the bench participant must provide an email address that will be used for the review on the form provided at registration. The form must be completed and submitted at registration. Contest officials will email the scorecards, written examination, etc. to the email address on record when they are ready for review. The bench participant will have 45 minutes to review the material starting upon the “read receipt” of the email, but no more than two hours from the time it was posted outside the appeals area and email any protests back to the Contest Officials.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-4",
+     "number": 4,
+     "text": "Disputes with regard to the Bench Contest (except discounts), shall be immediately filed with the Director(s). Disputes filed shall be in writing and set forth incidents, times, names, source of information and act complained against. Complainant shall remain accessible to the Director(s) until the complaint is resolved. A decision by the Director(s) shall be final.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-5",
+     "number": 5,
+     "text": "During the bench, any similar terminology used to describe a part is acceptable such as: cylinder or bottle, etc.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-6",
+     "number": 6,
+     "text": "Bench participants must be bona fide employees of the mining industry or members of mine rescue teams designated to fulfill the requirements of 30 CFR Part 49. This does not exclude bench participants whose team is not participating at the National Contest or a member of a college mine rescue team.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-proair"
+    },
+    {
+     "id": "bench-proair-misc-7",
+     "number": 7,
+     "text": "All parts must correspond with the individual units that are being used for contest purposes only. (Drain valve, cooler, mask, CO2 absorber, hoses, coupler, etc.)",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-proair"
+    }
+   ]
+  },
+  {
+   "id": "discount-interpretations",
+   "title": "Interpretations of Discount Sheet",
+   "event": "bench-proair",
+   "pages": [
+    6,
+    14
+   ],
+   "items": [
+    {
+     "id": "bench-proair-discount-interpretations-a-1",
+     "number": 1,
+     "text": "For each incorrect statement 1",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "A",
+      "title": "Written Examination"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-b",
+     "number": "B",
+     "title": "Time",
+     "text": "The time will be recorded in minutes and seconds.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "B",
+      "title": "Time"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-1",
+     "number": 1,
+     "text": "Failure to verbally identify each test being conducted 2 Verbally identify each test being performed.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-2",
+     "number": 2,
+     "text": "Failure to verbally identify each problem/deficiency 5 Failure to verbally identify is also interpreted as failure to find the problem/deficiency.\nFailure to find the problem/deficiency is interpreted as failure to correct the problem.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-3",
+     "number": 3,
+     "text": "Failure to correct each problem/deficiency 5",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-4",
+     "number": 4,
+     "text": "Continuing without correcting the predetermined problem/deficiency ___ 40\nOnce a bench participant finds a predetermined problem and does not correct it before continuing with the remaining tests, he/she shall receive a 40-point discount for continuing without correcting the problem and a pending five-point discount for failing to correct the problem. If all of the remaining tests are properly conducted and passed and the participant returns to the uncorrected problem and corrects it, the pending five-point discount will not be assessed. Should the participant continue on from this point and properly conduct all of the remaining tests again, he/she would also have the original 40-point discount for continuing tests removed.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-5",
+     "number": 5,
+     "text": "Failure to conduct any visual examination or test on the BG-ProAir, each test 5",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-6",
+     "number": 6,
+     "text": "Failure to tighten connections properly during assembly, each connection 1\nAll connections must be tightened on the apparatus and verbally identified as connected or good at the time the connection is made. Failure to verbally identify at the time the connection is being made will result in a one-point discount for each. Zero adjustments shall be made on the tester prior to connecting the breathing hoses to the tester. This includes:\n□ Cap on drain valve - connected or good\n□ Cylinder connection – connected or good\n□ Factory/Refillable Absorber connections – connected or good\n□ Relief valve connection – connected or good\n□ Cooler to bag connection – connected or good\n□ Distribution hose connection – connected or good\n□ Bypass hose connection – connected or good\n□ Sensor hose connection – connected or good\n□ Breathing hoses during the visual examination on the disassembled apparatus) – connected or good\n□ Hose adapter on the tester – connected or good Once the zero adjustment on the tester has been made, do not readjust setting for balance of tests.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-7",
+     "number": 7,
+     "text": "Failure to zero the tester 10",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-c-8",
+     "number": 8,
+     "text": "Failure to comply with rules not covered in discount sheet, each infraction 2\nIf the discount is not listed on the discount sheet, and if it is not covered under one of the approved rules of the Contest, do not improvise a discount to cover the suspected violation.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-1",
+     "number": 1,
+     "text": "Failure to conduct a visual examination of the 9 components, all components, subcomponents, component parts, assembly, sub-assemblies retest dates are subject to problems/deficiencies. Contestant is required to verbally identify what is in capital bold print letters. The examples listed below for visual examination of the 9 components are a minimum starting point for training purposes.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-2",
+     "number": 2,
+     "text": "Failure to conduct a visual examination of the FRAME/HARNESS 2 The visual examination will include an examination of the harness assembly, frame, back cover, buddy light, hinges, visible sealing rings, Connect ECU, O2 regulator, bypass, pre-flush, electronics assembly, minimum valve, tubes, and air lines.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-3",
+     "number": 3,
+     "text": "Failure to conduct a visual examination of the BREATHING BAG 2 The participant will verbally identify that the breathing bag is being examined for pliability and signs of deterioration. Stretching or manipulating the breathing bag with a massaging action will be part of this examination. The participant will verbally identify that the sealing surfaces are being examined for signs of deterioration or damage. Also, the drain valve and the spring bridge will be examined for damage.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-4",
+     "number": 4,
+     "text": "Failure to conduct a visual examination of the O2 CYLINDER 2 A proper cylinder examination includes a visual inspection of the cylinder. The participant will verbally identify the cylinder pressure on the gauge, the pressure rating on cylinder, the latest hydrostatic test date, the manufactured date, and identify if the cylinder is plus rated, if steel. Participant will inform the judge if the cylinder pressure is less than 2,175 PSI for the Connect ECU.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-5",
+     "number": 5,
+     "text": "Failure to conduct a visual examination of the FACTORY/REFILLABLE ABSORBER 2\nA proper examination includes a visual inspection for defects. If a Factory packed cartridge is used, verbally identify that the sealing surfaces are not damaged, and identify the expiration date with month and year. If a refillable absorber is used, a visual inspection for defects, securing feet and hooks on the cartridge and back frame, seal, Refillable scrubber screens and filter mats are required. Adding Dragersorb to the refillable absorber shall be simulated as part of the visual refillable absorber examination.",
+     "pages": [
+      8,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-6",
+     "number": 6,
+     "text": "Failure to conduct a visual examination of the RELIEF VALVE 2 A proper examination includes a visual inspection for defects. Verbally identify that the valve and O-ring are not damaged.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-7",
+     "number": 7,
+     "text": "Failure to conduct a visual examination of the COOLER 2 A proper examination includes a visual inspection for defects. Verbally identify that the sealing surfaces are not damaged. Adding ice packs to the cooler shall be simulated as part of the visual cooler examination.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-8",
+     "number": 8,
+     "text": "Failure to conduct a visual examination of the HOSES 2 The participant will verbally identify that the hoses are being inspected for pliability and signs of deterioration. Stretching or manipulating the hoses with a massaging action will be part of this examination. The participant will verbally identify that the sealing edges/surfaces, including bayonet rings and directional tabs are being examined for signs of deterioration.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-9",
+     "number": 9,
+     "text": "Failure to conduct a visual examination of the COUPLING, INHALATION AND EXHALATION VALVES 2\nA proper examination includes a visual inspection for defects, sealing surfaces and valve discs. Verbally identify that the sealing edges/surfaces and valve discs are not damaged.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-10",
+     "number": 10,
+     "text": "Failure to conduct a visual examination of the FACEPIECE 2 The visual examination will include an examination of the head strap assembly, mask body (including sealing surfaces), the visor, speaking diaphragm, and wiper. Defogging the visor shall be simulated as part of the visual facepiece examination.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-d-11",
+     "number": 11,
+     "text": "Failure to have Visual Apparatus fully assembled. (Ready for use) ___5\nNOTE: Breathing hoses do not need to be in straps on visual apparatus.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-1",
+     "number": 1,
+     "text": "Failure to conduct a proper exhalation valve test 2 Set the RZ-25 tester on negative pressure pumping. Tightly pinch the inhalation hose with your hand. Gently activate bellows until -10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-2",
+     "number": 2,
+     "text": "Failure to conduct a proper inhalation valve test 2 The RZ-25 tester is set on positive pressure pumping. Tightly pinch the exhalation hose with your hand. Gently activate bellows until 10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-3",
+     "number": 3,
+     "text": "Failure to conduct a proper drain valve test 2\nSet RZ-25 tester on positive pressure pumping. Pump bellows until 10 mbar is indicated on the pressure gauge. While pumping, lower the locking lever to stop the pressure plate bag plate, which is being raised by the inflated breathing bag. The drain valve must open between 10 and 25 mbar.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-4",
+     "number": 4,
+     "text": "Failure to conduct a proper leak test with positive pressure 2 Set RZ-25 tester on leak test. Bleed needle to 7 mbar and start stopwatch. Needle should not change more than 10 mm H20 or 1 mbar in 60 seconds. Set RZ-25 tester on negative pressure pumping, the breathing bag is vented. Remove the sealing cap.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-5",
+     "number": 5,
+     "text": "Failure to conduct a proper relief valve test 2\nSet RZ-25 tester on positive pressure pumping. Pump the bellows until the relief valve opens, it should open between 4 and 8 mbar. Participant will verbally state reading of valve opening.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-6",
+     "number": 6,
+     "text": "Failure to conduct a proper pre-flush unit test 2 Vent the apparatus completely. Open the cylinder. The addition of oxygen must stop in 10 seconds or less.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-7",
+     "number": 7,
+     "text": "Failure to conduct a proper high pressure leak test 2 Open cylinder valve by at least two turns. The ECU switches to On mode and an acoustic signal sound. The battery status is shown on the display. Watch the Connect ECU unit, the cylinder pressure is indicated here. If it is lower than 2175 psi, change the oxygen cylinder. If it is greater than 2175 psi, Connect ECU gives the option to conduct high pressure leak test. Select the button on the side with the check mark. The Connect ECU will give a “close cylinder” icon, as soon as the icon appears, close cylinder valve. Result of the tests is output after approximately 15 seconds. If the BG ProAir on Demand Oxygen Dosage is okay, the “open cylinder valve” icon is displayed, as soon as the icon appears open cylinder valve.",
+     "pages": [
+      10,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-8",
+     "number": 8,
+     "text": "Failure to conduct a proper bypass valve test 2\nSet RZ-25 tester on leak test. Press red button for bypass valve. Oxygen must be heard to flow into the circuit, the breathing bag inflates.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-9",
+     "number": 9,
+     "text": "Failure to conduct a proper minimum valve test 2\nSet RZ-25 tester on vent. The breathing bag is vented automatically. R emove sealing cap and let bag vent until minimum valve is heard to open in breathing bag and there is a hissing sound. Watch the pressure gauge, the minimum valve should open at a value between 0.5 and 3.0 mbar. Participant will verbally identify reading of opening of valve.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-10",
+     "number": 10,
+     "text": "Failure to conduct a proper low/residual pressure warning test 2 Close cylinder valve. Watch the display or Connect ECU unit. The warning should be generated at approx. 650 psi. Alarm sounds intermittently, red indicator flashes. Unplug coupling from RZ-25 tester. Participant will verbally state reading.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-11",
+     "number": 11,
+     "text": "Failure to conduct a proper battery test 2\nOn activation and deactivation, the Connect ECU automatically checks and displays the battery capacity. To switch off the Connect ECU, simultaneously press the right- and left-hand button the screen counts down from 3. Release the buttons. For three seconds, Connect ECU shows the battery status. The battery status must show at least 2 green segments (charge status at least 50%). Connect ECU switches off.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-12",
+     "number": 12,
+     "text": "Failure to follow proper sequence when conducting the tests as prescribed in the instruction for use per Drager BG ProAir (each occurrence, or 15 pt. max.) 5",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-e-13",
+     "number": 13,
+     "text": "Failure to have Test Apparatus fully assembled. (Ready for use) 5\nNOTE: Breathing hoses do not need to be in straps on test apparatus.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-1",
+     "number": 1,
+     "text": "Failure to conduct a proper exhalation valve test 2 Set the RZ-7000 tester on negative pressure pumping. Tightly pinch the inhalation hose with your hand. Pump until -10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-2",
+     "number": 2,
+     "text": "Failure to conduct a proper inhalation valve test 2 The RZ-7000 tester is set on positive pressure pumping. Tightly pinch the exhalation hose with your hand. Pump until 10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-3",
+     "number": 3,
+     "text": "Failure to conduct a proper drain valve test 2\nSet RZ-7000 tester on positive pressure pumping. Pump bellows until 10 mbar is indicated on the pressure gauge. While pumping, lower the locking lever to stop the pressure plate bag plate, which is being raised by the inflated breathing bag. The drain valve must open between 10 and 25 mbar.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-4",
+     "number": 4,
+     "text": "Failure to conduct a proper leak test with positive pressure 2 Set RZ-7000 tester on leak test. Bleed needle to 7.5 mbar and start stopwatch. Needle should not change more than 10 mm H20 or 1 mbar in 60 seconds. Set RZ-7000 tester on negative pressure pumping, the breathing bag is vented and disengage the locking lever.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-5",
+     "number": 5,
+     "text": "Failure to conduct a proper relief valve test 2\nSet RZ-7000 tester on positive pressure pumping. Pump until the relief valve opens, it should open between 4 and 8 mbar. Participant will verbally state reading of valve opening.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-6",
+     "number": 6,
+     "text": "Failure to conduct a proper pre-flush unit test 2 Vent the apparatus completely. Open the cylinder. The addition of oxygen must stop in 10 seconds or less.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-7",
+     "number": 7,
+     "text": "Failure to conduct a proper high pressure leak test 2 Set RZ-7000 tester on leak test. Open cylinder valve by at least two turns. The ECU switches to On mode and an acoustic signal sound. The battery status is shown on the display. Watch the Connect ECU unit, the cylinder pressure is indicated here. If it is lower than 2175 psi, change the oxygen cylinder. If it is greater than 2175 psi, Connect ECU gives the option to conduct high pressure leak test. Select the button on the side with the check mark. The Connect ECU will give a “close cylinder” icon, as soon as the icon appears, close cylinder valve.\nResult of the tests is output after approximately 15 seconds. If the BG ProAir on Demand Oxygen Dosage is okay, the “open cylinder valve” icon is displayed, as soon as the icon appears open cylinder valve.",
+     "pages": [
+      12,
+      13
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-8",
+     "number": 8,
+     "text": "Failure to conduct a proper bypass valve test 2\nSet RZ-7000 tester on leak test. Press red button for bypass valve. Oxygen must be heard to flow into the circuit, the breathing bag inflates.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-9",
+     "number": 9,
+     "text": "Failure to conduct a proper minimum valve test 2\nSet RZ-7000 tester on vent. The breathing bag is vented automatically, by disengaging the locking lever, let bag vent until minimum valve is heard to open in breathing bag and there is a hissing sound. Watch the pressure gauge, the minimum valve should open at a value between 0.5 and 3 mbar. Participant will verbally identify reading of opening of valve.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-10",
+     "number": 10,
+     "text": "Failure to conduct a proper low/residual pressure warning test 2 Close cylinder valve. Gently press the bypass button to slowly remove air from the system. Watch the display or Connect ECU unit. The warning should be generated at approx. 650 psi. Alarm sounds intermittently, red indicator flashes. Unplug coupling from RZ-7000 tester. Participant will verbally state reading.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-11",
+     "number": 11,
+     "text": "Failure to conduct a proper battery test 2\nOn activation and deactivation, the Connect ECU automatically checks and displays the battery capacity. To switch off the Connect ECU, simultaneously press the right- and left-hand button the screen counts down from 3. Release the buttons. For three seconds, Connect ECU shows the battery status. The battery status must show at least 2 green segments (charge status at least 50%). Connect ECU switches off.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-12",
+     "number": 12,
+     "text": "Failure to follow proper sequence when conducting the tests as prescribed in the instruction for use per Drager BG ProAir (each occurrence, or 15 pt. max.) 5",
+     "pages": [
+      14,
+      14
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-proair-discount-interpretations-f-13",
+     "number": 13,
+     "text": "Failure to have Test Apparatus fully assembled. (Ready for use) 5\nNOTE: Breathing hoses do not need to be in straps on test apparatus.",
+     "pages": [
+      14,
+      14
+     ],
+     "event": "bench-proair",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bench-record",
+   "title": "Bench Record (Optional)",
+   "event": "bench-proair",
+   "pages": [
+    15,
+    15
+   ],
+   "note": "Optional bench record form (page image).",
+   "images": [
+    {
+     "file": "figures/bench-proair/page-17.png",
+     "pdf_page": 17,
+     "printed_page": 15
+    }
+   ],
+   "items": []
+  },
+  {
+   "id": "identification-of-parts",
+   "title": "Identification of Parts",
+   "event": "bench-proair",
+   "pages": [
+    21,
+    38
+   ],
+   "note": "Parts diagrams (page images) with their Cons. No./Designation tables. Structured tables are in parts.json. Ten of the 20 bench written-exam questions are taken verbatim from these.",
+   "items": [
+    {
+     "id": "bench-proair-parts-p21",
+     "number": 1,
+     "title": "Refill Absorber",
+     "text": "1  Refill Absorber Lid\n2  Cooler/Absorber Lock\n3  Retaining Washer\n4  Cylinder Pin\n5  Snap-Fit Cooler, Absorber\n6  Sealing\n7  Frame\n8  Top Sieve\n9  Filter Pad\n10  Bottom Sieve\n11-13  Refill Absorber Housing\n12  Type Label\n13  Absorber RFID",
+     "format": "pre",
+     "pages": [
+      21,
+      21
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-23.png",
+       "printed_page": 21
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p22",
+     "number": 2,
+     "title": "Ice Cooler, Complete",
+     "text": "1  Snap-Fit\n2  Ice Cooler Lid\n3  Ice Cooler Cartridge",
+     "format": "pre",
+     "pages": [
+      22,
+      22
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-24.png",
+       "printed_page": 22
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p23",
+     "number": 3,
+     "title": "Breathing Connection",
+     "text": "1  Valve Disc\n2  Directional Valve Housing\n3  Connector Piece\n4  O-Ring\n5  Bayonet Ring\n6  Breathing Hose\n7  Sealing Cap\n8  Split Ring",
+     "format": "pre",
+     "pages": [
+      23,
+      23
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-25.png",
+       "printed_page": 23
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p24",
+     "number": 4,
+     "title": "Breathing Bag",
+     "text": "1  Breathing Bag\n2  Breathing Bag Lock\n3  Relief Valve\n4  Relief Valve Disc\n5  Relief Valve Seal\n6  Valve Disc\n7  Spring\n8  Valve Cap\n9  Drain Valve\n10  Drain Valve Cap\n11  Connector Seal",
+     "format": "pre",
+     "pages": [
+      24,
+      24
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-26.png",
+       "printed_page": 24
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p25",
+     "number": 5,
+     "title": "Cylinder Holder",
+     "text": "1  Cylinder Strap\n2  Flat Head Screw",
+     "format": "pre",
+     "pages": [
+      25,
+      25
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-27.png",
+       "printed_page": 25
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p26",
+     "number": 6,
+     "title": "Spring Bridge",
+     "text": "1  Pressure Plate\n2  Breathing Bag Spring\n3  Pressure Relief Valve Limit Stop\n4  Wire Bow\n5  Snap-In Hook, Left\n6  Snap-In Hook, Right\n7  Assembly Clip\n8  Spring Bridge\n9  Locking Lever",
+     "format": "pre",
+     "pages": [
+      26,
+      26
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-28.png",
+       "printed_page": 26
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p27",
+     "number": 7,
+     "title": "Waist Belt",
+     "text": "1  Buckle\n2  Flat Head Screw\n3  Splint",
+     "format": "pre",
+     "pages": [
+      27,
+      27
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-29.png",
+       "printed_page": 27
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p28",
+     "number": 8,
+     "title": "Shoulder Harness",
+     "text": "1-5  Shoulder Harness, Comfort\n1  Chest Strap\n2  Webbing With Loop Head\n3  Harness Anchor\n4  Hose Loop (100 mm)\n5  Hose Loop (210 mm)",
+     "format": "pre",
+     "pages": [
+      28,
+      28
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-30.png",
+       "printed_page": 28
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p29",
+     "number": 9,
+     "title": "Electronics",
+     "text": "1-4  Electronics Assembly\n2-3  Battery Carrier, Complete\n3  O-Ring\n4  Ventilation Diaphragm",
+     "format": "pre",
+     "pages": [
+      29,
+      29
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-31.png",
+       "printed_page": 29
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p30",
+     "number": 10,
+     "title": "Housing – Upper Shell",
+     "text": "1  Lock\n2  Flat Head Screw\n3  Buddy Light Window\n4  Hinge Top\n1-4  Upper Shell Compl.",
+     "format": "pre",
+     "pages": [
+      30,
+      30
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-32.png",
+       "printed_page": 30
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p31",
+     "number": 11,
+     "title": "Minimum Valve",
+     "text": "1  Dust Cover\n2  Valve Lever\n3  Valve Lever Cover\n1-3  Minimum Valve, Compl.",
+     "format": "pre",
+     "pages": [
+      31,
+      31
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-33.png",
+       "printed_page": 31
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p32",
+     "number": 12,
+     "title": "Pressure Reducer",
+     "text": "4  Pressure Reducer, CGA 540\n5  PSP 5 Pressure Sensor\n6  Screw\n7  O-Ring\n8  Clamp\n9  Bracket\n10  Sealing Ring\n11  Angle Connection\n12  Hand Wheel\n13  O-Ring\n14  Sinter Filter",
+     "format": "pre",
+     "pages": [
+      32,
+      32
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-34.png",
+       "printed_page": 32
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p33",
+     "number": 13,
+     "title": "Pneumatics",
+     "text": "2  Pre-Flush\n3  Bypass",
+     "format": "pre",
+     "pages": [
+      33,
+      33
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-35.png",
+       "printed_page": 33
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p34",
+     "number": 14,
+     "title": "Tubes/Air Lines",
+     "text": "1-1.3  Tube Assembly, Preflush\n1.1  Spare Part Tube, Black\n1.2  L-Push-In Connector, 1-Sided\n1.3  T-Push-In Connector, 1-Sided\n2-2.1  Tube, Bypass\n2.1  Spare Part Tube, Red\n3-3.4  Tube Assembly, Absorber\n3.1  L-Push-In Connector\n3.2  Spare Part Tube, Black\n3.3  Y-Push-In Connector\n3.4  Spare Part Tube, Blue\n4-4.3  Tube Assembly, MP\n4.1  L-Push-In Connector\n4.2  T-Push-In connector\n5-5.1  Tube, E-Box\n5.1  Spare Part Tube, Blue",
+     "format": "pre",
+     "pages": [
+      34,
+      34
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-36.png",
+       "printed_page": 34
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p35",
+     "number": 15,
+     "title": "Connect ECU (Electronic Control Unit)",
+     "text": "1  ECU Connect Aftersales\n2  Connect UI Module Rubber Cover\n3  Sacrificial Screen Display\n4  Tally Key\n4a  Split Ring\n5  Sacrificial Screen LED",
+     "format": "pre",
+     "pages": [
+      35,
+      35
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-37.png",
+       "printed_page": 35
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p36",
+     "number": 16,
+     "title": "FPS 7000 Mask",
+     "text": "1  Mask Body FPS 7000\n2  Upper Visor Frame\n3  Visor 15A Head Strap\n4  Lower Visor Frame 15B Hairnet\n7  Clamp\n8  Connector Piece\n9  Cover\n11  Turning Knob\n12  Disc\n13  Inner Mask\n14  Button\n16  Sliding Buckle\n17  Double Button\n18  Neck Strap",
+     "format": "pre",
+     "pages": [
+      36,
+      36
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-38.png",
+       "printed_page": 36
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p37",
+     "number": 17,
+     "title": "Oxygen Cylinder",
+     "text": "1  Cylinder, O2 2/200 DOT\n2  Cylinder Valve\n3  O-Ring\n4  Approval Label, Cylinder\n5  Transparent Over Label",
+     "format": "pre",
+     "pages": [
+      37,
+      37
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-39.png",
+       "printed_page": 37
+      }
+     ]
+    },
+    {
+     "id": "bench-proair-parts-p38",
+     "number": 18,
+     "title": "(no title printed, p. 38: test set parts)",
+     "text": "1  Case, BG ProAir Test Set\n2  Adapter RZ 7000\n3  Plug, Male Coupling\n4  Blind Plug\n5  O-Ring Removal Tool\n6  Adapter, Quick Coupling\n7  Breathing Hose Sealing Plug\n8  Breathing Bag Lock Plug\n9  Test Connection, Breathing Hose\n10  Test Adapter, Hose Connection\n11  Plug c/a Breathing Bag Side\n12  Torque TORX Blade T10\n13  Torque TORX Blade T20\n14  Torque TORX Blade T25\n15  Torque Change Blade 6Kt 2.5\n16  Torque Screwdriver\n17  Torque Screwdriver 0.8 – 5.0 Nm\n18  Face Spanner\n19  Test Hose\n20  Bypass Adapter\n21  Breathing Bag Adapter\n22  Breathing Bag Plug\n23  Plug\n24  Drain Valve Plug",
+     "format": "pre",
+     "pages": [
+      38,
+      38
+     ],
+     "event": "bench-proair",
+     "images": [
+      {
+       "file": "figures/bench-proair/page-40.png",
+       "printed_page": 38
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "judges-checklist",
+   "title": "Judge’s Checklist",
+   "event": "bench-proair",
+   "pages": [
+    39,
+    39
+   ],
+   "note": "Judge’s checklist form (page image; text below is the extracted form text).",
+   "images": [
+    {
+     "file": "figures/bench-proair/page-41.png",
+     "pdf_page": 41,
+     "printed_page": 39
+    }
+   ],
+   "items": [
+    {
+     "id": "bench-proair-judges-checklist-1",
+     "number": 1,
+     "title": "Checklist text",
+     "text": "BG ProAir Bench Contestant: ______________________________ Working Time: ________ Min: ____ Sec: ____\n            VISUAL APPARATUS CHECKS    TEST APPARATUS WRITTEN RECORD\n     Checkifok\n     FRAME/HARNESS ASSEMBLY        Checkifok\n     BREATHING BAG    EXHALATION VALVE TEST    10 MBAR -\n     CYLINDER TEST    INHALATION VALVE TEST    10 MBAR +\n     REGENERATIVE CANISTER    DRAIN VALVE TEST    10-25 MBAR\n     SIMULATE ADDING DRAGERSORB    LEAK TEST with POSITIVE PRESSURE    1 MBAR IN 60 SEC.\n     RELIEF VALVE    RELIEF VALVE TEST\n     COOLER    State Opening Pressure    4 TO 8 MBAR\n     SIMULATE ADDING ICE PACKS    PRE-FLUSH UNIT    Max. 10 SEC.\n     HOSES    HIGH PRESSURE LEAK TEST    OPEN CYL. ICON\n     COUPLING    BYPASS VALVE TEST\n     FACE PIECE TEST    ·\n     SIMULATE DEFOGGING MASK    MINIMUM VALVE TEST\n     ·\n                                                  ·    State Opening Pressure    0.5 TO 3.0 MBAR\n     CONNECTIONS CONNECTED OR GOOD\n     Cap on Drain Valve    ALTERNATE RELIEF VALVE TEST    4 TO 8 MBAR\n     Drain Valve to Breathing Bag    LOW PRESSURE WARNING TEST\n     Cylinder Connection    ·    State Warning Reading    APPROX. 650 PSI\n     Regenerative Canister Connections    BATTERY TEST    AT LEAST 2 BARS\n     Relief Valve to Regenerative Canister    READY FOR USE\n     Cooler to Breathing Bag    DATE\n     Distribution Hose    SERIAL NUMBER\n     Bypass Hose Connection    SIGNATURE\n     Sensor Hose Connection    CYLINDER READING\n     Breathing Hoses    ·\n     Hose Adapter on RZ 7000, RZ-25 or Test-It 6100\n                                                  ·\n     ·\n     ·\n                                                  ZERO TESTER PRIOR TO TESTING\n     ·\n             VISUAL APPARATUS BUGS    TEST APPARATUS BUGS\n VI    C    VI    C",
+     "format": "pre",
+     "pages": [
+      39,
+      39
+     ],
+     "event": "bench-proair"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,634 @@
+{
+ "document": {
+  "id": "msha-2026-preshift-rules",
+  "title": "2026 Preshift Rules (Section VII of the 2026 Unified Mine Rescue Rules)",
+  "edition": "2026, \"Approved – 11/10/2025\"",
+  "publisher": "MSHA (2026 Unified Mine Rescue Rules and Resources; rules developed by the Holmes Mine Rescue Association rules sub-committees)",
+  "url": "https://www.msha.gov/sites/default/files/Mine%20Rescue/VII-2026%20Preshift%20Rules.pdf",
+  "index_url": "https://www.msha.gov/training/mine-rescue-training/mine-rescue-contests/2026-unified-mine-rescue-rules-and",
+  "event": "preshift"
+ },
+ "event": "preshift",
+ "generated": "2026-10-15",
+ "redline_note": "The official PDF is a redline: red text is new for 2026 and red struck-through text is deleted. Deleted text was removed automatically (red glyphs crossed by a strike rule); additions are kept. Deletions removed: PDF p3: “report page on record page preshift record page”; PDF p5: “preshift record page record page/s page”; PDF p6: “preshift record page preshift record page”; PDF p10: “/or”; PDF p11: “Entering or remaining in”; PDF p13: “Preshift record page, to”",
+ "written_exam": {
+  "questions": 10,
+  "format": "multiple choice, three choices",
+  "time_limit_min": 15,
+  "source_rule": "Preshift rule 6 (p. 3–4)",
+  "detail": "10 multiple-choice questions with three choices taken verbatim from the published statements of fact; each has a key-word blank (max two consecutive blanks; keywords cannot be shall/must/should); no \"none of the above\"; 15 minutes; one point per incorrect statement."
+ },
+ "sections": [
+  {
+   "id": "rules-governing",
+   "title": "Rules Governing 2026 Preshift Contest and Interpretations of Discount Cards",
+   "event": "preshift",
+   "pages": [
+    3,
+    7
+   ],
+   "items": [
+    {
+     "id": "preshift-rules-governing-1",
+     "number": 1,
+     "text": "Contestants should be certified as a mine foreman or examiner. College students or other entities who have someone who would like to compete may enter the contest as a non-certified foreman or examiner, they must use the following as their foreman certification number on the Preshift Record Report, (12345.) All certified foremen must use their respective foreman’s identification number.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-2",
+     "number": 2,
+     "text": "Judges will be employees of the Mine Safety and Health Administration (MSHA), other assisting State Agencies or other judges approved by the contest director and/or chief judge.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-3",
+     "number": 3,
+     "text": "Contestant must bring a safety cap, safety boots, mining belt with identification tag, check-in tag, MSHA-approved cap light, S.C.S.R. (may use training model, M20 or out-of-service SCSR as long as the contestant informs the judges of the specific defect[s]), MSHA approved anemometer, watch (with second hand or equivalent), an MSHA approved device to detect explosive and dangerous gases and/or deficiencies of oxygen, distance/area measuring devices, blank index cards (recommend at least 50, may be numbered) for placing dates, times and initials and writing instruments for recording their work. If a contestant cannot provide an S.C.S.R. due to air travel restrictions, you should notify the registrar upon sending the registration form and an S.C.S.R. will be provided. Contestants may bring personal items to the field provided the items do not contain prohibited information. Prohibited information means, but is not limited to, rules, calculating charts (i.e., ventilation formulas), and personal (“reminder”) notes.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-4",
+     "number": 4,
+     "text": "A contest point system has been established. Failure to find and /or correct deficiencies or hazards, if necessary, failure of the contestant to verbally identify work, tests, or action being taken to the judge or failure to report in the Preshift Record Report will be assessed discounts. The accumulation of discounts will establish the contestants’ ranking in the contest. Three scoring segments will be used during the contest: written examination, underground (field), and the Preshift Record Report.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-5",
+     "number": 5,
+     "text": "Preshift contestants shall be notified by posting when they may review the discounts and have the right to appeal in writing to the Chief Judge. Within one hour of posting, the contestant shall report to the designated location and may be accompanied by the trainer. Contestants will have 20 minutes to review and prepare any written protests. The Chief Judge will have the final decision on all appeals.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-6",
+     "number": 6,
+     "text": "All contestants will take a written examination. The examination will consist of 10 multiple-choice questions with three choices, taken verbatim from the published statements of fact. Contestants will have 15 minutes to complete the written examination. One point will be discounted for each incorrect statement. Answers will not be intentionally misspelled. “None of the above” shall not be used as one of the choices. Each statement shall contain a blank space which shall represent a keyword taken verbatim from the published statements of fact, with no more than two consecutive blanks per statement. i.e., Keywords cannot be shall, must, should, etc. Only one choice should make the statement correct.",
+     "pages": [
+      3,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-7",
+     "number": 7,
+     "text": "When the contestant arrives at the field (fire boss station) a minimum of two stopwatches, or one clock and a stopwatch will be provided at the station. The contestant will have two minutes to prepare (position their equipment, organize their clip board, read their notes, etc.). When the contestant is ready, they will start a clock/stopwatch, and a stopwatch will be started and carried by a judge. The contestant must start the clock/stopwatch within two minutes before beginning any field work. If the contestant fails to start the clock/stopwatch a judge will start the clock/stopwatch and the contestant will receive a discount 2 point under rule 1 on the field scorecard.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-8",
+     "number": 8,
+     "text": "A maximum working time of 30 minutes will be in effect for the underground (field) portion of the contest. The contestant will be notified when there are five minutes left to complete the problem.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-9",
+     "number": 9,
+     "text": "The portion of the mine to be examined will be addressed in a briefing prior to working the problem.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-10",
+     "number": 10,
+     "text": "If during the problem, date, time, and initials need to be posted, the information shall be written on an index card and the card placed on the mine floor (or handed to one of the judges) at the required location. The contestant’s personal watch time will be the time used on the card.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-11",
+     "number": 11,
+     "text": "The contestant’s personal watch time will be the time used on the preshift record for the time of examination.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-12",
+     "number": 12,
+     "text": "Placards, objects, mine plans, and/or maps will be used to indicate equipment, conditions, or potential hazards. The lettering on the placards will be at least one inch in height. Contestants will not remove any items or placards unless specifically addressed in the problem. Any mobile equipment that may be moved must be marked as operable. Any object intended to be of an incorrect size must have the dimensions listed on a placard or have a similar object of the correct size elsewhere on the field.\nFor contest purposes only, all violations of 30 CFR, Part 75 (and mine plans given to the contestant (rule 17) prior to the contestant working the problem) will be considered a hazard.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-13",
+     "number": 13,
+     "text": "During the working of the problem, contestants shall correct conditions or hazards, where means or materials have been provided. Where conditions can be corrected by physically moving an item or ventilation device, such action need not be indicated on an index card. Where conditions are not corrected, danger signs will be shown on index cards and placed on the mine floor (or handed to a judge). If multiple hazardous conditions exist in one area or entry, a separate danger card must be placed on the mine floor (or handed to a judge) for each hazard. EXAMPLE OF DANGER SIGN:\nDANGER UNSAFE ROOF DANGER UNSAFE RIB 01/02/2026 10:00 A.M. 01/02/2026 10:00 A.M.\nCJR CJR",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-14",
+     "number": 14,
+     "text": "The contestant will be provided the linear feet, width, height, or area dimensions, where air measurements are required during the working of the problem. Air measurements will be simulated, using the traverse method, for a minimum of 60 seconds. Calculators or similar devices will be allowed. Only whole numbers will be required to be stated in the preshift record. The final number/answer will not include any decimal. i.e., 15,000.8 will be recorded as 15,000. Do not round the answer up or down. Record whole numbers only.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-15",
+     "number": 15,
+     "text": "Once the underground segment is completed, the contestant shall exit the mine, check out, and stop the clock. Once the clock is stopped the judges will return all of the danger cards to the contestant that were placed on the field/handed to the judges during the working of the problem. The contestant will not be allowed to reenter the mine after stopping the clock. The contestant will be escorted to the assigned area to fill out a Preshift Record Report. All notes, maps, danger cards, and contestants’ personal information will remain with the contestant until the preshift record page is completed. At that time the Preshift Record Report, notes, maps, and danger cards will be returned to the judge/guard and placed in the contestant’s packet. The contestant will have 20 minutes to complete the preshift record. The record of the results of the preshift examination will be documented in the Preshift Record Report (See Attachment #1 on Page 21). The standardized Preshift Record Report must be used for all contests. Discounts will be assessed for each item not recorded within the allotted time.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-16",
+     "number": 16,
+     "text": "In the event an unforeseen problem arises, the time clock will be stopped, and the contestant will be removed from the field and taken to a neutral area. Following correction, the contestant will be returned to the field to complete the problem, and the time clock will be restarted. The field judges, prior to the completion of the problem, will adjust any discrepancies in the working time. At the completion of the problem, the contestant will be notified of any corrective actions concerning the working time.",
+     "pages": [
+      5,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-17",
+     "number": 17,
+     "text": "Each Contestant must be under guard, in a designated location before the start of the contest. Contestants must remain continuously under guard until time to work the problem. Prior to going out to the field to work the problem, the contestant will be moved into a staging area and given a blank map, a written statement, and mine plans required for working the problem. The contestant will be given a minimum of 15 minutes to review the material and make any notes they deem necessary. The provided material will remain with the contestant until the contestant has completed the Preshift Record Report. Contestants who have performed will not be permitted to return to the isolation area or to communicate with any contestant awaiting their turn to perform.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-18",
+     "number": 18,
+     "text": "No unauthorized person(s) will be allowed in the isolation area or on the contest field without permission from the Chief Judge.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-19",
+     "number": 19,
+     "text": "Discounts will be assessed if the Preshift Record Report is not legible to the judges.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-20",
+     "number": 20,
+     "text": "In the event of a tie, underground/field discounts will be the first tiebreaker, the preshift record will be the second, written examination will be the third, and the elapsed field working time will be the fourth tiebreaker.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-21",
+     "number": 21,
+     "text": "All field discounts assessed to the contestant will be concurred by at least two Field Judges.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-22",
+     "number": 22,
+     "text": "Judges should not talk with contestants during the working of the problem, other than to convey required information.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-23",
+     "number": 23,
+     "text": "Immediately after the briefing, no communication between the contestant and any outside party will be allowed. Contestants receiving contest information after entering the isolation area will be disqualified.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-24",
+     "number": 24,
+     "text": "Contestant shall not take any cell phones, computers, pagers, any device capable of sending and/or receiving information, etc. into the isolation area. The contestant may take reference material into the isolation area but cannot be used in the staging area. The contestant may not use any of this reference material when working the problem or taking a written exam. Contestants will not carry personal notebooks into the contest area.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-25",
+     "number": 25,
+     "text": "All gas detecting instruments used or taken into the mine must be examined in the presence of the judges at the fire boss station after starting the clock. (Gas detecting instruments will be left on during the working of the problem.) If an instrument fails during the examination and the contestant takes corrective action with a backup instrument that has been examined in the presence of the judges, no discount will be assessed.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-26",
+     "number": 26,
+     "text": "If an instrument fails any part of the test the contestant will receive a 2-point discount under Rule 13. If a spare detector or anemometer is used and works properly, the discount will not apply. Contestants using a detector that was discounted under Rule 13 would not be discounted for gas tests during the preshift contest.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-rules-governing-27",
+     "number": 27,
+     "text": "Persons wishing to photograph or videotape the contest must receive permission from the Chief Judge/Contest Director.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "preshift"
+    }
+   ]
+  },
+  {
+   "id": "field-scorecard",
+   "title": "Interpretation of the Field Scorecard",
+   "event": "preshift",
+   "pages": [
+    8,
+    12
+   ],
+   "items": [
+    {
+     "id": "preshift-field-scorecard-1",
+     "number": 1,
+     "text": "Failure to check in after starting the clock (2) and check out prior to stopping the clock (2). Maximum of 4\nContestant must start the time clock and check in before commencing any work other than reviewing the materials provided by the judges.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-2",
+     "number": 2,
+     "text": "Failure to have required equipment. 2\nRequired equipment is safety cap, safety boots, mining belt with ID tag, check-in tag, cap light, S.C.S.R., anemometer, watch (with second hand or equivalent) and a MSHA approved device to detect explosive and dangerous gases and/or deficiencies of oxygen, distance/area measuring devices, blank index cards (recommend at least 50, may be numbered) for placing dates, times and initials and writing instruments for recording their work. Contestant shall have required equipment prior to leaving isolation area. A discount will be assessed for each omitted item.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-3",
+     "number": 3,
+     "text": "Failure to visually examine self-contained self-rescuer and gas detector prior to entering the mine. 2 A 2-point discount will be assessed for each item not tested.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-4",
+     "number": 4,
+     "text": "Failure to place date, time, and initials at required locations. 2 (each location) Date, time, and initials are to be placed where methane tests are required and on danger signs.\nDate means correct month, day, and year.\nWhere hazard(s) are found and gas tests are required at the same location, only one date, time, and initial is required.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-5",
+     "number": 5,
+     "text": "Failure to make necessary gas tests where required. 5 Methane and oxygen deficiency tests shall be taken:\nA. In all roadways, travelways, and track haulage ways where persons are required to work or travel.\nB. In all working places on the section and at areas where mechanized mining equipment is being installed or removed.\nC. In areas where persons are scheduled to work, prior to the preshift examination.\nD. At faces or last row of permanent roof support in rooms driven over 20-feet off intake air courses.\nE. At seals along intake air courses.\nF. At underground electrical installations, except; small handheld portable pumps, permissible pumps and associated permissible switchgear, and submersible pumps.\nG. Immediately inby approaches to worked-out areas along intake air courses, and at high spots where methane is likely to accumulate, and equipment will be operated in the area during the shift.\nH. In all accessible face areas, at the face or last row of permanent roof support.\nI. Where the ventilation has been changed to remove excess methane (1% or greater) and/or oxygen deficiency (less than 19.5%), the examiner shall retest at the location of all placards where the gases were encountered during the initial examination.\nIf a placard is not present where a gas test is required, the reading shall be 0.0% CH4 and 20.9% O2.",
+     "pages": [
+      8,
+      9
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-6",
+     "number": 6,
+     "text": "Improper procedure when testing with gas detectors, testers, and indicators 2 (Maximum 4 discounts at each location)\nA proper test for methane and oxygen deficiency shall require the following action by the examiner:\nMETHANE - Detector shall be held at eye level or higher OXYGEN DEFICIENCY - Detector shall be held at waist level or below. The contestant will verbally identify each test to the judge(s).",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-7",
+     "number": 7,
+     "text": "Failure to determine correct section ventilation and proper direction of the ventilating current. 10 (each location)\nFailure to determine by air measurement the direction and volume of the ventilating air current. Failure to determine the correct direction of air current at regulators. Less than 9,000 cubic feet per minute (cfm) measured in the last open crosscut, or the intake end of a pillar line will be considered a hazard, unless otherwise stated in the written problem or other written instructions. Failure to ensure section ventilation is maintained as required by the approved ventilation plan.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-8",
+     "number": 8,
+     "text": "Improper procedure when taking an air measurement. 2 (each location) Failure to traverse the entry/crosscut perpendicular to the ventilating current. Failure to measure the air current for 60-seconds.\nFailure to measure height and width of area.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-9",
+     "number": 9,
+     "text": "Not taking the required air measurement in the proper location prior to stopping the clock. (regulation) 5\nThe person conducting the preshift examination shall determine the volume of air entering each of the following areas if anyone is scheduled to work in the areas during the oncoming shift:\nA. In the last open crosscut of each set of entries or rooms on each working section and areas where mechanized mining equipment is being installed or removed. The last open crosscut is the crosscut in the line of pillars containing the permanent stoppings that separate the intake air courses and the return air courses.\nB. On each longwall or shortwall in the intake entry or entries at the intake end of the longwall or shortwall face immediately outby the face and the velocity of air at each end of the face at the locations specified in the approved ventilation plan.\nC. At the intake end of any pillar line –\n1. If a single split of air is used, in the intake entry furthest from the return air course, immediately outby the first open crosscut outby the line of pillars being mined; or\n2. If a split system is used, in the intake entries of each split immediately inby the split point.\nD. Any other location(s) required by the mine plans.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-10",
+     "number": 10,
+     "text": "Improper procedure when examining and testing the mine roof 2 (each location) Failure to visually examine the mine roof. A discount will be assessed where the contestant fails to verbally state his/her visual examination of the mine roof at least one time in each entry.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-11",
+     "number": 11,
+     "text": "Failure to verbally identify and correct a hazardous condition. 10 (each occurrence)\nDiscount will be assessed if the contestant fails to verbally identify hazardous conditions intended to be part of the problem.\nHazardous conditions must be corrected by the contestant during the examination when means or materials are available. However, preshift examiners are not required to install any roof support. If means or materials are not available, dangering off a hazardous condition will be considered acceptable corrective action.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-12",
+     "number": 12,
+     "text": "Traveling at more than walking speed 5 (concurrence by two (2) judges required).",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-13",
+     "number": 13,
+     "text": "Contestant's equipment is not maintained in operable condition. 2 (each infraction)\nWould include a cap lamp, a methane detector/oxygen indicator, and an anemometer. Discount will be assessed if the gas detection instrument or anemometer fails during the working of the problem and no other instrument is provided. Concurrence by two (2) judges is required.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-14",
+     "number": 14,
+     "text": "Any act by the examiner, which may result in an explosion of an explosive air/gas mixture. 30 (each occurrence)\nA. Changing conditions of the ventilation in such a manner that an explosive mixture is moved over an ignition source. i.e. Energized electrical equipment, energized circuits, (including all batteries except cap light batteries and hand-held permissible radios with batteries intact that are maintained in permissible condition) energized cables or any non-permissible equipment.\nB. Encountering an explosive air/gas mixture in a face, or other area, and failing to take proper corrective actions.\nAn explosive mixture will be present when the methane is between five and fifteen percent inclusively and the oxygen is 12.1 percent or greater. Both methane and oxygen concentrations will be shown on the placards.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-15",
+     "number": 15,
+     "text": "Any act by the examiner, which may endanger himself/herself or others. 20 (each occurrence)\nA. Passing or not immediately retreating from an area known to contain an irrespirable atmosphere. Atmospheres containing less than 19.5 percent oxygen are irrespirable. Concentrations must be shown on the placard. Moving an irrespirable atmosphere over the contestant.\nB. Encountering an adverse roof condition and failing to take adequate protective actions.\nC. Traveling under unsupported or unsafe roof. (Self-explanatory.)\nD. Traveling through water over knee deep. (For contest only)\nE. Entering or remaining in smoke.\nF. Crossing or working on belts in motion.\nG. Disconnecting energized electrical circuits.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-16",
+     "number": 16,
+     "text": "The contestant not following the written instructions for the working of the problem. 15 (each occurrence)",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-17",
+     "number": 17,
+     "text": "Failure to examine all accessible areas that can be safely traveled. 5 (each location) (Maximum 20 points) For contest purposes, “examine” means physical presence required.",
+     "pages": [
+      11,
+      12
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-field-scorecard-18",
+     "number": 18,
+     "text": "Failure to comply with general rules not covered in the discount sheet. 2",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "preshift"
+    }
+   ]
+  },
+  {
+   "id": "preshift-record",
+   "title": "Interpretation of the Preshift Record",
+   "event": "preshift",
+   "pages": [
+    13,
+    13
+   ],
+   "items": [
+    {
+     "id": "preshift-preshift-record-1",
+     "number": 1,
+     "text": "Preshift Record Report not legible 2\nDiscount assessed for each illegible article; two judges must concur, not to exceed 30.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-2",
+     "number": 2,
+     "text": "Failure to record the location of examination 2 (each omission)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-3",
+     "number": 3,
+     "text": "Failure to record hazardous conditions 2 (each omission)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-4",
+     "number": 4,
+     "text": "Failure to record action taken to correct hazardous conditions 2 (each omission)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-5",
+     "number": 5,
+     "text": "Failure to record the date and time of examination 2",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-6",
+     "number": 6,
+     "text": "Failure to record results of air measurements 2 (each omission)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-7",
+     "number": 7,
+     "text": "Failure to record results of methane (CH4) and oxygen (O2) examinations 2 (each omission)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-8",
+     "number": 8,
+     "text": "Failure to certify by signature and foreman’s certification number 2",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-9",
+     "number": 9,
+     "text": "Failure to date entry of signature 2",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-10",
+     "number": 10,
+     "text": "If a contestant fails to take a gas test, air reading, or conduct work on the field during the working of the problem and records the information in the preshift record. 20 (each occurrence)",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    },
+    {
+     "id": "preshift-preshift-record-11",
+     "number": 11,
+     "text": "Failure to comply with general rules not covered in the discount sheet. 2",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "preshift"
+    }
+   ]
+  },
+  {
+   "id": "record-report",
+   "title": "Preshift Record Report (Attachment #1)",
+   "event": "preshift",
+   "pages": [
+    21,
+    21
+   ],
+   "note": "Blank standardized Preshift Record Report form (page image). Also published separately: https://www.msha.gov/sites/default/files/Mine%20Rescue/2026%20PRESHIFT%20RECORD%20REPORT%20-%20BLANK.pdf",
+   "images": [
+    {
+     "file": "figures/preshift/page-21.png",
+     "pdf_page": 21,
+     "printed_page": 21
+    }
+   ],
+   "items": []
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "sample": true,
+ "note": "SAMPLE PLACEHOLDER DATA - generic text for testing the app only. Not real rules or statements of fact. Replaced automatically when ../content/*.json exists.",
+ "rules": [
+  {
+   "id": "sample-r1",
+   "number": "S-1",
+   "title": "Sample rule: team makeup",
+   "section": "Sample Section A",
+   "subsection": "Sample General Rules",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. This generic paragraph stands in for a rule about how a team is organised.\nA second line shows that line breaks are kept exactly as written."
+  },
+  {
+   "id": "sample-r2",
+   "number": "S-2",
+   "title": "Sample rule: equipment list",
+   "section": "Sample Section A",
+   "subsection": "Sample General Rules",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Teams bring the example equipment listed below.",
+   "tags": [
+    "sample",
+    "equipment"
+   ]
+  },
+  {
+   "id": "sample-r2a",
+   "number": "S-2(a)",
+   "title": "Sample sub-rule: spare item",
+   "section": "Sample Section A",
+   "subsection": "Sample General Rules",
+   "parent": "sample-r2",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. (a) An example sub-rule nested under S-2 using the parent field."
+  },
+  {
+   "id": "sample-r2b",
+   "number": "S-2(b)",
+   "title": "Sample sub-rule: labelling",
+   "section": "Sample Section A",
+   "subsection": "Sample General Rules",
+   "parent": "sample-r2",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. (b) Another example sub-rule nested under S-2."
+  },
+  {
+   "id": "sample-r3",
+   "number": "S-3",
+   "title": "Sample rule: timing",
+   "section": "Sample Section A",
+   "subsection": [
+    "Sample General Rules",
+    "Sample Timing"
+   ],
+   "text": "SAMPLE PLACEHOLDER - not real rule text. An example time limit of 10 minutes appears here only to test number highlighting."
+  },
+  {
+   "id": "sample-r4",
+   "number": "S-4",
+   "title": "Sample rule: written test",
+   "section": "Sample Section A",
+   "subsection": [
+    "Sample General Rules",
+    "Sample Written Test"
+   ],
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example wording about a written test made of sample statements."
+  },
+  {
+   "id": "sample-r5",
+   "number": "S-5",
+   "title": "Sample rule: base procedures",
+   "section": "Sample Section A",
+   "subsection": "Sample Base Procedures",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example wording about procedures at a sample base location."
+  },
+  {
+   "id": "sample-r6",
+   "number": "S-6",
+   "title": "Sample rule: communication",
+   "section": "Sample Section A",
+   "subsection": "Sample Base Procedures",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example wording about signals between sample team members."
+  },
+  {
+   "id": "sample-r7",
+   "number": "S-7",
+   "title": "Sample rule: miscellaneous one",
+   "section": "Sample Section A",
+   "subsection": "Sample Miscellaneous",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Generic miscellaneous example text number one."
+  },
+  {
+   "id": "sample-r8",
+   "number": "S-8",
+   "title": "Sample rule: miscellaneous two",
+   "section": "Sample Section A",
+   "subsection": "Sample Miscellaneous",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Generic miscellaneous example text number two."
+  },
+  {
+   "id": "sample-r9",
+   "number": "S-B1",
+   "title": "Sample card interpretation one",
+   "section": "Sample Section B",
+   "subsection": "Sample Card Interpretations",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example interpretation text for a sample scoring card."
+  },
+  {
+   "id": "sample-r10",
+   "number": "S-B2",
+   "title": "Sample card interpretation two",
+   "section": "Sample Section B",
+   "subsection": "Sample Card Interpretations",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Second example interpretation text for a sample scoring card."
+  },
+  {
+   "id": "sample-r11",
+   "number": "S-B3",
+   "title": "Sample card interpretation three",
+   "section": "Sample Section B",
+   "subsection": [
+    "Sample Card Interpretations",
+    "Sample Deeper Level"
+   ],
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example of a rule three levels deep in the section tree."
+  },
+  {
+   "id": "sample-r12",
+   "number": "S-C1",
+   "title": "Sample instrument note",
+   "section": "Sample Section C",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example note about a sample gas detecting instrument."
+  },
+  {
+   "id": "sample-r13",
+   "number": "S-C2",
+   "title": "Sample apparatus note",
+   "section": "Sample Section C",
+   "text": "SAMPLE PLACEHOLDER - not real rule text. Example note about sample breathing apparatus checks."
+  }
+ ]
+}

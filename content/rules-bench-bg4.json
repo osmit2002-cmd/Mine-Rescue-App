@@ -1,0 +1,1205 @@
+{
+ "document": {
+  "id": "msha-2026-bench-bg4-rules",
+  "title": "2026 Bench Rules – BG-4 (Section V of the 2026 Unified Mine Rescue Rules)",
+  "edition": "2026, \"Approved – 1/5/2026\"",
+  "publisher": "MSHA (2026 Unified Mine Rescue Rules and Resources; rules developed by the Holmes Mine Rescue Association rules sub-committees)",
+  "url": "https://www.msha.gov/sites/default/files/Mine%20Rescue/V-2026%20BG-4%20Bench%20Rules.pdf",
+  "index_url": "https://www.msha.gov/training/mine-rescue-training/mine-rescue-contests/2026-unified-mine-rescue-rules-and",
+  "event": "bench-bg4"
+ },
+ "event": "bench-bg4",
+ "generated": "2026-10-15",
+ "redline_note": "The official PDF is a redline: red text is new for 2026 and red struck-through text is deleted. Deleted text was removed automatically (red glyphs crossed by a strike rule); additions are kept. Deletions removed: PDF p27: “Compression”",
+ "written_exam": {
+  "questions": 20,
+  "from_statements_of_fact": 10,
+  "from_identification_of_parts": 10,
+  "format": "multiple choice, three choices (statements of fact); parts questions verbatim from Identification of Parts",
+  "time_limit_min": 20,
+  "source_rule": "Bench rules A.1 (p. 3)",
+  "detail": "Same format as the BioPak bench: 10 SOF questions (multiple choice, three choices) + 10 verbatim from Identification of Parts; 20 minutes."
+ },
+ "sections": [
+  {
+   "id": "rules-governing",
+   "title": "Rules Governing 2026 Bench BG-4 Contest And Interpretations Of Discount Cards",
+   "event": "bench-bg4",
+   "pages": [
+    1,
+    3
+   ],
+   "items": [
+    {
+     "id": "bench-bg4-rules-governing-1",
+     "number": 1,
+     "text": "Each participant must be under guard before the start of the Contest in a location assigned by the Chief Judge and must remain continuously under guard until time to work the problem. Information for bench problem design is available on the MSHA website (https://www.msha.gov) in the Mine Rescue section under BG4 Designers Resources. Participants under guard must be in a location where they will be unable to obtain any information concerning the problem to be worked. Any participant receiving information concerning a Contest problem prior to starting to work the problem will be disqualified by the Chief Judge and the Assistant Chief Judge (no cell phones, iPad, smart watches, etc.). No person, except guards and Contest officials assigned to give the written examination, will be allowed to communicate with any participant under guard. Those who have performed will not be permitted to communicate with any participant awaiting their turn to perform.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-2",
+     "number": 2,
+     "text": "Any indication of receiving unauthorized information during the working of the problem may result in disqualification as determined by the Chief Judge and the Assistant Chief Judge (no cell phones, iPad, smart watches, etc.). No one except judges, Contest officials, and working participants will be permitted in the bench station, unless special approval is given by the Chief Judge. Communication with bench participants, except for the judges, is prohibited. News media and photographers who wish to be in the working area must receive permission from the Director(s) and be accompanied by a Contest Official.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-3",
+     "number": 3,
+     "text": "Any bench participant not in place and ready at the time specified will be disqualified from the Contest.",
+     "pages": [
+      1,
+      1
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-4",
+     "number": 4,
+     "text": "The bench participant will be provided with two BG-4 apparatus (one disassembled, one assembled), an RZ-25 tester, RZ-7000 tester, a stopwatch, defogging solution, leak detector fluid, test kit, and tool kit, bench record (optional and included in the 30-minute working time) and writing device. Only the tools and fluid provided will be used for testing and assembly of the apparatus. The problem at the bench station will consist of (1) a visual examination of a disassembled BG-4 and the proper assembly and preparation for use in rescue work. This will include correcting any predetermined problem(s) so that the apparatus is in proper working order. Simulating defogging of the facepiece lens and simulating adding Dragersorb to the refillable cartridge and ice to the cooler will be done as part of the visual examination. This visual examination, correcting predetermined problem(s), and proper assembly can be done at any time allowed for working of the problem. (2) Test the assembled BG-4 apparatus with a tester and correct the predetermined/functional problem(s) so that the apparatus is in proper working condition. Except for removing the sealing cap from the coupling and removing the Cover shell, the assembled BG-4 apparatus cannot be disassembled to look for problems/deficiencies, until the hoses are attached to the tester and the apparatus fails a test. When testing is completed on the assembled BG-4 apparatus, the hoses shall be removed from the tester, connected to the facepiece, and the back cover installed. This shall be done before the clock is stopped.",
+     "pages": [
+      1,
+      2
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-5",
+     "number": 5,
+     "text": "Spare parts to correct the predetermined problem(s)/deficiencies will be provided once the bench participant has specifically identified the problem/deficiency. This will require the participant to point out the exact location of the problem/deficiency. (Example: Positive pressure leak in the breathing bag. Participant will identify the location of the hole.)",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-6",
+     "number": 6,
+     "text": "When an unplanned problem/deficiency is encountered with the apparatus, the participant will be notified by the judges that the deficiency is not part of the problem. The judge will stop the clock, and any time used to correct the deficiency will not be charged to the working time. However, the process of verbal elimination shall not be used by the bench participant to find the predetermined problem(s). If it becomes obvious to the judges that this is occurring, the first offense will result in a warning, the second offense a discount, and the third offense could result in disqualification as determined by the Chief Judge. (Example: Participant verbally identifies a deficiency with every part of the facepiece when only one predetermined problem/deficiency exists.)",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-7",
+     "number": 7,
+     "text": "The bench participant will not be allowed to bring any materials, written information, or records to the bench station.",
+     "pages": [
+      2,
+      2
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-8",
+     "number": 8,
+     "text": "Tests will be performed in sequence on the assembled BG-4 apparatus using the standard functional test procedures with a tester as outlined in the Draeger Instruction for Use manual for PSS BG-4 AP/CP (Drager User’s Manual Revision 1, November 2016. This revision can be found on the Holme’s Association website https://www.holmessafety.org/holmes-mine-rescue-association-rules-and-contest-resources/. In addition to this guidance, the alternative relief valve test may be performed).\nA maximum of 30 minutes will be allowed to complete the problem. The bench judge will inform the participant when he/she has Five minutes remaining to work the problem. At the completion of the problem, the judge(s) and the participant will note the working time of the problem with the official timekeeper. Work done after the clock is stopped will not be recognized.",
+     "pages": [
+      2,
+      3
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-rules-governing-9",
+     "number": 9,
+     "text": "Any bench contestant who intentionally disturbs, breaks or destroys any tester, apparatus or component of the aforementioned items on a bench problem will receive a warning. Manually abusing or intentionally over or under pressurizing the tester substantially will be considered abusing the equipment. The first offense will result in a warning. The judge will stop the clock and inform the contestant that this is their first warning. Judge must state what the warning is for (the keyword is intentionally). The second offense will result in a warning, the clock will not be stopped, and a 100-point discount will be given. The third offense will result in the judge stopping the clock, locating the Chief Judge of the bench and determine if the contestant will be disqualified.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-bg4"
+    }
+   ]
+  },
+  {
+   "id": "written-exam",
+   "title": "A. Written Examination of Bench Participant",
+   "event": "bench-bg4",
+   "pages": [
+    3,
+    3
+   ],
+   "items": [
+    {
+     "id": "bench-bg4-written-exam-1",
+     "number": 1,
+     "text": "The written examination shall consist of 20 questions. Ten questions for the written examination will be taken from the Statements of Fact which will be multiple choice with three choices and each blank shall represent a key word with no more than two consecutive blanks per statement. Ten questions will be taken verbatim from identification of parts. Intentional misspelling of words by the test developer will not be allowed. Multiple choice answers with numbers will either be in the form of numbers written out or numerical. Either version is acceptable. “None of the above” is not acceptable as one of the answers. Twenty minutes will be allowed for the written examination.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-written-exam-2",
+     "number": 2,
+     "text": "In special circumstances, individual bench participants may be given oral instead of written examinations by at least two judges. Requests for consideration shall be presented to the Director(s) of the Contest at the time of registration.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-written-exam-3",
+     "number": 3,
+     "text": "Bench participants will be separated to the extent possible, and every effort will be made to prohibit discussion of questions and answers among the bench participants.",
+     "pages": [
+      3,
+      3
+     ],
+     "event": "bench-bg4"
+    }
+   ]
+  },
+  {
+   "id": "misc",
+   "title": "B. Miscellaneous",
+   "event": "bench-bg4",
+   "pages": [
+    4,
+    4
+   ],
+   "items": [
+    {
+     "id": "bench-bg4-misc-1",
+     "number": 1,
+     "text": "In the event of ties in the Bench Contest, the number of discounts at bench will be the first tie breaker; the number of discounts on written examination will be the second tie breaker; and the official working time at bench in minutes and seconds will be the third tie breaker.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-2",
+     "number": 2,
+     "text": "The bench participant and trainer will report to a designated location to review and prepare protests within one hour of notification. Twenty minutes will be given to review and prepare written protests. All protests will be considered by the Chief Judge and his/her Assistant, and their decision will be binding.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-3",
+     "number": 3,
+     "text": "If a wireless internet connection is available, the Contest Director(s) may approve an option where the bench participant can review their results electronically. In those cases, the bench participant must provide an email address that will be used for the review on the form provided at registration. The form must be completed and submitted at registration. Contest officials will email the scorecards, written examination, etc. to the email address on record when they are ready for review. The bench participant will have 45 minutes to review the material starting upon the “read receipt” of the email, but no more than two hours from the time it was posted outside the appeals area and email any protests back to the Contest Officials.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-4",
+     "number": 4,
+     "text": "Disputes with regard to the Bench Contest (except discounts), shall be immediately filed with the Director(s). Disputes filed shall be in writing and set forth incidents, times, names, source of information and act complained against. Complainant shall remain accessible to the Director(s) until the complaint is resolved. A decision by the Director(s) shall be final.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-5",
+     "number": 5,
+     "text": "During the bench, any similar terminology used to describe a part is acceptable such as: cylinder or bottle, etc.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-6",
+     "number": 6,
+     "text": "Bench participants must be bona fide employees of the mining industry or members of mine rescue teams designated to fulfill the requirements of 30 CFR Part 49. This does not exclude bench participants whose team is not participating at the National Contest or a member of a college mine rescue team.",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    },
+    {
+     "id": "bench-bg4-misc-7",
+     "number": 7,
+     "text": "All parts must correspond with the individual units that are being used for contest purposes only. (Drain valve, cooler, mask, anti-vibe, CO2 absorber, hoses, coupler, etc.)",
+     "pages": [
+      4,
+      4
+     ],
+     "event": "bench-bg4"
+    }
+   ]
+  },
+  {
+   "id": "discount-interpretations",
+   "title": "Interpretations of Discount Sheet",
+   "event": "bench-bg4",
+   "pages": [
+    5,
+    13
+   ],
+   "items": [
+    {
+     "id": "bench-bg4-discount-interpretations-a-1",
+     "number": 1,
+     "text": "For each incorrect statement 1",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "A",
+      "title": "Written Examination"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-b",
+     "number": "B",
+     "title": "Time",
+     "text": "The time will be recorded in minutes and seconds.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "B",
+      "title": "Time"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-1",
+     "number": 1,
+     "text": "Failure to verbally identify each test being conducted 2 Verbally identify each test being performed.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-2",
+     "number": 2,
+     "text": "Failure to verbally identify each problem/deficiency 5 Failure to verbally identify is also interpreted as failure to find the problem/deficiency.\nFailure to find the problem/deficiency is interpreted as failure to correct the problem.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-3",
+     "number": 3,
+     "text": "Failure to correct each problem/deficiency 5",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-4",
+     "number": 4,
+     "text": "Continuing without correcting the predetermined problem/deficiency ____ 40\nOnce a bench participant finds a predetermined problem and does not correct it before continuing with the remaining tests, he/she shall receive a 40-point discount for continuing without correcting the problem and a pending five-point discount for failing to correct the problem. If all of the remaining tests are properly conducted and passed and the participant returns to the uncorrected problem and corrects it, the pending five-point discount will not be assessed. Should the participant continue on from this point and properly conduct all of the remaining tests again, he/she would also have the original 40-point discount for continuing tests removed.",
+     "pages": [
+      5,
+      5
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-5",
+     "number": 5,
+     "text": "Failure to conduct any visual examination or test on the BG-4, each test 5",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-6",
+     "number": 6,
+     "text": "Failure to tighten connections properly during assembly, each connection 1\nAll connections must be tightened on the apparatus and verbally identified as connected or good at the time the connection is made. Failure to verbally identify at the time the connection is being made will result in a one-point discount for each. Zero adjustments shall be made on the tester prior to connecting the breathing hoses to the tester. This includes:\n□ Cap on drain valve - connected or good\n□ Drain valve to breathing bag – connected or good\n□ Minimum valve to breathing bag – connected or good\n□ Minimum valve to O2 supply hose – connected or good\n□ Cylinder connection – connected or good\n□ Factory/Refillable Cartridge connections – connected or good\n□ Relief valve connection – connected or good\n□ Cooler to bag connection – connected or good\n□ Distribution hose connection – connected or good\n□ Breathing hoses during the visual examination on the disassembled apparatus) – connected or good\n□ Hose adapter on the tester – connected or good\n□ Cross over Hose to Switchbox and Relief valve – connected or good Once the zero adjustment on the tester has been made, do not readjust setting for balance of tests.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-7",
+     "number": 7,
+     "text": "Failure to zero the tester 10",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-c-8",
+     "number": 8,
+     "text": "Failure to comply with rules not covered in discount sheet, each infraction 2\nIf the discount is not listed on the discount sheet, and if it is not covered under one of the approved rules of the Contest, do not improvise a discount to cover the suspected violation.",
+     "pages": [
+      6,
+      6
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "C",
+      "title": "Competition at Bench"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-1",
+     "number": 1,
+     "text": "Failure to conduct a visual examination of the 9 components, all components, subcomponents, component parts, assembly, sub-assemblies retest dates are subject to problems/deficiencies. Contestant is required to verbally identify what is in capital bold print letters. The examples listed below for visual examination of the 9 components are a minimum starting point for training purposes.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-2",
+     "number": 2,
+     "text": "Failure to conduct a visual examination of the FRAME/HARNESS 2 The visual examination will include an examination of the harness assembly, frame, back cover, visible sealing rings, Sentinel, O2 regulator, Anti-vibe and switch box.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-3",
+     "number": 3,
+     "text": "Failure to conduct a visual examination of the BREATHING BAG 2 The participant will verbally identify that the breathing bag is being examined for pliability and signs of deterioration. Stretching or manipulating the breathing bag with a massaging action will be part of this examination. The participant will verbally identify that the sealing surfaces are being examined for signs of deterioration or damage. Also, the minimum valve, drain valve, lever, and springs will be examined for damage.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-4",
+     "number": 4,
+     "text": "Failure to conduct a visual examination of the O2 CYLINDER 2 A proper cylinder examination includes a visual inspection of the cylinder. The participant will verbally identify the cylinder pressure on the gauge, the pressure rating on cylinder, the latest hydrostatic test date, the manufactured date, and identify if the cylinder is plus rated, if steel. Participant will inform the judge if the cylinder pressure is less than 2,600 PSI for the Sentinel.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-5",
+     "number": 5,
+     "text": "Failure to conduct a visual examination of the FACTORY/REFILLABLE CARTRIDGE 2\nA proper examination includes a visual inspection for defects. If a Factory packed cartridge is used, verbally identify that the sealing surfaces are not damaged, and identify the expiration date with month and year. If a refillable cartridge is used, a visual inspection for defects, strap with tension spring hook, seal, Refillable scrubber screens and filter mats are required. Adding Dragersorb to the refillable cartridge shall be simulated as part of the visual refillable cartridge examination.",
+     "pages": [
+      7,
+      7
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-6",
+     "number": 6,
+     "text": "Failure to conduct a visual examination of the RELIEF VALVE 2 A proper examination includes a visual inspection for defects. Verbally identify that the valve and O-ring are not damaged.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-7",
+     "number": 7,
+     "text": "Failure to conduct a visual examination of the COOLER 2 A proper examination includes a visual inspection for defects. Verbally identify that the sealing surfaces are not damaged. Adding ice to the cooler shall be simulated as part of the visual cooler examination.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-8",
+     "number": 8,
+     "text": "Failure to conduct a visual examination of the HOSES 2 The participant will verbally identify that the hoses are being inspected for pliability and signs of deterioration. Stretching or manipulating the hoses with a massaging action will be part of this examination. The participant will verbally identify that the sealing edges/surfaces, including bayonet rings and Anti-crush rings are being examined for signs of deterioration.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-9",
+     "number": 9,
+     "text": "Failure to conduct a visual examination of the COUPLING, INHALATION AND EXHALATION VALVES 2\nA proper examination includes a visual inspection for defects, sealing surfaces and valve discs. Verbally identify that the sealing edges/surfaces and valve discs are not damaged.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-10",
+     "number": 10,
+     "text": "Failure to conduct a visual examination of the FACE PIECE 2 The visual examination will include an examination of the head strap assembly, mask body (including sealing surfaces), the visor, speaking diaphragm, and wiper. Defogging the visor shall be simulated as part of the visual facepiece examination.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-d-11",
+     "number": 11,
+     "text": "Failure to have Visual Apparatus fully assembled. (Ready for use) 5\nNOTE: Breathing hoses do not need to be in straps on visual apparatus.",
+     "pages": [
+      8,
+      8
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "D",
+      "title": "Visuals/Disassembled"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-1",
+     "number": 1,
+     "text": "Failure to conduct a proper low pressure warning test 2 Connect breathing hoses to test unit. Set RZ-25 tester on positive pressure pumping, gently activate bellows, and watch the pressure gauge. If the low-pressure warning is operating properly, warning should be activated when the pressure is less than 1.4 mbar for the Sentinel.",
+     "pages": [
+      8,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-2",
+     "number": 2,
+     "text": "Failure to conduct a proper inhalation valve test 2 The RZ-25 tester is set on positive pressure pumping. Tightly pinch the exhalation hose with your hand. Gently activate bellows until 10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-3",
+     "number": 3,
+     "text": "Failure to conduct a proper exhalation valve test 2 Set the RZ-25 tester on negative pressure pumping. Tightly pinch the inhalation hose with your hand. Gently activate bellows until -10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-4",
+     "number": 4,
+     "text": "Failure to conduct a proper drain valve test 2\nSet RZ-25 tester on positive pressure pumping. Pump bellows until 10 mbar is indicated on the pressure gauge. While pumping, fit the open side of the sealing cap over the tappet of the relief valve and hold it tightly until it is pressed into place by the inflated breathing bag. The drain valve must not open at 10 mbar.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-5",
+     "number": 5,
+     "text": "Failure to conduct a proper leak test with positive pressure 2 Set RZ-25 tester on leak test. Bleed needle to 7 mbar and start stopwatch. Needle should not change more than 10 mm H20 or 1 mbar in 60 seconds. Set RZ-25 tester on negative pressure pumping, the breathing bag is vented. Remove the sealing cap.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-6",
+     "number": 6,
+     "text": "Failure to conduct a proper relief valve test 2\nSet RZ-25 tester on positive pressure pumping. Pump the bellows until the relief valve opens, it should open between 2 and 5 mbar. Participant will verbally state reading of valve opening.\nNOTE: An alternate relief valve test may be conducted by observing the reading on the RZ-25 tester (with the tester set on leak test). Flow of oxygen from the constant dosage will cause relief valve to open between 2 and 5 mbar. If this alternate test is used, it must be conducted after the completion of the bypass valve test.",
+     "pages": [
+      9,
+      9
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-7",
+     "number": 7,
+     "text": "Failure to conduct a proper high pressure leak test 2 Set RZ-25 tester on leak test. Open cylinder valve. Watch the Sentinel unit, the cylinder pressure is indicated here. If it is lower than 2600 psi, change the oxygen cylinder. If it is greater than 2600 psi, alarm beeps two times. Sentinel indicates “close cylinder” icon, as soon as the icon appears, close cylinder valve.\nResult of the tests is output after approximately 15 seconds. If the PSS BG-4 is okay, “open cylinder valve” icon, as soon as the icon appears open cylinder valve.",
+     "pages": [
+      9,
+      10
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-8",
+     "number": 8,
+     "text": "Failure to conduct a proper constant metering valve test 2 Set RZ-25 tester on positive pressure pumping. Pump bellows until the breathing bag is inflated. While pumping, fit the open side of the sealing cap over the tappet of the relief valve and hold it tightly until it is pressed into position by the inflated bag. Set the RZ-25 tester on Red Dosage 0.5 - 2 L/min. The constant metering quantity should lie between 1.5 and 1.9 L/min. Participant will verbally state dosage value on the red scale as soon as the pointer has stopped moving.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-9",
+     "number": 9,
+     "text": "Failure to conduct a proper minimum valve test 2\nSet RZ-25 tester on negative pressure pumping. The breathing bag is vented automatically, remove sealing cap, pump bellows until minimum valve is heard to open in breathing bag and there is a hissing sound. Watch the pressure gauge, the minimum valve should open at a value between 0.1 and 2.5 mbar. Participant will verbally identify reading of opening of valve.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-10",
+     "number": 10,
+     "text": "Failure to conduct a proper bypass valve test 2\nSet RZ-25 tester on leak test. Press red button for bypass valve. Oxygen must be heard to flow into the circuit, the breathing bag inflates.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-11",
+     "number": 11,
+     "text": "Failure to conduct a proper low/residual pressure warning test 2 Close cylinder valve. Watch the display or sentinel unit. The warning should be generated at approx. 700 psi. Alarm sounds intermittently, red indicator flashes. Unplug coupling from RZ-25 tester. Participant will verbally state reading.",
+     "pages": [
+      10,
+      10
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-12",
+     "number": 12,
+     "text": "Failure to conduct a proper battery test 2\nOn activation and deactivation, the Sentinel automatically checks and displays the battery capacity. To switch off the Sentinel, simultaneously press the right- and left-hand button until the single sharp audible bleep sounds. Release the buttons. For three seconds, Sentinel shows the battery status. Sentinel switches off.",
+     "pages": [
+      10,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-13",
+     "number": 13,
+     "text": "Failure to follow proper sequence when conducting the tests as prescribed in the instruction for use per Drager BG 4.\n(each occurrence, or 15 pt. max.) 5",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-e-14",
+     "number": 14,
+     "text": "Failure to have Test Apparatus fully assembled. (Ready for use) 5\nNOTE: Breathing hoses do not need to be in straps on test apparatus.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "E",
+      "title": "RZ-25 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-1",
+     "number": 1,
+     "text": "Failure to conduct a proper low pressure warning test 2 Connect breathing hoses to test unit. Set RZ-7000 tester on positive pressure pumping, gently pump, and watch the pressure gauge. If the low-pressure warning is operating properly, warning should be activated when the pressure is less than 1.4 mbar for the Sentinel.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-2",
+     "number": 2,
+     "text": "Failure to conduct a proper inhalation valve test 2 The RZ-7000 tester is set on positive pressure pumping. Tightly pinch the exhalation hose with your hand. Pump until 10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-3",
+     "number": 3,
+     "text": "Failure to conduct a proper exhalation valve test 2 Set the RZ-7000 tester on negative pressure pumping. Tightly pinch the inhalation hose with your hand. Pump until -10 mbar is indicated on the pressure gauge.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-4",
+     "number": 4,
+     "text": "Failure to conduct a proper drain valve test 2\nSet RZ-7000 tester on positive pressure pumping. Pump until 15 mbar is indicated on the pressure gauge. While pumping, fit the open side of the sealing cap over the tappet of the relief valve and hold it tightly until it is pressed into place by the inflated breathing bag. The drain valve should not open before 15mbar.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-5",
+     "number": 5,
+     "text": "Failure to conduct a proper leak test with positive pressure 2 Set RZ-7000 tester on leak test. Bleed needle to 7.5 mbar and start stopwatch. Needle should not change more than 10 mm H20 or 1 mbar in 60 seconds. Set RZ-7000 tester on negative pressure pumping, the breathing bag is vented. Remove the sealing cap.",
+     "pages": [
+      11,
+      11
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-6",
+     "number": 6,
+     "text": "Failure to conduct a proper relief valve test 2\nSet RZ-7000 tester on positive pressure pumping. Pump until the relief valve opens, it should open between 2 and 5 mbar. Participant will verbally state reading of valve opening.\nNOTE: An alternate relief valve test may be conducted by observing the reading on the RZ-7000 tester (with the tester set on leak test). Flow of oxygen from the constant dosage will cause relief valve to open between 2 and 5 mbar. If this alternate test is used, it must be conducted after the completion of the bypass valve test.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-7",
+     "number": 7,
+     "text": "Failure to conduct a proper high pressure leak test 2 Set RZ-7000 tester on leak test. Open cylinder valve. Watch the Sentinel unit, the cylinder pressure is indicated here. If it is lower than 2600 psi, change the oxygen cylinder. If it is greater than 2600 psi, alarm beeps two times. Sentinel indicates “close cylinder” icon, as soon as the icon appears, close cylinder valve.\nResult of the tests is output after approximately 15 seconds. If the PSS BG-4 is okay, “open cylinder valve” icon, as soon as the icon appears open cylinder valve.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-8",
+     "number": 8,
+     "text": "Failure to conduct a proper constant metering valve test 2 Set RZ-7000 tester on positive pressure pumping. Pump until the breathing bag is inflated. While pumping, fit the open side of the sealing cap over the tappet of the relief valve and hold it tightly until it is pressed into position by the inflated bag. Set the RZ-7000 tester on. The constant metering quantity should lie between 1.5 and 1.9 L/min. Participant will verbally state dosage value on the display.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-9",
+     "number": 9,
+     "text": "Failure to conduct a proper minimum valve test 2 Set RZ-7000 tester on negative pressure pumping. The breathing bag is vented automatically, remove sealing cap, pump until minimum valve is heard to open in breathing bag and there is a hissing sound. Watch the pressure gauge, the minimum valve should open at a value between 0.1 and 2.5 mbar. Participant will verbally identify reading of opening of valve.",
+     "pages": [
+      12,
+      12
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-10",
+     "number": 10,
+     "text": "Failure to conduct a proper bypass valve test 2 Set RZ-7000 tester on leak test. Press red button for bypass valve. Oxygen must be heard to flow into the circuit, the breathing bag inflates.",
+     "pages": [
+      12,
+      13
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-11",
+     "number": 11,
+     "text": "Failure to conduct a proper low/residual pressure warning test 2\nClose cylinder valve. Watch the display or sentinel unit. The warning should be generated at approx. 700 psi. Alarm sounds intermittently, red indicator flashes. Unplug coupling from RZ-7000 tester. Participant will verbally state reading.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-12",
+     "number": 12,
+     "text": "Failure to conduct a proper battery test 2\nOn activation and deactivation, the Sentinel automatically checks and displays the battery capacity. To switch off the Sentinel, simultaneously press the right- and left-hand button until the single sharp audible bleep sounds. Release the buttons. For three seconds, Sentinel shows the battery status. Sentinel switches off.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-13",
+     "number": 13,
+     "text": "Failure to follow proper sequence when conducting the tests as prescribed in the instruction for use per Drager BG 4.\n(each occurrence, or 15 pt. max.) 5",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    },
+    {
+     "id": "bench-bg4-discount-interpretations-f-14",
+     "number": 14,
+     "text": "Failure to have Test Apparatus fully assembled. (Ready for use) 5\nNOTE: Breathing hoses do not need to be in straps on test apparatus.",
+     "pages": [
+      13,
+      13
+     ],
+     "event": "bench-bg4",
+     "group": {
+      "letter": "F",
+      "title": "RZ-7000 Tester"
+     }
+    }
+   ]
+  },
+  {
+   "id": "bench-record",
+   "title": "Bench Record (Optional)",
+   "event": "bench-bg4",
+   "pages": [
+    14,
+    14
+   ],
+   "note": "Optional bench record form (page image).",
+   "images": [
+    {
+     "file": "figures/bench-bg4/page-16.png",
+     "pdf_page": 16,
+     "printed_page": 14
+    }
+   ],
+   "items": []
+  },
+  {
+   "id": "identification-of-parts",
+   "title": "Identification of Parts",
+   "event": "bench-bg4",
+   "pages": [
+    20,
+    30
+   ],
+   "note": "Parts diagrams (page images) with their Cons. No./Designation tables. Structured tables are in parts.json. Ten of the 20 bench written-exam questions are taken verbatim from these.",
+   "items": [
+    {
+     "id": "bench-bg4-parts-p20",
+     "number": 1,
+     "title": "BG-4",
+     "text": "1  Carrying Housing\n2  Cover Shell, complete\n3  Shoulder Pad Assembly\n5  Cooler\n6  Relief valve, Complete\n7  Minimum Valve\n8  Drain Valve\n9  Sentinel\n10  Switch Box\n11  Pressure Sensor\n12  Breathing Bag\n15  Lever, Complete\n16  Factory/refillable cartridge\n17  Pressure Reducer BG4\n19  Oxygen Cylinder\n21  Distribution Hose\n22  FPS 7000 Mask",
+     "format": "pre",
+     "pages": [
+      20,
+      20
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-22.png",
+       "printed_page": 20
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p21",
+     "number": 2,
+     "title": "Cover",
+     "text": "1  Cover Shell\n2  Hinge\n3  Grip Cap\n4  Button",
+     "format": "pre",
+     "pages": [
+      21,
+      21
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-23.png",
+       "printed_page": 21
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p22",
+     "number": 3,
+     "title": "Harness Assembly",
+     "text": "1  Shoulder Pad Assembly\n2  Shoulder Adjusting Strap\n3  Hose Clip\n4  Hose Strap Harness\n5  Adjusting Belt Assembly\n6  Waist belt\n7  Belt Assembly\n8  Buckle",
+     "format": "pre",
+     "pages": [
+      22,
+      22
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-24.png",
+       "printed_page": 22
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p23",
+     "number": 4,
+     "title": "Breathing Hose Assembly",
+     "text": "1  Coupling\n2  Inhalation Valve Seat\n3  Exhalation Valve Seat\n4  Valve Disc\n5  Corrugated Hose\n6  Bayonet Ring\n7  Anti-Crush rings\n8  Toroidal Sealing Ring\n9  Sealing Cap",
+     "format": "pre",
+     "pages": [
+      23,
+      23
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-25.png",
+       "printed_page": 23
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p24",
+     "number": 5,
+     "title": "Cooling Canister (Revised Drawing)",
+     "text": "1  Cooler\n2  O-Ring, Cooler\n3  Cover\n4  Angle Connector\n5  Reaction Ring",
+     "format": "pre",
+     "pages": [
+      24,
+      24
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-26.png",
+       "printed_page": 24
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p25",
+     "number": 6,
+     "title": "Drain/Relief/Minimum Valve Assembly (Revised Drawing)",
+     "text": "1  Valve Disc\n2  Crater Housing\n3  Valve Disc\n4  Spring\n5  O-Ring\n6  Cap\n11  Reaction Ring\n12  Coupling\n13  O-Ring\n14-16, 3-4  Drainage Valve\n14  Cap, Drain Valve\n15-16  Drain Valve & Filter\n17-24  Minimum Valve\n17  Crater\n18  Washer\n19-20  Rocker Arm\n21  Spring\n24  Angle Connector\n25  Holding Clamp",
+     "format": "pre",
+     "pages": [
+      25,
+      25
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-27.png",
+       "printed_page": 25
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p26",
+     "number": 7,
+     "title": "Sentinel",
+     "text": "1  Sentinel\n2  Switch Box\n3  Angle Connector\n7  Pressure Sensor\n8  Copper Ring\n9  9-volt battery\n13  Tally Key",
+     "format": "pre",
+     "pages": [
+      26,
+      26
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-28.png",
+       "printed_page": 26
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p27",
+     "number": 8,
+     "title": "Refillable Cartridge",
+     "text": "1-8  Refillable Cartridge\n2  Lid\n3  Seal, Refillable Cartridge\n4  Strap with Tension Spring Hook\n5  Refillable Scrubber Screen\n6  Filter Mats\n8  NIOSH Approval Label",
+     "format": "pre",
+     "pages": [
+      27,
+      27
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-29.png",
+       "printed_page": 27
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p28",
+     "number": 9,
+     "title": "FPS 7000 Mask",
+     "text": "1  Mask Body FPS 7000\n2  Upper Visor Frame\n3  Visor 15A Head Strap\n4  Lower Visor Frame 15B Hairnet\n7  Clamp\n8  Connector Piece\n9  Cover\n11  Turning Knob\n12  Disc\n13  Inner Mask\n14  Button\n16  Sliding Buckle\n17  Double Button\n18  Neck Strap",
+     "format": "pre",
+     "pages": [
+      28,
+      28
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-30.png",
+       "printed_page": 28
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p29",
+     "number": 10,
+     "title": "Oxygen Cylinder",
+     "text": "3  Valve Housing\n10  Hand-wheel\n13  Safety Ring\n16  Sealing Ring\n17  Manometer\n18  Lock Washer\n19  Lock Nut\n20  Bursting Disc\n21  Oxygen Cylinder\n22  Label",
+     "format": "pre",
+     "pages": [
+      29,
+      29
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-31.png",
+       "printed_page": 29
+      }
+     ]
+    },
+    {
+     "id": "bench-bg4-parts-p30",
+     "number": 11,
+     "title": "Test Kit",
+     "text": "1  Plug For Breathing Bag\n2  Nozzle For Breathing Bag\n3  Sealing Plug (Corrugated Hose)\n4  Test Socket for Corrugated Hose\n5  Sealing Cap for Corrugated Hose\n6  Sealing Cap\n7  Testing Plug\n8  Test Cap for Corrugated Hose\n9  Test Connection for Control\n11  Sealing Plug for Mask\n12  Test Adaptor\n13  Sealing Plug for Plug in Conn.\n14  Test Hose/Metering Control\n19  Sealing Ring Lifters\n22  Spanner Valve",
+     "format": "pre",
+     "pages": [
+      30,
+      30
+     ],
+     "event": "bench-bg4",
+     "images": [
+      {
+       "file": "figures/bench-bg4/page-32.png",
+       "printed_page": 30
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "judges-checklist",
+   "title": "Judge’s Checklist",
+   "event": "bench-bg4",
+   "pages": [
+    31,
+    31
+   ],
+   "note": "Judge’s checklist form (page image; text below is the extracted form text).",
+   "images": [
+    {
+     "file": "figures/bench-bg4/page-33.png",
+     "pdf_page": 33,
+     "printed_page": 31
+    }
+   ],
+   "items": [
+    {
+     "id": "bench-bg4-judges-checklist-1",
+     "number": 1,
+     "title": "Checklist text",
+     "text": "BG-4 Bench Contestant: _________________________________ Working Time: _________ Min: ____ Sec: ____\n            VISUAL APPARATUS CHECKS    TEST APPARATUS WRITTEN RECORD\n ✓    Checkifok\n     FRAME/HARNESS ASSEMBLY    ✓    Checkifok\n     BREATHING BAG    LOW PRESSURE WARNING TEST    1.4 MBAR MAX.\n     CYLINDER TEST    INHALATION VALVE TEST    10 MBAR +\n     REGENERATIVE CANISTER    EXHALATION VALVE TEST    10 MBAR -\n     SIMULATE ADDING DRAGERSORB    DRAIN VALVE TEST    10 MBAR\n     RELIEF VALVE    LEAK TEST with POSITIVE PRESSURE    1 MBAR IN 60 SEC.\n     COOLER    RELIEF VALVE TEST\n     SIMULATE ADDING ICE    ·    State Opening Pressure    2 TO 5 MBAR\n     HOSES    HIGH PRESSURE LEAK TEST    OPEN CYL. ICON\n     COUPLING    CONSTANT METERING VALVE TEST\n     FACE PIECE TEST    ·    State Final Reading    1.5 TO 1.9 L/MIN\n     SIMULATE DEFOGGING MASK    MINIMUM VALVE TEST\n     ·\n                                                  ·    State Opening Pressure    0.1 TO 2.5 MBAR\n     CONNECTIONS CONNECTED OR GOOD    BYPASS VALVE TEST\n     Cap on Drain Valve    ALTERNATE RELIEF VALVE TEST    2 TO 5 MBAR\n     Drain Valve to Breathing Bag    LOW PRESSURE WARNING TEST\n     Minimum Valve to Breathing Bag    ·    State Warning Reading    APPROX. 700 PSI\n     Minimum Valve to O2 Supply Line    BATTERY TEST    BATT FULL/ ICON\n     Cylinder Connection    READY FOR USE\n     Regenerative Canister Connections    DATE\n     Relief Valve to Regenerative Canister    SERIAL NUMBER\n     Crossover Hose Switchbox and Relief Valve    SIGNATURE\n     Cooler to Breathing Bag    CYLINDER READING\n     Distribution Hose\n     Breathing Hoses\n     Hose Adapter on RZ-25 or Test-It 6100\n                                                  ZERO TESTER PRIOR TO TESTING\n             VISUAL APPARATUS BUGS    TEST APPARATUS BUGS\n VI    C    VI    C",
+     "format": "pre",
+     "pages": [
+      31,
+      31
+     ],
+     "event": "bench-bg4"
+    }
+   ]
+  }
+ ]
+}
