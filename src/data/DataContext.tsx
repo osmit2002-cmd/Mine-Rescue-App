@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { editionLabel } from './adapter';
 import { loadContent } from './load';
+import { cropsByOwner } from './figures';
 import { buildRuleTree, type SectionNode } from './ruleTree';
 import type { ContentState, EventInfo, Fact, Figure, PartTable, Rule, SectionInfo } from './types';
 
@@ -21,6 +22,10 @@ export interface Data extends ContentState {
   editionFor: (event?: string) => string | undefined;
   figuresForRule: (rule: Rule) => Figure[];
   figuresForSection: (section: SectionInfo) => Figure[];
+  /** Cropped figures listed for a rule (the rule's gallery); empty when the content has none. */
+  galleryFor: (rule: Rule) => Figure[];
+  /** Cropped figures listed for a section (sections without rule items). */
+  sectionGalleryFor: (section: SectionInfo) => Figure[];
   /** URL of a content file (figures, sources.md); figure paths are mapped to the built (WebP) files. */
   contentUrl: (file: string) => string;
   /** Default edition label (main rule book). */
@@ -47,9 +52,12 @@ export function enrich(content: ContentState): Data {
   const sectionsById = new Map(content.sections.map((s) => [s.id, s]));
   const partsById = new Map(content.parts.map((t) => [t.id, t]));
   const figNumber = (f: Figure) => /^figure\s+(\S+)/i.exec(f.caption)?.[1].toLowerCase();
+  // Cropped figures first: a rule or section with its own crops shows those, not the old page images.
   const figuresForRule = (rule: Rule) => {
+    if (crops.has(rule.id)) return [];
     const refs = figureRefs(rule.text);
     return content.figures.filter((f) => {
+      if (f.kind === 'crop') return false; // shown in the rule's gallery instead
       if (f.ruleId) return f.ruleId === rule.id;
       if (f.event !== rule.event) return false;
       const n = figNumber(f);
@@ -57,7 +65,11 @@ export function enrich(content: ContentState): Data {
       return inRange(f.printedPage, rule.pages) && f.sectionId === rule.sectionId;
     });
   };
-  const figuresForSection = (s: SectionInfo) => content.figures.filter((f) => f.sectionId === s.id || (!f.sectionId && f.event === s.event && inRange(f.printedPage, s.pages)));
+  const figuresForSection = (s: SectionInfo) => sectionCrops.has(s.id) ? [] : content.figures.filter((f) => f.kind !== 'crop' && (f.sectionId === s.id || (!f.sectionId && f.event === s.event && inRange(f.printedPage, s.pages))));
+  const crops = cropsByOwner(content.figures, content.galleries);
+  const sectionCrops = cropsByOwner(content.figures, content.sectionGalleries);
+  const galleryFor = (rule: Rule) => crops.get(rule.id) ?? [];
+  const sectionGalleryFor = (s: SectionInfo) => sectionCrops.get(s.id) ?? [];
   const base = import.meta.env.BASE_URL;
 
   const declared = new Map(content.events.map((e) => [e.id, e]));
@@ -111,12 +123,17 @@ export function enrich(content: ContentState): Data {
     edition: editionFor(content.ruleBooks[0]?.event),
     figuresForRule,
     figuresForSection,
+    galleryFor,
+    sectionGalleryFor,
     contentUrl: (file: string) => {
       const clean = file.replace(/^\.?\//, '');
-      return `${base}content/${content.figureMap[clean] ?? clean}`;
+      return `${base}content/${encodePath(content.figureMap[clean] ?? clean)}`;
     }
   };
 }
+
+/** Percent-encodes each path segment (file names with spaces, # or ?). */
+export const encodePath = (p: string) => p.split('/').map(encodeURIComponent).join('/');
 
 export function DataProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<LoadState>({ status: 'loading' });

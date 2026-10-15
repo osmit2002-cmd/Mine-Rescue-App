@@ -1,0 +1,40 @@
+{
+  "note": "Test fixture only (src/data/figures.test.ts): the figures.json shape the app expects. Never copied into a build.",
+  "figures": [
+    {
+      "id": "mine-rescue:fig-1a",
+      "file": "figures/mine-rescue/fig-1a.png",
+      "caption": "Figure 1(a) – PROPER METHOD OF ROOF TESTING",
+      "page": 41,
+      "pdf_page": 43,
+      "event": "mine-rescue",
+      "kind": "figure",
+      "rule_ids": ["b-card-23"],
+      "section_ids": ["figures"],
+      "full_page": "figures/page-43.png"
+    },
+    {
+      "id": "mine-rescue:fig-1b",
+      "file": "figures/mine-rescue/fig-1b.png",
+      "caption": "Figure 1(b) – PROPER METHOD OF ROOF TESTING (cont.)",
+      "page": 42,
+      "pdf_page": 44,
+      "event": "mine-rescue",
+      "kind": "figure",
+      "rule_ids": ["b-card-23"],
+      "section_ids": ["figures"],
+      "full_page": "figures/page-44.png"
+    },
+    {
+      "id": "mine-rescue:page-43",
+      "file": "figures/page-43.png",
+      "caption": "Rulebook page 41",
+      "page": 41,
+      "event": "mine-rescue",
+      "kind": "page",
+      "rule_ids": [],
+      "section_ids": [],
+      "full_page": null
+    }
+  ]
+}

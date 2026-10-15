@@ -1,3 +1,4 @@
+import { collectCropFigures } from './figures';
 import { adaptParts, documentInfo, eventsInfo, unwrap, unwrapRules } from './adapter';
 import type { ContentState, DataIssue, DocumentInfo, Figure, SectionInfo } from './types';
 import { validateFacts, validateRules } from './validate';
@@ -21,12 +22,15 @@ export interface ContentInput {
   facts: unknown;
   parts?: unknown;
   buildInfo?: unknown;
+  /** figures.json (cropped figures index), if present. */
+  figureIndex?: unknown;
 }
 
 type BuildInfo = {
   rules?: { used?: string };
   facts?: { used?: string };
-  figures?: { map?: Record<string, string> };
+  figures?: { map?: Record<string, string>; checked?: boolean; runtime?: string[] };
+  figuresIndex?: { used?: string | false };
 };
 
 /** Parses already-fetched JSON into content. Pure; never throws; exported for tests. */
@@ -37,6 +41,7 @@ export function parseAll(input: ContentInput): ContentState {
   const figures: Figure[] = [];
   const ruleBooks: ContentState['ruleBooks'] = [];
   const rawRules: unknown[] = [];
+  const sectionFigures: NonNullable<Parameters<typeof collectCropFigures>[0]['sectionFigures']> = [];
   const recordFile: string[] = [];
   let rulesSample = info.rules?.used === 'sample';
   for (const book of input.ruleBooks) {
@@ -44,6 +49,7 @@ export function parseAll(input: ContentInput): ContentState {
       const u = unwrapRules(book.json, book.event);
       sections.push(...u.sections.map((s) => ({ ...s, order: sections.length + s.order })));
       figures.push(...u.figures);
+      sectionFigures.push(...u.sectionFigures.map((x) => ({ ...x, file: book.file })));
       rawRules.push(...u.records);
       u.records.forEach(() => recordFile.push(book.file));
       ruleBooks.push({ ...u.document, event: book.event ?? u.sections[0]?.event ?? undefined, file: book.file });
@@ -82,6 +88,17 @@ export function parseAll(input: ContentInput): ContentState {
   }
   const parts = adaptParts(input.parts);
   issues.push(...parts.issues);
+  const crops = collectCropFigures({
+    rawRules: rawRules.map((raw, i) => ({ raw, file: recordFile[i] })),
+    sectionFigures,
+    sections: new Map(sections.map((s) => [s.id, { event: s.event, rawId: s.rawId }])),
+    index: input.figureIndex,
+    figureMap: info.figures?.map ?? {},
+    filesChecked: info.figures?.checked === true,
+    rules: new Map(vr.records.map((r) => [r.id, r.event]))
+  });
+  figures.push(...crops.figures);
+  issues.push(...crops.issues);
 
   return {
     rules: vr.records,
@@ -93,6 +110,9 @@ export function parseAll(input: ContentInput): ContentState {
     ruleBooks,
     parts: parts.tables,
     figureMap: info.figures?.map ?? {},
+    galleries: crops.galleries,
+    sectionGalleries: crops.sectionGalleries,
+    runtimeFigures: Array.isArray(info.figures?.runtime) ? info.figures.runtime : [],
     issues,
     sample: { rules: rulesSample, facts: facts.sample }
   };
@@ -108,9 +128,10 @@ export async function loadContent(): Promise<ContentState> {
     | (BuildInfo & { ruleFiles?: { file: string; event?: string | null }[]; parts?: { used?: boolean } })
     | undefined;
   const ruleFiles = buildInfo?.ruleFiles?.length ? buildInfo.ruleFiles : [{ file: 'rules.json', event: null }];
-  const [facts, parts, ...books] = await Promise.allSettled([
+  const [facts, parts, figureIndex, ...books] = await Promise.allSettled([
     fetchJson('facts.json'),
     buildInfo?.parts?.used ? fetchJson('parts.json') : Promise.resolve(undefined),
+    buildInfo?.figuresIndex?.used ? fetchJson('figures.json') : Promise.resolve(undefined),
     ...ruleFiles.map((r) => fetchJson(r.file))
   ]);
   const loadIssues: DataIssue[] = [];
@@ -121,7 +142,14 @@ export async function loadContent(): Promise<ContentState> {
   });
   if (facts.status === 'rejected') loadIssues.push({ file: 'facts', index: -1, level: 'error', message: `could not load facts.json (${String(facts.reason?.message ?? facts.reason)})` });
   if (parts.status === 'rejected') loadIssues.push({ file: 'parts', index: -1, level: 'error', message: `could not load parts.json (${String(parts.reason?.message ?? parts.reason)})` });
-  const state = parseAll({ ruleBooks, facts: facts.status === 'fulfilled' ? facts.value : [], parts: parts.status === 'fulfilled' ? parts.value : undefined, buildInfo });
+  if (figureIndex.status === 'rejected') loadIssues.push({ file: 'figures.json', index: -1, level: 'error', message: `could not load figures.json (${String(figureIndex.reason?.message ?? figureIndex.reason)})` });
+  const state = parseAll({
+    ruleBooks,
+    facts: facts.status === 'fulfilled' ? facts.value : [],
+    parts: parts.status === 'fulfilled' ? parts.value : undefined,
+    figureIndex: figureIndex.status === 'fulfilled' ? figureIndex.value : undefined,
+    buildInfo
+  });
   state.issues.unshift(...loadIssues);
   return state;
 }

@@ -40,6 +40,21 @@ export interface Figure {
   /** Rule item this figure belongs to (e.g. a skill sheet or parts page). */
   ruleId?: string;
   event?: string;
+  /** Stable id of a cropped figure (from a rule's `figures` list or figures.json). */
+  id?: string;
+  /**
+   * 'crop' = an individual cropped figure (diagram, skill sheet, parts drawing) shown in the rule's gallery.
+   * Absent = a whole page image (the original figures), shown as before.
+   */
+  kind?: 'crop';
+  /** Rules a cropped figure belongs to (from the rule item and/or figures.json). */
+  ruleIds?: string[];
+  /** The data's own figure type, e.g. "figure", "skill-sheet", "parts-drawing", "map-symbol". */
+  figureKind?: string;
+  /** Sections a cropped figure belongs to (sections without rule items have their own gallery). */
+  sectionIds?: string[];
+  /** Full rule-book page the crop was cut from (content path), loaded only on request. */
+  fullPage?: string;
 }
 
 /** Section-level information from nested rule books (title, intro paragraphs, notes, figures). */
@@ -53,6 +68,8 @@ export interface SectionInfo {
   figures: Figure[];
   event?: string;
   order: number;
+  /** Section id as written in the rule file (before the event prefix); figures.json section_ids use it. */
+  rawId?: string;
 }
 
 export interface PartRow {
@@ -161,6 +178,12 @@ export interface ContentState {
   parts: PartTable[];
   /** Original figure path -> built file (e.g. png -> downscaled webp). */
   figureMap: Record<string, string>;
+  /** Rule id -> its cropped figure ids, in the order the rule lists them (the gallery order). */
+  galleries: Record<string, string[]>;
+  /** Section id -> its cropped figure ids, in the section's own order. */
+  sectionGalleries: Record<string, string[]>;
+  /** Built figure files that are NOT precached (full-page images when crops exist); cached on first view. */
+  runtimeFigures: string[];
   issues: DataIssue[];
   /** True when the bundled SAMPLE placeholder data is in use instead of real content. */
   sample: { rules: boolean; facts: boolean };

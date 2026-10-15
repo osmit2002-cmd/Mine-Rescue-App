@@ -166,6 +166,57 @@ function adaptFigure(v: unknown, sectionId: string | undefined, index: { title: 
   return { file: file.replace(/^\.?\//, ''), printedPage, pdfPage, labels, caption, title: title ?? extra.ruleTitle, sectionId, event: extra.event, ruleId: extra.ruleId };
 }
 
+/** A cropped-figure entry ({ id?, file, caption?, page? }) as opposed to an old page-image entry. */
+export function isCropFigureEntry(v: unknown): boolean {
+  return isObj(v) && (v.caption !== undefined || v.id !== undefined);
+}
+
+/**
+ * Normalises a figure path to "figures/…" relative to the content folder. Accepts "figures/{event}/x.png",
+ * "{event}/x.png" (relative to the figures folder), and leading "./", "/" or "content/".
+ */
+export function figurePath(file: string): string {
+  let f = file.trim().replace(/\\/g, '/').replace(/^(\.?\/)+/, '');
+  if (f.startsWith('content/')) f = f.slice('content/'.length);
+  return f.startsWith('figures/') ? f : `figures/${f}`;
+}
+
+/**
+ * One cropped figure: { id, file, caption, page, event?, rules? }. `rules` (or rule_ids / rule_id / rule) lists the
+ * rules it belongs to; `ruleId` is the rule it was listed under. The caption is kept exactly as given.
+ */
+export function adaptCropFigure(v: unknown, extra: { event?: string; ruleId?: string; sectionId?: string } = {}): { figure?: Figure; error?: string } {
+  if (!isObj(v)) return { error: 'figure entry is not an object' };
+  const fileField = v.file ?? v.src ?? v.path;
+  const rawFile = typeof fileField === 'string' ? fileField.trim() || undefined : undefined;
+  const id = label(v.id);
+  if (!rawFile) return { error: `figure ${id ? `"${id}" ` : ''}has no file` };
+  const file = figurePath(rawFile);
+  const caption = scalar(v.caption);
+  const printedPage = pageRange(v.page ?? v.printed_page ?? v.printedPage)?.[0];
+  const listed = v.rules ?? v.rule_ids ?? v.ruleIds ?? v.rule_id ?? v.rule;
+  const ruleIds = [...new Set([...(extra.ruleId ? [extra.ruleId] : []), ...(stringList(listed) ?? [])])];
+  const sections = stringList(v.section_ids ?? v.sectionIds ?? v.sections) ?? [];
+  const fullPage = typeof v.full_page === 'string' && v.full_page.trim() ? figurePath(v.full_page) : typeof v.fullPage === 'string' && v.fullPage.trim() ? figurePath(v.fullPage) : undefined;
+  return {
+    figure: {
+      kind: 'crop',
+      id: id ?? file,
+      file,
+      caption: caption && caption.trim() ? caption : '', // a fallback is filled in after merging with figures.json
+      labels: '',
+      printedPage,
+      pdfPage: pageRange(v.pdf_page ?? v.pdfPage)?.[0],
+      event: label(v.event) ?? extra.event,
+      ruleIds,
+      // Raw section ids from figures.json are resolved to app section ids in figures.ts.
+      sectionIds: [...new Set([...(extra.sectionId ? [extra.sectionId] : []), ...sections])],
+      fullPage,
+      figureKind: label(v.kind)
+    }
+  };
+}
+
 /**
  * Events in a multi-event facts file:
  * { events: { "<id>": { name, document, written_exam: { questions, from_statements_of_fact?, detail } } },
@@ -204,6 +255,8 @@ export function eventsInfo(json: unknown): EventInfo[] {
 
 export interface UnwrappedRules {
   records: unknown[];
+  /** Cropped-figure entries listed directly on sections (sections without rule items). */
+  sectionFigures: { sectionId: string; event?: string; entries: unknown[] }[];
   sections: SectionInfo[];
   figures: Figure[];
   document: DocumentInfo;
@@ -224,6 +277,7 @@ export function unwrapRules(json: unknown, eventHint?: string | null): Unwrapped
     const sections: SectionInfo[] = [];
     const figures: Figure[] = [];
     const records: unknown[] = [];
+    const sectionFigures: UnwrappedRules['sectionFigures'] = [];
     list.forEach((s, si) => {
       if (!isObj(s)) {
         records.push(s); // reported as a bad record by the validator
@@ -234,12 +288,13 @@ export function unwrapRules(json: unknown, eventHint?: string | null): Unwrapped
       const id = event && fileEvent ? `${event}:${rawId}` : rawId;
       const title = label(s.title ?? s.name) ?? rawId;
       const note = label(pick(s, SECTION_FIELDS.note));
-      const imgs = pick(s, SECTION_FIELDS.images);
+      const imgs = Array.isArray(s.images) ? s.images : Array.isArray(s.figures) ? s.figures.filter((v) => !isCropFigureEntry(v)) : pick(s, SECTION_FIELDS.images);
       const idx = figureIndex(note);
       const figs = (Array.isArray(imgs) ? imgs : []).map((v) => adaptFigure(v, id, idx, { event })).filter((f): f is Figure => !!f);
       figures.push(...figs);
       const intro = scalar(pick(s, SECTION_FIELDS.intro));
-      sections.push({ id, title, pages: pageRange(s.pages), intro: intro || undefined, note, figures: figs, event, order: si });
+      sections.push({ id, title, pages: pageRange(s.pages), intro: intro || undefined, note, figures: figs, event, order: si, rawId });
+      if (Array.isArray(s.figures) && s.figures.some(isCropFigureEntry)) sectionFigures.push({ sectionId: id, event, entries: s.figures.filter(isCropFigureEntry) });
       const items = pick(s, SECTION_FIELDS.items);
       for (const it of Array.isArray(items) ? items : []) {
         if (!isObj(it)) {
@@ -247,7 +302,8 @@ export function unwrapRules(json: unknown, eventHint?: string | null): Unwrapped
           continue;
         }
         const itEvent = label(it.event) ?? event;
-        const itImgs = pick(it, SECTION_FIELDS.images);
+        // Page images: `images`, or old-style entries of `figures` (cropped-figure entries are read in figures.ts).
+        const itImgs = Array.isArray(it.images) ? it.images : Array.isArray(it.figures) ? it.figures.filter((v) => !isCropFigureEntry(v)) : undefined;
         if (Array.isArray(itImgs)) {
           const ruleId = label(it.id);
           figures.push(...itImgs.map((v) => adaptFigure(v, id, [], { event: itEvent, ruleId, ruleTitle: label(it.title) })).filter((f): f is Figure => !!f));
@@ -255,10 +311,10 @@ export function unwrapRules(json: unknown, eventHint?: string | null): Unwrapped
         records.push({ ...it, section: it.section ?? title, sectionId: it.sectionId ?? id, event: itEvent });
       }
     });
-    return { records, sections, figures, document, sample };
+    return { records, sectionFigures, sections, figures, document, sample };
   }
   const flat = unwrap(json, 'rules');
-  return { ...flat, records: fileEvent ? flat.records.map((r) => (isObj(r) && r.event === undefined ? { ...r, event: fileEvent } : r)) : flat.records, sections: [], figures: [], document };
+  return { ...flat, records: fileEvent ? flat.records.map((r) => (isObj(r) && r.event === undefined ? { ...r, event: fileEvent } : r)) : flat.records, sectionFigures: [], sections: [], figures: [], document };
 }
 
 export interface Unwrapped {
