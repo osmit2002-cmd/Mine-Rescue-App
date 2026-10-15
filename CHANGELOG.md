@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0
+
+- **Figure gallery on rule pages.** A rule whose content lists cropped figures (`figures` on the rule item, in display order, merged with `content/figures.json`) shows "Figures (N)" under the rule wording:
+  - Swipe (scroll-snap), prev/next buttons, Left/Right keys when the gallery is focused, dots for up to 12 figures.
+  - Caption (verbatim, also the alt text), printed page and an "N of M" counter. Images load lazily.
+  - Tap a figure for fullscreen: pinch or double-tap zoom, mouse wheel and −/+/Fit buttons, drag to pan when zoomed, swipe or arrow keys between figures, Esc or × to close. No new libraries.
+  - "View full page" opens the crop's whole printed page (`full_page`), loaded on demand.
+- **Section galleries** for sections that list figures (e.g. the coal figures section, the bench record and the Preshift form).
+- Rule and section pages show cropped figures first; the old full-page images remain the fallback when there are none (skill sheets and parts now use crops).
+- **Figure icon with count** on rules in the rule tree, the Rules search results and the Search page.
+- **Figures page** groups the crops by kind, and each figure links to its rules. A "Download all for offline" button saves the full pages.
+- **Offline:** crops are converted to WebP at build time (max 1000 px wide, quality 70) and precached with the app. Full pages are WebP too (max 1400 px, q75) but cached on first view (CacheFirst) or by "Download all", which stores them directly in the offline cache. Their file names carry a content hash, so an updated page is never served stale.
+- **Build-time and load-time checks** of the figure data: a missing file, an unknown rule or section, a duplicate id or file, or a missing full page is reported in the build log and in the content check on the About page, and that figure is skipped, but the app keeps working.
+- Without figure data the app is unchanged: there's no gallery or badge, and all images are precached as before.
+- Version 0.3.0.
+
 ## 0.2.1
 
 - **Search bar on the Rules page**, at the top, the same component as on the Statements page (`src/components/SearchBar.tsx` + `src/lib/textSearch.ts`). It searches the rule number, title and verbatim wording of every rule, skill sheets and parts lists (`format: "pre"`) included, scoped to the event in the header.
