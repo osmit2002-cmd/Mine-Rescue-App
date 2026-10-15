@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { readFileSync } from 'node:fs';
 
+// Full-page images (content/pages/, written by copy-content when cropped figures exist) are not precached:
+// the service worker caches them when first viewed. Cropped figures and everything else are precached.
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 
 // base './' keeps the build portable: it works at a domain root or in a sub-folder
@@ -41,6 +43,14 @@ export default defineConfig({
         // Real rule books can be large; allow up to 15 MB per precached file.
         maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
         navigateFallback: 'index.html',
+        globIgnores: ['**/content/pages/**'],
+        runtimeCaching: [
+          {
+            urlPattern: /\/content\/pages\//,
+            handler: 'CacheFirst',
+            options: { cacheName: 'figure-pages' /* also used by DownloadAll in src/pages/Figures.tsx */, expiration: { maxEntries: 2000 }, cacheableResponse: { statuses: [0, 200] } }
+          }
+        ],
         cleanupOutdatedCaches: true
       }
     })

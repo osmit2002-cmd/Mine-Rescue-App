@@ -1,5 +1,6 @@
 // Headless end-to-end check: load, wait for the service worker, exercise pages, go offline, reload.
 // Usage: node scripts/offline-check.mjs [url]   (needs `npm run preview` running and Chrome installed)
+// GALLERY=0: content without cropped figures (checks that no gallery or figure badge appears instead).
 import { chromium } from 'playwright-core';
 
 const url = process.argv[2] ?? 'http://localhost:4173/';
@@ -29,7 +30,7 @@ ok((await page.$$('.rule-link')).length >= 100, 'rules tree lists all rules');
 await page.goto(url + '#/rules/scba-1');
 ok((await page.$$('.rule-text p.lvl-1')).length > 0, 'rule detail renders sub-item paragraphs');
 await page.goto(url + '#/section/' + encodeURIComponent('mine-rescue:figures'));
-await page.waitForSelector('.figure-card img');
+await page.waitForSelector('.figure-card img, [data-testid=gallery] img');
 await page.goto(url + '#/search?q=methane');
 await page.waitForSelector('.results li');
 ok((await page.$$('.results mark')).length > 0, 'search highlights matches');
@@ -86,10 +87,10 @@ await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
 ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.2.1', 'footer shows v0.2.1');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.3.0', 'footer shows v0.3.0');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.2.1'), 'About shows v0.2.1');
+ok((await page.textContent('main')).includes('v0.3.0'), 'About shows v0.3.0');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
@@ -172,7 +173,7 @@ ok(/\d+ sentences from \d+ of 100 rules/.test(await page.textContent('[data-test
 await page.click('button.primary:has-text("Start")');
 await page.waitForSelector('[data-testid=choice]');
 ok((await page.$$('[data-testid=choice]')).length === 3, 'Rules quiz question has three choices');
-ok(/of 10/.test(await page.textContent('.quiz-status')), 'Rules quiz defaults to 10 questions');
+{ await page.waitForFunction(() => /of \d+/.test(document.querySelector('.quiz-status')?.textContent ?? ''), null, { timeout: 5000 }).catch(() => {}); const qs = await page.textContent('.quiz-status'); ok(/of 10/.test(qs), `Rules quiz defaults to 10 questions (${qs.trim()})`); }
 await page.click('[data-testid=choice] >> nth=0');
 await page.waitForSelector('[data-testid=rule-ref] a');
 const ref = await page.textContent('[data-testid=rule-ref]');
@@ -259,12 +260,184 @@ await page.waitForSelector('.fact-list li');
 ok((await page.$$('.fact-list mark')).length > 0 && (await page.$$('.search-clear')).length === 1 && /^\d+ of \d+ statements/.test(await count()), `Statements uses the same search bar: highlights, clear button, count (${await count()})`);
 await page.goto(url + '#/');
 
+// v0.3.0: per-rule figure gallery (rule b-card-23 has Figures 1(a) and 1(b) in the real data and in the sample overlay).
+const galleryOn = process.env.GALLERY !== '0';
+if (!galleryOn) {
+  await page.goto(url + '#/rules/b-card-23');
+  await page.waitForSelector('.rule-text');
+  ok(!(await page.$('[data-testid=gallery]')), 'no cropped figures in the content: no gallery on the rule page');
+  await page.goto(url + '#/rules');
+  await page.click('text=Expand all');
+  ok((await page.$$('[data-testid=fig-badge]')).length === 0, 'no cropped figures: no figure badges in the tree');
+} else {
+  await page.goto(url + '#/rules');
+  await page.click('text=Expand all');
+  const badges = (await page.$$('[data-testid=fig-badge]')).length;
+  ok(badges > 0, `rules with figures are marked in the tree (${badges} badges)`);
+  await page.fill('input[aria-label="Search rules"]', 'roof testing');
+  await page.waitForSelector('[data-testid=rule-hit]');
+  ok((await page.$$('[data-testid=rule-hit] [data-testid=fig-badge]')).length > 0, 'and in the Rules search results');
+  await page.goto(url + '#/search?q=roof%20testing');
+  await page.waitForSelector('.results li');
+  ok((await page.$$('.results [data-testid=fig-badge]')).length > 0, 'and in the Search page results');
+  await page.goto(url + '#/rules/b-card-23');
+  await page.waitForSelector('[data-testid=gallery]');
+  const gc = async (sel = '[data-testid=gallery-counter]') => (await page.textContent(sel)).trim();
+  const total = Number((await gc()).split(' of ')[1]);
+  ok((await gc()) === `1 of ${total}` && total >= 2, `gallery shows the counter (${await gc()})`);
+  const cap1 = (await page.textContent('[data-testid=gallery-caption]')).trim();
+  const img1 = page.locator('.gallery-slide img').first();
+  ok(cap1.length > 0 && (await img1.getAttribute('alt')) && cap1.startsWith(await img1.getAttribute('alt')), `caption and page shown, alt text = caption ("${cap1}")`);
+  ok((await img1.getAttribute('loading')) === 'lazy', 'gallery images load lazily');
+  await page.click('[data-testid=gallery-next]');
+  await page.waitForFunction(() => document.querySelector('[data-testid=gallery-counter]').textContent.startsWith('2 of'));
+  ok((await page.textContent('[data-testid=gallery-caption]')).trim() !== cap1, `next arrow: ${await gc()}, caption changes`);
+  await page.click('[data-testid=gallery-prev]');
+  await page.waitForFunction(() => document.querySelector('[data-testid=gallery-counter]').textContent.startsWith('1 of'));
+  ok(true, 'previous arrow goes back to 1');
+  await page.focus('[data-testid=gallery]');
+  await page.keyboard.press('ArrowRight');
+  await page.waitForFunction(() => document.querySelector('[data-testid=gallery-counter]').textContent.startsWith('2 of'));
+  await page.keyboard.press('ArrowLeft');
+  await page.waitForFunction(() => document.querySelector('[data-testid=gallery-counter]').textContent.startsWith('1 of'));
+  ok(true, 'Right/Left arrow keys move the gallery when it is focused');
+  // Fullscreen viewer.
+  await page.click('.gallery-slide >> nth=0 >> button');
+  await page.waitForSelector('[data-testid=lightbox][open]');
+  ok((await gc('[data-testid=lightbox-counter]')) === `1 of ${total}`, 'tap opens the fullscreen viewer at that figure');
+  const scale = async () => Number(await page.getAttribute('[data-testid=lightbox-img]', 'data-scale'));
+  await page.click('[data-testid=zoom-in]');
+  ok((await scale()) > 1, `+ button zooms in (${await scale()}x)`);
+  await page.keyboard.press('0');
+  ok((await scale()) === 1, '0 key fits the figure again');
+  const st = await page.locator('[data-testid=lightbox-stage]').boundingBox();
+  await page.mouse.move(st.x + st.width / 2, st.y + st.height / 2);
+  await page.mouse.wheel(0, -400);
+  await page.waitForTimeout(100);
+  ok((await scale()) > 1, `mouse wheel zooms (${await scale()}x)`);
+  const before = await page.locator('[data-testid=lightbox-img]').boundingBox();
+  await page.mouse.down();
+  await page.mouse.move(st.x + st.width / 2 + 60, st.y + st.height / 2 + 40, { steps: 5 });
+  await page.mouse.up();
+  const after = await page.locator('[data-testid=lightbox-img]').boundingBox();
+  ok(Math.abs(after.x - before.x) > 5 || Math.abs(after.y - before.y) > 5, 'drag pans the zoomed figure');
+  await page.keyboard.press('0');
+  await page.mouse.dblclick(st.x + st.width / 2, st.y + st.height / 2);
+  await page.waitForTimeout(250);
+  ok(Math.abs((await scale()) - 2.5) < 0.01, `double-click/double-tap zooms to 2.5x (${await scale()}x)`);
+  await page.keyboard.press('0');
+  await page.keyboard.press('ArrowRight');
+  ok((await gc('[data-testid=lightbox-counter]')) === `2 of ${total}`, 'Right arrow moves to the next figure in fullscreen');
+  await page.mouse.move(st.x + 80, st.y + st.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(st.x + st.width - 40, st.y + st.height / 2, { steps: 8 });
+  await page.mouse.up();
+  ok((await gc('[data-testid=lightbox-counter]')) === `1 of ${total}`, 'swipe (drag right) goes back in fullscreen');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('[data-testid=lightbox]'));
+  ok(true, 'Esc closes the fullscreen viewer');
+  await page.click('.gallery-slide >> nth=0 >> button');
+  await page.waitForSelector('[data-testid=lightbox][open]');
+  await page.click('[data-testid=lightbox-close]');
+  await page.waitForFunction(() => !document.querySelector('[data-testid=lightbox]'));
+  ok(true, 'the X button closes it too');
+  // Phone (touch). Headless Chrome does not emulate native touch scrolling, so the strip's swipe is driven
+  // by a horizontal trackpad scroll (same scroll-snap path); the viewer's touch gestures use real touch events.
+  {
+    const c3 = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true, deviceScaleFactor: 2 });
+    const p3 = await c3.newPage();
+    await p3.goto(url + '#/rules/b-card-23');
+    await p3.waitForSelector('[data-testid=gallery]');
+    await p3.locator('[data-testid=gallery]').scrollIntoViewIfNeeded();
+    await p3.waitForFunction(() => document.querySelector('[data-testid=gallery-track] img')?.naturalWidth > 0);
+    const tb = await p3.locator('[data-testid=gallery-track]').boundingBox();
+    await p3.mouse.move(tb.x + tb.width / 2, tb.y + tb.height / 3);
+    await p3.mouse.wheel(Math.round(tb.width * 0.7), 0);
+    await p3.waitForTimeout(900);
+    const sc = await p3.evaluate(() => { const t = document.querySelector('[data-testid=gallery-track]'); return [t.scrollLeft, t.clientWidth]; });
+    ok((await p3.textContent('[data-testid=gallery-counter]')).trim() === `2 of ${total}` && sc[0] === sc[1], `horizontal swipe snaps exactly to the next figure on a phone (${(await p3.textContent('[data-testid=gallery-counter]')).trim()})`);
+    await p3.tap('.gallery-slide >> nth=1 >> button');
+    await p3.waitForSelector('[data-testid=lightbox][open]');
+    const sb = await p3.locator('[data-testid=lightbox-stage]').boundingBox();
+    const cdp = await c3.newCDPSession(p3);
+    const cx = Math.round(sb.x + sb.width / 2);
+    const cy = Math.round(sb.y + sb.height / 2);
+    const touch = (type, pts) => cdp.send('Input.dispatchTouchEvent', { type, touchPoints: pts });
+    const two = (d) => [{ x: cx - d, y: cy, id: 1 }, { x: cx + d, y: cy, id: 2 }];
+    await touch('touchStart', two(30));
+    for (let d = 40; d <= 100; d += 10) { await touch('touchMove', two(d)); await p3.waitForTimeout(16); }
+    await touch('touchEnd', []);
+    await p3.waitForTimeout(250);
+    const ps = Number(await p3.getAttribute('[data-testid=lightbox-img]', 'data-scale'));
+    ok(ps > 1.5, `pinch zooms on a phone (${ps}x)`);
+    await p3.keyboard.press('0');
+    await touch('touchStart', [{ x: cx - 120, y: cy }]);
+    for (let i = 1; i <= 8; i++) { await touch('touchMove', [{ x: cx - 120 + i * 30, y: cy }]); await p3.waitForTimeout(16); }
+    await touch('touchEnd', []);
+    await p3.waitForTimeout(250);
+    ok((await p3.textContent('[data-testid=lightbox-counter]')).trim() === `1 of ${total}`, 'touch swipe moves between figures in fullscreen');
+    await p3.tap('[data-testid=lightbox-stage]');
+    await p3.waitForTimeout(80);
+    await p3.tap('[data-testid=lightbox-stage]');
+    await p3.waitForTimeout(250);
+    ok(Math.abs(Number(await p3.getAttribute('[data-testid=lightbox-img]', 'data-scale')) - 2.5) < 0.01, 'double-tap zooms on a phone');
+    await c3.close();
+  }
+  await page.goto(url + '#/figures');
+  await page.waitForSelector('.figure-card img');
+  const linked = await page.$$('[data-testid=fig-rules] a');
+  ok(linked.length > 0, `Figures page links figures to their rules (${linked.length} links)`);
+  // Crops replace the old page images on skill-sheet / parts items; full pages open on request.
+  await page.goto(url + '#/rules/first-aid-skill-1');
+  await page.waitForSelector('[data-testid=gallery]');
+  ok(!(await page.$('.figure-grid')), 'skill-sheet rule shows its cropped figures instead of the old page image');
+  await page.goto(url + '#/rules/b-card-23');
+  await page.waitForSelector('[data-testid=view-full-page]');
+  await page.click('[data-testid=view-full-page]');
+  await page.waitForSelector('[data-testid=lightbox][open] [data-testid=lightbox-img]');
+  const fullSrc = await page.getAttribute('[data-testid=lightbox-img]', 'src');
+  await page.waitForFunction(() => document.querySelector('[data-testid=lightbox-img]')?.naturalWidth > 0);
+  ok(/content\/pages\//.test(fullSrc), `"View full page" opens the full rule-book page on request (${fullSrc.split('/').slice(-2).join('/')})`);
+  await page.keyboard.press('Escape');
+  await page.goto(url + '#/section/' + encodeURIComponent('mine-rescue:figures'));
+  await page.waitForSelector('[data-testid=gallery]');
+  ok(/^1 of \d{2}$/.test((await page.textContent('[data-testid=gallery-counter]')).trim()), `figures-only section has its own gallery (${(await page.textContent('[data-testid=gallery-counter]')).trim()})`);
+  await page.click('[data-testid=gallery-next]');
+  await page.click('[data-testid=gallery-next]');
+  await page.click('[data-testid=gallery-next]');
+  await page.waitForTimeout(1200);
+  { const c = (await page.textContent('[data-testid=gallery-counter]')).trim(); const at = await page.evaluate(() => { const t = document.querySelector('[data-testid=gallery-track]'); return Math.round(t.scrollLeft / t.clientWidth); });
+    ok(/^4 of /.test(c) && at === 3, `three quick Next clicks land on figure 4 (${c})`); }
+  const pre = await page.evaluate(async () => {
+    const urls = [];
+    for (const k of await caches.keys()) if (k.includes('precache')) for (const r of await (await caches.open(k)).keys()) urls.push(r.url);
+    return { pages: urls.filter((u) => u.includes('/content/pages/')).length, crops: urls.filter((u) => /\/content\/figures\/.+\.webp/.test(u)).length };
+  });
+  ok(pre.pages === 0 && pre.crops > 100, `precache holds the ${pre.crops} cropped figures and no full pages`);
+  // Full pages are cached on first view; "Download all for offline" fetches the rest.
+  await page.goto(url + '#/figures');
+  await page.waitForSelector('[data-testid=download-all]');
+  await page.click('[data-testid=download-all]');
+  await page.waitForFunction(() => /All full pages work offline/.test(document.querySelector('[data-testid=download-status]')?.textContent ?? ''), null, { timeout: 60000 });
+  const stored = await page.evaluate(async () => (await (await caches.open('figure-pages')).keys()).length);
+  ok(stored >= 103, `Download all for offline: ${(await page.textContent('[data-testid=download-status]')).trim()} (${stored} in the page cache)`);
+}
+await page.goto(url + '#/');
+
 // Offline: reload and navigate.
 await ctx.setOffline(true);
 await page.goto(url + '#/statements/coal-mr-sof-102');
 await page.reload();
 await page.waitForSelector('.statement', { timeout: 10000 });
 ok((await page.textContent('.statement')).includes('IDHL'), 'offline reload works and fact text is verbatim (IDHL typo kept)');
+if (galleryOn) {
+  await page.goto(url + '#/rules/first-aid-skill-1');
+  await page.waitForSelector('[data-testid=view-full-page]');
+  await page.click('[data-testid=view-full-page]');
+  await page.waitForSelector('[data-testid=lightbox][open] [data-testid=lightbox-img]');
+  ok(await page.waitForFunction(() => document.querySelector('[data-testid=lightbox][open] [data-testid=lightbox-img]')?.naturalWidth > 0, null, { timeout: 8000 }).then(() => true, () => false), 'a downloaded full page opens offline');
+  await page.keyboard.press('Escape');
+}
 await page.goto(url + '#/figures');
 await page.waitForSelector('.figure-card img');
 const imgOk = await page.evaluate(async () => {
@@ -301,6 +474,22 @@ await page.goto(url + '#/rules?q=oxygen');
 await page.reload();
 await page.waitForSelector('[data-testid=rule-hit]', { timeout: 10000 });
 ok(/of 100 rules match/.test(await count()), `Rules search works offline (${await count()})`);
+if (galleryOn) {
+  await page.goto(url + '#/rules/b-card-23');
+  await page.reload();
+  await page.waitForSelector('[data-testid=gallery] img', { timeout: 10000 });
+  const loaded = await page.evaluate(async () => {
+    const imgs = [...document.querySelectorAll('.gallery-slide img')];
+    imgs.forEach((i) => (i.loading = 'eager'));
+    await Promise.all(imgs.map((i) => (i.complete ? null : new Promise((r) => { i.onload = i.onerror = r; }))));
+    return imgs.map((i) => i.naturalWidth > 0);
+  });
+  ok(loaded.length >= 2 && loaded.every(Boolean), `offline reload shows the rule's figures (${loaded.filter(Boolean).length}/${loaded.length})`);
+  await page.click('.gallery-slide >> nth=0 >> button');
+  await page.waitForSelector('[data-testid=lightbox][open]');
+  ok(await page.evaluate(() => document.querySelector('[data-testid=lightbox-img]').naturalWidth > 0), 'fullscreen viewer works offline');
+  await page.keyboard.press('Escape');
+}
 await ctx.setOffline(false);
 
 // Timer auto-submit (fake clock): preshift mock is 10 questions / 15 minutes.
