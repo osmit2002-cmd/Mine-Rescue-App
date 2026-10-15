@@ -86,10 +86,10 @@ await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
 ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.1.0', 'footer shows v0.1.0');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.2.0', 'footer shows v0.2.0');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.1.0'), 'About shows v0.1.0');
+ok((await page.textContent('main')).includes('v0.2.0'), 'About shows v0.2.0');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
@@ -138,11 +138,53 @@ await page.click('button.primary:has-text("Start")');
 await page.waitForSelector('[data-testid=choice]');
 ok(/of 15/.test(await page.textContent('.quiz-status')), 'first aid mock has 15 questions');
 ok(/^⏱ (20:00|19:5\d)/.test((await page.textContent('[role=timer]')).trim()), 'first aid timer starts at 20 minutes');
-await page.goto(url + '#/facts');
-await page.click('[role=radiogroup][aria-label="Contest event"] >> text=All events');
+// v0.2.0: the header menu is the only event control, and "Facts" is now "Statements".
+await page.selectOption('[data-testid=event-select]', 'all');
+await page.goto(url + '#/statements');
+await page.waitForSelector('.fact-list li');
 const allCount = await page.textContent('main');
-ok(/654 of 654 statements/.test(allCount), 'facts list with All events shows 654 statements');
+ok(/654 of 654 statements/.test(allCount), 'Statements list with "All events" (header) shows 654 statements');
+let pickers = 0;
+for (const h of ['#/', '#/statements', '#/search?q=oxygen', '#/parts', '#/quiz', '#/rules', '#/figures']) {
+  await page.goto(url + h);
+  await page.waitForSelector('main h1');
+  pickers += (await page.$$('[aria-label="Contest event"][role=radiogroup], main select')).length;
+}
+ok(pickers === 0, 'no event selector inside any page (header menu only)');
+await page.goto(url + '#/quiz');
+await page.waitForSelector('[data-testid=pick-event]');
+ok((await page.textContent('[data-testid=pick-event]')).includes('header'), 'Quiz with "All events" asks to choose an event in the header');
+const nav = await page.textContent('nav.nav');
+ok(nav.includes('Statements') && !nav.includes('Facts'), 'nav says Statements, not Facts');
+await page.goto(url + '#/facts/coal-mr-sof-001');
+await page.waitForSelector('.statement');
+ok((await page.evaluate(() => location.hash)).startsWith('#/statements/coal-mr-sof-001'), 'old #/facts links redirect to #/statements');
+await page.goto(url + '#/search?q=oxygen');
+await page.waitForSelector('.results li');
+ok(/Statements \(\d+\)/.test(await page.textContent('main')), 'search filter chip says Statements');
 await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+
+// Rules quiz (Coal Mine Rescue): verbatim sentence, 3 choices, rule reference with a link.
+await page.goto(url + '#/quiz?kind=rules');
+await page.reload();
+await page.waitForSelector('[data-testid=rules-pool]');
+ok(/\d+ sentences from \d+ of 100 rules/.test(await page.textContent('[data-testid=rules-pool]')), `Rules quiz pool: ${(await page.textContent('[data-testid=rules-pool]')).trim()}`);
+await page.click('button.primary:has-text("Start")');
+await page.waitForSelector('[data-testid=choice]');
+ok((await page.$$('[data-testid=choice]')).length === 3, 'Rules quiz question has three choices');
+ok(/of 10/.test(await page.textContent('.quiz-status')), 'Rules quiz defaults to 10 questions');
+await page.click('[data-testid=choice] >> nth=0');
+await page.waitForSelector('[data-testid=rule-ref] a');
+const ref = await page.textContent('[data-testid=rule-ref]');
+const sentence = await page.textContent('.feedback .statement');
+const ruleHref = await page.getAttribute('[data-testid=rule-ref] a', 'href');
+ok(/rule book p/.test(ref), `after answering, the rule reference is shown (${ref.trim().slice(0, 80)})`);
+await page.click('[data-testid=rule-ref] a');
+await page.waitForSelector('.rule-text');
+const ruleText = (await page.textContent('.rule-text')).replace(/\s+/g, ' ');
+ok(ruleText.includes(sentence.replace(/\s+/g, ' ').trim()), 'the quizzed sentence appears verbatim on the linked rule page');
+ok(ruleHref.includes('#/rules/'), 'rule reference links to the rule detail page');
+
 // "Practice this one" deep link to another event's statement switches the event and stays within it.
 await page.goto(url + '#/quiz?fact=first-aid-sof-001');
 await page.waitForSelector('[data-testid=choice]');
@@ -154,7 +196,7 @@ await page.goto(url + '#/');
 
 // Offline: reload and navigate.
 await ctx.setOffline(true);
-await page.goto(url + '#/facts/coal-mr-sof-102');
+await page.goto(url + '#/statements/coal-mr-sof-102');
 await page.reload();
 await page.waitForSelector('.statement', { timeout: 10000 });
 ok((await page.textContent('.statement')).includes('IDHL'), 'offline reload works and fact text is verbatim (IDHL typo kept)');
@@ -184,6 +226,12 @@ await page.goto(url + '#/quiz');
 await page.click('button.primary:has-text("Start")');
 await page.waitForSelector('[data-testid=choice]');
 ok(true, 'quiz runs offline');
+await page.goto(url + '#/quiz?kind=rules');
+await page.reload();
+await page.waitForSelector('[data-testid=rules-pool]');
+await page.click('button.primary:has-text("Start")');
+await page.waitForSelector('[data-testid=choice]');
+ok(true, 'Rules quiz runs offline');
 await ctx.setOffline(false);
 
 // Timer auto-submit (fake clock): preshift mock is 10 questions / 15 minutes.
