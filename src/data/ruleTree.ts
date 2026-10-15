@@ -77,3 +77,28 @@ export function ruleAncestors(rule: Rule, byId: Map<string, Rule>): Rule[] {
   }
   return out;
 }
+
+/**
+ * A copy of the tree narrowed to one top-level section (`topKey`, '' = all) and to rules for which
+ * `keep` is true (null = keep all). A kept rule's ancestors stay as context. `count` becomes the
+ * number of kept rules below each node, not counting context ancestors. Pure.
+ */
+export function filterRuleTree(root: SectionNode, keep: ((r: Rule) => boolean) | null, topKey = ''): SectionNode {
+  const hits = (r: Rule) => !keep || keep(r);
+  const countKept = (n: RuleNode): number => (hits(n.rule) ? 1 : 0) + n.children.reduce((s, c) => s + countKept(c), 0);
+  const rule = (n: RuleNode): RuleNode | null => {
+    const children = n.children.map(rule).filter((c): c is RuleNode => c !== null);
+    return hits(n.rule) || children.length ? { rule: n.rule, children } : null;
+  };
+  const section = (s: SectionNode): SectionNode | null => {
+    const sections = s.sections
+      .filter((c) => s !== root || !topKey || c.key === topKey)
+      .map(section)
+      .filter((c): c is SectionNode => c !== null);
+    const rules = s !== root || !topKey ? s.rules.map(rule).filter((r): r is RuleNode => r !== null) : [];
+    if (s !== root && !sections.length && !rules.length) return null;
+    const count = rules.reduce((t, r) => t + countKept(r), 0) + sections.reduce((t, c) => t + c.count, 0);
+    return { ...s, sections, rules, count };
+  };
+  return section(root) ?? { ...root, sections: [], rules: [], count: 0 };
+}

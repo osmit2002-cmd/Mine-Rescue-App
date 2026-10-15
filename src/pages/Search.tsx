@@ -1,10 +1,10 @@
 import MiniSearch, { type SearchResult } from 'minisearch';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Highlight } from '../components/Highlight';
+import { Highlight, snippet } from '../components/Highlight';
 import { ruleLabel, ruleLink } from '../components/common';
 import { ALL_EVENTS, useData, useEvent, type Data } from '../data/DataContext';
-import { escapeRegExp } from '../quiz/text';
+import { useUrlQuery } from '../lib/textSearch';
 
 type DocType = 'rule' | 'fact' | 'section' | 'part';
 interface Doc {
@@ -36,40 +36,16 @@ function buildIndex(data: Data) {
   return ms;
 }
 
-/** ~220 chars around the first highlighted term, text unchanged inside the window. */
-function snippet(text: string, terms: string[], size = 220): string {
-  const flat = text.replace(/\s*\n\s*/g, ' ');
-  if (flat.length <= size) return flat;
-  let at = 0;
-  if (terms.length) {
-    const m = new RegExp(`(?<![\\p{L}\\p{N}])(?:${terms.map(escapeRegExp).join('|')})`, 'iu').exec(flat);
-    if (m) at = m.index;
-  }
-  const start = Math.max(0, Math.min(at - 60, flat.length - size));
-  return `${start > 0 ? '…' : ''}${flat.slice(start, start + size)}${start + size < flat.length ? '…' : ''}`;
-}
-
 const TYPE_LABEL: Record<DocType, string> = { rule: 'Rule', fact: 'Statement', section: 'Section', part: 'Parts table' };
 
 export default function Search() {
   const data = useData();
   const [params, setParams] = useSearchParams();
-  const [query, setQuery] = useState(params.get('q') ?? '');
+  const [query, setQuery] = useUrlQuery('q');
   const type = (params.get('type') as DocType | 'all' | null) ?? 'all';
   const group = params.get('group') ?? '';
   const index = useMemo(() => buildIndex(data), [data]);
   const { event } = useEvent();
-
-  // Keep the URL in sync (debounced) so searches are linkable and survive reloads.
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const next = new URLSearchParams(params);
-      if (query) next.set('q', query);
-      else next.delete('q');
-      if (next.toString() !== params.toString()) setParams(next, { replace: true });
-    }, 250);
-    return () => clearTimeout(t);
-  }, [query, params, setParams]);
 
   const results = useMemo(() => {
     const q = query.trim();

@@ -207,3 +207,20 @@ table.counts td:not(:first-child), table.counts th:not(:first-child) { text-alig
 .timer-controls input[type=number] { width: 5rem; font: inherit; padding: 0.3rem 0.4rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card); color: var(--fg); }
 .quiz-kinds { margin: 0.25rem 0 0.75rem; }
 .rule-ref { margin: 0.4rem 0; }
+.searchbar { margin-bottom: 0.8rem; }
+.search-field { position: relative; display: flex; }
+.search-field input { flex: 1 1 auto; padding-right: 2.6rem; }
+.search-field input::-webkit-search-cancel-button { display: none; }
+.search-clear { position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); min-width: 36px; min-height: 36px; padding: 0; border: 0; background: transparent; font-size: 1.4rem; line-height: 1; color: var(--muted, inherit); cursor: pointer; }
+.search-options { margin-top: 0.4rem; }
+.search-options .chips { margin: 0.2rem 0 0.4rem; }
+.search-options .toolbar { margin-bottom: 0.2rem; }
+.search-count { margin: 0.3rem 0 0; }
+.rule-list li.hit > .rule-link { background: var(--accent-soft); }
+.rule-snippet { display: block; margin-top: 0.2rem; font-size: 0.85rem; color: var(--muted, inherit); white-space: pre-wrap; overflow-wrap: anywhere; }
+.rule-snippet.pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem; }
+.chips-label { align-self: center; font-size: 0.8rem; color: var(--muted); margin-right: 0.1rem; }
+@media (max-width: 640px) {
+  .search-options .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 0.2rem; }
+  .search-options .chip { flex: 0 0 auto; white-space: nowrap; }
+}
