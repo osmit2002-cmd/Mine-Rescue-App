@@ -24,7 +24,11 @@ export interface Question {
   factId: string;
   type: QuestionType;
   /** 'answer' = uses the fact's answer field; 'cloze' = a blanked statement; 'part' = Identification of Parts. */
-  source: 'answer' | 'cloze' | 'part';
+  source: 'answer' | 'cloze' | 'part' | 'rule';
+  /** Rules quiz: the rule the sentence comes from. */
+  ruleId?: string;
+  /** Fill-in: other accepted answers (e.g. the bare number for a "15 minutes" blank). */
+  alternatives?: string[];
   /**
    * Prompt split around the blank(s): segments.length = blanks + 1. For source 'answer' this is
    * [statement] (no blank). Every occurrence of the answer is blanked so the prompt never gives it away.
@@ -93,7 +97,7 @@ export function clozeSegments(statement: string, blank: Candidate, protectFrom =
 }
 
 /** Same option, ignoring case/punctuation and a plural "s" (so "seal" and "seals" are never both offered). */
-const stem = (s: string) => normalizeAnswer(s).replace(/(?<=\p{L}{3})s\b/gu, '');
+const stem = (s: string) => normalizeAnswer(s).replace(/(?<=\p{L}{3})s\b/gu, '').replace(/ /g, '');
 export const same = (a: string, b: string) => stem(a) === stem(b);
 
 export function uniqueAdd(target: string[], items: Iterable<string>, exclude: string[], max: number) {

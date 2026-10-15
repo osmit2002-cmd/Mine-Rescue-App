@@ -34,7 +34,7 @@ export function mockPlan(eventId: string, ev: EventInfo | undefined, hasParts: b
   return { facts: n ?? fb.facts, parts: 0, officialMinutes, sizeSource: n !== undefined ? 'metadata' : 'fallback' };
 }
 
-export type TimerMode = 'mock' | 'practice';
+export type TimerMode = 'mock' | 'practice' | 'rules';
 
 export interface TimerSettings {
   version: 1;
@@ -58,7 +58,7 @@ export function defaultTimerMinutes(officialMinutes: number | null, cfg: QuizCon
   return officialMinutes ?? cfg.defaultTimerMinutes;
 }
 
-/** Default on/off: mock exams are timed when the event has an official limit; practice is untimed. */
+/** Default on/off: mock exams are timed when the event has an official limit; practice and the Rules quiz are untimed. */
 export function defaultTimerOn(mode: TimerMode, officialMinutes: number | null): boolean {
   return mode === 'mock' && officialMinutes !== null;
 }
@@ -92,7 +92,7 @@ export function parseTimerSettings(raw: string | null): TimerSettings {
   try {
     const j = JSON.parse(raw) as Partial<TimerSettings>;
     if (!j || typeof j !== 'object') return out;
-    for (const mode of ['mock', 'practice'] as TimerMode[]) {
+    for (const mode of ['mock', 'practice', 'rules'] as TimerMode[]) {
       const m = j.on?.[mode];
       if (m && typeof m === 'object') out.on[mode] = Object.fromEntries(Object.entries(m).filter(([, v]) => typeof v === 'boolean'));
     }

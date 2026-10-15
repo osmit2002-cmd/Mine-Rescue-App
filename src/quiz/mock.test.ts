@@ -73,6 +73,13 @@ describe('timer settings', () => {
     expect(clampMinutes(999)).toBe(180);
     expect(clampMinutes(Number.NaN)).toBe(1);
   });
+  it('keeps a separate, untimed-by-default switch for the Rules quiz', () => {
+    const s = emptyTimerSettings();
+    expect(sessionMinutes(s, 'rules', 'first-aid', 20)).toBeNull();
+    const on = withTimerOn(s, 'rules', 'first-aid', true);
+    expect(sessionMinutes(on, 'rules', 'first-aid', 20)).toBe(20);
+    expect(parseTimerSettings(JSON.stringify(on))).toEqual(on);
+  });
   it('round-trips through JSON and ignores corrupt data', () => {
     const s = withTimerMinutes(withTimerOn(emptyTimerSettings(), 'mock', 'x', false), 'x', 12);
     expect(parseTimerSettings(JSON.stringify(s))).toEqual(s);
