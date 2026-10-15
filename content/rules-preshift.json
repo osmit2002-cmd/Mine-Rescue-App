@@ -36,7 +36,17 @@
       3,
       3
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-2",
@@ -66,7 +76,17 @@
       3,
       3
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-5",
@@ -156,7 +176,17 @@
       5,
       5
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:danger-sign-example",
+       "file": "figures/preshift/danger-sign-example.png",
+       "caption": "EXAMPLE OF DANGER SIGN",
+       "page": 5,
+       "pdf_page": 5,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-14",
@@ -176,7 +206,17 @@
       5,
       5
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-16",
@@ -196,7 +236,17 @@
       6,
       6
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-18",
@@ -216,7 +266,17 @@
       6,
       6
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-rules-governing-20",
@@ -347,7 +407,17 @@
       8,
       8
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:danger-sign-example",
+       "file": "figures/preshift/danger-sign-example.png",
+       "caption": "EXAMPLE OF DANGER SIGN",
+       "page": 5,
+       "pdf_page": 5,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "id": "preshift-field-scorecard-5",
@@ -508,7 +578,17 @@
       13,
       13
      ],
-     "event": "preshift"
+     "event": "preshift",
+     "figures": [
+      {
+       "id": "preshift:record-report",
+       "file": "figures/preshift/record-report.png",
+       "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "preshift-preshift-record-2",
@@ -628,7 +708,17 @@
      "printed_page": 21
     }
    ],
-   "items": []
+   "items": [],
+   "figures": [
+    {
+     "id": "preshift:record-report",
+     "file": "figures/preshift/record-report.png",
+     "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+     "page": 21,
+     "pdf_page": 21,
+     "kind": "form"
+    }
+   ]
   }
  ]
 }

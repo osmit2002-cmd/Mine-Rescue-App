@@ -271,7 +271,17 @@
       5,
       5
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      }
+     ]
     },
     {
      "id": "first-aid-guidelines-17",
@@ -391,7 +401,25 @@
       6,
       6
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-11-1",
+       "file": "figures/first-aid/skill-11-1.png",
+       "caption": "TWO-PERSON LOG ROLL",
+       "page": 37,
+       "pdf_page": 40,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-12-1",
+       "file": "figures/first-aid/skill-12-1.png",
+       "caption": "THREE-PERSON LOG ROLL",
+       "page": 38,
+       "pdf_page": 41,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-guidelines-29",
@@ -401,7 +429,17 @@
       6,
       6
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-09-1",
+       "file": "figures/first-aid/skill-09-1.png",
+       "caption": "TOURNIQUET",
+       "page": 34,
+       "pdf_page": 37,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-guidelines-30",
@@ -635,7 +673,17 @@
       9,
       9
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      }
+     ]
     },
     {
      "id": "first-aid-discounts-2",
@@ -780,6 +828,32 @@
      "pages": [
       10,
       11
+     ],
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      },
+      {
+       "id": "first-aid:skill-02-1",
+       "file": "figures/first-aid/skill-02-1.png",
+       "caption": "PATIENT ASSESSMENT (page 1 of 2)",
+       "page": 20,
+       "pdf_page": 23,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-02-2",
+       "file": "figures/first-aid/skill-02-2.png",
+       "caption": "PATIENT ASSESSMENT (page 2 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -791,6 +865,32 @@
      "pages": [
       10,
       11
+     ],
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      },
+      {
+       "id": "first-aid:skill-02-1",
+       "file": "figures/first-aid/skill-02-1.png",
+       "caption": "PATIENT ASSESSMENT (page 1 of 2)",
+       "page": 20,
+       "pdf_page": 23,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-02-2",
+       "file": "figures/first-aid/skill-02-2.png",
+       "caption": "PATIENT ASSESSMENT (page 2 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -802,6 +902,32 @@
      "pages": [
       10,
       11
+     ],
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      },
+      {
+       "id": "first-aid:skill-02-1",
+       "file": "figures/first-aid/skill-02-1.png",
+       "caption": "PATIENT ASSESSMENT (page 1 of 2)",
+       "page": 20,
+       "pdf_page": 23,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-02-2",
+       "file": "figures/first-aid/skill-02-2.png",
+       "caption": "PATIENT ASSESSMENT (page 2 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -813,10 +939,30 @@
      "pages": [
       10,
       11
+     ],
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      }
      ]
     }
    ],
-   "intro": "Table Reference: Emergency Medical Responder, Twelfth edition by Le Baudour and Bergeron"
+   "intro": "Table Reference: Emergency Medical Responder, Twelfth edition by Le Baudour and Bergeron",
+   "figures": [
+    {
+     "id": "first-aid:start-triage-algorithm",
+     "file": "figures/first-aid/start-triage-algorithm.png",
+     "caption": "START Triage Algorithm",
+     "page": 10,
+     "pdf_page": 13,
+     "kind": "flowchart"
+    }
+   ]
   },
   {
    "id": "scorecard-a",
@@ -915,7 +1061,25 @@
       13,
       13
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-11-1",
+       "file": "figures/first-aid/skill-11-1.png",
+       "caption": "TWO-PERSON LOG ROLL",
+       "page": 37,
+       "pdf_page": 40,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-12-1",
+       "file": "figures/first-aid/skill-12-1.png",
+       "caption": "THREE-PERSON LOG ROLL",
+       "page": 38,
+       "pdf_page": 41,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-scorecard-a-10",
@@ -1055,7 +1219,17 @@
       15,
       15
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:start-triage-algorithm",
+       "file": "figures/first-aid/start-triage-algorithm.png",
+       "caption": "START Triage Algorithm",
+       "page": 10,
+       "pdf_page": 13,
+       "kind": "flowchart"
+      }
+     ]
     },
     {
      "id": "first-aid-scorecard-a-24",
@@ -1116,7 +1290,57 @@
       16,
       16
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-01-1",
+       "file": "figures/first-aid/skill-01-1.png",
+       "caption": "INITIAL ASSESSMENT",
+       "page": 19,
+       "pdf_page": 22,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-03-1",
+       "file": "figures/first-aid/skill-03-1.png",
+       "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 1 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-03-2",
+       "file": "figures/first-aid/skill-03-2.png",
+       "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 2 of 2)",
+       "page": 22,
+       "pdf_page": 25,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-1",
+       "file": "figures/first-aid/skill-04-1.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 1 of 3)",
+       "page": 23,
+       "pdf_page": 26,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-2",
+       "file": "figures/first-aid/skill-04-2.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 2 of 3)",
+       "page": 24,
+       "pdf_page": 27,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-3",
+       "file": "figures/first-aid/skill-04-3.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 3 of 3)",
+       "page": 25,
+       "pdf_page": 28,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-scorecard-b-general-2",
@@ -1226,7 +1450,25 @@
       16,
       16
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-06-1",
+       "file": "figures/first-aid/skill-06-1.png",
+       "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 1 of 2)",
+       "page": 30,
+       "pdf_page": 33,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-06-2",
+       "file": "figures/first-aid/skill-06-2.png",
+       "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 2 of 2)",
+       "page": 31,
+       "pdf_page": 34,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-scorecard-b-general-13",
@@ -1397,7 +1639,33 @@
       17,
       17
      ],
-     "event": "first-aid"
+     "event": "first-aid",
+     "figures": [
+      {
+       "id": "first-aid:skill-04-1",
+       "file": "figures/first-aid/skill-04-1.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 1 of 3)",
+       "page": 23,
+       "pdf_page": 26,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-2",
+       "file": "figures/first-aid/skill-04-2.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 2 of 3)",
+       "page": 24,
+       "pdf_page": 27,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-3",
+       "file": "figures/first-aid/skill-04-3.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 3 of 3)",
+       "page": 25,
+       "pdf_page": 28,
+       "kind": "skill-sheet"
+      }
+     ]
     },
     {
      "id": "first-aid-scorecard-b-cpr-13",
@@ -1530,6 +1798,16 @@
        "pdf_page": 22,
        "printed_page": 19
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-01-1",
+       "file": "figures/first-aid/skill-01-1.png",
+       "caption": "INITIAL ASSESSMENT",
+       "page": 19,
+       "pdf_page": 22,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1548,6 +1826,24 @@
        "file": "figures/first-aid/page-23.png",
        "pdf_page": 23,
        "printed_page": 20
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-02-1",
+       "file": "figures/first-aid/skill-02-1.png",
+       "caption": "PATIENT ASSESSMENT (page 1 of 2)",
+       "page": 20,
+       "pdf_page": 23,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-02-2",
+       "file": "figures/first-aid/skill-02-2.png",
+       "caption": "PATIENT ASSESSMENT (page 2 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1572,6 +1868,24 @@
        "file": "figures/first-aid/page-25.png",
        "pdf_page": 25,
        "printed_page": 22
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-03-1",
+       "file": "figures/first-aid/skill-03-1.png",
+       "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 1 of 2)",
+       "page": 21,
+       "pdf_page": 24,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-03-2",
+       "file": "figures/first-aid/skill-03-2.png",
+       "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 2 of 2)",
+       "page": 22,
+       "pdf_page": 25,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1602,6 +1916,32 @@
        "pdf_page": 28,
        "printed_page": 25
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-04-1",
+       "file": "figures/first-aid/skill-04-1.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 1 of 3)",
+       "page": 23,
+       "pdf_page": 26,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-2",
+       "file": "figures/first-aid/skill-04-2.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 2 of 3)",
+       "page": 24,
+       "pdf_page": 27,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-04-3",
+       "file": "figures/first-aid/skill-04-3.png",
+       "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 3 of 3)",
+       "page": 25,
+       "pdf_page": 28,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1620,6 +1960,16 @@
        "file": "figures/first-aid/page-32.png",
        "pdf_page": 32,
        "printed_page": 29
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-05-1",
+       "file": "figures/first-aid/skill-05-1.png",
+       "caption": "MOUTH-TO-MASK RESUSCITATION",
+       "page": 29,
+       "pdf_page": 32,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1645,6 +1995,24 @@
        "pdf_page": 34,
        "printed_page": 31
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-06-1",
+       "file": "figures/first-aid/skill-06-1.png",
+       "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 1 of 2)",
+       "page": 30,
+       "pdf_page": 33,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-06-2",
+       "file": "figures/first-aid/skill-06-2.png",
+       "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 2 of 2)",
+       "page": 31,
+       "pdf_page": 34,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1663,6 +2031,16 @@
        "file": "figures/first-aid/page-35.png",
        "pdf_page": 35,
        "printed_page": 32
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-07-1",
+       "file": "figures/first-aid/skill-07-1.png",
+       "caption": "SUCKING CHEST WOUND",
+       "page": 32,
+       "pdf_page": 35,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1683,6 +2061,16 @@
        "pdf_page": 36,
        "printed_page": 33
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-08-1",
+       "file": "figures/first-aid/skill-08-1.png",
+       "caption": "LIFE-THREATENING BLEEDING",
+       "page": 33,
+       "pdf_page": 36,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1701,6 +2089,16 @@
        "file": "figures/first-aid/page-37.png",
        "pdf_page": 37,
        "printed_page": 34
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-09-1",
+       "file": "figures/first-aid/skill-09-1.png",
+       "caption": "TOURNIQUET",
+       "page": 34,
+       "pdf_page": 37,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1726,6 +2124,24 @@
        "pdf_page": 39,
        "printed_page": 36
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-10-1",
+       "file": "figures/first-aid/skill-10-1.png",
+       "caption": "DRESSINGS AND BANDAGING – OPEN WOUNDS (page 1 of 2)",
+       "page": 35,
+       "pdf_page": 38,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-10-2",
+       "file": "figures/first-aid/skill-10-2.png",
+       "caption": "DRESSINGS AND BANDAGING – OPEN WOUNDS (page 2 of 2)",
+       "page": 36,
+       "pdf_page": 39,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1744,6 +2160,16 @@
        "file": "figures/first-aid/page-40.png",
        "pdf_page": 40,
        "printed_page": 37
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-11-1",
+       "file": "figures/first-aid/skill-11-1.png",
+       "caption": "TWO-PERSON LOG ROLL",
+       "page": 37,
+       "pdf_page": 40,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1764,6 +2190,16 @@
        "pdf_page": 41,
        "printed_page": 38
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-12-1",
+       "file": "figures/first-aid/skill-12-1.png",
+       "caption": "THREE-PERSON LOG ROLL",
+       "page": 38,
+       "pdf_page": 41,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1783,6 +2219,24 @@
        "pdf_page": 42,
        "printed_page": 39
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-13-1",
+       "file": "figures/first-aid/skill-13-1.png",
+       "caption": "SPLINTING (RIGID) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (page 1 of 2)",
+       "page": 39,
+       "pdf_page": 42,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-13-2",
+       "file": "figures/first-aid/skill-13-2.png",
+       "caption": "SPLINTING (RIGID) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (page 2 of 2)",
+       "page": 40,
+       "pdf_page": 43,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1801,6 +2255,16 @@
        "file": "figures/first-aid/page-43.png",
        "pdf_page": 43,
        "printed_page": 40
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-14-1",
+       "file": "figures/first-aid/skill-14-1.png",
+       "caption": "SPLINTING (SOFT) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (WRIST AND HAND)",
+       "page": 40,
+       "pdf_page": 43,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1826,6 +2290,24 @@
        "pdf_page": 45,
        "printed_page": 42
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-15-1",
+       "file": "figures/first-aid/skill-15-1.png",
+       "caption": "SPLINTING (RIGID OR SOFT) PELVIC GIRDLE, THIGH, KNEE AND LOWER LEG (page 1 of 2)",
+       "page": 41,
+       "pdf_page": 44,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-15-2",
+       "file": "figures/first-aid/skill-15-2.png",
+       "caption": "SPLINTING (RIGID OR SOFT) PELVIC GIRDLE, THIGH, KNEE AND LOWER LEG (page 2 of 2)",
+       "page": 42,
+       "pdf_page": 45,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1844,6 +2326,16 @@
        "file": "figures/first-aid/page-46.png",
        "pdf_page": 46,
        "printed_page": 43
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-16-1",
+       "file": "figures/first-aid/skill-16-1.png",
+       "caption": "SPLINTING (SOFT) LOWER EXTREMITY FRACTURES AND DISLOCATIONS (ANKLE AND FOOT)",
+       "page": 43,
+       "pdf_page": 46,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1864,6 +2356,16 @@
        "pdf_page": 47,
        "printed_page": 44
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-17-1",
+       "file": "figures/first-aid/skill-17-1.png",
+       "caption": "SPLINTING UPPER EXTREMITY/LOWER EXTREMITY FRACTURES (AIR SPLINT)",
+       "page": 44,
+       "pdf_page": 47,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1882,6 +2384,16 @@
        "file": "figures/first-aid/page-48.png",
        "pdf_page": 48,
        "printed_page": 45
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-18-1",
+       "file": "figures/first-aid/skill-18-1.png",
+       "caption": "SPLINTING – FLAIL CHEST",
+       "page": 45,
+       "pdf_page": 48,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1902,6 +2414,16 @@
        "pdf_page": 49,
        "printed_page": 46
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-19-1",
+       "file": "figures/first-aid/skill-19-1.png",
+       "caption": "ONE RESCUER BLANKET DRAG",
+       "page": 46,
+       "pdf_page": 49,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1920,6 +2442,16 @@
        "file": "figures/first-aid/page-50.png",
        "pdf_page": 50,
        "printed_page": 47
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-20-1",
+       "file": "figures/first-aid/skill-20-1.png",
+       "caption": "TWO RESCUER EXTREMITY GROUND LIFT",
+       "page": 47,
+       "pdf_page": 50,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1940,6 +2472,16 @@
        "pdf_page": 51,
        "printed_page": 48
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-21-1",
+       "file": "figures/first-aid/skill-21-1.png",
+       "caption": "SHIRT DRAG",
+       "page": 48,
+       "pdf_page": 51,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1958,6 +2500,16 @@
        "file": "figures/first-aid/page-52.png",
        "pdf_page": 52,
        "printed_page": 49
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-22-1",
+       "file": "figures/first-aid/skill-22-1.png",
+       "caption": "ESTABLISHING AIRWAY–SUSPECTED CERVICAL SPINE (NECK) INJURY",
+       "page": 49,
+       "pdf_page": 52,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -1978,6 +2530,16 @@
        "pdf_page": 53,
        "printed_page": 50
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-23-1",
+       "file": "figures/first-aid/skill-23-1.png",
+       "caption": "SHOCK",
+       "page": 50,
+       "pdf_page": 53,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -1997,6 +2559,16 @@
        "pdf_page": 54,
        "printed_page": 51
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-24-1",
+       "file": "figures/first-aid/skill-24-1.png",
+       "caption": "IMMOBILIZATION – LONG SPINE BOARD (Backboard)",
+       "page": 51,
+       "pdf_page": 54,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -2015,6 +2587,16 @@
        "file": "figures/first-aid/page-55.png",
        "pdf_page": 55,
        "printed_page": 52
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-25-1",
+       "file": "figures/first-aid/skill-25-1.png",
+       "caption": "IMMOBILIZATION OF CERVICAL SPINE",
+       "page": 52,
+       "pdf_page": 55,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -2040,6 +2622,24 @@
        "pdf_page": 57,
        "printed_page": 54
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-26-1",
+       "file": "figures/first-aid/skill-26-1.png",
+       "caption": "BURNS (page 1 of 2)",
+       "page": 53,
+       "pdf_page": 56,
+       "kind": "skill-sheet"
+      },
+      {
+       "id": "first-aid:skill-26-2",
+       "file": "figures/first-aid/skill-26-2.png",
+       "caption": "BURNS (page 2 of 2)",
+       "page": 54,
+       "pdf_page": 57,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -2058,6 +2658,16 @@
        "file": "figures/first-aid/page-58.png",
        "pdf_page": 58,
        "printed_page": 55
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-27-1",
+       "file": "figures/first-aid/skill-27-1.png",
+       "caption": "EARLY OR SUPERFICIAL FROSTBITE",
+       "page": 55,
+       "pdf_page": 58,
+       "kind": "skill-sheet"
       }
      ]
     },
@@ -2078,6 +2688,16 @@
        "pdf_page": 59,
        "printed_page": 56
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-28-1",
+       "file": "figures/first-aid/skill-28-1.png",
+       "caption": "LATE OR DEEP COLD INJURY",
+       "page": 56,
+       "pdf_page": 59,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -2097,6 +2717,16 @@
        "pdf_page": 60,
        "printed_page": 57
       }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-29-1",
+       "file": "figures/first-aid/skill-29-1.png",
+       "caption": "MILD HYPERTHERMIA (HEAT CRAMPS-EXHAUSTION)",
+       "page": 57,
+       "pdf_page": 60,
+       "kind": "skill-sheet"
+      }
      ]
     },
     {
@@ -2115,6 +2745,16 @@
        "file": "figures/first-aid/page-61.png",
        "pdf_page": 61,
        "printed_page": 58
+      }
+     ],
+     "figures": [
+      {
+       "id": "first-aid:skill-30-1",
+       "file": "figures/first-aid/skill-30-1.png",
+       "caption": "SEVERE HYPERTHERMIA",
+       "page": 58,
+       "pdf_page": 61,
+       "kind": "skill-sheet"
       }
      ]
     }

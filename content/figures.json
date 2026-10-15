@@ -1,0 +1,6959 @@
+{
+ "note": "Every figure image in content/figures. kind: figure, table, flowchart, map-legend, map-symbol, skill-sheet, parts-drawing, parts-table, form (cropped at 200 dpi from the 2026 MSHA PDFs) or page (the older full-page images). \"page\" is the printed rule-book page, \"pdf_page\" the PDF page. rule_ids lists the rule items whose \"figures\" include it, in no particular order; display order is the order inside each rule's \"figures\". caption_source says whether the caption is printed in the PDF or written plainly.",
+ "count": 279,
+ "count_crops": 176,
+ "stats": {
+  "mine-rescue": {
+   "rules_with_figures": 12,
+   "sections_with_figures": 1,
+   "figures": 43,
+   "page_images": 15,
+   "bytes": 5008157
+  },
+  "first-aid": {
+   "rules_with_figures": 43,
+   "sections_with_figures": 1,
+   "figures": 40,
+   "page_images": 39,
+   "bytes": 10641810
+  },
+  "bench-biopak": {
+   "rules_with_figures": 17,
+   "sections_with_figures": 2,
+   "figures": 29,
+   "page_images": 15,
+   "bytes": 3612180
+  },
+  "bench-bg4": {
+   "rules_with_figures": 14,
+   "sections_with_figures": 2,
+   "figures": 24,
+   "page_images": 13,
+   "bytes": 3961213
+  },
+  "bench-proair": {
+   "rules_with_figures": 21,
+   "sections_with_figures": 2,
+   "figures": 38,
+   "page_images": 20,
+   "bytes": 4019442
+  },
+  "preshift": {
+   "rules_with_figures": 8,
+   "sections_with_figures": 1,
+   "figures": 2,
+   "page_images": 1,
+   "bytes": 223043
+  }
+ },
+ "figures": [
+  {
+   "id": "mine-rescue:radio-frequencies",
+   "file": "figures/mine-rescue/radio-frequencies.png",
+   "caption": "National Mine Rescue Contest Radio Frequencies",
+   "page": 6,
+   "pdf_page": 8,
+   "event": "mine-rescue",
+   "kind": "table",
+   "caption_source": "printed",
+   "full_page": null,
+   "bbox_pt": [
+    139.7,
+    51.5,
+    482.4,
+    447.7
+   ],
+   "px": [
+    952,
+    1102
+   ],
+   "rule_ids": [
+    "rules-governing-6"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "mine-rescue:fig-1a",
+   "file": "figures/mine-rescue/fig-1a.png",
+   "caption": "Figure 1(a) – PROPER METHOD OF ROOF TESTING",
+   "page": 41,
+   "pdf_page": 43,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-43.png",
+   "bbox_pt": [
+    73.4,
+    64.9,
+    512.1,
+    639.4
+   ],
+   "px": [
+    1220,
+    1597
+   ],
+   "rule_ids": [
+    "b-card-23"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-1b",
+   "file": "figures/mine-rescue/fig-1b.png",
+   "caption": "Figure 1(b) – PROPER METHOD OF ROOF TESTING (cont.)",
+   "page": 42,
+   "pdf_page": 44,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-44.png",
+   "bbox_pt": [
+    106.1,
+    64.9,
+    493.6,
+    659.4
+   ],
+   "px": [
+    1078,
+    1652
+   ],
+   "rule_ids": [
+    "b-card-23"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-2a",
+   "file": "figures/mine-rescue/fig-2a.png",
+   "caption": "Figure 2(a) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORTS",
+   "page": 43,
+   "pdf_page": 45,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-45.png",
+   "bbox_pt": [
+    79.6,
+    64.9,
+    508.0,
+    562.8
+   ],
+   "px": [
+    1191,
+    1384
+   ],
+   "rule_ids": [
+    "b-card-30"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-2b",
+   "file": "figures/mine-rescue/fig-2b.png",
+   "caption": "Figure 2(b) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORT THROUGH UNSAFE ROOF (Continued)",
+   "page": 44,
+   "pdf_page": 46,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-46.png",
+   "bbox_pt": [
+    30.0,
+    87.8,
+    596.7,
+    730.9
+   ],
+   "px": [
+    1575,
+    1788
+   ],
+   "rule_ids": [
+    "b-card-30"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-3",
+   "file": "figures/mine-rescue/fig-3.png",
+   "caption": "Figure 3 – PROPER INSTALLATION OF ROOF SUPPORT TO RECOVER A PATIENT LOCATED UNDER AN AREA OF ELONGATED UNSAFE ROOF",
+   "page": 45,
+   "pdf_page": 47,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-47.png",
+   "bbox_pt": [
+    83.1,
+    83.9,
+    500.0,
+    448.3
+   ],
+   "px": [
+    1159,
+    1014
+   ],
+   "rule_ids": [
+    "b-card-30",
+    "b-card-32"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-4",
+   "file": "figures/mine-rescue/fig-4.png",
+   "caption": "Figure 4 – EXTENT OF GASES",
+   "page": 46,
+   "pdf_page": 48,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-48.png",
+   "bbox_pt": [
+    54.0,
+    41.9,
+    575.9,
+    727.8
+   ],
+   "px": [
+    1450,
+    1906
+   ],
+   "rule_ids": [
+    "b-card-24"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-5",
+   "file": "figures/mine-rescue/fig-5.png",
+   "caption": "Figure 5 – EXAMPLE OF INITIAL EXPLORATION AS PER RULE 29",
+   "page": 47,
+   "pdf_page": 49,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-49.png",
+   "bbox_pt": [
+    55.7,
+    35.2,
+    547.8,
+    707.1
+   ],
+   "px": [
+    1368,
+    1868
+   ],
+   "rule_ids": [
+    "b-card-29"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-6",
+   "file": "figures/mine-rescue/fig-6.png",
+   "caption": "Figure 6 – Airlocking Through an Overcast Wall",
+   "page": 48,
+   "pdf_page": 50,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-50.png",
+   "bbox_pt": [
+    144.7,
+    30.0,
+    464.9,
+    653.2
+   ],
+   "px": [
+    890,
+    1732
+   ],
+   "rule_ids": [
+    "b-card-42"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-7",
+   "file": "figures/mine-rescue/fig-7.png",
+   "caption": "Figure 7 – RULE 44 \"SYSTEMATIC EXPLORATION\"",
+   "page": 49,
+   "pdf_page": 51,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-51.png",
+   "bbox_pt": [
+    108.2,
+    69.3,
+    530.2,
+    695.4
+   ],
+   "px": [
+    1173,
+    1740
+   ],
+   "rule_ids": [
+    "b-card-44"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:fig-8",
+   "file": "figures/mine-rescue/fig-8.png",
+   "caption": "FIGURE 8 – EXTENT OF GASES AT OVERCASTS",
+   "page": 50,
+   "pdf_page": 52,
+   "event": "mine-rescue",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": "figures/page-52.png",
+   "bbox_pt": [
+    60.4,
+    67.0,
+    564.2,
+    726.3
+   ],
+   "px": [
+    1401,
+    1832
+   ],
+   "rule_ids": [
+    "b-card-24",
+    "b-card-42"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:map-legend-1",
+   "file": "figures/mine-rescue/map-legend-1.png",
+   "caption": "MINE MAP LEGEND (page 1 of 5)",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-legend",
+   "caption_source": "printed title + page count",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    56.7,
+    65.2,
+    544.4,
+    675.3
+   ],
+   "px": [
+    1356,
+    1695
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6",
+    "b-card-44",
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-permanent-stopping-intact-airtight",
+   "file": "figures/mine-rescue/symbol-permanent-stopping-intact-airtight.png",
+   "caption": "PERMANENT STOPPING INTACT, AIRTIGHT",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    62.4,
+    182.6,
+    517.2,
+    231.9
+   ],
+   "px": [
+    1264,
+    138
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-permanent-stopping-not-intact-not",
+   "file": "figures/mine-rescue/symbol-permanent-stopping-not-intact-not.png",
+   "caption": "PERMANENT STOPPING NOT INTACT, NOT AIRTIGHT",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    60.8,
+    256.5,
+    503.7,
+    341.1
+   ],
+   "px": [
+    1232,
+    236
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-temporary-stopping-intact-airtight",
+   "file": "figures/mine-rescue/symbol-temporary-stopping-intact-airtight.png",
+   "caption": "TEMPORARY STOPPING INTACT, AIRTIGHT",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    56.7,
+    358.4,
+    517.6,
+    434.5
+   ],
+   "px": [
+    1281,
+    212
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-temporary-stopping-not-intact-not",
+   "file": "figures/mine-rescue/symbol-temporary-stopping-not-intact-not.png",
+   "caption": "TEMPORARY STOPPING NOT INTACT, NOT AIRTIGHT",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    60.4,
+    434.9,
+    504.6,
+    565.0
+   ],
+   "px": [
+    1235,
+    362
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-seal",
+   "file": "figures/mine-rescue/symbol-seal.png",
+   "caption": "SEAL",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-53.png",
+   "bbox_pt": [
+    60.1,
+    557.8,
+    544.4,
+    675.3
+   ],
+   "px": [
+    1346,
+    327
+   ],
+   "rule_ids": [
+    "b-card-44"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:map-legend-2",
+   "file": "figures/mine-rescue/map-legend-2.png",
+   "caption": "MINE MAP LEGEND (page 2 of 5)",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-legend",
+   "caption_source": "printed title + page count",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    58.2,
+    68.2,
+    534.9,
+    716.9
+   ],
+   "px": [
+    1325,
+    1803
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6",
+    "b-card-44",
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-door",
+   "file": "figures/mine-rescue/symbol-door.png",
+   "caption": "DOOR",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    60.6,
+    68.2,
+    534.9,
+    185.6
+   ],
+   "px": [
+    1318,
+    327
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-line-curtain",
+   "file": "figures/mine-rescue/symbol-line-curtain.png",
+   "caption": "LINE CURTAIN",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    90.6,
+    184.8,
+    534.2,
+    260.8
+   ],
+   "px": [
+    1233,
+    212
+   ],
+   "rule_ids": [
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-line-curtain-installed",
+   "file": "figures/mine-rescue/symbol-line-curtain-installed.png",
+   "caption": "LINE CURTAIN INSTALLED",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    59.6,
+    272.4,
+    525.9,
+    372.9
+   ],
+   "px": [
+    1296,
+    280
+   ],
+   "rule_ids": [
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-diagonal",
+   "file": "figures/mine-rescue/symbol-diagonal.png",
+   "caption": "DIAGONAL",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    58.2,
+    399.0,
+    507.7,
+    521.3
+   ],
+   "px": [
+    1250,
+    340
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-barricade",
+   "file": "figures/mine-rescue/symbol-barricade.png",
+   "caption": "BARRICADE",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    61.1,
+    546.8,
+    533.1,
+    626.9
+   ],
+   "px": [
+    1312,
+    223
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-caved",
+   "file": "figures/mine-rescue/symbol-caved.png",
+   "caption": "CAVED",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-54.png",
+   "bbox_pt": [
+    61.4,
+    636.7,
+    528.3,
+    716.9
+   ],
+   "px": [
+    1298,
+    224
+   ],
+   "rule_ids": [
+    "b-card-44"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:map-legend-3",
+   "file": "figures/mine-rescue/map-legend-3.png",
+   "caption": "MINE MAP LEGEND (page 3 of 5)",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-legend",
+   "caption_source": "printed title + page count",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    56.9,
+    35.7,
+    539.7,
+    706.1
+   ],
+   "px": [
+    1342,
+    1863
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6",
+    "b-card-44",
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-unsafe-roof",
+   "file": "figures/mine-rescue/symbol-unsafe-roof.png",
+   "caption": "UNSAFE ROOF",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    56.9,
+    35.7,
+    526.9,
+    175.8
+   ],
+   "px": [
+    1306,
+    390
+   ],
+   "rule_ids": [
+    "b-card-44"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-unsafe-rib-or-overhanging-brow",
+   "file": "figures/mine-rescue/symbol-unsafe-rib-or-overhanging-brow.png",
+   "caption": "UNSAFE RIB OR OVERHANGING BROW",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    64.3,
+    154.6,
+    437.9,
+    227.9
+   ],
+   "px": [
+    1039,
+    205
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-water",
+   "file": "figures/mine-rescue/symbol-water.png",
+   "caption": "WATER",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    69.4,
+    217.1,
+    532.7,
+    288.8
+   ],
+   "px": [
+    1288,
+    200
+   ],
+   "rule_ids": [
+    "b-card-44"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-smoke",
+   "file": "figures/mine-rescue/symbol-smoke.png",
+   "caption": "SMOKE",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    98.6,
+    292.9,
+    537.7,
+    378.8
+   ],
+   "px": [
+    1221,
+    240
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-body",
+   "file": "figures/mine-rescue/symbol-body.png",
+   "caption": "BODY",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    108.1,
+    385.8,
+    537.7,
+    481.9
+   ],
+   "px": [
+    1194,
+    268
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-live-person",
+   "file": "figures/mine-rescue/symbol-live-person.png",
+   "caption": "LIVE PERSON",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    104.6,
+    477.9,
+    539.7,
+    548.5
+   ],
+   "px": [
+    1210,
+    197
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-brattice-cloth",
+   "file": "figures/mine-rescue/symbol-brattice-cloth.png",
+   "caption": "BRATTICE CLOTH",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    96.3,
+    551.7,
+    365.6,
+    612.6
+   ],
+   "px": [
+    749,
+    170
+   ],
+   "rule_ids": [
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-placard-indicating-gas-mixture",
+   "file": "figures/mine-rescue/symbol-placard-indicating-gas-mixture.png",
+   "caption": "PLACARD INDICATING GAS MIXTURE",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-55.png",
+   "bbox_pt": [
+    96.0,
+    607.7,
+    478.2,
+    706.1
+   ],
+   "px": [
+    1063,
+    274
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:map-legend-4",
+   "file": "figures/mine-rescue/map-legend-4.png",
+   "caption": "MINE MAP LEGEND (page 4 of 5)",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-legend",
+   "caption_source": "printed title + page count",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    75.4,
+    64.4,
+    528.7,
+    652.6
+   ],
+   "px": [
+    1260,
+    1634
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6",
+    "b-card-44",
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-air-movement",
+   "file": "figures/mine-rescue/symbol-air-movement.png",
+   "caption": "AIR MOVEMENT",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    90.6,
+    64.4,
+    477.5,
+    112.9
+   ],
+   "px": [
+    1076,
+    135
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-fire",
+   "file": "figures/mine-rescue/symbol-fire.png",
+   "caption": "FIRE",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    100.4,
+    130.6,
+    526.5,
+    195.1
+   ],
+   "px": [
+    1185,
+    180
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-farthest-point-of-advance-in-entry-room",
+   "file": "figures/mine-rescue/symbol-farthest-point-of-advance-in-entry-room.png",
+   "caption": "FARTHEST POINT OF ADVANCE IN ENTRY, ROOM, OR CROSSCUT",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    75.4,
+    208.8,
+    527.7,
+    294.4
+   ],
+   "px": [
+    1257,
+    238
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-fan",
+   "file": "figures/mine-rescue/symbol-fan.png",
+   "caption": "FAN",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    83.6,
+    312.2,
+    466.9,
+    360.8
+   ],
+   "px": [
+    1065,
+    136
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-overcast-or-undercast",
+   "file": "figures/mine-rescue/symbol-overcast-or-undercast.png",
+   "caption": "OVERCAST OR UNDERCAST",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    88.4,
+    392.8,
+    513.2,
+    488.8
+   ],
+   "px": [
+    1181,
+    267
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-location-of-any-other-objects-conditions",
+   "file": "figures/mine-rescue/symbol-location-of-any-other-objects-conditions.png",
+   "caption": "LOCATION OF ANY OTHER OBJECTS, CONDITIONS, OR EQUIPMENT",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    102.1,
+    505.2,
+    528.7,
+    590.7
+   ],
+   "px": [
+    1186,
+    238
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-any-roof-support-installed-by-the-team",
+   "file": "figures/mine-rescue/symbol-any-roof-support-installed-by-the-team.png",
+   "caption": "ANY ROOF SUPPORT INSTALLED BY THE TEAM",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-56.png",
+   "bbox_pt": [
+    105.6,
+    608.9,
+    508.7,
+    652.6
+   ],
+   "px": [
+    1120,
+    122
+   ],
+   "rule_ids": [],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:map-legend-5",
+   "file": "figures/mine-rescue/map-legend-5.png",
+   "caption": "MINE MAP LEGEND (page 5 of 5)",
+   "page": 55,
+   "pdf_page": 57,
+   "event": "mine-rescue",
+   "kind": "map-legend",
+   "caption_source": "printed title + page count",
+   "full_page": "figures/page-57.png",
+   "bbox_pt": [
+    93.4,
+    72.4,
+    536.1,
+    247.5
+   ],
+   "px": [
+    1231,
+    487
+   ],
+   "rule_ids": [
+    "a-card-5",
+    "a-card-6",
+    "b-card-44",
+    "b-card-48"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "mine-rescue:symbol-refuge-alternative",
+   "file": "figures/mine-rescue/symbol-refuge-alternative.png",
+   "caption": "REFUGE ALTERNATIVE",
+   "page": 55,
+   "pdf_page": 57,
+   "event": "mine-rescue",
+   "kind": "map-symbol",
+   "caption_source": "printed",
+   "full_page": "figures/page-57.png",
+   "bbox_pt": [
+    93.4,
+    72.4,
+    536.1,
+    247.5
+   ],
+   "px": [
+    1231,
+    487
+   ],
+   "rule_ids": [
+    "b-card-36"
+   ],
+   "section_ids": [
+    "figures"
+   ]
+  },
+  {
+   "id": "first-aid:start-triage-algorithm",
+   "file": "figures/first-aid/start-triage-algorithm.png",
+   "caption": "START Triage Algorithm",
+   "page": 10,
+   "pdf_page": 13,
+   "event": "first-aid",
+   "kind": "flowchart",
+   "caption_source": "section title (the chart itself has no printed caption)",
+   "full_page": "figures/first-aid/page-13.png",
+   "bbox_pt": [
+    75.6,
+    325.1,
+    533.5,
+    678.6
+   ],
+   "px": [
+    1273,
+    984
+   ],
+   "rule_ids": [
+    "first-aid-guidelines-16",
+    "first-aid-discounts-1",
+    "first-aid-start-triage-1",
+    "first-aid-start-triage-2",
+    "first-aid-start-triage-3",
+    "first-aid-start-triage-4",
+    "first-aid-scorecard-a-23"
+   ],
+   "section_ids": [
+    "start-triage"
+   ]
+  },
+  {
+   "id": "first-aid:skill-01-1",
+   "file": "figures/first-aid/skill-01-1.png",
+   "caption": "INITIAL ASSESSMENT",
+   "page": 19,
+   "pdf_page": 22,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-22.png",
+   "bbox_pt": [
+    67.6,
+    157.1,
+    549.1,
+    731.5
+   ],
+   "px": [
+    1339,
+    1596
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-skill-1"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-02-1",
+   "file": "figures/first-aid/skill-02-1.png",
+   "caption": "PATIENT ASSESSMENT (page 1 of 2)",
+   "page": 20,
+   "pdf_page": 23,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-23.png",
+   "bbox_pt": [
+    67.6,
+    60.2,
+    549.0,
+    723.1
+   ],
+   "px": [
+    1338,
+    1842
+   ],
+   "rule_ids": [
+    "first-aid-start-triage-1",
+    "first-aid-start-triage-2",
+    "first-aid-start-triage-3",
+    "first-aid-skill-2"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-02-2",
+   "file": "figures/first-aid/skill-02-2.png",
+   "caption": "PATIENT ASSESSMENT (page 2 of 2)",
+   "page": 21,
+   "pdf_page": 24,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-24.png",
+   "bbox_pt": [
+    63.4,
+    61.0,
+    554.9,
+    104.5
+   ],
+   "px": [
+    1366,
+    122
+   ],
+   "rule_ids": [
+    "first-aid-start-triage-1",
+    "first-aid-start-triage-2",
+    "first-aid-start-triage-3",
+    "first-aid-skill-2"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-03-1",
+   "file": "figures/first-aid/skill-03-1.png",
+   "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 1 of 2)",
+   "page": 21,
+   "pdf_page": 24,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-24.png",
+   "bbox_pt": [
+    63.6,
+    109.4,
+    556.7,
+    664.2
+   ],
+   "px": [
+    1371,
+    1542
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-skill-3"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-03-2",
+   "file": "figures/first-aid/skill-03-2.png",
+   "caption": "ONE-PERSON CPR (MANIKIN ONLY) (page 2 of 2)",
+   "page": 22,
+   "pdf_page": 25,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-25.png",
+   "bbox_pt": [
+    63.6,
+    61.0,
+    556.7,
+    543.2
+   ],
+   "px": [
+    1371,
+    1340
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-skill-3"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-04-1",
+   "file": "figures/first-aid/skill-04-1.png",
+   "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 1 of 3)",
+   "page": 23,
+   "pdf_page": 26,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-26.png",
+   "bbox_pt": [
+    47.5,
+    60.5,
+    558.9,
+    741.5
+   ],
+   "px": [
+    1421,
+    1892
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-scorecard-b-cpr-12",
+    "first-aid-skill-4"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-04-2",
+   "file": "figures/first-aid/skill-04-2.png",
+   "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 2 of 3)",
+   "page": 24,
+   "pdf_page": 27,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-27.png",
+   "bbox_pt": [
+    46.7,
+    58.0,
+    556.8,
+    627.5
+   ],
+   "px": [
+    1418,
+    1582
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-scorecard-b-cpr-12",
+    "first-aid-skill-4"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-04-3",
+   "file": "figures/first-aid/skill-04-3.png",
+   "caption": "TWO-RESCUER CPR WITH AED (NO SPINAL INJURY - MANIKIN ONLY) (page 3 of 3)",
+   "page": 25,
+   "pdf_page": 28,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-28.png",
+   "bbox_pt": [
+    46.7,
+    61.0,
+    556.8,
+    369.8
+   ],
+   "px": [
+    1418,
+    859
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-1",
+    "first-aid-scorecard-b-cpr-12",
+    "first-aid-skill-4"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-05-1",
+   "file": "figures/first-aid/skill-05-1.png",
+   "caption": "MOUTH-TO-MASK RESUSCITATION",
+   "page": 29,
+   "pdf_page": 32,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-32.png",
+   "bbox_pt": [
+    65.3,
+    56.8,
+    555.0,
+    558.2
+   ],
+   "px": [
+    1361,
+    1394
+   ],
+   "rule_ids": [
+    "first-aid-skill-5"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-06-1",
+   "file": "figures/first-aid/skill-06-1.png",
+   "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 1 of 2)",
+   "page": 30,
+   "pdf_page": 33,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-33.png",
+   "bbox_pt": [
+    65.6,
+    60.2,
+    559.8,
+    692.2
+   ],
+   "px": [
+    1373,
+    1756
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-12",
+    "first-aid-skill-6"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-06-2",
+   "file": "figures/first-aid/skill-06-2.png",
+   "caption": "AIRWAY OBSTRUCTION (UNCONSCIOUS VICTIM – WITNESSED) (page 2 of 2)",
+   "page": 31,
+   "pdf_page": 34,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-34.png",
+   "bbox_pt": [
+    65.9,
+    61.0,
+    554.9,
+    414.1
+   ],
+   "px": [
+    1359,
+    982
+   ],
+   "rule_ids": [
+    "first-aid-scorecard-b-general-12",
+    "first-aid-skill-6"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-07-1",
+   "file": "figures/first-aid/skill-07-1.png",
+   "caption": "SUCKING CHEST WOUND",
+   "page": 32,
+   "pdf_page": 35,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-35.png",
+   "bbox_pt": [
+    65.9,
+    64.3,
+    556.1,
+    484.4
+   ],
+   "px": [
+    1362,
+    1168
+   ],
+   "rule_ids": [
+    "first-aid-skill-7"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-08-1",
+   "file": "figures/first-aid/skill-08-1.png",
+   "caption": "LIFE-THREATENING BLEEDING",
+   "page": 33,
+   "pdf_page": 36,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-36.png",
+   "bbox_pt": [
+    65.9,
+    60.7,
+    554.3,
+    527.1
+   ],
+   "px": [
+    1357,
+    1297
+   ],
+   "rule_ids": [
+    "first-aid-skill-8"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-09-1",
+   "file": "figures/first-aid/skill-09-1.png",
+   "caption": "TOURNIQUET",
+   "page": 34,
+   "pdf_page": 37,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-37.png",
+   "bbox_pt": [
+    64.3,
+    60.7,
+    562.7,
+    667.7
+   ],
+   "px": [
+    1385,
+    1687
+   ],
+   "rule_ids": [
+    "first-aid-guidelines-29",
+    "first-aid-skill-9"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-10-1",
+   "file": "figures/first-aid/skill-10-1.png",
+   "caption": "DRESSINGS AND BANDAGING – OPEN WOUNDS (page 1 of 2)",
+   "page": 35,
+   "pdf_page": 38,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-38.png",
+   "bbox_pt": [
+    63.2,
+    56.8,
+    581.2,
+    739.5
+   ],
+   "px": [
+    1440,
+    1898
+   ],
+   "rule_ids": [
+    "first-aid-skill-10"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-10-2",
+   "file": "figures/first-aid/skill-10-2.png",
+   "caption": "DRESSINGS AND BANDAGING – OPEN WOUNDS (page 2 of 2)",
+   "page": 36,
+   "pdf_page": 39,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-39.png",
+   "bbox_pt": [
+    83.0,
+    60.9,
+    537.8,
+    631.6
+   ],
+   "px": [
+    1264,
+    1586
+   ],
+   "rule_ids": [
+    "first-aid-skill-10"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-11-1",
+   "file": "figures/first-aid/skill-11-1.png",
+   "caption": "TWO-PERSON LOG ROLL",
+   "page": 37,
+   "pdf_page": 40,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-40.png",
+   "bbox_pt": [
+    58.6,
+    60.7,
+    587.8,
+    472.3
+   ],
+   "px": [
+    1471,
+    1144
+   ],
+   "rule_ids": [
+    "first-aid-guidelines-28",
+    "first-aid-scorecard-a-9",
+    "first-aid-skill-11"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-12-1",
+   "file": "figures/first-aid/skill-12-1.png",
+   "caption": "THREE-PERSON LOG ROLL",
+   "page": 38,
+   "pdf_page": 41,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-41.png",
+   "bbox_pt": [
+    58.6,
+    64.9,
+    559.1,
+    671.5
+   ],
+   "px": [
+    1391,
+    1686
+   ],
+   "rule_ids": [
+    "first-aid-guidelines-28",
+    "first-aid-scorecard-a-9",
+    "first-aid-skill-12"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-13-1",
+   "file": "figures/first-aid/skill-13-1.png",
+   "caption": "SPLINTING (RIGID) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (page 1 of 2)",
+   "page": 39,
+   "pdf_page": 42,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-42.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    563.3,
+    729.5
+   ],
+   "px": [
+    1327,
+    1847
+   ],
+   "rule_ids": [
+    "first-aid-skill-13"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-13-2",
+   "file": "figures/first-aid/skill-13-2.png",
+   "caption": "SPLINTING (RIGID) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (page 2 of 2)",
+   "page": 40,
+   "pdf_page": 43,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-43.png",
+   "bbox_pt": [
+    90.0,
+    65.6,
+    319.7,
+    225.9
+   ],
+   "px": [
+    639,
+    446
+   ],
+   "rule_ids": [
+    "first-aid-skill-13"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-14-1",
+   "file": "figures/first-aid/skill-14-1.png",
+   "caption": "SPLINTING (SOFT) UPPER EXTREMITY FRACTURES AND DISLOCATIONS (WRIST AND HAND)",
+   "page": 40,
+   "pdf_page": 43,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-43.png",
+   "bbox_pt": [
+    71.0,
+    249.3,
+    548.0,
+    700.0
+   ],
+   "px": [
+    1326,
+    1253
+   ],
+   "rule_ids": [
+    "first-aid-skill-14"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-15-1",
+   "file": "figures/first-aid/skill-15-1.png",
+   "caption": "SPLINTING (RIGID OR SOFT) PELVIC GIRDLE, THIGH, KNEE AND LOWER LEG (page 1 of 2)",
+   "page": 41,
+   "pdf_page": 44,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-44.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    562.7,
+    413.9
+   ],
+   "px": [
+    1325,
+    970
+   ],
+   "rule_ids": [
+    "first-aid-skill-15"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-15-2",
+   "file": "figures/first-aid/skill-15-2.png",
+   "caption": "SPLINTING (RIGID OR SOFT) PELVIC GIRDLE, THIGH, KNEE AND LOWER LEG (page 2 of 2)",
+   "page": 42,
+   "pdf_page": 45,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-45.png",
+   "bbox_pt": [
+    71.6,
+    64.6,
+    547.4,
+    671.2
+   ],
+   "px": [
+    1322,
+    1686
+   ],
+   "rule_ids": [
+    "first-aid-skill-15"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-16-1",
+   "file": "figures/first-aid/skill-16-1.png",
+   "caption": "SPLINTING (SOFT) LOWER EXTREMITY FRACTURES AND DISLOCATIONS (ANKLE AND FOOT)",
+   "page": 43,
+   "pdf_page": 46,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-46.png",
+   "bbox_pt": [
+    86.0,
+    64.7,
+    562.9,
+    373.1
+   ],
+   "px": [
+    1325,
+    858
+   ],
+   "rule_ids": [
+    "first-aid-skill-16"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-17-1",
+   "file": "figures/first-aid/skill-17-1.png",
+   "caption": "SPLINTING UPPER EXTREMITY/LOWER EXTREMITY FRACTURES (AIR SPLINT)",
+   "page": 44,
+   "pdf_page": 47,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-47.png",
+   "bbox_pt": [
+    85.4,
+    65.0,
+    563.2,
+    450.1
+   ],
+   "px": [
+    1328,
+    1071
+   ],
+   "rule_ids": [
+    "first-aid-skill-17"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-18-1",
+   "file": "figures/first-aid/skill-18-1.png",
+   "caption": "SPLINTING – FLAIL CHEST",
+   "page": 45,
+   "pdf_page": 48,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-48.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    577.1,
+    454.2
+   ],
+   "px": [
+    1365,
+    1082
+   ],
+   "rule_ids": [
+    "first-aid-skill-18"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-19-1",
+   "file": "figures/first-aid/skill-19-1.png",
+   "caption": "ONE RESCUER BLANKET DRAG",
+   "page": 46,
+   "pdf_page": 49,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-49.png",
+   "bbox_pt": [
+    94.9,
+    65.0,
+    570.1,
+    481.1
+   ],
+   "px": [
+    1321,
+    1157
+   ],
+   "rule_ids": [
+    "first-aid-skill-19"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-20-1",
+   "file": "figures/first-aid/skill-20-1.png",
+   "caption": "TWO RESCUER EXTREMITY GROUND LIFT",
+   "page": 47,
+   "pdf_page": 50,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-50.png",
+   "bbox_pt": [
+    96.0,
+    65.0,
+    568.9,
+    470.8
+   ],
+   "px": [
+    1315,
+    1128
+   ],
+   "rule_ids": [
+    "first-aid-skill-20"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-21-1",
+   "file": "figures/first-aid/skill-21-1.png",
+   "caption": "SHIRT DRAG",
+   "page": 48,
+   "pdf_page": 51,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-51.png",
+   "bbox_pt": [
+    86.0,
+    65.0,
+    560.0,
+    340.6
+   ],
+   "px": [
+    1317,
+    766
+   ],
+   "rule_ids": [
+    "first-aid-skill-21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-22-1",
+   "file": "figures/first-aid/skill-22-1.png",
+   "caption": "ESTABLISHING AIRWAY–SUSPECTED CERVICAL SPINE (NECK) INJURY",
+   "page": 49,
+   "pdf_page": 52,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-52.png",
+   "bbox_pt": [
+    95.8,
+    65.0,
+    569.5,
+    335.5
+   ],
+   "px": [
+    1316,
+    752
+   ],
+   "rule_ids": [
+    "first-aid-skill-22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-23-1",
+   "file": "figures/first-aid/skill-23-1.png",
+   "caption": "SHOCK",
+   "page": 50,
+   "pdf_page": 53,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-53.png",
+   "bbox_pt": [
+    95.3,
+    65.0,
+    569.6,
+    491.5
+   ],
+   "px": [
+    1319,
+    1186
+   ],
+   "rule_ids": [
+    "first-aid-skill-23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-24-1",
+   "file": "figures/first-aid/skill-24-1.png",
+   "caption": "IMMOBILIZATION – LONG SPINE BOARD (Backboard)",
+   "page": 51,
+   "pdf_page": 54,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-54.png",
+   "bbox_pt": [
+    73.1,
+    65.0,
+    553.6,
+    633.6
+   ],
+   "px": [
+    1335,
+    1580
+   ],
+   "rule_ids": [
+    "first-aid-skill-24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-25-1",
+   "file": "figures/first-aid/skill-25-1.png",
+   "caption": "IMMOBILIZATION OF CERVICAL SPINE",
+   "page": 52,
+   "pdf_page": 55,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-55.png",
+   "bbox_pt": [
+    73.1,
+    65.0,
+    572.2,
+    710.3
+   ],
+   "px": [
+    1387,
+    1793
+   ],
+   "rule_ids": [
+    "first-aid-skill-25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-26-1",
+   "file": "figures/first-aid/skill-26-1.png",
+   "caption": "BURNS (page 1 of 2)",
+   "page": 53,
+   "pdf_page": 56,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-56.png",
+   "bbox_pt": [
+    85.8,
+    65.1,
+    554.0,
+    624.3
+   ],
+   "px": [
+    1301,
+    1555
+   ],
+   "rule_ids": [
+    "first-aid-skill-26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-26-2",
+   "file": "figures/first-aid/skill-26-2.png",
+   "caption": "BURNS (page 2 of 2)",
+   "page": 54,
+   "pdf_page": 57,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-57.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    553.9,
+    527.9
+   ],
+   "px": [
+    1301,
+    1287
+   ],
+   "rule_ids": [
+    "first-aid-skill-26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-27-1",
+   "file": "figures/first-aid/skill-27-1.png",
+   "caption": "EARLY OR SUPERFICIAL FROSTBITE",
+   "page": 55,
+   "pdf_page": 58,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-58.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    553.7,
+    385.2
+   ],
+   "px": [
+    1300,
+    890
+   ],
+   "rule_ids": [
+    "first-aid-skill-27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-28-1",
+   "file": "figures/first-aid/skill-28-1.png",
+   "caption": "LATE OR DEEP COLD INJURY",
+   "page": 56,
+   "pdf_page": 59,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-59.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    553.7,
+    498.2
+   ],
+   "px": [
+    1300,
+    1204
+   ],
+   "rule_ids": [
+    "first-aid-skill-28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-29-1",
+   "file": "figures/first-aid/skill-29-1.png",
+   "caption": "MILD HYPERTHERMIA (HEAT CRAMPS-EXHAUSTION)",
+   "page": 57,
+   "pdf_page": 60,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-60.png",
+   "bbox_pt": [
+    85.8,
+    65.0,
+    553.7,
+    505.6
+   ],
+   "px": [
+    1300,
+    1225
+   ],
+   "rule_ids": [
+    "first-aid-skill-29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "first-aid:skill-30-1",
+   "file": "figures/first-aid/skill-30-1.png",
+   "caption": "SEVERE HYPERTHERMIA",
+   "page": 58,
+   "pdf_page": 61,
+   "event": "first-aid",
+   "kind": "skill-sheet",
+   "caption_source": "printed",
+   "full_page": "figures/first-aid/page-61.png",
+   "bbox_pt": [
+    72.6,
+    68.9,
+    540.5,
+    510.6
+   ],
+   "px": [
+    1301,
+    1228
+   ],
+   "rule_ids": [
+    "first-aid-skill-30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p21-drawing",
+   "file": "figures/bench-biopak/parts-p21-drawing.png",
+   "caption": "BioPak 240 Revolution Complete",
+   "page": 21,
+   "pdf_page": 21,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-21.png",
+   "bbox_pt": [
+    75.4,
+    38.8,
+    426.4,
+    518.8
+   ],
+   "px": [
+    976,
+    1335
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p21-table",
+   "file": "figures/bench-biopak/parts-p21-table.png",
+   "caption": "BioPak 240 Revolution Complete – Identification of Parts (Cons. No. / Designation)",
+   "page": 21,
+   "pdf_page": 21,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-21.png",
+   "bbox_pt": [
+    75.5,
+    539.0,
+    531.1,
+    695.0
+   ],
+   "px": [
+    1267,
+    434
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p22-drawing",
+   "file": "figures/bench-biopak/parts-p22-drawing.png",
+   "caption": "Lower Housing Assembly",
+   "page": 22,
+   "pdf_page": 22,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-22.png",
+   "bbox_pt": [
+    117.8,
+    66.3,
+    501.9,
+    524.1
+   ],
+   "px": [
+    1068,
+    1272
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p22-table",
+   "file": "figures/bench-biopak/parts-p22-table.png",
+   "caption": "Lower Housing Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 22,
+   "pdf_page": 22,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-22.png",
+   "bbox_pt": [
+    74.7,
+    547.1,
+    568.3,
+    684.5
+   ],
+   "px": [
+    1372,
+    383
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p23-drawing",
+   "file": "figures/bench-biopak/parts-p23-drawing.png",
+   "caption": "Pneumatic Assembly",
+   "page": 23,
+   "pdf_page": 23,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-23.png",
+   "bbox_pt": [
+    171.3,
+    66.3,
+    465.0,
+    479.8
+   ],
+   "px": [
+    817,
+    1149
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p23-table",
+   "file": "figures/bench-biopak/parts-p23-table.png",
+   "caption": "Pneumatic Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 23,
+   "pdf_page": 23,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-23.png",
+   "bbox_pt": [
+    75.0,
+    552.5,
+    581.9,
+    693.0
+   ],
+   "px": [
+    1409,
+    391
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p24-drawing",
+   "file": "figures/bench-biopak/parts-p24-drawing.png",
+   "caption": "Manifold Assembly",
+   "page": 24,
+   "pdf_page": 24,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-24.png",
+   "bbox_pt": [
+    185.6,
+    66.3,
+    439.5,
+    469.9
+   ],
+   "px": [
+    706,
+    1122
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p24-table",
+   "file": "figures/bench-biopak/parts-p24-table.png",
+   "caption": "Manifold Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 24,
+   "pdf_page": 24,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-24.png",
+   "bbox_pt": [
+    56.3,
+    589.9,
+    572.7,
+    687.5
+   ],
+   "px": [
+    1435,
+    272
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p25-drawing",
+   "file": "figures/bench-biopak/parts-p25-drawing.png",
+   "caption": "Center Section Assembly",
+   "page": 25,
+   "pdf_page": 25,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-25.png",
+   "bbox_pt": [
+    187.6,
+    66.3,
+    403.1,
+    458.0
+   ],
+   "px": [
+    599,
+    1089
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p25-table",
+   "file": "figures/bench-biopak/parts-p25-table.png",
+   "caption": "Center Section Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 25,
+   "pdf_page": 25,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-25.png",
+   "bbox_pt": [
+    74.7,
+    536.2,
+    572.9,
+    676.7
+   ],
+   "px": [
+    1385,
+    391
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p26-drawing",
+   "file": "figures/bench-biopak/parts-p26-drawing.png",
+   "caption": "Center Section Lid Assembly",
+   "page": 26,
+   "pdf_page": 26,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-26.png",
+   "bbox_pt": [
+    164.7,
+    66.3,
+    415.7,
+    578.5
+   ],
+   "px": [
+    698,
+    1423
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p26-table",
+   "file": "figures/bench-biopak/parts-p26-table.png",
+   "caption": "Center Section Lid Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 26,
+   "pdf_page": 26,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-26.png",
+   "bbox_pt": [
+    87.7,
+    580.9,
+    505.3,
+    680.0
+   ],
+   "px": [
+    1161,
+    276
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p27-drawing",
+   "file": "figures/bench-biopak/parts-p27-drawing.png",
+   "caption": "Diaphragm Assembly",
+   "page": 27,
+   "pdf_page": 27,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-27.png",
+   "bbox_pt": [
+    142.2,
+    66.3,
+    526.3,
+    413.6
+   ],
+   "px": [
+    1068,
+    966
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p27-table",
+   "file": "figures/bench-biopak/parts-p27-table.png",
+   "caption": "Diaphragm Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 27,
+   "pdf_page": 27,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-27.png",
+   "bbox_pt": [
+    74.7,
+    515.3,
+    550.2,
+    641.4
+   ],
+   "px": [
+    1322,
+    351
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p28-drawing",
+   "file": "figures/bench-biopak/parts-p28-drawing.png",
+   "caption": "Breathing Hose",
+   "page": 28,
+   "pdf_page": 28,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-28.png",
+   "bbox_pt": [
+    105.0,
+    66.3,
+    500.0,
+    273.7
+   ],
+   "px": [
+    1099,
+    577
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p28-table",
+   "file": "figures/bench-biopak/parts-p28-table.png",
+   "caption": "Breathing Hose – Identification of Parts (Cons. No. / Designation)",
+   "page": 28,
+   "pdf_page": 28,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-28.png",
+   "bbox_pt": [
+    78.7,
+    569.2,
+    509.9,
+    664.8
+   ],
+   "px": [
+    1199,
+    266
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p29-drawing",
+   "file": "figures/bench-biopak/parts-p29-drawing.png",
+   "caption": "Ice Canister Freeze Form",
+   "page": 29,
+   "pdf_page": 29,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-29.png",
+   "bbox_pt": [
+    221.6,
+    66.3,
+    401.4,
+    509.5
+   ],
+   "px": [
+    500,
+    1232
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p29-table",
+   "file": "figures/bench-biopak/parts-p29-table.png",
+   "caption": "Ice Canister Freeze Form – Identification of Parts (Cons. No. / Designation)",
+   "page": 29,
+   "pdf_page": 29,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-29.png",
+   "bbox_pt": [
+    96.7,
+    562.4,
+    505.3,
+    661.9
+   ],
+   "px": [
+    1136,
+    277
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p30-drawing",
+   "file": "figures/bench-biopak/parts-p30-drawing.png",
+   "caption": "Oxygen Cylinder Assembly",
+   "page": 30,
+   "pdf_page": 30,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-30.png",
+   "bbox_pt": [
+    146.3,
+    65.9,
+    495.2,
+    425.5
+   ],
+   "px": [
+    970,
+    1000
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p30-table",
+   "file": "figures/bench-biopak/parts-p30-table.png",
+   "caption": "Oxygen Cylinder Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 30,
+   "pdf_page": 30,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-30.png",
+   "bbox_pt": [
+    79.1,
+    534.9,
+    505.7,
+    643.9
+   ],
+   "px": [
+    1186,
+    304
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p31-drawing",
+   "file": "figures/bench-biopak/parts-p31-drawing.png",
+   "caption": "RMS Monitoring System",
+   "page": 31,
+   "pdf_page": 31,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-31.png",
+   "bbox_pt": [
+    120.7,
+    66.3,
+    496.7,
+    517.0
+   ],
+   "px": [
+    1045,
+    1253
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p31"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p31-table",
+   "file": "figures/bench-biopak/parts-p31-table.png",
+   "caption": "RMS Monitoring System – Identification of Parts (Cons. No. / Designation)",
+   "page": 31,
+   "pdf_page": 31,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-31.png",
+   "bbox_pt": [
+    74.7,
+    570.8,
+    527.9,
+    666.3
+   ],
+   "px": [
+    1260,
+    266
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p31"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p32-drawing",
+   "file": "figures/bench-biopak/parts-p32-drawing.png",
+   "caption": "Biomarine Pro PP Mask (Revised Drawing)",
+   "page": 32,
+   "pdf_page": 32,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-32.png",
+   "bbox_pt": [
+    76.5,
+    64.4,
+    556.5,
+    473.5
+   ],
+   "px": [
+    1334,
+    1138
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p32"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p32-table",
+   "file": "figures/bench-biopak/parts-p32-table.png",
+   "caption": "Biomarine Pro PP Mask (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+   "page": 32,
+   "pdf_page": 32,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-32.png",
+   "bbox_pt": [
+    76.3,
+    475.1,
+    556.8,
+    684.2
+   ],
+   "px": [
+    1335,
+    582
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p32"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p33-drawing",
+   "file": "figures/bench-biopak/parts-p33-drawing.png",
+   "caption": "Tool Kit",
+   "page": 33,
+   "pdf_page": 33,
+   "event": "bench-biopak",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-33.png",
+   "bbox_pt": [
+    75.0,
+    29.6,
+    441.8,
+    510.5
+   ],
+   "px": [
+    1020,
+    1337
+   ],
+   "rule_ids": [
+    "bench-biopak-written-exam-1",
+    "bench-biopak-parts-p33"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:parts-p33-table",
+   "file": "figures/bench-biopak/parts-p33-table.png",
+   "caption": "Tool Kit – Identification of Parts (Cons. No. / Designation)",
+   "page": 33,
+   "pdf_page": 33,
+   "event": "bench-biopak",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-biopak/page-33.png",
+   "bbox_pt": [
+    74.7,
+    528.8,
+    572.0,
+    670.9
+   ],
+   "px": [
+    1382,
+    396
+   ],
+   "rule_ids": [
+    "bench-biopak-parts-p33"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-biopak:bench-record-form",
+   "file": "figures/bench-biopak/bench-record-form.png",
+   "caption": "BIOPAK 240 R Bench Record (Optional)",
+   "page": 13,
+   "pdf_page": 13,
+   "event": "bench-biopak",
+   "kind": "form",
+   "caption_source": "printed",
+   "full_page": "figures/bench-biopak/page-13.png",
+   "bbox_pt": [
+    56.7,
+    156.3,
+    573.1,
+    601.4
+   ],
+   "px": [
+    1435,
+    1237
+   ],
+   "rule_ids": [
+    "bench-biopak-rules-governing-4"
+   ],
+   "section_ids": [
+    "bench-record",
+    "bench-record",
+    "bench-record"
+   ]
+  },
+  {
+   "id": "bench-biopak:judges-checklist",
+   "file": "figures/bench-biopak/judges-checklist.png",
+   "caption": "Judge’s Checklist",
+   "page": 34,
+   "pdf_page": 34,
+   "event": "bench-biopak",
+   "kind": "form",
+   "caption_source": "plain (section title; the form has no separate caption)",
+   "full_page": "figures/bench-biopak/page-34.png",
+   "bbox_pt": [
+    11.5,
+    30.3,
+    600.6,
+    705.2
+   ],
+   "px": [
+    1637,
+    1875
+   ],
+   "rule_ids": [
+    "bench-biopak-judges-checklist-1"
+   ],
+   "section_ids": [
+    "judges-checklist",
+    "judges-checklist",
+    "judges-checklist"
+   ]
+  },
+  {
+   "id": "bench-biopak:constant-flow-test-table",
+   "file": "figures/bench-biopak/constant-flow-test-table.png",
+   "caption": "Constant flow test: cylinder pressure (PSI) vs. flow (LPM) at 0-5280 ft. and +5280 ft.",
+   "page": 10,
+   "pdf_page": 10,
+   "event": "bench-biopak",
+   "kind": "table",
+   "caption_source": "plain (table has no printed caption)",
+   "full_page": null,
+   "bbox_pt": [
+    160.0,
+    469.2,
+    482.3,
+    565.1
+   ],
+   "px": [
+    896,
+    267
+   ],
+   "rule_ids": [
+    "bench-biopak-discount-interpretations-e-1"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p20-drawing",
+   "file": "figures/bench-bg4/parts-p20-drawing.png",
+   "caption": "BG-4",
+   "page": 20,
+   "pdf_page": 22,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-22.png",
+   "bbox_pt": [
+    142.5,
+    66.5,
+    458.6,
+    464.2
+   ],
+   "px": [
+    880,
+    1106
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p20"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p20-table",
+   "file": "figures/bench-bg4/parts-p20-table.png",
+   "caption": "BG-4 – Identification of Parts (Cons. No. / Designation)",
+   "page": 20,
+   "pdf_page": 22,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-22.png",
+   "bbox_pt": [
+    93.0,
+    459.4,
+    571.8,
+    681.3
+   ],
+   "px": [
+    1331,
+    617
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p20"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p21-drawing",
+   "file": "figures/bench-bg4/parts-p21-drawing.png",
+   "caption": "Cover",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-23.png",
+   "bbox_pt": [
+    105.8,
+    66.5,
+    506.0,
+    524.2
+   ],
+   "px": [
+    1113,
+    1272
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p21-table",
+   "file": "figures/bench-bg4/parts-p21-table.png",
+   "caption": "Cover – Identification of Parts (Cons. No. / Designation)",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-23.png",
+   "bbox_pt": [
+    87.6,
+    546.8,
+    520.8,
+    651.3
+   ],
+   "px": [
+    1204,
+    292
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p22-drawing",
+   "file": "figures/bench-bg4/parts-p22-drawing.png",
+   "caption": "Harness Assembly",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-24.png",
+   "bbox_pt": [
+    74.0,
+    66.5,
+    531.2,
+    457.1
+   ],
+   "px": [
+    1271,
+    1086
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p22-table",
+   "file": "figures/bench-bg4/parts-p22-table.png",
+   "caption": "Harness Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-24.png",
+   "bbox_pt": [
+    79.8,
+    535.9,
+    541.5,
+    657.6
+   ],
+   "px": [
+    1284,
+    339
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p23-drawing",
+   "file": "figures/bench-bg4/parts-p23-drawing.png",
+   "caption": "Breathing Hose Assembly",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-25.png",
+   "bbox_pt": [
+    231.3,
+    66.5,
+    420.7,
+    497.4
+   ],
+   "px": [
+    527,
+    1198
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p23-table",
+   "file": "figures/bench-bg4/parts-p23-table.png",
+   "caption": "Breathing Hose Assembly – Identification of Parts (Cons. No. / Designation)",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-25.png",
+   "bbox_pt": [
+    79.8,
+    508.3,
+    537.1,
+    644.9
+   ],
+   "px": [
+    1271,
+    381
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p24-drawing",
+   "file": "figures/bench-bg4/parts-p24-drawing.png",
+   "caption": "Cooling Canister (Revised Drawing)",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-26.png",
+   "bbox_pt": [
+    123.2,
+    62.5,
+    496.1,
+    547.3
+   ],
+   "px": [
+    1037,
+    1348
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p24-table",
+   "file": "figures/bench-bg4/parts-p24-table.png",
+   "caption": "Cooling Canister (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-26.png",
+   "bbox_pt": [
+    98.9,
+    538.3,
+    521.3,
+    643.9
+   ],
+   "px": [
+    1174,
+    294
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p25-drawing",
+   "file": "figures/bench-bg4/parts-p25-drawing.png",
+   "caption": "Drain/Relief/Minimum Valve Assembly (Revised Drawing)",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-27.png",
+   "bbox_pt": [
+    70.0,
+    78.6,
+    549.7,
+    423.2
+   ],
+   "px": [
+    1333,
+    958
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p25-table",
+   "file": "figures/bench-bg4/parts-p25-table.png",
+   "caption": "Drain/Relief/Minimum Valve Assembly (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-27.png",
+   "bbox_pt": [
+    66.3,
+    425.3,
+    520.2,
+    634.3
+   ],
+   "px": [
+    1261,
+    581
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p26-drawing",
+   "file": "figures/bench-bg4/parts-p26-drawing.png",
+   "caption": "Sentinel",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-28.png",
+   "bbox_pt": [
+    176.1,
+    66.5,
+    461.8,
+    495.5
+   ],
+   "px": [
+    794,
+    1193
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p26-table",
+   "file": "figures/bench-bg4/parts-p26-table.png",
+   "caption": "Sentinel – Identification of Parts (Cons. No. / Designation)",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-28.png",
+   "bbox_pt": [
+    78.4,
+    501.1,
+    526.8,
+    629.0
+   ],
+   "px": [
+    1247,
+    357
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p27-drawing",
+   "file": "figures/bench-bg4/parts-p27-drawing.png",
+   "caption": "Refillable Cartridge",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-29.png",
+   "bbox_pt": [
+    176.2,
+    66.5,
+    472.2,
+    510.9
+   ],
+   "px": [
+    823,
+    1236
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p27-table",
+   "file": "figures/bench-bg4/parts-p27-table.png",
+   "caption": "Refillable Cartridge – Identification of Parts (Cons. No. / Designation)",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-29.png",
+   "bbox_pt": [
+    79.8,
+    509.8,
+    565.3,
+    647.1
+   ],
+   "px": [
+    1350,
+    382
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p28-drawing",
+   "file": "figures/bench-bg4/parts-p28-drawing.png",
+   "caption": "FPS 7000 Mask",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-30.png",
+   "bbox_pt": [
+    66.0,
+    62.2,
+    531.8,
+    507.3
+   ],
+   "px": [
+    1295,
+    1238
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p28-table",
+   "file": "figures/bench-bg4/parts-p28-table.png",
+   "caption": "FPS 7000 Mask – Identification of Parts (Cons. No. / Designation)",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-30.png",
+   "bbox_pt": [
+    86.4,
+    498.3,
+    537.1,
+    696.5
+   ],
+   "px": [
+    1252,
+    551
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p29-drawing",
+   "file": "figures/bench-bg4/parts-p29-drawing.png",
+   "caption": "Oxygen Cylinder",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-31.png",
+   "bbox_pt": [
+    137.2,
+    66.5,
+    510.4,
+    520.5
+   ],
+   "px": [
+    1037,
+    1262
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p29-table",
+   "file": "figures/bench-bg4/parts-p29-table.png",
+   "caption": "Oxygen Cylinder – Identification of Parts (Cons. No. / Designation)",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-31.png",
+   "bbox_pt": [
+    75.1,
+    547.9,
+    538.4,
+    680.1
+   ],
+   "px": [
+    1288,
+    369
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p30-drawing",
+   "file": "figures/bench-bg4/parts-p30-drawing.png",
+   "caption": "Test Kit",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-bg4",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-32.png",
+   "bbox_pt": [
+    123.8,
+    27.3,
+    490.0,
+    467.4
+   ],
+   "px": [
+    1019,
+    1224
+   ],
+   "rule_ids": [
+    "bench-bg4-written-exam-1",
+    "bench-bg4-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:parts-p30-table",
+   "file": "figures/bench-bg4/parts-p30-table.png",
+   "caption": "Test Kit – Identification of Parts (Cons. No. / Designation)",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-bg4",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-bg4/page-32.png",
+   "bbox_pt": [
+    48.8,
+    463.9,
+    515.0,
+    656.7
+   ],
+   "px": [
+    1296,
+    537
+   ],
+   "rule_ids": [
+    "bench-bg4-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-bg4:bench-record-form",
+   "file": "figures/bench-bg4/bench-record-form.png",
+   "caption": "BG-4 Bench Record (Optional)",
+   "page": 14,
+   "pdf_page": 16,
+   "event": "bench-bg4",
+   "kind": "form",
+   "caption_source": "printed",
+   "full_page": "figures/bench-bg4/page-16.png",
+   "bbox_pt": [
+    65.7,
+    110.9,
+    537.1,
+    541.6
+   ],
+   "px": [
+    1310,
+    1197
+   ],
+   "rule_ids": [
+    "bench-bg4-rules-governing-4"
+   ],
+   "section_ids": [
+    "bench-record",
+    "bench-record",
+    "bench-record"
+   ]
+  },
+  {
+   "id": "bench-bg4:judges-checklist",
+   "file": "figures/bench-bg4/judges-checklist.png",
+   "caption": "Judge’s Checklist",
+   "page": 31,
+   "pdf_page": 33,
+   "event": "bench-bg4",
+   "kind": "form",
+   "caption_source": "plain (section title; the form has no separate caption)",
+   "full_page": "figures/bench-bg4/page-33.png",
+   "bbox_pt": [
+    29.5,
+    23.2,
+    582.6,
+    684.1
+   ],
+   "px": [
+    1537,
+    1837
+   ],
+   "rule_ids": [
+    "bench-bg4-judges-checklist-1"
+   ],
+   "section_ids": [
+    "judges-checklist",
+    "judges-checklist",
+    "judges-checklist"
+   ]
+  },
+  {
+   "id": "bench-proair:parts-p21-drawing",
+   "file": "figures/bench-proair/parts-p21-drawing.png",
+   "caption": "Refill Absorber",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-23.png",
+   "bbox_pt": [
+    105.8,
+    64.5,
+    505.8,
+    525.0
+   ],
+   "px": [
+    1112,
+    1280
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p21-table",
+   "file": "figures/bench-proair/parts-p21-table.png",
+   "caption": "Refill Absorber – Identification of Parts (Cons. No. / Designation)",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-23.png",
+   "bbox_pt": [
+    54.6,
+    535.7,
+    557.5,
+    695.2
+   ],
+   "px": [
+    1398,
+    443
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p21"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p22-drawing",
+   "file": "figures/bench-proair/parts-p22-drawing.png",
+   "caption": "Ice Cooler, Complete",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-24.png",
+   "bbox_pt": [
+    74.0,
+    60.8,
+    533.0,
+    455.8
+   ],
+   "px": [
+    1276,
+    1099
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p22-table",
+   "file": "figures/bench-proair/parts-p22-table.png",
+   "caption": "Ice Cooler, Complete – Identification of Parts (Cons. No. / Designation)",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-24.png",
+   "bbox_pt": [
+    179.3,
+    521.0,
+    440.3,
+    624.8
+   ],
+   "px": [
+    725,
+    289
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p22"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p23-drawing",
+   "file": "figures/bench-proair/parts-p23-drawing.png",
+   "caption": "Breathing Connection",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-25.png",
+   "bbox_pt": [
+    153.2,
+    60.8,
+    466.4,
+    550.2
+   ],
+   "px": [
+    871,
+    1361
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p23-table",
+   "file": "figures/bench-proair/parts-p23-table.png",
+   "caption": "Breathing Connection – Identification of Parts (Cons. No. / Designation)",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-25.png",
+   "bbox_pt": [
+    66.2,
+    541.2,
+    520.1,
+    691.9
+   ],
+   "px": [
+    1261,
+    419
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p23"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p24-drawing",
+   "file": "figures/bench-proair/parts-p24-drawing.png",
+   "caption": "Breathing Bag",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-26.png",
+   "bbox_pt": [
+    176.1,
+    64.9,
+    462.1,
+    496.6
+   ],
+   "px": [
+    795,
+    1200
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p24-table",
+   "file": "figures/bench-proair/parts-p24-table.png",
+   "caption": "Breathing Bag – Identification of Parts (Cons. No. / Designation)",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-26.png",
+   "bbox_pt": [
+    78.4,
+    490.3,
+    530.6,
+    635.5
+   ],
+   "px": [
+    1257,
+    404
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p24"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p25-drawing",
+   "file": "figures/bench-proair/parts-p25-drawing.png",
+   "caption": "Cylinder Holder",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-27.png",
+   "bbox_pt": [
+    136.1,
+    64.5,
+    457.2,
+    411.0
+   ],
+   "px": [
+    893,
+    963
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p25-table",
+   "file": "figures/bench-proair/parts-p25-table.png",
+   "caption": "Cylinder Holder – Identification of Parts (Cons. No. / Designation)",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-27.png",
+   "bbox_pt": [
+    156.2,
+    489.1,
+    436.4,
+    604.3
+   ],
+   "px": [
+    779,
+    321
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p25"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p26-drawing",
+   "file": "figures/bench-proair/parts-p26-drawing.png",
+   "caption": "Spring Bridge",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-28.png",
+   "bbox_pt": [
+    176.1,
+    60.6,
+    462.1,
+    489.5
+   ],
+   "px": [
+    795,
+    1192
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p26-table",
+   "file": "figures/bench-proair/parts-p26-table.png",
+   "caption": "Spring Bridge – Identification of Parts (Cons. No. / Designation)",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-28.png",
+   "bbox_pt": [
+    43.0,
+    480.5,
+    559.7,
+    620.0
+   ],
+   "px": [
+    1436,
+    389
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p26"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p27-drawing",
+   "file": "figures/bench-proair/parts-p27-drawing.png",
+   "caption": "Waist Belt",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-29.png",
+   "bbox_pt": [
+    175.9,
+    81.4,
+    468.6,
+    432.1
+   ],
+   "px": [
+    814,
+    975
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p27-table",
+   "file": "figures/bench-proair/parts-p27-table.png",
+   "caption": "Waist Belt – Identification of Parts (Cons. No. / Designation)",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-29.png",
+   "bbox_pt": [
+    168.1,
+    518.4,
+    424.7,
+    633.6
+   ],
+   "px": [
+    713,
+    320
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p27"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p28-drawing",
+   "file": "figures/bench-proair/parts-p28-drawing.png",
+   "caption": "Shoulder Harness",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-30.png",
+   "bbox_pt": [
+    175.9,
+    81.4,
+    477.1,
+    404.3
+   ],
+   "px": [
+    838,
+    897
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p28-table",
+   "file": "figures/bench-proair/parts-p28-table.png",
+   "caption": "Shoulder Harness – Identification of Parts (Cons. No. / Designation)",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-30.png",
+   "bbox_pt": [
+    138.8,
+    431.9,
+    453.8,
+    587.8
+   ],
+   "px": [
+    876,
+    434
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p28"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p29-drawing",
+   "file": "figures/bench-proair/parts-p29-drawing.png",
+   "caption": "Electronics",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-31.png",
+   "bbox_pt": [
+    176.1,
+    60.6,
+    462.1,
+    492.8
+   ],
+   "px": [
+    795,
+    1201
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p29-table",
+   "file": "figures/bench-proair/parts-p29-table.png",
+   "caption": "Electronics – Identification of Parts (Cons. No. / Designation)",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-31.png",
+   "bbox_pt": [
+    170.3,
+    554.2,
+    423.1,
+    672.2
+   ],
+   "px": [
+    703,
+    329
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p29"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p30-drawing",
+   "file": "figures/bench-proair/parts-p30-drawing.png",
+   "caption": "Housing – Upper Shell",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-32.png",
+   "bbox_pt": [
+    153.4,
+    60.4,
+    439.5,
+    403.9
+   ],
+   "px": [
+    795,
+    955
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p30-table",
+   "file": "figures/bench-proair/parts-p30-table.png",
+   "caption": "Housing – Upper Shell – Identification of Parts (Cons. No. / Designation)",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-32.png",
+   "bbox_pt": [
+    170.5,
+    462.7,
+    422.6,
+    592.9
+   ],
+   "px": [
+    701,
+    362
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p30"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p31-drawing",
+   "file": "figures/bench-proair/parts-p31-drawing.png",
+   "caption": "Minimum Valve",
+   "page": 31,
+   "pdf_page": 33,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-33.png",
+   "bbox_pt": [
+    176.1,
+    60.4,
+    469.6,
+    489.0
+   ],
+   "px": [
+    816,
+    1192
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p31"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p31-table",
+   "file": "figures/bench-proair/parts-p31-table.png",
+   "caption": "Minimum Valve – Identification of Parts (Cons. No. / Designation)",
+   "page": 31,
+   "pdf_page": 33,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-33.png",
+   "bbox_pt": [
+    170.3,
+    480.0,
+    423.1,
+    608.6
+   ],
+   "px": [
+    703,
+    358
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p31"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p32-drawing",
+   "file": "figures/bench-proair/parts-p32-drawing.png",
+   "caption": "Pressure Reducer",
+   "page": 32,
+   "pdf_page": 34,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-34.png",
+   "bbox_pt": [
+    176.1,
+    60.4,
+    475.9,
+    489.0
+   ],
+   "px": [
+    834,
+    1192
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p32"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p32-table",
+   "file": "figures/bench-proair/parts-p32-table.png",
+   "caption": "Pressure Reducer – Identification of Parts (Cons. No. / Designation)",
+   "page": 32,
+   "pdf_page": 34,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-34.png",
+   "bbox_pt": [
+    51.7,
+    480.0,
+    522.0,
+    640.1
+   ],
+   "px": [
+    1307,
+    445
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p32"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p33-drawing",
+   "file": "figures/bench-proair/parts-p33-drawing.png",
+   "caption": "Pneumatics",
+   "page": 33,
+   "pdf_page": 35,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-35.png",
+   "bbox_pt": [
+    176.1,
+    75.4,
+    471.7,
+    527.4
+   ],
+   "px": [
+    822,
+    1256
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p33"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p33-table",
+   "file": "figures/bench-proair/parts-p33-table.png",
+   "caption": "Pneumatics – Identification of Parts (Cons. No. / Designation)",
+   "page": 33,
+   "pdf_page": 35,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-35.png",
+   "bbox_pt": [
+    168.5,
+    518.4,
+    424.8,
+    617.9
+   ],
+   "px": [
+    712,
+    277
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p33"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p34-drawing",
+   "file": "figures/bench-proair/parts-p34-drawing.png",
+   "caption": "Tubes/Air Lines",
+   "page": 34,
+   "pdf_page": 36,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-36.png",
+   "bbox_pt": [
+    176.1,
+    60.4,
+    466.3,
+    489.0
+   ],
+   "px": [
+    807,
+    1192
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p34"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p34-table",
+   "file": "figures/bench-proair/parts-p34-table.png",
+   "caption": "Tubes/Air Lines – Identification of Parts (Cons. No. / Designation)",
+   "page": 34,
+   "pdf_page": 36,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-36.png",
+   "bbox_pt": [
+    51.7,
+    480.0,
+    517.4,
+    675.4
+   ],
+   "px": [
+    1295,
+    543
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p34"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p35-drawing",
+   "file": "figures/bench-proair/parts-p35-drawing.png",
+   "caption": "Connect ECU (Electronic Control Unit)",
+   "page": 35,
+   "pdf_page": 37,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-37.png",
+   "bbox_pt": [
+    176.1,
+    60.4,
+    480.0,
+    489.0
+   ],
+   "px": [
+    845,
+    1192
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p35"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p35-table",
+   "file": "figures/bench-proair/parts-p35-table.png",
+   "caption": "Connect ECU (Electronic Control Unit) – Identification of Parts (Cons. No. / Designation)",
+   "page": 35,
+   "pdf_page": 37,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-37.png",
+   "bbox_pt": [
+    155.4,
+    480.0,
+    437.8,
+    642.0
+   ],
+   "px": [
+    785,
+    451
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p35"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p36-drawing",
+   "file": "figures/bench-proair/parts-p36-drawing.png",
+   "caption": "FPS 7000 Mask",
+   "page": 36,
+   "pdf_page": 38,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-38.png",
+   "bbox_pt": [
+    66.0,
+    60.8,
+    558.2,
+    507.2
+   ],
+   "px": [
+    1368,
+    1242
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p36"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p36-table",
+   "file": "figures/bench-proair/parts-p36-table.png",
+   "caption": "FPS 7000 Mask – Identification of Parts (Cons. No. / Designation)",
+   "page": 36,
+   "pdf_page": 38,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-38.png",
+   "bbox_pt": [
+    86.4,
+    498.2,
+    565.6,
+    693.5
+   ],
+   "px": [
+    1331,
+    543
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p36"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p37-drawing",
+   "file": "figures/bench-proair/parts-p37-drawing.png",
+   "caption": "Oxygen Cylinder",
+   "page": 37,
+   "pdf_page": 39,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-39.png",
+   "bbox_pt": [
+    137.2,
+    64.9,
+    510.2,
+    521.3
+   ],
+   "px": [
+    1037,
+    1269
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p37"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p37-table",
+   "file": "figures/bench-proair/parts-p37-table.png",
+   "caption": "Oxygen Cylinder – Identification of Parts (Cons. No. / Designation)",
+   "page": 37,
+   "pdf_page": 39,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-39.png",
+   "bbox_pt": [
+    182.9,
+    520.8,
+    437.2,
+    653.4
+   ],
+   "px": [
+    707,
+    369
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p37"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p38-drawing",
+   "file": "figures/bench-proair/parts-p38-drawing.png",
+   "caption": "Test set / tool kit parts (no assembly title printed)",
+   "page": 38,
+   "pdf_page": 40,
+   "event": "bench-proair",
+   "kind": "parts-drawing",
+   "caption_source": "plain (no title printed)",
+   "full_page": "figures/bench-proair/page-40.png",
+   "bbox_pt": [
+    56.4,
+    55.7,
+    536.5,
+    423.2
+   ],
+   "px": [
+    1335,
+    1022
+   ],
+   "rule_ids": [
+    "bench-proair-written-exam-1",
+    "bench-proair-parts-p38"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:parts-p38-table",
+   "file": "figures/bench-proair/parts-p38-table.png",
+   "caption": "Test set / tool kit parts (no assembly title printed) – Identification of Parts (Cons. No. / Designation)",
+   "page": 38,
+   "pdf_page": 40,
+   "event": "bench-proair",
+   "kind": "parts-table",
+   "caption_source": "assembly title + table header",
+   "full_page": "figures/bench-proair/page-40.png",
+   "bbox_pt": [
+    60.6,
+    414.2,
+    580.6,
+    684.5
+   ],
+   "px": [
+    1445,
+    752
+   ],
+   "rule_ids": [
+    "bench-proair-parts-p38"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "bench-proair:bench-record-form",
+   "file": "figures/bench-proair/bench-record-form.png",
+   "caption": "BG-ProAir Bench Record (Optional)",
+   "page": 15,
+   "pdf_page": 17,
+   "event": "bench-proair",
+   "kind": "form",
+   "caption_source": "printed",
+   "full_page": "figures/bench-proair/page-17.png",
+   "bbox_pt": [
+    65.6,
+    108.1,
+    537.0,
+    540.6
+   ],
+   "px": [
+    1310,
+    1202
+   ],
+   "rule_ids": [
+    "bench-proair-rules-governing-4"
+   ],
+   "section_ids": [
+    "bench-record",
+    "bench-record",
+    "bench-record"
+   ]
+  },
+  {
+   "id": "bench-proair:judges-checklist",
+   "file": "figures/bench-proair/judges-checklist.png",
+   "caption": "Judge’s Checklist",
+   "page": 39,
+   "pdf_page": 41,
+   "event": "bench-proair",
+   "kind": "form",
+   "caption_source": "plain (section title; the form has no separate caption)",
+   "full_page": "figures/bench-proair/page-41.png",
+   "bbox_pt": [
+    29.5,
+    42.6,
+    583.9,
+    698.9
+   ],
+   "px": [
+    1541,
+    1824
+   ],
+   "rule_ids": [
+    "bench-proair-judges-checklist-1"
+   ],
+   "section_ids": [
+    "judges-checklist",
+    "judges-checklist",
+    "judges-checklist"
+   ]
+  },
+  {
+   "id": "preshift:danger-sign-example",
+   "file": "figures/preshift/danger-sign-example.png",
+   "caption": "EXAMPLE OF DANGER SIGN",
+   "page": 5,
+   "pdf_page": 5,
+   "event": "preshift",
+   "kind": "figure",
+   "caption_source": "printed",
+   "full_page": null,
+   "bbox_pt": [
+    100.3,
+    169.5,
+    446.9,
+    257.3
+   ],
+   "px": [
+    964,
+    245
+   ],
+   "rule_ids": [
+    "preshift-rules-governing-13",
+    "preshift-field-scorecard-4"
+   ],
+   "section_ids": []
+  },
+  {
+   "id": "preshift:record-report",
+   "file": "figures/preshift/record-report.png",
+   "caption": "PRESHIFT RECORD REPORT (Attachment #1)",
+   "page": 21,
+   "pdf_page": 21,
+   "event": "preshift",
+   "kind": "form",
+   "caption_source": "printed (\"ATTACHMENT #1\" / \"PRESHIFT RECORD REPORT\")",
+   "full_page": "figures/preshift/page-21.png",
+   "bbox_pt": [
+    44.4,
+    43.7,
+    564.9,
+    707.1
+   ],
+   "px": [
+    1447,
+    1844
+   ],
+   "rule_ids": [
+    "preshift-rules-governing-1",
+    "preshift-rules-governing-4",
+    "preshift-rules-governing-15",
+    "preshift-rules-governing-17",
+    "preshift-rules-governing-19",
+    "preshift-preshift-record-1"
+   ],
+   "section_ids": [
+    "record-report"
+   ]
+  },
+  {
+   "id": "bench-bg4:page-16",
+   "file": "figures/bench-bg4/page-16.png",
+   "caption": "Rulebook page 14",
+   "page": 14,
+   "pdf_page": 16,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:bench-record-form"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-22",
+   "file": "figures/bench-bg4/page-22.png",
+   "caption": "Rulebook page 20",
+   "page": 20,
+   "pdf_page": 22,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p20-drawing",
+    "bench-bg4:parts-p20-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-23",
+   "file": "figures/bench-bg4/page-23.png",
+   "caption": "Rulebook page 21",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p21-drawing",
+    "bench-bg4:parts-p21-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-24",
+   "file": "figures/bench-bg4/page-24.png",
+   "caption": "Rulebook page 22",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p22-drawing",
+    "bench-bg4:parts-p22-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-25",
+   "file": "figures/bench-bg4/page-25.png",
+   "caption": "Rulebook page 23",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p23-drawing",
+    "bench-bg4:parts-p23-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-26",
+   "file": "figures/bench-bg4/page-26.png",
+   "caption": "Rulebook page 24",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p24-drawing",
+    "bench-bg4:parts-p24-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-27",
+   "file": "figures/bench-bg4/page-27.png",
+   "caption": "Rulebook page 25",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p25-drawing",
+    "bench-bg4:parts-p25-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-28",
+   "file": "figures/bench-bg4/page-28.png",
+   "caption": "Rulebook page 26",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p26-drawing",
+    "bench-bg4:parts-p26-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-29",
+   "file": "figures/bench-bg4/page-29.png",
+   "caption": "Rulebook page 27",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p27-drawing",
+    "bench-bg4:parts-p27-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-30",
+   "file": "figures/bench-bg4/page-30.png",
+   "caption": "Rulebook page 28",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p28-drawing",
+    "bench-bg4:parts-p28-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-31",
+   "file": "figures/bench-bg4/page-31.png",
+   "caption": "Rulebook page 29",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p29-drawing",
+    "bench-bg4:parts-p29-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-32",
+   "file": "figures/bench-bg4/page-32.png",
+   "caption": "Rulebook page 30",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:parts-p30-drawing",
+    "bench-bg4:parts-p30-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-bg4:page-33",
+   "file": "figures/bench-bg4/page-33.png",
+   "caption": "Rulebook page 31",
+   "page": 31,
+   "pdf_page": 33,
+   "event": "bench-bg4",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-bg4:judges-checklist"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-13",
+   "file": "figures/bench-biopak/page-13.png",
+   "caption": "Rulebook page 13",
+   "page": 13,
+   "pdf_page": 13,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:bench-record-form"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-21",
+   "file": "figures/bench-biopak/page-21.png",
+   "caption": "Rulebook page 21",
+   "page": 21,
+   "pdf_page": 21,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p21-drawing",
+    "bench-biopak:parts-p21-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-22",
+   "file": "figures/bench-biopak/page-22.png",
+   "caption": "Rulebook page 22",
+   "page": 22,
+   "pdf_page": 22,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p22-drawing",
+    "bench-biopak:parts-p22-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-23",
+   "file": "figures/bench-biopak/page-23.png",
+   "caption": "Rulebook page 23",
+   "page": 23,
+   "pdf_page": 23,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p23-drawing",
+    "bench-biopak:parts-p23-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-24",
+   "file": "figures/bench-biopak/page-24.png",
+   "caption": "Rulebook page 24",
+   "page": 24,
+   "pdf_page": 24,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p24-drawing",
+    "bench-biopak:parts-p24-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-25",
+   "file": "figures/bench-biopak/page-25.png",
+   "caption": "Rulebook page 25",
+   "page": 25,
+   "pdf_page": 25,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p25-drawing",
+    "bench-biopak:parts-p25-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-26",
+   "file": "figures/bench-biopak/page-26.png",
+   "caption": "Rulebook page 26",
+   "page": 26,
+   "pdf_page": 26,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p26-drawing",
+    "bench-biopak:parts-p26-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-27",
+   "file": "figures/bench-biopak/page-27.png",
+   "caption": "Rulebook page 27",
+   "page": 27,
+   "pdf_page": 27,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p27-drawing",
+    "bench-biopak:parts-p27-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-28",
+   "file": "figures/bench-biopak/page-28.png",
+   "caption": "Rulebook page 28",
+   "page": 28,
+   "pdf_page": 28,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p28-drawing",
+    "bench-biopak:parts-p28-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-29",
+   "file": "figures/bench-biopak/page-29.png",
+   "caption": "Rulebook page 29",
+   "page": 29,
+   "pdf_page": 29,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p29-drawing",
+    "bench-biopak:parts-p29-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-30",
+   "file": "figures/bench-biopak/page-30.png",
+   "caption": "Rulebook page 30",
+   "page": 30,
+   "pdf_page": 30,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p30-drawing",
+    "bench-biopak:parts-p30-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-31",
+   "file": "figures/bench-biopak/page-31.png",
+   "caption": "Rulebook page 31",
+   "page": 31,
+   "pdf_page": 31,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p31-drawing",
+    "bench-biopak:parts-p31-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-32",
+   "file": "figures/bench-biopak/page-32.png",
+   "caption": "Rulebook page 32",
+   "page": 32,
+   "pdf_page": 32,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p32-drawing",
+    "bench-biopak:parts-p32-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-33",
+   "file": "figures/bench-biopak/page-33.png",
+   "caption": "Rulebook page 33",
+   "page": 33,
+   "pdf_page": 33,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:parts-p33-drawing",
+    "bench-biopak:parts-p33-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-biopak:page-34",
+   "file": "figures/bench-biopak/page-34.png",
+   "caption": "Rulebook page 34",
+   "page": 34,
+   "pdf_page": 34,
+   "event": "bench-biopak",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-biopak:judges-checklist"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-17",
+   "file": "figures/bench-proair/page-17.png",
+   "caption": "Rulebook page 15",
+   "page": 15,
+   "pdf_page": 17,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:bench-record-form"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-23",
+   "file": "figures/bench-proair/page-23.png",
+   "caption": "Rulebook page 21",
+   "page": 21,
+   "pdf_page": 23,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p21-drawing",
+    "bench-proair:parts-p21-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-24",
+   "file": "figures/bench-proair/page-24.png",
+   "caption": "Rulebook page 22",
+   "page": 22,
+   "pdf_page": 24,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p22-drawing",
+    "bench-proair:parts-p22-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-25",
+   "file": "figures/bench-proair/page-25.png",
+   "caption": "Rulebook page 23",
+   "page": 23,
+   "pdf_page": 25,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p23-drawing",
+    "bench-proair:parts-p23-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-26",
+   "file": "figures/bench-proair/page-26.png",
+   "caption": "Rulebook page 24",
+   "page": 24,
+   "pdf_page": 26,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p24-drawing",
+    "bench-proair:parts-p24-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-27",
+   "file": "figures/bench-proair/page-27.png",
+   "caption": "Rulebook page 25",
+   "page": 25,
+   "pdf_page": 27,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p25-drawing",
+    "bench-proair:parts-p25-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-28",
+   "file": "figures/bench-proair/page-28.png",
+   "caption": "Rulebook page 26",
+   "page": 26,
+   "pdf_page": 28,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p26-drawing",
+    "bench-proair:parts-p26-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-29",
+   "file": "figures/bench-proair/page-29.png",
+   "caption": "Rulebook page 27",
+   "page": 27,
+   "pdf_page": 29,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p27-drawing",
+    "bench-proair:parts-p27-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-30",
+   "file": "figures/bench-proair/page-30.png",
+   "caption": "Rulebook page 28",
+   "page": 28,
+   "pdf_page": 30,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p28-drawing",
+    "bench-proair:parts-p28-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-31",
+   "file": "figures/bench-proair/page-31.png",
+   "caption": "Rulebook page 29",
+   "page": 29,
+   "pdf_page": 31,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p29-drawing",
+    "bench-proair:parts-p29-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-32",
+   "file": "figures/bench-proair/page-32.png",
+   "caption": "Rulebook page 30",
+   "page": 30,
+   "pdf_page": 32,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p30-drawing",
+    "bench-proair:parts-p30-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-33",
+   "file": "figures/bench-proair/page-33.png",
+   "caption": "Rulebook page 31",
+   "page": 31,
+   "pdf_page": 33,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p31-drawing",
+    "bench-proair:parts-p31-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-34",
+   "file": "figures/bench-proair/page-34.png",
+   "caption": "Rulebook page 32",
+   "page": 32,
+   "pdf_page": 34,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p32-drawing",
+    "bench-proair:parts-p32-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-35",
+   "file": "figures/bench-proair/page-35.png",
+   "caption": "Rulebook page 33",
+   "page": 33,
+   "pdf_page": 35,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p33-drawing",
+    "bench-proair:parts-p33-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-36",
+   "file": "figures/bench-proair/page-36.png",
+   "caption": "Rulebook page 34",
+   "page": 34,
+   "pdf_page": 36,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p34-drawing",
+    "bench-proair:parts-p34-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-37",
+   "file": "figures/bench-proair/page-37.png",
+   "caption": "Rulebook page 35",
+   "page": 35,
+   "pdf_page": 37,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p35-drawing",
+    "bench-proair:parts-p35-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-38",
+   "file": "figures/bench-proair/page-38.png",
+   "caption": "Rulebook page 36",
+   "page": 36,
+   "pdf_page": 38,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p36-drawing",
+    "bench-proair:parts-p36-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-39",
+   "file": "figures/bench-proair/page-39.png",
+   "caption": "Rulebook page 37",
+   "page": 37,
+   "pdf_page": 39,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p37-drawing",
+    "bench-proair:parts-p37-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-40",
+   "file": "figures/bench-proair/page-40.png",
+   "caption": "Rulebook page 38",
+   "page": 38,
+   "pdf_page": 40,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:parts-p38-drawing",
+    "bench-proair:parts-p38-table"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "bench-proair:page-41",
+   "file": "figures/bench-proair/page-41.png",
+   "caption": "Rulebook page 39",
+   "page": 39,
+   "pdf_page": 41,
+   "event": "bench-proair",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "bench-proair:judges-checklist"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-13",
+   "file": "figures/first-aid/page-13.png",
+   "caption": "Rulebook page 10",
+   "page": 10,
+   "pdf_page": 13,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:start-triage-algorithm"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-14",
+   "file": "figures/first-aid/page-14.png",
+   "caption": "Rulebook page 11",
+   "page": 11,
+   "pdf_page": 14,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-22",
+   "file": "figures/first-aid/page-22.png",
+   "caption": "Rulebook page 19",
+   "page": 19,
+   "pdf_page": 22,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-01-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-23",
+   "file": "figures/first-aid/page-23.png",
+   "caption": "Rulebook page 20",
+   "page": 20,
+   "pdf_page": 23,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-02-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-24",
+   "file": "figures/first-aid/page-24.png",
+   "caption": "Rulebook page 21",
+   "page": 21,
+   "pdf_page": 24,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-02-2",
+    "first-aid:skill-03-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-25",
+   "file": "figures/first-aid/page-25.png",
+   "caption": "Rulebook page 22",
+   "page": 22,
+   "pdf_page": 25,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-03-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-26",
+   "file": "figures/first-aid/page-26.png",
+   "caption": "Rulebook page 23",
+   "page": 23,
+   "pdf_page": 26,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-04-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-27",
+   "file": "figures/first-aid/page-27.png",
+   "caption": "Rulebook page 24",
+   "page": 24,
+   "pdf_page": 27,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-04-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-28",
+   "file": "figures/first-aid/page-28.png",
+   "caption": "Rulebook page 25",
+   "page": 25,
+   "pdf_page": 28,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-04-3"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-32",
+   "file": "figures/first-aid/page-32.png",
+   "caption": "Rulebook page 29",
+   "page": 29,
+   "pdf_page": 32,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-05-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-33",
+   "file": "figures/first-aid/page-33.png",
+   "caption": "Rulebook page 30",
+   "page": 30,
+   "pdf_page": 33,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-06-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-34",
+   "file": "figures/first-aid/page-34.png",
+   "caption": "Rulebook page 31",
+   "page": 31,
+   "pdf_page": 34,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-06-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-35",
+   "file": "figures/first-aid/page-35.png",
+   "caption": "Rulebook page 32",
+   "page": 32,
+   "pdf_page": 35,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-07-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-36",
+   "file": "figures/first-aid/page-36.png",
+   "caption": "Rulebook page 33",
+   "page": 33,
+   "pdf_page": 36,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-08-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-37",
+   "file": "figures/first-aid/page-37.png",
+   "caption": "Rulebook page 34",
+   "page": 34,
+   "pdf_page": 37,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-09-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-38",
+   "file": "figures/first-aid/page-38.png",
+   "caption": "Rulebook page 35",
+   "page": 35,
+   "pdf_page": 38,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-10-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-39",
+   "file": "figures/first-aid/page-39.png",
+   "caption": "Rulebook page 36",
+   "page": 36,
+   "pdf_page": 39,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-10-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-40",
+   "file": "figures/first-aid/page-40.png",
+   "caption": "Rulebook page 37",
+   "page": 37,
+   "pdf_page": 40,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-11-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-41",
+   "file": "figures/first-aid/page-41.png",
+   "caption": "Rulebook page 38",
+   "page": 38,
+   "pdf_page": 41,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-12-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-42",
+   "file": "figures/first-aid/page-42.png",
+   "caption": "Rulebook page 39",
+   "page": 39,
+   "pdf_page": 42,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-13-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-43",
+   "file": "figures/first-aid/page-43.png",
+   "caption": "Rulebook page 40",
+   "page": 40,
+   "pdf_page": 43,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-13-2",
+    "first-aid:skill-14-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-44",
+   "file": "figures/first-aid/page-44.png",
+   "caption": "Rulebook page 41",
+   "page": 41,
+   "pdf_page": 44,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-15-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-45",
+   "file": "figures/first-aid/page-45.png",
+   "caption": "Rulebook page 42",
+   "page": 42,
+   "pdf_page": 45,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-15-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-46",
+   "file": "figures/first-aid/page-46.png",
+   "caption": "Rulebook page 43",
+   "page": 43,
+   "pdf_page": 46,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-16-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-47",
+   "file": "figures/first-aid/page-47.png",
+   "caption": "Rulebook page 44",
+   "page": 44,
+   "pdf_page": 47,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-17-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-48",
+   "file": "figures/first-aid/page-48.png",
+   "caption": "Rulebook page 45",
+   "page": 45,
+   "pdf_page": 48,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-18-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-49",
+   "file": "figures/first-aid/page-49.png",
+   "caption": "Rulebook page 46",
+   "page": 46,
+   "pdf_page": 49,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-19-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-50",
+   "file": "figures/first-aid/page-50.png",
+   "caption": "Rulebook page 47",
+   "page": 47,
+   "pdf_page": 50,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-20-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-51",
+   "file": "figures/first-aid/page-51.png",
+   "caption": "Rulebook page 48",
+   "page": 48,
+   "pdf_page": 51,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-21-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-52",
+   "file": "figures/first-aid/page-52.png",
+   "caption": "Rulebook page 49",
+   "page": 49,
+   "pdf_page": 52,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-22-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-53",
+   "file": "figures/first-aid/page-53.png",
+   "caption": "Rulebook page 50",
+   "page": 50,
+   "pdf_page": 53,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-23-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-54",
+   "file": "figures/first-aid/page-54.png",
+   "caption": "Rulebook page 51",
+   "page": 51,
+   "pdf_page": 54,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-24-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-55",
+   "file": "figures/first-aid/page-55.png",
+   "caption": "Rulebook page 52",
+   "page": 52,
+   "pdf_page": 55,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-25-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-56",
+   "file": "figures/first-aid/page-56.png",
+   "caption": "Rulebook page 53",
+   "page": 53,
+   "pdf_page": 56,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-26-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-57",
+   "file": "figures/first-aid/page-57.png",
+   "caption": "Rulebook page 54",
+   "page": 54,
+   "pdf_page": 57,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-26-2"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-58",
+   "file": "figures/first-aid/page-58.png",
+   "caption": "Rulebook page 55",
+   "page": 55,
+   "pdf_page": 58,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-27-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-59",
+   "file": "figures/first-aid/page-59.png",
+   "caption": "Rulebook page 56",
+   "page": 56,
+   "pdf_page": 59,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-28-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-60",
+   "file": "figures/first-aid/page-60.png",
+   "caption": "Rulebook page 57",
+   "page": 57,
+   "pdf_page": 60,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-29-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "first-aid:page-61",
+   "file": "figures/first-aid/page-61.png",
+   "caption": "Rulebook page 58",
+   "page": 58,
+   "pdf_page": 61,
+   "event": "first-aid",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "first-aid:skill-30-1"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-43",
+   "file": "figures/page-43.png",
+   "caption": "Rulebook page 41",
+   "page": 41,
+   "pdf_page": 43,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-1a"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-44",
+   "file": "figures/page-44.png",
+   "caption": "Rulebook page 42",
+   "page": 42,
+   "pdf_page": 44,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-1b"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-45",
+   "file": "figures/page-45.png",
+   "caption": "Rulebook page 43",
+   "page": 43,
+   "pdf_page": 45,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-2a"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-46",
+   "file": "figures/page-46.png",
+   "caption": "Rulebook page 44",
+   "page": 44,
+   "pdf_page": 46,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-2b"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-47",
+   "file": "figures/page-47.png",
+   "caption": "Rulebook page 45",
+   "page": 45,
+   "pdf_page": 47,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-3"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-48",
+   "file": "figures/page-48.png",
+   "caption": "Rulebook page 46",
+   "page": 46,
+   "pdf_page": 48,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-4"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-49",
+   "file": "figures/page-49.png",
+   "caption": "Rulebook page 47",
+   "page": 47,
+   "pdf_page": 49,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-5"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-50",
+   "file": "figures/page-50.png",
+   "caption": "Rulebook page 48",
+   "page": 48,
+   "pdf_page": 50,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-6"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-51",
+   "file": "figures/page-51.png",
+   "caption": "Rulebook page 49",
+   "page": 49,
+   "pdf_page": 51,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-7"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-52",
+   "file": "figures/page-52.png",
+   "caption": "Rulebook page 50",
+   "page": 50,
+   "pdf_page": 52,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:fig-8"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-53",
+   "file": "figures/page-53.png",
+   "caption": "Rulebook page 51",
+   "page": 51,
+   "pdf_page": 53,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:map-legend-1",
+    "mine-rescue:symbol-permanent-stopping-intact-airtight",
+    "mine-rescue:symbol-permanent-stopping-not-intact-not",
+    "mine-rescue:symbol-temporary-stopping-intact-airtight",
+    "mine-rescue:symbol-temporary-stopping-not-intact-not",
+    "mine-rescue:symbol-seal"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-54",
+   "file": "figures/page-54.png",
+   "caption": "Rulebook page 52",
+   "page": 52,
+   "pdf_page": 54,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:map-legend-2",
+    "mine-rescue:symbol-door",
+    "mine-rescue:symbol-line-curtain",
+    "mine-rescue:symbol-line-curtain-installed",
+    "mine-rescue:symbol-diagonal",
+    "mine-rescue:symbol-barricade",
+    "mine-rescue:symbol-caved"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-55",
+   "file": "figures/page-55.png",
+   "caption": "Rulebook page 53",
+   "page": 53,
+   "pdf_page": 55,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:map-legend-3",
+    "mine-rescue:symbol-unsafe-roof",
+    "mine-rescue:symbol-unsafe-rib-or-overhanging-brow",
+    "mine-rescue:symbol-water",
+    "mine-rescue:symbol-smoke",
+    "mine-rescue:symbol-body",
+    "mine-rescue:symbol-live-person",
+    "mine-rescue:symbol-brattice-cloth",
+    "mine-rescue:symbol-placard-indicating-gas-mixture"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-56",
+   "file": "figures/page-56.png",
+   "caption": "Rulebook page 54",
+   "page": 54,
+   "pdf_page": 56,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:map-legend-4",
+    "mine-rescue:symbol-air-movement",
+    "mine-rescue:symbol-fire",
+    "mine-rescue:symbol-farthest-point-of-advance-in-entry-room",
+    "mine-rescue:symbol-fan",
+    "mine-rescue:symbol-overcast-or-undercast",
+    "mine-rescue:symbol-location-of-any-other-objects-conditions",
+    "mine-rescue:symbol-any-roof-support-installed-by-the-team"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "mine-rescue:page-57",
+   "file": "figures/page-57.png",
+   "caption": "Rulebook page 55",
+   "page": 55,
+   "pdf_page": 57,
+   "event": "mine-rescue",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    935,
+    1210
+   ],
+   "crops": [
+    "mine-rescue:map-legend-5",
+    "mine-rescue:symbol-refuge-alternative"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  },
+  {
+   "id": "preshift:page-21",
+   "file": "figures/preshift/page-21.png",
+   "caption": "Rulebook page 21",
+   "page": 21,
+   "pdf_page": 21,
+   "event": "preshift",
+   "kind": "page",
+   "caption_source": "plain",
+   "full_page": null,
+   "bbox_pt": null,
+   "px": [
+    850,
+    1100
+   ],
+   "crops": [
+    "preshift:record-report"
+   ],
+   "rule_ids": [],
+   "section_ids": [],
+   "note": "Full-page image kept for the existing \"images\" fields; not added to rule \"figures\" (the crops are)."
+  }
+ ]
+}

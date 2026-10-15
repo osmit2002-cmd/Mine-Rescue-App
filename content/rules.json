@@ -157,7 +157,17 @@
       6
      ],
      "id": "rules-governing-6",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:radio-frequencies",
+       "file": "figures/mine-rescue/radio-frequencies.png",
+       "caption": "National Mine Rescue Contest Radio Frequencies",
+       "page": 6,
+       "pdf_page": 8,
+       "kind": "table"
+      }
+     ]
     },
     {
      "number": 7,
@@ -391,7 +401,65 @@
       13
      ],
      "id": "a-card-5",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:map-legend-1",
+       "file": "figures/mine-rescue/map-legend-1.png",
+       "caption": "MINE MAP LEGEND (page 1 of 5)",
+       "page": 51,
+       "pdf_page": 53,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-2",
+       "file": "figures/mine-rescue/map-legend-2.png",
+       "caption": "MINE MAP LEGEND (page 2 of 5)",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-3",
+       "file": "figures/mine-rescue/map-legend-3.png",
+       "caption": "MINE MAP LEGEND (page 3 of 5)",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-4",
+       "file": "figures/mine-rescue/map-legend-4.png",
+       "caption": "MINE MAP LEGEND (page 4 of 5)",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-5",
+       "file": "figures/mine-rescue/map-legend-5.png",
+       "caption": "MINE MAP LEGEND (page 5 of 5)",
+       "page": 55,
+       "pdf_page": 57,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:symbol-location-of-any-other-objects-conditions",
+       "file": "figures/mine-rescue/symbol-location-of-any-other-objects-conditions.png",
+       "caption": "LOCATION OF ANY OTHER OBJECTS, CONDITIONS, OR EQUIPMENT",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-farthest-point-of-advance-in-entry-room",
+       "file": "figures/mine-rescue/symbol-farthest-point-of-advance-in-entry-room.png",
+       "caption": "FARTHEST POINT OF ADVANCE IN ENTRY, ROOM, OR CROSSCUT",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-symbol"
+      }
+     ]
     },
     {
      "number": 6,
@@ -401,7 +469,65 @@
       15
      ],
      "id": "a-card-6",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:map-legend-1",
+       "file": "figures/mine-rescue/map-legend-1.png",
+       "caption": "MINE MAP LEGEND (page 1 of 5)",
+       "page": 51,
+       "pdf_page": 53,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-2",
+       "file": "figures/mine-rescue/map-legend-2.png",
+       "caption": "MINE MAP LEGEND (page 2 of 5)",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-3",
+       "file": "figures/mine-rescue/map-legend-3.png",
+       "caption": "MINE MAP LEGEND (page 3 of 5)",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-4",
+       "file": "figures/mine-rescue/map-legend-4.png",
+       "caption": "MINE MAP LEGEND (page 4 of 5)",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-5",
+       "file": "figures/mine-rescue/map-legend-5.png",
+       "caption": "MINE MAP LEGEND (page 5 of 5)",
+       "page": 55,
+       "pdf_page": 57,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:symbol-location-of-any-other-objects-conditions",
+       "file": "figures/mine-rescue/symbol-location-of-any-other-objects-conditions.png",
+       "caption": "LOCATION OF ANY OTHER OBJECTS, CONDITIONS, OR EQUIPMENT",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-farthest-point-of-advance-in-entry-room",
+       "file": "figures/mine-rescue/symbol-farthest-point-of-advance-in-entry-room.png",
+       "caption": "FARTHEST POINT OF ADVANCE IN ENTRY, ROOM, OR CROSSCUT",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-symbol"
+      }
+     ]
     },
     {
      "number": 7,
@@ -744,7 +870,25 @@
       "title": "Gas and Roof Testing"
      },
      "id": "b-card-23",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-1a",
+       "file": "figures/mine-rescue/fig-1a.png",
+       "caption": "Figure 1(a) – PROPER METHOD OF ROOF TESTING",
+       "page": 41,
+       "pdf_page": 43,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:fig-1b",
+       "file": "figures/mine-rescue/fig-1b.png",
+       "caption": "Figure 1(b) – PROPER METHOD OF ROOF TESTING (cont.)",
+       "page": 42,
+       "pdf_page": 44,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 24,
@@ -758,7 +902,25 @@
       "title": "Gas and Roof Testing"
      },
      "id": "b-card-24",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-4",
+       "file": "figures/mine-rescue/fig-4.png",
+       "caption": "Figure 4 – EXTENT OF GASES",
+       "page": 46,
+       "pdf_page": 48,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:fig-8",
+       "file": "figures/mine-rescue/fig-8.png",
+       "caption": "FIGURE 8 – EXTENT OF GASES AT OVERCASTS",
+       "page": 50,
+       "pdf_page": 52,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 25,
@@ -828,7 +990,17 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-29",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-5",
+       "file": "figures/mine-rescue/fig-5.png",
+       "caption": "Figure 5 – EXAMPLE OF INITIAL EXPLORATION AS PER RULE 29",
+       "page": 47,
+       "pdf_page": 49,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 30,
@@ -842,7 +1014,33 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-30",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-2a",
+       "file": "figures/mine-rescue/fig-2a.png",
+       "caption": "Figure 2(a) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORTS",
+       "page": 43,
+       "pdf_page": 45,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:fig-2b",
+       "file": "figures/mine-rescue/fig-2b.png",
+       "caption": "Figure 2(b) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORT THROUGH UNSAFE ROOF (Continued)",
+       "page": 44,
+       "pdf_page": 46,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:fig-3",
+       "file": "figures/mine-rescue/fig-3.png",
+       "caption": "Figure 3 – PROPER INSTALLATION OF ROOF SUPPORT TO RECOVER A PATIENT LOCATED UNDER AN AREA OF ELONGATED UNSAFE ROOF",
+       "page": 45,
+       "pdf_page": 47,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 31,
@@ -870,7 +1068,17 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-32",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-3",
+       "file": "figures/mine-rescue/fig-3.png",
+       "caption": "Figure 3 – PROPER INSTALLATION OF ROOF SUPPORT TO RECOVER A PATIENT LOCATED UNDER AN AREA OF ELONGATED UNSAFE ROOF",
+       "page": 45,
+       "pdf_page": 47,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 33,
@@ -926,7 +1134,17 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-36",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:symbol-refuge-alternative",
+       "file": "figures/mine-rescue/symbol-refuge-alternative.png",
+       "caption": "REFUGE ALTERNATIVE",
+       "page": 55,
+       "pdf_page": 57,
+       "kind": "map-symbol"
+      }
+     ]
     },
     {
      "number": 37,
@@ -1010,7 +1228,25 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-42",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-6",
+       "file": "figures/mine-rescue/fig-6.png",
+       "caption": "Figure 6 – Airlocking Through an Overcast Wall",
+       "page": 48,
+       "pdf_page": 50,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:fig-8",
+       "file": "figures/mine-rescue/fig-8.png",
+       "caption": "FIGURE 8 – EXTENT OF GASES AT OVERCASTS",
+       "page": 50,
+       "pdf_page": 52,
+       "kind": "figure"
+      }
+     ]
     },
     {
      "number": 43,
@@ -1038,7 +1274,89 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-44",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:fig-7",
+       "file": "figures/mine-rescue/fig-7.png",
+       "caption": "Figure 7 – RULE 44 \"SYSTEMATIC EXPLORATION\"",
+       "page": 49,
+       "pdf_page": 51,
+       "kind": "figure"
+      },
+      {
+       "id": "mine-rescue:map-legend-1",
+       "file": "figures/mine-rescue/map-legend-1.png",
+       "caption": "MINE MAP LEGEND (page 1 of 5)",
+       "page": 51,
+       "pdf_page": 53,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-2",
+       "file": "figures/mine-rescue/map-legend-2.png",
+       "caption": "MINE MAP LEGEND (page 2 of 5)",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-3",
+       "file": "figures/mine-rescue/map-legend-3.png",
+       "caption": "MINE MAP LEGEND (page 3 of 5)",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-4",
+       "file": "figures/mine-rescue/map-legend-4.png",
+       "caption": "MINE MAP LEGEND (page 4 of 5)",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-5",
+       "file": "figures/mine-rescue/map-legend-5.png",
+       "caption": "MINE MAP LEGEND (page 5 of 5)",
+       "page": 55,
+       "pdf_page": 57,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:symbol-seal",
+       "file": "figures/mine-rescue/symbol-seal.png",
+       "caption": "SEAL",
+       "page": 51,
+       "pdf_page": 53,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-unsafe-roof",
+       "file": "figures/mine-rescue/symbol-unsafe-roof.png",
+       "caption": "UNSAFE ROOF",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-water",
+       "file": "figures/mine-rescue/symbol-water.png",
+       "caption": "WATER",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-caved",
+       "file": "figures/mine-rescue/symbol-caved.png",
+       "caption": "CAVED",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-symbol"
+      }
+     ]
     },
     {
      "number": 45,
@@ -1094,7 +1412,73 @@
       "title": "Miscellaneous"
      },
      "id": "b-card-48",
-     "event": "mine-rescue"
+     "event": "mine-rescue",
+     "figures": [
+      {
+       "id": "mine-rescue:map-legend-1",
+       "file": "figures/mine-rescue/map-legend-1.png",
+       "caption": "MINE MAP LEGEND (page 1 of 5)",
+       "page": 51,
+       "pdf_page": 53,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-2",
+       "file": "figures/mine-rescue/map-legend-2.png",
+       "caption": "MINE MAP LEGEND (page 2 of 5)",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-3",
+       "file": "figures/mine-rescue/map-legend-3.png",
+       "caption": "MINE MAP LEGEND (page 3 of 5)",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-4",
+       "file": "figures/mine-rescue/map-legend-4.png",
+       "caption": "MINE MAP LEGEND (page 4 of 5)",
+       "page": 54,
+       "pdf_page": 56,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:map-legend-5",
+       "file": "figures/mine-rescue/map-legend-5.png",
+       "caption": "MINE MAP LEGEND (page 5 of 5)",
+       "page": 55,
+       "pdf_page": 57,
+       "kind": "map-legend"
+      },
+      {
+       "id": "mine-rescue:symbol-line-curtain",
+       "file": "figures/mine-rescue/symbol-line-curtain.png",
+       "caption": "LINE CURTAIN",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-line-curtain-installed",
+       "file": "figures/mine-rescue/symbol-line-curtain-installed.png",
+       "caption": "LINE CURTAIN INSTALLED",
+       "page": 52,
+       "pdf_page": 54,
+       "kind": "map-symbol"
+      },
+      {
+       "id": "mine-rescue:symbol-brattice-cloth",
+       "file": "figures/mine-rescue/symbol-brattice-cloth.png",
+       "caption": "BRATTICE CLOTH",
+       "page": 53,
+       "pdf_page": 55,
+       "kind": "map-symbol"
+      }
+     ]
     },
     {
      "number": 49,
@@ -1227,7 +1611,345 @@
      "extracted_labels": "REFUGE ALTERNATIVE\nA refuge alternative is considered to be an undamaged and air-\ntight unit equipped with an air lock. For contest work a refuge\nalternative will be the prefabricated type and will not block\nventilation through an entry where the component is located or\nprohibit exploration around the component.\nThe symbol “RA” may be located outside of the RA, the symbol\nis to remain upright with door oriented as found. The only items\nrequired to be mapped inside the Refuge Alternative are live\npersons and bodies (orientation does not apply)."
     }
    ],
-   "event": "mine-rescue"
+   "event": "mine-rescue",
+   "figures": [
+    {
+     "id": "mine-rescue:fig-1a",
+     "file": "figures/mine-rescue/fig-1a.png",
+     "caption": "Figure 1(a) – PROPER METHOD OF ROOF TESTING",
+     "page": 41,
+     "pdf_page": 43,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-1b",
+     "file": "figures/mine-rescue/fig-1b.png",
+     "caption": "Figure 1(b) – PROPER METHOD OF ROOF TESTING (cont.)",
+     "page": 42,
+     "pdf_page": 44,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-2a",
+     "file": "figures/mine-rescue/fig-2a.png",
+     "caption": "Figure 2(a) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORTS",
+     "page": 43,
+     "pdf_page": 45,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-2b",
+     "file": "figures/mine-rescue/fig-2b.png",
+     "caption": "Figure 2(b) – EXAMPLES OF PROPER METHODS OF SETTING ROOF SUPPORT THROUGH UNSAFE ROOF (Continued)",
+     "page": 44,
+     "pdf_page": 46,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-3",
+     "file": "figures/mine-rescue/fig-3.png",
+     "caption": "Figure 3 – PROPER INSTALLATION OF ROOF SUPPORT TO RECOVER A PATIENT LOCATED UNDER AN AREA OF ELONGATED UNSAFE ROOF",
+     "page": 45,
+     "pdf_page": 47,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-4",
+     "file": "figures/mine-rescue/fig-4.png",
+     "caption": "Figure 4 – EXTENT OF GASES",
+     "page": 46,
+     "pdf_page": 48,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-5",
+     "file": "figures/mine-rescue/fig-5.png",
+     "caption": "Figure 5 – EXAMPLE OF INITIAL EXPLORATION AS PER RULE 29",
+     "page": 47,
+     "pdf_page": 49,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-6",
+     "file": "figures/mine-rescue/fig-6.png",
+     "caption": "Figure 6 – Airlocking Through an Overcast Wall",
+     "page": 48,
+     "pdf_page": 50,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-7",
+     "file": "figures/mine-rescue/fig-7.png",
+     "caption": "Figure 7 – RULE 44 \"SYSTEMATIC EXPLORATION\"",
+     "page": 49,
+     "pdf_page": 51,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:fig-8",
+     "file": "figures/mine-rescue/fig-8.png",
+     "caption": "FIGURE 8 – EXTENT OF GASES AT OVERCASTS",
+     "page": 50,
+     "pdf_page": 52,
+     "kind": "figure"
+    },
+    {
+     "id": "mine-rescue:map-legend-1",
+     "file": "figures/mine-rescue/map-legend-1.png",
+     "caption": "MINE MAP LEGEND (page 1 of 5)",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-legend"
+    },
+    {
+     "id": "mine-rescue:symbol-permanent-stopping-intact-airtight",
+     "file": "figures/mine-rescue/symbol-permanent-stopping-intact-airtight.png",
+     "caption": "PERMANENT STOPPING INTACT, AIRTIGHT",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-permanent-stopping-not-intact-not",
+     "file": "figures/mine-rescue/symbol-permanent-stopping-not-intact-not.png",
+     "caption": "PERMANENT STOPPING NOT INTACT, NOT AIRTIGHT",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-temporary-stopping-intact-airtight",
+     "file": "figures/mine-rescue/symbol-temporary-stopping-intact-airtight.png",
+     "caption": "TEMPORARY STOPPING INTACT, AIRTIGHT",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-temporary-stopping-not-intact-not",
+     "file": "figures/mine-rescue/symbol-temporary-stopping-not-intact-not.png",
+     "caption": "TEMPORARY STOPPING NOT INTACT, NOT AIRTIGHT",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-seal",
+     "file": "figures/mine-rescue/symbol-seal.png",
+     "caption": "SEAL",
+     "page": 51,
+     "pdf_page": 53,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:map-legend-2",
+     "file": "figures/mine-rescue/map-legend-2.png",
+     "caption": "MINE MAP LEGEND (page 2 of 5)",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-legend"
+    },
+    {
+     "id": "mine-rescue:symbol-door",
+     "file": "figures/mine-rescue/symbol-door.png",
+     "caption": "DOOR",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-line-curtain",
+     "file": "figures/mine-rescue/symbol-line-curtain.png",
+     "caption": "LINE CURTAIN",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-line-curtain-installed",
+     "file": "figures/mine-rescue/symbol-line-curtain-installed.png",
+     "caption": "LINE CURTAIN INSTALLED",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-diagonal",
+     "file": "figures/mine-rescue/symbol-diagonal.png",
+     "caption": "DIAGONAL",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-barricade",
+     "file": "figures/mine-rescue/symbol-barricade.png",
+     "caption": "BARRICADE",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-caved",
+     "file": "figures/mine-rescue/symbol-caved.png",
+     "caption": "CAVED",
+     "page": 52,
+     "pdf_page": 54,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:map-legend-3",
+     "file": "figures/mine-rescue/map-legend-3.png",
+     "caption": "MINE MAP LEGEND (page 3 of 5)",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-legend"
+    },
+    {
+     "id": "mine-rescue:symbol-unsafe-roof",
+     "file": "figures/mine-rescue/symbol-unsafe-roof.png",
+     "caption": "UNSAFE ROOF",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-unsafe-rib-or-overhanging-brow",
+     "file": "figures/mine-rescue/symbol-unsafe-rib-or-overhanging-brow.png",
+     "caption": "UNSAFE RIB OR OVERHANGING BROW",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-water",
+     "file": "figures/mine-rescue/symbol-water.png",
+     "caption": "WATER",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-smoke",
+     "file": "figures/mine-rescue/symbol-smoke.png",
+     "caption": "SMOKE",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-body",
+     "file": "figures/mine-rescue/symbol-body.png",
+     "caption": "BODY",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-live-person",
+     "file": "figures/mine-rescue/symbol-live-person.png",
+     "caption": "LIVE PERSON",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-brattice-cloth",
+     "file": "figures/mine-rescue/symbol-brattice-cloth.png",
+     "caption": "BRATTICE CLOTH",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-placard-indicating-gas-mixture",
+     "file": "figures/mine-rescue/symbol-placard-indicating-gas-mixture.png",
+     "caption": "PLACARD INDICATING GAS MIXTURE",
+     "page": 53,
+     "pdf_page": 55,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:map-legend-4",
+     "file": "figures/mine-rescue/map-legend-4.png",
+     "caption": "MINE MAP LEGEND (page 4 of 5)",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-legend"
+    },
+    {
+     "id": "mine-rescue:symbol-air-movement",
+     "file": "figures/mine-rescue/symbol-air-movement.png",
+     "caption": "AIR MOVEMENT",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-fire",
+     "file": "figures/mine-rescue/symbol-fire.png",
+     "caption": "FIRE",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-farthest-point-of-advance-in-entry-room",
+     "file": "figures/mine-rescue/symbol-farthest-point-of-advance-in-entry-room.png",
+     "caption": "FARTHEST POINT OF ADVANCE IN ENTRY, ROOM, OR CROSSCUT",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-fan",
+     "file": "figures/mine-rescue/symbol-fan.png",
+     "caption": "FAN",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-overcast-or-undercast",
+     "file": "figures/mine-rescue/symbol-overcast-or-undercast.png",
+     "caption": "OVERCAST OR UNDERCAST",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-location-of-any-other-objects-conditions",
+     "file": "figures/mine-rescue/symbol-location-of-any-other-objects-conditions.png",
+     "caption": "LOCATION OF ANY OTHER OBJECTS, CONDITIONS, OR EQUIPMENT",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:symbol-any-roof-support-installed-by-the-team",
+     "file": "figures/mine-rescue/symbol-any-roof-support-installed-by-the-team.png",
+     "caption": "ANY ROOF SUPPORT INSTALLED BY THE TEAM",
+     "page": 54,
+     "pdf_page": 56,
+     "kind": "map-symbol"
+    },
+    {
+     "id": "mine-rescue:map-legend-5",
+     "file": "figures/mine-rescue/map-legend-5.png",
+     "caption": "MINE MAP LEGEND (page 5 of 5)",
+     "page": 55,
+     "pdf_page": 57,
+     "kind": "map-legend"
+    },
+    {
+     "id": "mine-rescue:symbol-refuge-alternative",
+     "file": "figures/mine-rescue/symbol-refuge-alternative.png",
+     "caption": "REFUGE ALTERNATIVE",
+     "page": 55,
+     "pdf_page": 57,
+     "kind": "map-symbol"
+    }
+   ]
   },
   {
    "id": "scba",

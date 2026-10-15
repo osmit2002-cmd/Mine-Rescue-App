@@ -68,7 +68,17 @@
       1,
       2
      ],
-     "event": "bench-bg4"
+     "event": "bench-bg4",
+     "figures": [
+      {
+       "id": "bench-bg4:bench-record-form",
+       "file": "figures/bench-bg4/bench-record-form.png",
+       "caption": "BG-4 Bench Record (Optional)",
+       "page": 14,
+       "pdf_page": 16,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "bench-bg4-rules-governing-5",
@@ -139,7 +149,97 @@
       3,
       3
      ],
-     "event": "bench-bg4"
+     "event": "bench-bg4",
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p20-drawing",
+       "file": "figures/bench-bg4/parts-p20-drawing.png",
+       "caption": "BG-4",
+       "page": 20,
+       "pdf_page": 22,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p21-drawing",
+       "file": "figures/bench-bg4/parts-p21-drawing.png",
+       "caption": "Cover",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p22-drawing",
+       "file": "figures/bench-bg4/parts-p22-drawing.png",
+       "caption": "Harness Assembly",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p23-drawing",
+       "file": "figures/bench-bg4/parts-p23-drawing.png",
+       "caption": "Breathing Hose Assembly",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p24-drawing",
+       "file": "figures/bench-bg4/parts-p24-drawing.png",
+       "caption": "Cooling Canister (Revised Drawing)",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p25-drawing",
+       "file": "figures/bench-bg4/parts-p25-drawing.png",
+       "caption": "Drain/Relief/Minimum Valve Assembly (Revised Drawing)",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p26-drawing",
+       "file": "figures/bench-bg4/parts-p26-drawing.png",
+       "caption": "Sentinel",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p27-drawing",
+       "file": "figures/bench-bg4/parts-p27-drawing.png",
+       "caption": "Refillable Cartridge",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p28-drawing",
+       "file": "figures/bench-bg4/parts-p28-drawing.png",
+       "caption": "FPS 7000 Mask",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p29-drawing",
+       "file": "figures/bench-bg4/parts-p29-drawing.png",
+       "caption": "Oxygen Cylinder",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p30-drawing",
+       "file": "figures/bench-bg4/parts-p30-drawing.png",
+       "caption": "Test Kit",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      }
+     ]
     },
     {
      "id": "bench-bg4-written-exam-2",
@@ -958,7 +1058,17 @@
      "printed_page": 14
     }
    ],
-   "items": []
+   "items": [],
+   "figures": [
+    {
+     "id": "bench-bg4:bench-record-form",
+     "file": "figures/bench-bg4/bench-record-form.png",
+     "caption": "BG-4 Bench Record (Optional)",
+     "page": 14,
+     "pdf_page": 16,
+     "kind": "form"
+    }
+   ]
   },
   {
    "id": "identification-of-parts",
@@ -986,6 +1096,24 @@
        "file": "figures/bench-bg4/page-22.png",
        "printed_page": 20
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p20-drawing",
+       "file": "figures/bench-bg4/parts-p20-drawing.png",
+       "caption": "BG-4",
+       "page": 20,
+       "pdf_page": 22,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p20-table",
+       "file": "figures/bench-bg4/parts-p20-table.png",
+       "caption": "BG-4 – Identification of Parts (Cons. No. / Designation)",
+       "page": 20,
+       "pdf_page": 22,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1003,6 +1131,24 @@
       {
        "file": "figures/bench-bg4/page-23.png",
        "printed_page": 21
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p21-drawing",
+       "file": "figures/bench-bg4/parts-p21-drawing.png",
+       "caption": "Cover",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p21-table",
+       "file": "figures/bench-bg4/parts-p21-table.png",
+       "caption": "Cover – Identification of Parts (Cons. No. / Designation)",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1022,6 +1168,24 @@
        "file": "figures/bench-bg4/page-24.png",
        "printed_page": 22
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p22-drawing",
+       "file": "figures/bench-bg4/parts-p22-drawing.png",
+       "caption": "Harness Assembly",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p22-table",
+       "file": "figures/bench-bg4/parts-p22-table.png",
+       "caption": "Harness Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1039,6 +1203,24 @@
       {
        "file": "figures/bench-bg4/page-25.png",
        "printed_page": 23
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p23-drawing",
+       "file": "figures/bench-bg4/parts-p23-drawing.png",
+       "caption": "Breathing Hose Assembly",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p23-table",
+       "file": "figures/bench-bg4/parts-p23-table.png",
+       "caption": "Breathing Hose Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1058,6 +1240,24 @@
        "file": "figures/bench-bg4/page-26.png",
        "printed_page": 24
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p24-drawing",
+       "file": "figures/bench-bg4/parts-p24-drawing.png",
+       "caption": "Cooling Canister (Revised Drawing)",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p24-table",
+       "file": "figures/bench-bg4/parts-p24-table.png",
+       "caption": "Cooling Canister (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1075,6 +1275,24 @@
       {
        "file": "figures/bench-bg4/page-27.png",
        "printed_page": 25
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p25-drawing",
+       "file": "figures/bench-bg4/parts-p25-drawing.png",
+       "caption": "Drain/Relief/Minimum Valve Assembly (Revised Drawing)",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p25-table",
+       "file": "figures/bench-bg4/parts-p25-table.png",
+       "caption": "Drain/Relief/Minimum Valve Assembly (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1094,6 +1312,24 @@
        "file": "figures/bench-bg4/page-28.png",
        "printed_page": 26
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p26-drawing",
+       "file": "figures/bench-bg4/parts-p26-drawing.png",
+       "caption": "Sentinel",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p26-table",
+       "file": "figures/bench-bg4/parts-p26-table.png",
+       "caption": "Sentinel – Identification of Parts (Cons. No. / Designation)",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1111,6 +1347,24 @@
       {
        "file": "figures/bench-bg4/page-29.png",
        "printed_page": 27
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p27-drawing",
+       "file": "figures/bench-bg4/parts-p27-drawing.png",
+       "caption": "Refillable Cartridge",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p27-table",
+       "file": "figures/bench-bg4/parts-p27-table.png",
+       "caption": "Refillable Cartridge – Identification of Parts (Cons. No. / Designation)",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1130,6 +1384,24 @@
        "file": "figures/bench-bg4/page-30.png",
        "printed_page": 28
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p28-drawing",
+       "file": "figures/bench-bg4/parts-p28-drawing.png",
+       "caption": "FPS 7000 Mask",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p28-table",
+       "file": "figures/bench-bg4/parts-p28-table.png",
+       "caption": "FPS 7000 Mask – Identification of Parts (Cons. No. / Designation)",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1148,6 +1420,24 @@
        "file": "figures/bench-bg4/page-31.png",
        "printed_page": 29
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p29-drawing",
+       "file": "figures/bench-bg4/parts-p29-drawing.png",
+       "caption": "Oxygen Cylinder",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p29-table",
+       "file": "figures/bench-bg4/parts-p29-table.png",
+       "caption": "Oxygen Cylinder – Identification of Parts (Cons. No. / Designation)",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1165,6 +1455,24 @@
       {
        "file": "figures/bench-bg4/page-32.png",
        "printed_page": 30
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-bg4:parts-p30-drawing",
+       "file": "figures/bench-bg4/parts-p30-drawing.png",
+       "caption": "Test Kit",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-bg4:parts-p30-table",
+       "file": "figures/bench-bg4/parts-p30-table.png",
+       "caption": "Test Kit – Identification of Parts (Cons. No. / Designation)",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-table"
       }
      ]
     }
@@ -1197,7 +1505,27 @@
       31,
       31
      ],
-     "event": "bench-bg4"
+     "event": "bench-bg4",
+     "figures": [
+      {
+       "id": "bench-bg4:judges-checklist",
+       "file": "figures/bench-bg4/judges-checklist.png",
+       "caption": "Judge’s Checklist",
+       "page": 31,
+       "pdf_page": 33,
+       "kind": "form"
+      }
+     ]
+    }
+   ],
+   "figures": [
+    {
+     "id": "bench-bg4:judges-checklist",
+     "file": "figures/bench-bg4/judges-checklist.png",
+     "caption": "Judge’s Checklist",
+     "page": 31,
+     "pdf_page": 33,
+     "kind": "form"
     }
    ]
   }

@@ -68,7 +68,17 @@
       1,
       2
      ],
-     "event": "bench-proair"
+     "event": "bench-proair",
+     "figures": [
+      {
+       "id": "bench-proair:bench-record-form",
+       "file": "figures/bench-proair/bench-record-form.png",
+       "caption": "BG-ProAir Bench Record (Optional)",
+       "page": 15,
+       "pdf_page": 17,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "bench-proair-rules-governing-5",
@@ -139,7 +149,153 @@
       3,
       3
      ],
-     "event": "bench-proair"
+     "event": "bench-proair",
+     "figures": [
+      {
+       "id": "bench-proair:parts-p21-drawing",
+       "file": "figures/bench-proair/parts-p21-drawing.png",
+       "caption": "Refill Absorber",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p22-drawing",
+       "file": "figures/bench-proair/parts-p22-drawing.png",
+       "caption": "Ice Cooler, Complete",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p23-drawing",
+       "file": "figures/bench-proair/parts-p23-drawing.png",
+       "caption": "Breathing Connection",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p24-drawing",
+       "file": "figures/bench-proair/parts-p24-drawing.png",
+       "caption": "Breathing Bag",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p25-drawing",
+       "file": "figures/bench-proair/parts-p25-drawing.png",
+       "caption": "Cylinder Holder",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p26-drawing",
+       "file": "figures/bench-proair/parts-p26-drawing.png",
+       "caption": "Spring Bridge",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p27-drawing",
+       "file": "figures/bench-proair/parts-p27-drawing.png",
+       "caption": "Waist Belt",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p28-drawing",
+       "file": "figures/bench-proair/parts-p28-drawing.png",
+       "caption": "Shoulder Harness",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p29-drawing",
+       "file": "figures/bench-proair/parts-p29-drawing.png",
+       "caption": "Electronics",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p30-drawing",
+       "file": "figures/bench-proair/parts-p30-drawing.png",
+       "caption": "Housing – Upper Shell",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p31-drawing",
+       "file": "figures/bench-proair/parts-p31-drawing.png",
+       "caption": "Minimum Valve",
+       "page": 31,
+       "pdf_page": 33,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p32-drawing",
+       "file": "figures/bench-proair/parts-p32-drawing.png",
+       "caption": "Pressure Reducer",
+       "page": 32,
+       "pdf_page": 34,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p33-drawing",
+       "file": "figures/bench-proair/parts-p33-drawing.png",
+       "caption": "Pneumatics",
+       "page": 33,
+       "pdf_page": 35,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p34-drawing",
+       "file": "figures/bench-proair/parts-p34-drawing.png",
+       "caption": "Tubes/Air Lines",
+       "page": 34,
+       "pdf_page": 36,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p35-drawing",
+       "file": "figures/bench-proair/parts-p35-drawing.png",
+       "caption": "Connect ECU (Electronic Control Unit)",
+       "page": 35,
+       "pdf_page": 37,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p36-drawing",
+       "file": "figures/bench-proair/parts-p36-drawing.png",
+       "caption": "FPS 7000 Mask",
+       "page": 36,
+       "pdf_page": 38,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p37-drawing",
+       "file": "figures/bench-proair/parts-p37-drawing.png",
+       "caption": "Oxygen Cylinder",
+       "page": 37,
+       "pdf_page": 39,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p38-drawing",
+       "file": "figures/bench-proair/parts-p38-drawing.png",
+       "caption": "Test set / tool kit parts (no assembly title printed)",
+       "page": 38,
+       "pdf_page": 40,
+       "kind": "parts-drawing"
+      }
+     ]
     },
     {
      "id": "bench-proair-written-exam-2",
@@ -930,7 +1086,17 @@
      "printed_page": 15
     }
    ],
-   "items": []
+   "items": [],
+   "figures": [
+    {
+     "id": "bench-proair:bench-record-form",
+     "file": "figures/bench-proair/bench-record-form.png",
+     "caption": "BG-ProAir Bench Record (Optional)",
+     "page": 15,
+     "pdf_page": 17,
+     "kind": "form"
+    }
+   ]
   },
   {
    "id": "identification-of-parts",
@@ -958,6 +1124,24 @@
        "file": "figures/bench-proair/page-23.png",
        "printed_page": 21
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p21-drawing",
+       "file": "figures/bench-proair/parts-p21-drawing.png",
+       "caption": "Refill Absorber",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p21-table",
+       "file": "figures/bench-proair/parts-p21-table.png",
+       "caption": "Refill Absorber – Identification of Parts (Cons. No. / Designation)",
+       "page": 21,
+       "pdf_page": 23,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -975,6 +1159,24 @@
       {
        "file": "figures/bench-proair/page-24.png",
        "printed_page": 22
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p22-drawing",
+       "file": "figures/bench-proair/parts-p22-drawing.png",
+       "caption": "Ice Cooler, Complete",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p22-table",
+       "file": "figures/bench-proair/parts-p22-table.png",
+       "caption": "Ice Cooler, Complete – Identification of Parts (Cons. No. / Designation)",
+       "page": 22,
+       "pdf_page": 24,
+       "kind": "parts-table"
       }
      ]
     },
@@ -994,6 +1196,24 @@
        "file": "figures/bench-proair/page-25.png",
        "printed_page": 23
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p23-drawing",
+       "file": "figures/bench-proair/parts-p23-drawing.png",
+       "caption": "Breathing Connection",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p23-table",
+       "file": "figures/bench-proair/parts-p23-table.png",
+       "caption": "Breathing Connection – Identification of Parts (Cons. No. / Designation)",
+       "page": 23,
+       "pdf_page": 25,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1011,6 +1231,24 @@
       {
        "file": "figures/bench-proair/page-26.png",
        "printed_page": 24
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p24-drawing",
+       "file": "figures/bench-proair/parts-p24-drawing.png",
+       "caption": "Breathing Bag",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p24-table",
+       "file": "figures/bench-proair/parts-p24-table.png",
+       "caption": "Breathing Bag – Identification of Parts (Cons. No. / Designation)",
+       "page": 24,
+       "pdf_page": 26,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1030,6 +1268,24 @@
        "file": "figures/bench-proair/page-27.png",
        "printed_page": 25
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p25-drawing",
+       "file": "figures/bench-proair/parts-p25-drawing.png",
+       "caption": "Cylinder Holder",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p25-table",
+       "file": "figures/bench-proair/parts-p25-table.png",
+       "caption": "Cylinder Holder – Identification of Parts (Cons. No. / Designation)",
+       "page": 25,
+       "pdf_page": 27,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1047,6 +1303,24 @@
       {
        "file": "figures/bench-proair/page-28.png",
        "printed_page": 26
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p26-drawing",
+       "file": "figures/bench-proair/parts-p26-drawing.png",
+       "caption": "Spring Bridge",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p26-table",
+       "file": "figures/bench-proair/parts-p26-table.png",
+       "caption": "Spring Bridge – Identification of Parts (Cons. No. / Designation)",
+       "page": 26,
+       "pdf_page": 28,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1066,6 +1340,24 @@
        "file": "figures/bench-proair/page-29.png",
        "printed_page": 27
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p27-drawing",
+       "file": "figures/bench-proair/parts-p27-drawing.png",
+       "caption": "Waist Belt",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p27-table",
+       "file": "figures/bench-proair/parts-p27-table.png",
+       "caption": "Waist Belt – Identification of Parts (Cons. No. / Designation)",
+       "page": 27,
+       "pdf_page": 29,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1083,6 +1375,24 @@
       {
        "file": "figures/bench-proair/page-30.png",
        "printed_page": 28
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p28-drawing",
+       "file": "figures/bench-proair/parts-p28-drawing.png",
+       "caption": "Shoulder Harness",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p28-table",
+       "file": "figures/bench-proair/parts-p28-table.png",
+       "caption": "Shoulder Harness – Identification of Parts (Cons. No. / Designation)",
+       "page": 28,
+       "pdf_page": 30,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1102,6 +1412,24 @@
        "file": "figures/bench-proair/page-31.png",
        "printed_page": 29
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p29-drawing",
+       "file": "figures/bench-proair/parts-p29-drawing.png",
+       "caption": "Electronics",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p29-table",
+       "file": "figures/bench-proair/parts-p29-table.png",
+       "caption": "Electronics – Identification of Parts (Cons. No. / Designation)",
+       "page": 29,
+       "pdf_page": 31,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1119,6 +1447,24 @@
       {
        "file": "figures/bench-proair/page-32.png",
        "printed_page": 30
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p30-drawing",
+       "file": "figures/bench-proair/parts-p30-drawing.png",
+       "caption": "Housing – Upper Shell",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p30-table",
+       "file": "figures/bench-proair/parts-p30-table.png",
+       "caption": "Housing – Upper Shell – Identification of Parts (Cons. No. / Designation)",
+       "page": 30,
+       "pdf_page": 32,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1138,6 +1484,24 @@
        "file": "figures/bench-proair/page-33.png",
        "printed_page": 31
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p31-drawing",
+       "file": "figures/bench-proair/parts-p31-drawing.png",
+       "caption": "Minimum Valve",
+       "page": 31,
+       "pdf_page": 33,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p31-table",
+       "file": "figures/bench-proair/parts-p31-table.png",
+       "caption": "Minimum Valve – Identification of Parts (Cons. No. / Designation)",
+       "page": 31,
+       "pdf_page": 33,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1155,6 +1519,24 @@
       {
        "file": "figures/bench-proair/page-34.png",
        "printed_page": 32
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p32-drawing",
+       "file": "figures/bench-proair/parts-p32-drawing.png",
+       "caption": "Pressure Reducer",
+       "page": 32,
+       "pdf_page": 34,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p32-table",
+       "file": "figures/bench-proair/parts-p32-table.png",
+       "caption": "Pressure Reducer – Identification of Parts (Cons. No. / Designation)",
+       "page": 32,
+       "pdf_page": 34,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1174,6 +1556,24 @@
        "file": "figures/bench-proair/page-35.png",
        "printed_page": 33
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p33-drawing",
+       "file": "figures/bench-proair/parts-p33-drawing.png",
+       "caption": "Pneumatics",
+       "page": 33,
+       "pdf_page": 35,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p33-table",
+       "file": "figures/bench-proair/parts-p33-table.png",
+       "caption": "Pneumatics – Identification of Parts (Cons. No. / Designation)",
+       "page": 33,
+       "pdf_page": 35,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1191,6 +1591,24 @@
       {
        "file": "figures/bench-proair/page-36.png",
        "printed_page": 34
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p34-drawing",
+       "file": "figures/bench-proair/parts-p34-drawing.png",
+       "caption": "Tubes/Air Lines",
+       "page": 34,
+       "pdf_page": 36,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p34-table",
+       "file": "figures/bench-proair/parts-p34-table.png",
+       "caption": "Tubes/Air Lines – Identification of Parts (Cons. No. / Designation)",
+       "page": 34,
+       "pdf_page": 36,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1210,6 +1628,24 @@
        "file": "figures/bench-proair/page-37.png",
        "printed_page": 35
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p35-drawing",
+       "file": "figures/bench-proair/parts-p35-drawing.png",
+       "caption": "Connect ECU (Electronic Control Unit)",
+       "page": 35,
+       "pdf_page": 37,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p35-table",
+       "file": "figures/bench-proair/parts-p35-table.png",
+       "caption": "Connect ECU (Electronic Control Unit) – Identification of Parts (Cons. No. / Designation)",
+       "page": 35,
+       "pdf_page": 37,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1227,6 +1663,24 @@
       {
        "file": "figures/bench-proair/page-38.png",
        "printed_page": 36
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p36-drawing",
+       "file": "figures/bench-proair/parts-p36-drawing.png",
+       "caption": "FPS 7000 Mask",
+       "page": 36,
+       "pdf_page": 38,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p36-table",
+       "file": "figures/bench-proair/parts-p36-table.png",
+       "caption": "FPS 7000 Mask – Identification of Parts (Cons. No. / Designation)",
+       "page": 36,
+       "pdf_page": 38,
+       "kind": "parts-table"
       }
      ]
     },
@@ -1246,6 +1700,24 @@
        "file": "figures/bench-proair/page-39.png",
        "printed_page": 37
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p37-drawing",
+       "file": "figures/bench-proair/parts-p37-drawing.png",
+       "caption": "Oxygen Cylinder",
+       "page": 37,
+       "pdf_page": 39,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p37-table",
+       "file": "figures/bench-proair/parts-p37-table.png",
+       "caption": "Oxygen Cylinder – Identification of Parts (Cons. No. / Designation)",
+       "page": 37,
+       "pdf_page": 39,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -1263,6 +1735,24 @@
       {
        "file": "figures/bench-proair/page-40.png",
        "printed_page": 38
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-proair:parts-p38-drawing",
+       "file": "figures/bench-proair/parts-p38-drawing.png",
+       "caption": "Test set / tool kit parts (no assembly title printed)",
+       "page": 38,
+       "pdf_page": 40,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-proair:parts-p38-table",
+       "file": "figures/bench-proair/parts-p38-table.png",
+       "caption": "Test set / tool kit parts (no assembly title printed) – Identification of Parts (Cons. No. / Designation)",
+       "page": 38,
+       "pdf_page": 40,
+       "kind": "parts-table"
       }
      ]
     }
@@ -1295,7 +1785,27 @@
       39,
       39
      ],
-     "event": "bench-proair"
+     "event": "bench-proair",
+     "figures": [
+      {
+       "id": "bench-proair:judges-checklist",
+       "file": "figures/bench-proair/judges-checklist.png",
+       "caption": "Judge’s Checklist",
+       "page": 39,
+       "pdf_page": 41,
+       "kind": "form"
+      }
+     ]
+    }
+   ],
+   "figures": [
+    {
+     "id": "bench-proair:judges-checklist",
+     "file": "figures/bench-proair/judges-checklist.png",
+     "caption": "Judge’s Checklist",
+     "page": 39,
+     "pdf_page": 41,
+     "kind": "form"
     }
    ]
   }

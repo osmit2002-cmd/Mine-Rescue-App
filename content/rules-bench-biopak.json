@@ -68,7 +68,17 @@
       3,
       4
      ],
-     "event": "bench-biopak"
+     "event": "bench-biopak",
+     "figures": [
+      {
+       "id": "bench-biopak:bench-record-form",
+       "file": "figures/bench-biopak/bench-record-form.png",
+       "caption": "BIOPAK 240 R Bench Record (Optional)",
+       "page": 13,
+       "pdf_page": 13,
+       "kind": "form"
+      }
+     ]
     },
     {
      "id": "bench-biopak-rules-governing-5",
@@ -149,7 +159,113 @@
       5,
       5
      ],
-     "event": "bench-biopak"
+     "event": "bench-biopak",
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p21-drawing",
+       "file": "figures/bench-biopak/parts-p21-drawing.png",
+       "caption": "BioPak 240 Revolution Complete",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p22-drawing",
+       "file": "figures/bench-biopak/parts-p22-drawing.png",
+       "caption": "Lower Housing Assembly",
+       "page": 22,
+       "pdf_page": 22,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p23-drawing",
+       "file": "figures/bench-biopak/parts-p23-drawing.png",
+       "caption": "Pneumatic Assembly",
+       "page": 23,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p24-drawing",
+       "file": "figures/bench-biopak/parts-p24-drawing.png",
+       "caption": "Manifold Assembly",
+       "page": 24,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p25-drawing",
+       "file": "figures/bench-biopak/parts-p25-drawing.png",
+       "caption": "Center Section Assembly",
+       "page": 25,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p26-drawing",
+       "file": "figures/bench-biopak/parts-p26-drawing.png",
+       "caption": "Center Section Lid Assembly",
+       "page": 26,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p27-drawing",
+       "file": "figures/bench-biopak/parts-p27-drawing.png",
+       "caption": "Diaphragm Assembly",
+       "page": 27,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p28-drawing",
+       "file": "figures/bench-biopak/parts-p28-drawing.png",
+       "caption": "Breathing Hose",
+       "page": 28,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p29-drawing",
+       "file": "figures/bench-biopak/parts-p29-drawing.png",
+       "caption": "Ice Canister Freeze Form",
+       "page": 29,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p30-drawing",
+       "file": "figures/bench-biopak/parts-p30-drawing.png",
+       "caption": "Oxygen Cylinder Assembly",
+       "page": 30,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p31-drawing",
+       "file": "figures/bench-biopak/parts-p31-drawing.png",
+       "caption": "RMS Monitoring System",
+       "page": 31,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p32-drawing",
+       "file": "figures/bench-biopak/parts-p32-drawing.png",
+       "caption": "Biomarine Pro PP Mask (Revised Drawing)",
+       "page": 32,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p33-drawing",
+       "file": "figures/bench-biopak/parts-p33-drawing.png",
+       "caption": "Tool Kit",
+       "page": 33,
+       "pdf_page": 33,
+       "kind": "parts-drawing"
+      }
+     ]
     },
     {
      "id": "bench-biopak-written-exam-2",
@@ -542,7 +658,17 @@
      "group": {
       "letter": "E",
       "title": "Tester"
-     }
+     },
+     "figures": [
+      {
+       "id": "bench-biopak:constant-flow-test-table",
+       "file": "figures/bench-biopak/constant-flow-test-table.png",
+       "caption": "Constant flow test: cylinder pressure (PSI) vs. flow (LPM) at 0-5280 ft. and +5280 ft.",
+       "page": 10,
+       "pdf_page": 10,
+       "kind": "table"
+      }
+     ]
     },
     {
      "id": "bench-biopak-discount-interpretations-e-2",
@@ -688,7 +814,17 @@
      "printed_page": 13
     }
    ],
-   "items": []
+   "items": [],
+   "figures": [
+    {
+     "id": "bench-biopak:bench-record-form",
+     "file": "figures/bench-biopak/bench-record-form.png",
+     "caption": "BIOPAK 240 R Bench Record (Optional)",
+     "page": 13,
+     "pdf_page": 13,
+     "kind": "form"
+    }
+   ]
   },
   {
    "id": "identification-of-parts",
@@ -716,6 +852,24 @@
        "file": "figures/bench-biopak/page-21.png",
        "printed_page": 21
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p21-drawing",
+       "file": "figures/bench-biopak/parts-p21-drawing.png",
+       "caption": "BioPak 240 Revolution Complete",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p21-table",
+       "file": "figures/bench-biopak/parts-p21-table.png",
+       "caption": "BioPak 240 Revolution Complete – Identification of Parts (Cons. No. / Designation)",
+       "page": 21,
+       "pdf_page": 21,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -733,6 +887,24 @@
       {
        "file": "figures/bench-biopak/page-22.png",
        "printed_page": 22
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p22-drawing",
+       "file": "figures/bench-biopak/parts-p22-drawing.png",
+       "caption": "Lower Housing Assembly",
+       "page": 22,
+       "pdf_page": 22,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p22-table",
+       "file": "figures/bench-biopak/parts-p22-table.png",
+       "caption": "Lower Housing Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 22,
+       "pdf_page": 22,
+       "kind": "parts-table"
       }
      ]
     },
@@ -752,6 +924,24 @@
        "file": "figures/bench-biopak/page-23.png",
        "printed_page": 23
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p23-drawing",
+       "file": "figures/bench-biopak/parts-p23-drawing.png",
+       "caption": "Pneumatic Assembly",
+       "page": 23,
+       "pdf_page": 23,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p23-table",
+       "file": "figures/bench-biopak/parts-p23-table.png",
+       "caption": "Pneumatic Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 23,
+       "pdf_page": 23,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -769,6 +959,24 @@
       {
        "file": "figures/bench-biopak/page-24.png",
        "printed_page": 24
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p24-drawing",
+       "file": "figures/bench-biopak/parts-p24-drawing.png",
+       "caption": "Manifold Assembly",
+       "page": 24,
+       "pdf_page": 24,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p24-table",
+       "file": "figures/bench-biopak/parts-p24-table.png",
+       "caption": "Manifold Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 24,
+       "pdf_page": 24,
+       "kind": "parts-table"
       }
      ]
     },
@@ -788,6 +996,24 @@
        "file": "figures/bench-biopak/page-25.png",
        "printed_page": 25
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p25-drawing",
+       "file": "figures/bench-biopak/parts-p25-drawing.png",
+       "caption": "Center Section Assembly",
+       "page": 25,
+       "pdf_page": 25,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p25-table",
+       "file": "figures/bench-biopak/parts-p25-table.png",
+       "caption": "Center Section Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 25,
+       "pdf_page": 25,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -805,6 +1031,24 @@
       {
        "file": "figures/bench-biopak/page-26.png",
        "printed_page": 26
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p26-drawing",
+       "file": "figures/bench-biopak/parts-p26-drawing.png",
+       "caption": "Center Section Lid Assembly",
+       "page": 26,
+       "pdf_page": 26,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p26-table",
+       "file": "figures/bench-biopak/parts-p26-table.png",
+       "caption": "Center Section Lid Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 26,
+       "pdf_page": 26,
+       "kind": "parts-table"
       }
      ]
     },
@@ -824,6 +1068,24 @@
        "file": "figures/bench-biopak/page-27.png",
        "printed_page": 27
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p27-drawing",
+       "file": "figures/bench-biopak/parts-p27-drawing.png",
+       "caption": "Diaphragm Assembly",
+       "page": 27,
+       "pdf_page": 27,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p27-table",
+       "file": "figures/bench-biopak/parts-p27-table.png",
+       "caption": "Diaphragm Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 27,
+       "pdf_page": 27,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -841,6 +1103,24 @@
       {
        "file": "figures/bench-biopak/page-28.png",
        "printed_page": 28
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p28-drawing",
+       "file": "figures/bench-biopak/parts-p28-drawing.png",
+       "caption": "Breathing Hose",
+       "page": 28,
+       "pdf_page": 28,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p28-table",
+       "file": "figures/bench-biopak/parts-p28-table.png",
+       "caption": "Breathing Hose – Identification of Parts (Cons. No. / Designation)",
+       "page": 28,
+       "pdf_page": 28,
+       "kind": "parts-table"
       }
      ]
     },
@@ -860,6 +1140,24 @@
        "file": "figures/bench-biopak/page-29.png",
        "printed_page": 29
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p29-drawing",
+       "file": "figures/bench-biopak/parts-p29-drawing.png",
+       "caption": "Ice Canister Freeze Form",
+       "page": 29,
+       "pdf_page": 29,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p29-table",
+       "file": "figures/bench-biopak/parts-p29-table.png",
+       "caption": "Ice Canister Freeze Form – Identification of Parts (Cons. No. / Designation)",
+       "page": 29,
+       "pdf_page": 29,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -877,6 +1175,24 @@
       {
        "file": "figures/bench-biopak/page-30.png",
        "printed_page": 30
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p30-drawing",
+       "file": "figures/bench-biopak/parts-p30-drawing.png",
+       "caption": "Oxygen Cylinder Assembly",
+       "page": 30,
+       "pdf_page": 30,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p30-table",
+       "file": "figures/bench-biopak/parts-p30-table.png",
+       "caption": "Oxygen Cylinder Assembly – Identification of Parts (Cons. No. / Designation)",
+       "page": 30,
+       "pdf_page": 30,
+       "kind": "parts-table"
       }
      ]
     },
@@ -896,6 +1212,24 @@
        "file": "figures/bench-biopak/page-31.png",
        "printed_page": 31
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p31-drawing",
+       "file": "figures/bench-biopak/parts-p31-drawing.png",
+       "caption": "RMS Monitoring System",
+       "page": 31,
+       "pdf_page": 31,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p31-table",
+       "file": "figures/bench-biopak/parts-p31-table.png",
+       "caption": "RMS Monitoring System – Identification of Parts (Cons. No. / Designation)",
+       "page": 31,
+       "pdf_page": 31,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -914,6 +1248,24 @@
        "file": "figures/bench-biopak/page-32.png",
        "printed_page": 32
       }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p32-drawing",
+       "file": "figures/bench-biopak/parts-p32-drawing.png",
+       "caption": "Biomarine Pro PP Mask (Revised Drawing)",
+       "page": 32,
+       "pdf_page": 32,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p32-table",
+       "file": "figures/bench-biopak/parts-p32-table.png",
+       "caption": "Biomarine Pro PP Mask (Revised Drawing) – Identification of Parts (Cons. No. / Designation)",
+       "page": 32,
+       "pdf_page": 32,
+       "kind": "parts-table"
+      }
      ]
     },
     {
@@ -931,6 +1283,24 @@
       {
        "file": "figures/bench-biopak/page-33.png",
        "printed_page": 33
+      }
+     ],
+     "figures": [
+      {
+       "id": "bench-biopak:parts-p33-drawing",
+       "file": "figures/bench-biopak/parts-p33-drawing.png",
+       "caption": "Tool Kit",
+       "page": 33,
+       "pdf_page": 33,
+       "kind": "parts-drawing"
+      },
+      {
+       "id": "bench-biopak:parts-p33-table",
+       "file": "figures/bench-biopak/parts-p33-table.png",
+       "caption": "Tool Kit – Identification of Parts (Cons. No. / Designation)",
+       "page": 33,
+       "pdf_page": 33,
+       "kind": "parts-table"
       }
      ]
     }
@@ -963,7 +1333,27 @@
       34,
       34
      ],
-     "event": "bench-biopak"
+     "event": "bench-biopak",
+     "figures": [
+      {
+       "id": "bench-biopak:judges-checklist",
+       "file": "figures/bench-biopak/judges-checklist.png",
+       "caption": "Judge’s Checklist",
+       "page": 34,
+       "pdf_page": 34,
+       "kind": "form"
+      }
+     ]
+    }
+   ],
+   "figures": [
+    {
+     "id": "bench-biopak:judges-checklist",
+     "file": "figures/bench-biopak/judges-checklist.png",
+     "caption": "Judge’s Checklist",
+     "page": 34,
+     "pdf_page": 34,
+     "kind": "form"
     }
    ]
   }
