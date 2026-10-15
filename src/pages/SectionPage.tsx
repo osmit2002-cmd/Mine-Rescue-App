@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { FigureGallery } from '../components/FigureGallery';
 import { FigureCard, NotFound, pagesLabel, ruleLink } from '../components/common';
 import { RuleText } from '../components/RuleText';
 import { useData } from '../data/DataContext';
@@ -10,6 +11,7 @@ export default function SectionPage() {
   if (!s) return <NotFound what="section" />;
   const rules = data.rules.filter((r) => r.sectionId === s.id && !r.parent);
   const figures = data.figuresForSection(s);
+  const gallery = data.sectionGalleryFor(s);
   return (
     <article className="card">
       <nav className="breadcrumbs">
@@ -32,6 +34,12 @@ export default function SectionPage() {
               </li>
             ))}
           </ul>
+        </>
+      )}
+      {gallery.length > 0 && (
+        <>
+          <h2>Figures ({gallery.length})</h2>
+          <FigureGallery key={s.id} figures={gallery} label={`Figures for ${s.title}`} />
         </>
       )}
       {figures.length > 0 && (

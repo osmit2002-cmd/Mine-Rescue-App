@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { FigureGallery } from '../components/FigureGallery';
 import { FigureCard, NotFound, pagesLabel, ruleLabel, ruleLink } from '../components/common';
 import { RuleText } from '../components/RuleText';
 import { useData } from '../data/DataContext';
@@ -20,6 +21,7 @@ export default function RuleDetail() {
   const prev = sameEvent[idx - 1];
   const next = sameEvent[idx + 1];
   const figures = data.figuresForRule(rule);
+  const gallery = data.galleryFor(rule);
   const section = rule.sectionId ? data.sectionsById.get(rule.sectionId) : undefined;
 
   const copyLink = async () => {
@@ -55,6 +57,12 @@ export default function RuleDetail() {
         {[pagesLabel(rule.pages) && `Rule book ${pagesLabel(rule.pages)}`, data.editionFor(rule.event)].filter(Boolean).join(' · ')}
       </p>
       <RuleText text={rule.text} terms={terms} format={rule.format} />
+      {gallery.length > 0 && (
+        <>
+          <h2>Figures ({gallery.length})</h2>
+          <FigureGallery key={rule.id} figures={gallery} label={`Figures for ${ruleLabel(rule)}`} />
+        </>
+      )}
       {rule.tags.length > 0 && (
         <p className="tags">
           {rule.tags.map((t) => (

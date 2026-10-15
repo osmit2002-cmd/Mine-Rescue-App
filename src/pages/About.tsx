@@ -4,7 +4,7 @@ import { useData } from '../data/DataContext';
 import { resetStats } from '../quiz/stats';
 
 export default function About() {
-  const { rules, facts, figures, sections, parts, edition, document, issues, sample, contentUrl, factEvents, ruleBooks, editionFor } = useData();
+  const { rules, facts, figures, sections, parts, edition, document, issues, sample, contentUrl, factEvents, ruleBooks, editionFor, runtimeFigures } = useData();
   const [sources, setSources] = useState<string | null>(null);
   const [figInfo, setFigInfo] = useState<{ count: number; originalBytes: number; builtBytes: number; format: string } | null>(null);
   useEffect(() => {
@@ -46,13 +46,14 @@ export default function About() {
         {document.publisher && (<><dt>Publisher</dt><dd>{document.publisher}</dd></>)}
         <dt>Loaded</dt>
         <dd>
-          {rules.length} rules in {sections.length || 'their'} sections, {facts.length} statements, {parts.length} parts tables ({parts.reduce((n, t) => n + t.rows.length, 0)} parts), {figures.length} figure pages
+          {rules.length} rules in {sections.length || 'their'} sections, {facts.length} statements, {parts.length} parts tables ({parts.reduce((n, t) => n + t.rows.length, 0)} parts), {figures.filter((f) => f.kind !== 'crop').length} figure pages{figures.some((f) => f.kind === 'crop') ? `, ${figures.filter((f) => f.kind === 'crop').length} cropped figures` : ''}
         </dd>
         {figInfo && (
           <>
             <dt>Figures</dt>
             <dd>
-              {figInfo.count} images, {mb(figInfo.originalBytes)} originals → {mb(figInfo.builtBytes)} {figInfo.format.toUpperCase()} (stored for offline use)
+              {figInfo.count} images, {mb(figInfo.originalBytes)} originals → {mb(figInfo.builtBytes)} {figInfo.format.toUpperCase()}{' '}
+              {runtimeFigures.length ? `(cropped figures stored for offline use; ${runtimeFigures.length} full-page images saved when viewed, or all at once from the Figures page)` : '(stored for offline use)'}
             </dd>
           </>
         )}

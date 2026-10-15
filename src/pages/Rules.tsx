@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Highlight, snippet } from '../components/Highlight';
 import { SearchBar } from '../components/SearchBar';
-import { pagesLabel, ruleLink } from '../components/common';
+import { FigureBadge, pagesLabel, ruleLink } from '../components/common';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import { filterRuleTree, type RuleNode, type SectionNode } from '../data/ruleTree';
 import { buildRuleSearchIndex, filterMatches, useUrlQuery } from '../lib/textSearch';
@@ -11,6 +11,7 @@ type Hits = Map<string, string[]> | null;
 
 function RuleItem({ node, hits }: { node: RuleNode; hits: Hits }) {
   const r = node.rule;
+  const figs = useData().galleryFor(r).length;
   const terms = hits?.get(r.id);
   const preview = r.title ? '' : r.text.split('\n')[0];
   const label = r.title || (preview.length > 140 ? `${preview.slice(0, 140)}…` : preview);
@@ -23,6 +24,7 @@ function RuleItem({ node, hits }: { node: RuleNode; hits: Hits }) {
         <span className="rule-num">{terms ? <Highlight text={r.number || '•'} terms={terms} /> : r.number || '•'}</span>
         <span>
           {terms ? <Highlight text={label} terms={terms} /> : label}
+          <FigureBadge count={figs} />
           {showSnippet && (
             <span className={`rule-snippet${r.format === 'pre' ? ' pre' : ''}`} data-testid="rule-snippet">
               <Highlight text={around} terms={terms!} />

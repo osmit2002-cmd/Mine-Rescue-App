@@ -30,9 +30,10 @@ export function pagesLabel(p?: [number, number]): string | null {
 }
 
 export function FigureCard({ fig }: { fig: Figure }) {
-  const { contentUrl } = useData();
+  const { contentUrl, rulesById } = useData();
   const url = contentUrl(fig.file);
   const title = [fig.caption, fig.title].filter(Boolean).join(' — ');
+  const rules = (fig.ruleIds ?? []).map((id) => rulesById.get(id)).filter((r): r is Rule => !!r);
   return (
     <figure className="figure-card" id={`fig-${fig.file.replace(/\W+/g, '-')}`}>
       <a href={url} target="_blank" rel="noreferrer">
@@ -41,8 +42,36 @@ export function FigureCard({ fig }: { fig: Figure }) {
       <figcaption>
         {title}
         {fig.printedPage !== undefined && <span className="muted"> · rule book p. {fig.printedPage}</span>}
+        {rules.length > 0 && (
+          <span className="fig-rules" data-testid="fig-rules">
+            {' · '}
+            {rules.map((r, i) => (
+              <span key={r.id}>
+                {i > 0 && ', '}
+                <Link to={ruleLink(r)}>{ruleLabel(r)}</Link>
+              </span>
+            ))}
+          </span>
+        )}
       </figcaption>
     </figure>
+  );
+}
+
+/** Small "has figures" marker for rule lists: a picture icon and the number of figures. */
+export function FigureBadge({ count }: { count: number }) {
+  if (count <= 0) return null;
+  const text = `${count} figure${count === 1 ? '' : 's'}`;
+  return (
+    <span className="fig-badge" title={text} data-testid="fig-badge">
+      <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+        <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.3" />
+        <circle cx="5.5" cy="6" r="1.3" fill="currentColor" />
+        <path d="M2.5 12l3.5-3.5 2.5 2.5 2-2 3 3" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+      </svg>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">{count}</span>
+    </span>
   );
 }
 

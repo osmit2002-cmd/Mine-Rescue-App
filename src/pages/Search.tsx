@@ -2,7 +2,7 @@ import MiniSearch, { type SearchResult } from 'minisearch';
 import { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Highlight, snippet } from '../components/Highlight';
-import { ruleLabel, ruleLink } from '../components/common';
+import { FigureBadge, ruleLabel, ruleLink } from '../components/common';
 import { ALL_EVENTS, useData, useEvent, type Data } from '../data/DataContext';
 import { useUrlQuery } from '../lib/textSearch';
 
@@ -104,7 +104,10 @@ export default function Search() {
             <li key={r.id}>
               <Link to={to}>
                 <span className="result-type">{TYPE_LABEL[r.type as DocType]}{event === ALL_EVENTS && r.event ? ` · ${data.eventName(r.event)}` : ''} · {r.group}</span>
-                <strong className="result-title"><Highlight text={r.title} terms={terms} /></strong>
+                <strong className="result-title">
+                  <Highlight text={r.title} terms={terms} />
+                  {r.type === 'rule' && data.rulesById.has(r.refId) && <FigureBadge count={data.galleryFor(data.rulesById.get(r.refId)!).length} />}
+                </strong>
                 <span className="result-snippet"><Highlight text={snippet(r.text, terms)} terms={terms} /></span>
               </Link>
             </li>
