@@ -1,0 +1,632 @@
+[
+ {
+  "path": "BenchResources/BG-4.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/BenchResources/BG-4.pdf",
+  "wayback": "http://web.archive.org/web/20090114093838id_/http://www.msha.gov/MineRescue/problems/BenchResources/BG-4.pdf",
+  "bytes": 129544
+ },
+ {
+  "path": "BenchResources/Bio-Pac 240-R.pdf",
+  "source": "http://arlweb.msha.gov/MineRescue/CONTEST/problems/BenchResources/Bio-Pac%20240-R.pdf",
+  "wayback": "http://web.archive.org/web/20170128082056id_/http://arlweb.msha.gov/MineRescue/CONTEST/problems/BenchResources/Bio-Pac%20240-R.pdf",
+  "bytes": 84031
+ },
+ {
+  "path": "BenchResources/Bio-Pac 240-S.pdf",
+  "source": "https://arlweb.msha.gov/MineRescue/CONTEST/problems/BenchResources/Bio-Pac%20240-S.pdf",
+  "wayback": "http://web.archive.org/web/20170220182115id_/https://arlweb.msha.gov/MineRescue/CONTEST/problems/BenchResources/Bio-Pac%20240-S.pdf",
+  "bytes": 76103
+ },
+ {
+  "path": "coal/2004/2004GovsCupBooklets.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004GovsCupBooklets.pdf",
+  "wayback": "http://web.archive.org/web/20241214215001id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004GovsCupBooklets.pdf",
+  "bytes": 141723
+ },
+ {
+  "path": "coal/2004/2004KMI.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004KMI.pdf",
+  "wayback": "http://web.archive.org/web/20250331050330id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004KMI.pdf",
+  "bytes": 1122882
+ },
+ {
+  "path": "coal/2004/2004PaoniaColoradoContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PaoniaColoradoContest.pdf",
+  "wayback": "http://web.archive.org/web/20250328235017id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PaoniaColoradoContest.pdf",
+  "bytes": 2236508
+ },
+ {
+  "path": "coal/2004/2004PaStateminerescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PaStateminerescue.pdf",
+  "wayback": "http://web.archive.org/web/20241216034959id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PaStateminerescue.pdf",
+  "bytes": 333221
+ },
+ {
+  "path": "coal/2004/2004Post11.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004Post11.pdf",
+  "wayback": "http://web.archive.org/web/20250331050334id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004Post11.pdf",
+  "bytes": 1266012
+ },
+ {
+  "path": "coal/2004/2004PriceUtahContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PriceUtahContest.pdf",
+  "wayback": "http://web.archive.org/web/20241213193104id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004PriceUtahContest.pdf",
+  "bytes": 2702210
+ },
+ {
+  "path": "coal/2004/2004WesternKYMiningInstitute.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004WesternKYMiningInstitute.pdf",
+  "wayback": "http://web.archive.org/web/20241213193105id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/2004WesternKYMiningInstitute.pdf",
+  "bytes": 2402629
+ },
+ {
+  "path": "coal/2004/ACA2004/2004ACAMINERESCUECONTESTexploration.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/2004ACAMINERESCUECONTESTexploration.pdf",
+  "wayback": "http://web.archive.org/web/20250403090032id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/2004ACAMINERESCUECONTESTexploration.pdf",
+  "bytes": 17785
+ },
+ {
+  "path": "coal/2004/ACA2004/2004ACAsupersstatement.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/2004ACAsupersstatement.pdf",
+  "wayback": "http://web.archive.org/web/20250403090031id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/2004ACAsupersstatement.pdf",
+  "bytes": 53474
+ },
+ {
+  "path": "coal/2004/ACA2004/alabama contest 04.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/alabama%20contest%2004.pdf",
+  "wayback": "http://web.archive.org/web/20250402070040id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2004/ACA2004/alabama%20contest%2004.pdf",
+  "bytes": 103089
+ },
+ {
+  "path": "coal/2005/AlabamaMineRescue2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/AlabamaMineRescue2005.pdf",
+  "wayback": "http://web.archive.org/web/20250329084409id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/AlabamaMineRescue2005.pdf",
+  "bytes": 286343
+ },
+ {
+  "path": "coal/2005/CraigColorado2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/CraigColorado2005.pdf",
+  "wayback": "http://web.archive.org/web/20241208150246id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/CraigColorado2005.pdf",
+  "bytes": 1675416
+ },
+ {
+  "path": "coal/2005/illinois2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/illinois2005.pdf",
+  "wayback": "http://web.archive.org/web/20241216034956id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/illinois2005.pdf",
+  "bytes": 518363
+ },
+ {
+  "path": "coal/2005/MorgantownContestProblem2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/MorgantownContestProblem2005.pdf",
+  "wayback": "http://web.archive.org/web/20241213023348id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/MorgantownContestProblem2005.pdf",
+  "bytes": 576311
+ },
+ {
+  "path": "coal/2005/pastate2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/pastate2005.pdf",
+  "wayback": "http://web.archive.org/web/20241101032218id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/pastate2005.pdf",
+  "bytes": 248747
+ },
+ {
+  "path": "coal/2005/PriceUtah2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/PriceUtah2005.pdf",
+  "wayback": "http://web.archive.org/web/20241208150245id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/PriceUtah2005.pdf",
+  "bytes": 2256938
+ },
+ {
+  "path": "coal/2005/stclairesvillejudgesbriefing2005.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/stclairesvillejudgesbriefing2005.pdf",
+  "wayback": "http://web.archive.org/web/20241101032013id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2005/stclairesvillejudgesbriefing2005.pdf",
+  "bytes": 2343863
+ },
+ {
+  "path": "coal/2006/2006AlabamaMineRescueContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/2006AlabamaMineRescueContest.pdf",
+  "wayback": "http://web.archive.org/web/20241207142354id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/2006AlabamaMineRescueContest.pdf",
+  "bytes": 439515
+ },
+ {
+  "path": "coal/2006/GovenorsCup2006VA.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/GovenorsCup2006VA.pdf",
+  "wayback": "http://web.archive.org/web/20250329084404id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/GovenorsCup2006VA.pdf",
+  "bytes": 592280
+ },
+ {
+  "path": "coal/2006/KyStateMRContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/KyStateMRContest.pdf",
+  "wayback": "http://web.archive.org/web/20250401162944id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/KyStateMRContest.pdf",
+  "bytes": 1504225
+ },
+ {
+  "path": "coal/2006/MorgantownWV.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/MorgantownWV.pdf",
+  "wayback": "http://web.archive.org/web/20241101025852id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/MorgantownWV.pdf",
+  "bytes": 70080
+ },
+ {
+  "path": "coal/2006/Pennsylvania.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/Pennsylvania.pdf",
+  "wayback": "http://web.archive.org/web/20241029011951id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/Pennsylvania.pdf",
+  "bytes": 208467
+ },
+ {
+  "path": "coal/2006/SouthernWVMRContest2006.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/SouthernWVMRContest2006.pdf",
+  "wayback": "http://web.archive.org/web/20241213193103id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/SouthernWVMRContest2006.pdf",
+  "bytes": 138923
+ },
+ {
+  "path": "coal/2006/StClairesville.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/StClairesville.pdf",
+  "wayback": "http://web.archive.org/web/20241101025736id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/StClairesville.pdf",
+  "bytes": 73891
+ },
+ {
+  "path": "coal/2006/VAMiningInstitueDay12006.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/VAMiningInstitueDay12006.pdf",
+  "wayback": "http://web.archive.org/web/20250329085706id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/VAMiningInstitueDay12006.pdf",
+  "bytes": 364574
+ },
+ {
+  "path": "coal/2006/VAMiningInstitueDay22006.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/VAMiningInstitueDay22006.pdf",
+  "wayback": "http://web.archive.org/web/20250331050540id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/VAMiningInstitueDay22006.pdf",
+  "bytes": 692484
+ },
+ {
+  "path": "coal/2006/WesternKentucy2006.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/WesternKentucy2006.pdf",
+  "wayback": "http://web.archive.org/web/20241208222834id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/WesternKentucy2006.pdf",
+  "bytes": 833718
+ },
+ {
+  "path": "coal/2006/WVStateMRContest2006.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/WVStateMRContest2006.pdf",
+  "wayback": "http://web.archive.org/web/20250328235013id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2006/WVStateMRContest2006.pdf",
+  "bytes": 166292
+ },
+ {
+  "path": "coal/2007/2007 KMI Mine Rescue Contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/2007%20KMI%20Mine%20Rescue%20Contest.pdf",
+  "wayback": "http://web.archive.org/web/20241215101801id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/2007%20KMI%20Mine%20Rescue%20Contest.pdf",
+  "bytes": 1646677
+ },
+ {
+  "path": "coal/2007/FIRST AID NATIONAL NO1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/FIRST%20AID%20NATIONAL%20NO1.pdf",
+  "wayback": "http://web.archive.org/web/20250401162942id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/FIRST%20AID%20NATIONAL%20NO1.pdf",
+  "bytes": 1309570
+ },
+ {
+  "path": "coal/2007/First Aid NATIONAL NO2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/First%20Aid%20NATIONAL%20NO2.pdf",
+  "wayback": "http://web.archive.org/web/20250328235031id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/First%20Aid%20NATIONAL%20NO2.pdf",
+  "bytes": 1320120
+ },
+ {
+  "path": "coal/2007/MR Day 2(8-29).pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/MR%20Day%202(8-29).pdf",
+  "wayback": "http://web.archive.org/web/20250401162940id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/MR%20Day%202(8-29).pdf",
+  "bytes": 2213078
+ },
+ {
+  "path": "coal/2007/MR Day1 (8-28).pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/MR%20Day1%20(8-28).pdf",
+  "wayback": "http://web.archive.org/web/20250401162938id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/MR%20Day1%20(8-28).pdf",
+  "bytes": 2105526
+ },
+ {
+  "path": "coal/2007/Preshift/Contestant Statement.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Contestant%20Statement.pdf",
+  "wayback": "http://web.archive.org/web/20241101025645id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Contestant%20Statement.pdf",
+  "bytes": 16852
+ },
+ {
+  "path": "coal/2007/Preshift/Nationals.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Nationals.pdf",
+  "wayback": "http://web.archive.org/web/20250328235032id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Nationals.pdf",
+  "bytes": 25846
+ },
+ {
+  "path": "coal/2007/Preshift/Preshift Record Blank.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Blank.pdf",
+  "wayback": "http://web.archive.org/web/20241207142353id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Blank.pdf",
+  "bytes": 25650
+ },
+ {
+  "path": "coal/2007/Preshift/Preshift Record Completed (2).pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Completed%20(2).pdf",
+  "wayback": "http://web.archive.org/web/20250331084201id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Completed%20(2).pdf",
+  "bytes": 26725
+ },
+ {
+  "path": "coal/2007/Preshift/Preshift Record Completed.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Completed.pdf",
+  "wayback": "http://web.archive.org/web/20250331084200id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/Preshift/Preshift%20Record%20Completed.pdf",
+  "bytes": 26944
+ },
+ {
+  "path": "coal/2007/WesternKentucy2007.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/WesternKentucy2007.pdf",
+  "wayback": "http://web.archive.org/web/20241214215001id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2007/WesternKentucy2007.pdf",
+  "bytes": 1242589
+ },
+ {
+  "path": "coal/2008/Post11MRC2008.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/Post11MRC2008.pdf",
+  "wayback": "http://web.archive.org/web/20250401175918id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/Post11MRC2008.pdf",
+  "bytes": 916361
+ },
+ {
+  "path": "coal/2008/VMI Day 1 Problem 080708.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/VMI%20Day%201%20Problem%20080708.pdf",
+  "wayback": "http://web.archive.org/web/20250401180641id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/VMI%20Day%201%20Problem%20080708.pdf",
+  "bytes": 277356
+ },
+ {
+  "path": "coal/2008/VMI Day 2 Problem 080708.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/VMI%20Day%202%20Problem%20080708.pdf",
+  "wayback": "http://web.archive.org/web/20250329020813id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2008/VMI%20Day%202%20Problem%20080708.pdf",
+  "bytes": 178237
+ },
+ {
+  "path": "coal/2009/2009NationalDay1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalDay1.pdf",
+  "wayback": "http://web.archive.org/web/20241213193100id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalDay1.pdf",
+  "bytes": 231424
+ },
+ {
+  "path": "coal/2009/2009NationalDay2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalDay2.pdf",
+  "wayback": "http://web.archive.org/web/20250401175913id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalDay2.pdf",
+  "bytes": 661879
+ },
+ {
+  "path": "coal/2009/2009NationalFirstAidProb1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalFirstAidProb1.pdf",
+  "wayback": "http://web.archive.org/web/20241021190343id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalFirstAidProb1.pdf",
+  "bytes": 303585
+ },
+ {
+  "path": "coal/2009/2009NationalFirstAidProb2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalFirstAidProb2.pdf",
+  "wayback": "http://web.archive.org/web/20250329160917id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/2009NationalFirstAidProb2.pdf",
+  "bytes": 207245
+ },
+ {
+  "path": "coal/2009/AlabamaCoalAssoc2009.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/AlabamaCoalAssoc2009.pdf",
+  "wayback": "http://web.archive.org/web/20241208150242id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/AlabamaCoalAssoc2009.pdf",
+  "bytes": 1340665
+ },
+ {
+  "path": "coal/2009/Craig Mine Rescue Problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Craig%20Mine%20Rescue%20Problem.pdf",
+  "wayback": "http://web.archive.org/web/20250329160917id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Craig%20Mine%20Rescue%20Problem.pdf",
+  "bytes": 1183311
+ },
+ {
+  "path": "coal/2009/Farmington NM 2009 Mine Rescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Farmington%20NM%202009%20Mine%20Rescue.pdf",
+  "wayback": "http://web.archive.org/web/20241215101759id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Farmington%20NM%202009%20Mine%20Rescue.pdf",
+  "bytes": 1385660
+ },
+ {
+  "path": "coal/2009/Post5MineRescueContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Post5MineRescueContest.pdf",
+  "wayback": "http://web.archive.org/web/20250401180640id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Post5MineRescueContest.pdf",
+  "bytes": 1035212
+ },
+ {
+  "path": "coal/2009/Price Mine Rescue Contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Price%20Mine%20Rescue%20Contest.pdf",
+  "wayback": "http://web.archive.org/web/20250401175915id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/Price%20Mine%20Rescue%20Contest.pdf",
+  "bytes": 1480921
+ },
+ {
+  "path": "coal/2009/StClairsville2009.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/StClairsville2009.pdf",
+  "wayback": "http://web.archive.org/web/20250331104547id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2009/StClairsville2009.pdf",
+  "bytes": 674314
+ },
+ {
+  "path": "coal/2010/2010AlabamaMRC.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/2010AlabamaMRC.pdf",
+  "wayback": "http://web.archive.org/web/20241213193055id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/2010AlabamaMRC.pdf",
+  "bytes": 5939601
+ },
+ {
+  "path": "coal/2010/2010NationalSkillsMRChamp.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/2010NationalSkillsMRChamp.pdf",
+  "wayback": "http://web.archive.org/web/20250331104544id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/2010NationalSkillsMRChamp.pdf",
+  "bytes": 5926785
+ },
+ {
+  "path": "coal/2010/Delta 2010 - Problem A revised.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Delta%202010%20-%20Problem%20A%20revised.pdf",
+  "wayback": "http://web.archive.org/web/20250329040237id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Delta%202010%20-%20Problem%20A%20revised.pdf",
+  "bytes": 1942344
+ },
+ {
+  "path": "coal/2010/Delta Problem B.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Delta%20Problem%20B.pdf",
+  "wayback": "http://web.archive.org/web/20241021202153id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Delta%20Problem%20B.pdf",
+  "bytes": 1960331
+ },
+ {
+  "path": "coal/2010/Farmington Mine Rescue Problem0001.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Farmington%20Mine%20Rescue%20Problem0001.pdf",
+  "wayback": "http://web.archive.org/web/20241029010534id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Farmington%20Mine%20Rescue%20Problem0001.pdf",
+  "bytes": 5077781
+ },
+ {
+  "path": "coal/2010/Price Mine Rescue Problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Price%20Mine%20Rescue%20Problem.pdf",
+  "wayback": "http://web.archive.org/web/20250331073156id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2010/Price%20Mine%20Rescue%20Problem.pdf",
+  "bytes": 1861335
+ },
+ {
+  "path": "coal/2011/2011AlabamaMRC.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/2011AlabamaMRC.pdf",
+  "wayback": "http://web.archive.org/web/20240615035549id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/2011AlabamaMRC.pdf",
+  "bytes": 1581147
+ },
+ {
+  "path": "coal/2011/2011PARegionalSkills.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/coal/2011/2011PARegionalSkills.pdf",
+  "wayback": "http://web.archive.org/web/20130708174214id_/http://www.msha.gov/MineRescue/problems/coal/2011/2011PARegionalSkills.pdf",
+  "bytes": 1467012
+ },
+ {
+  "path": "coal/2011/NMRC Day 1 Problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/NMRC%20Day%201%20Problem.pdf",
+  "wayback": "http://web.archive.org/web/20241207144629id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/NMRC%20Day%201%20Problem.pdf",
+  "bytes": 1201725
+ },
+ {
+  "path": "coal/2011/NMRC Day 2 Problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/NMRC%20Day%202%20Problem.pdf",
+  "wayback": "http://web.archive.org/web/20230127070643id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2011/NMRC%20Day%202%20Problem.pdf",
+  "bytes": 405062
+ },
+ {
+  "path": "coal/2012/2012 KY River Results.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012%20KY%20River%20Results.pdf",
+  "wayback": "http://web.archive.org/web/20230127070316id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012%20KY%20River%20Results.pdf",
+  "bytes": 519739
+ },
+ {
+  "path": "coal/2012/2012 PA Regional Skills Contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012%20PA%20Regional%20Skills%20Contest.pdf",
+  "wayback": "http://web.archive.org/web/20241003162036id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012%20PA%20Regional%20Skills%20Contest.pdf",
+  "bytes": 2792361
+ },
+ {
+  "path": "coal/2012/2012ACADay1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012ACADay1.pdf",
+  "wayback": "http://web.archive.org/web/20241002043818id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012ACADay1.pdf",
+  "bytes": 2173778
+ },
+ {
+  "path": "coal/2012/2012ACADay2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012ACADay2.pdf",
+  "wayback": "http://web.archive.org/web/20241003080520id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012ACADay2.pdf",
+  "bytes": 1648080
+ },
+ {
+  "path": "coal/2012/2012KCAresults.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012KCAresults.pdf",
+  "wayback": "http://web.archive.org/web/20230127084314id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012KCAresults.pdf",
+  "bytes": 121076
+ },
+ {
+  "path": "coal/2012/2012KCASkillsMineRescueProblem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012KCASkillsMineRescueProblem.pdf",
+  "wayback": "http://web.archive.org/web/20241002044154id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012KCASkillsMineRescueProblem.pdf",
+  "bytes": 3083600
+ },
+ {
+  "path": "coal/2012/2012NMRAPost5Problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012NMRAPost5Problem.pdf",
+  "wayback": "http://web.archive.org/web/20241205115213id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/2012NMRAPost5Problem.pdf",
+  "bytes": 2359959
+ },
+ {
+  "path": "coal/2012/Harlan 2012 Mine Rescue Day 1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Mine%20Rescue%20Day%201.pdf",
+  "wayback": "http://web.archive.org/web/20230127073905id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Mine%20Rescue%20Day%201.pdf",
+  "bytes": 317300
+ },
+ {
+  "path": "coal/2012/Harlan 2012 Mine Rescue Day 2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Mine%20Rescue%20Day%202.pdf",
+  "wayback": "http://web.archive.org/web/20230127082205id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Mine%20Rescue%20Day%202.pdf",
+  "bytes": 453105
+ },
+ {
+  "path": "coal/2012/Harlan 2012 Pre-Shift Contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Pre-Shift%20Contest.pdf",
+  "wayback": "http://web.archive.org/web/20230127083257id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Harlan%202012%20Pre-Shift%20Contest.pdf",
+  "bytes": 295759
+ },
+ {
+  "path": "coal/2012/Ky River Mine Rescue  Day 1.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Ky%20River%20Mine%20Rescue%20%20Day%201.pdf",
+  "wayback": "http://web.archive.org/web/20230127073945id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Ky%20River%20Mine%20Rescue%20%20Day%201.pdf",
+  "bytes": 432954
+ },
+ {
+  "path": "coal/2012/Ky River Mine Rescue Day 2.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Ky%20River%20Mine%20Rescue%20Day%202.pdf",
+  "wayback": "http://web.archive.org/web/20230127070454id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2012/Ky%20River%20Mine%20Rescue%20Day%202.pdf",
+  "bytes": 416555
+ },
+ {
+  "path": "coal/2013/2013 MTTCPaskills.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/coal/2013/2013%20MTTCPaskills.pdf",
+  "wayback": "http://web.archive.org/web/20130708174117id_/http://www.msha.gov/MineRescue/problems/coal/2013/2013%20MTTCPaskills.pdf",
+  "bytes": 2762821
+ },
+ {
+  "path": "coal/2013/2013AlabamaCoalAssocDay1.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/coal/2013/2013AlabamaCoalAssocDay1.pdf",
+  "wayback": "http://web.archive.org/web/20130708174123id_/http://www.msha.gov/MineRescue/problems/coal/2013/2013AlabamaCoalAssocDay1.pdf",
+  "bytes": 2723755
+ },
+ {
+  "path": "coal/2013/2013AlabamaCoalAssocDay2.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/coal/2013/2013AlabamaCoalAssocDay2.pdf",
+  "wayback": "http://web.archive.org/web/20130708174129id_/http://www.msha.gov/MineRescue/problems/coal/2013/2013AlabamaCoalAssocDay2.pdf",
+  "bytes": 1630844
+ },
+ {
+  "path": "coal/2013/2013KCASkills.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2013/2013KCASkills.pdf",
+  "wayback": "http://web.archive.org/web/20241207144233id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2013/2013KCASkills.pdf",
+  "bytes": 2936405
+ },
+ {
+  "path": "coal/2014/2014-ACA-DAY-1-JUDGES-BOOK.pdf",
+  "source": "https://arlweb.msha.gov/MineRescue/contest/problems/coal/2014/2014-ACA-DAY-1-JUDGES-BOOK.pdf",
+  "wayback": "http://web.archive.org/web/20241005090629id_/https://arlweb.msha.gov/MineRescue/contest/problems/coal/2014/2014-ACA-DAY-1-JUDGES-BOOK.pdf",
+  "bytes": 2032301
+ },
+ {
+  "path": "coal/2014/2014-mttc-nationwide-minerescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014-mttc-nationwide-minerescue.pdf",
+  "wayback": "http://web.archive.org/web/20241004165729id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014-mttc-nationwide-minerescue.pdf",
+  "bytes": 1769430
+ },
+ {
+  "path": "coal/2014/2014KCASkillsContest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014KCASkillsContest.pdf",
+  "wayback": "http://web.archive.org/web/20250321060138id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014KCASkillsContest.pdf",
+  "bytes": 1834356
+ },
+ {
+  "path": "coal/2014/2014KYRiverContestProblems.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014KYRiverContestProblems.pdf",
+  "wayback": "http://web.archive.org/web/20241004062640id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2014/2014KYRiverContestProblems.pdf",
+  "bytes": 3240166
+ },
+ {
+  "path": "coal/2015/2015-ACA-DAY1.pdf",
+  "source": "https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-ACA-DAY1.pdf",
+  "wayback": "http://web.archive.org/web/20241004062636id_/https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-ACA-DAY1.pdf",
+  "bytes": 3327265
+ },
+ {
+  "path": "coal/2015/2015-ACA-DAY2.pdf",
+  "source": "https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-ACA-DAY2.pdf",
+  "wayback": "http://web.archive.org/web/20241003182313id_/https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-ACA-DAY2.pdf",
+  "bytes": 3689273
+ },
+ {
+  "path": "coal/2015/2015-kca-skills-contest.pdf",
+  "source": "https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-kca-skills-contest.pdf",
+  "wayback": "http://web.archive.org/web/20241205121934id_/https://arlweb.msha.gov/MineRescue/contest/problems/coal/2015/2015-kca-skills-contest.pdf",
+  "bytes": 2029486
+ },
+ {
+  "path": "coal/2015/2015-nationwide-pennsylvania-skills.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2015/2015-nationwide-pennsylvania-skills.pdf",
+  "wayback": "http://web.archive.org/web/20241205142713id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2015/2015-nationwide-pennsylvania-skills.pdf",
+  "bytes": 1320642
+ },
+ {
+  "path": "coal/2016/2016 -kca-regionalskills-contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016%20-kca-regionalskills-contest.pdf",
+  "wayback": "http://web.archive.org/web/20241005201922id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016%20-kca-regionalskills-contest.pdf",
+  "bytes": 2310542
+ },
+ {
+  "path": "coal/2016/2016-kca-nationwide-championship-contest.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016-kca-nationwide-championship-contest.pdf",
+  "wayback": "http://web.archive.org/web/20241004233948id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016-kca-nationwide-championship-contest.pdf",
+  "bytes": 3323156
+ },
+ {
+  "path": "coal/2016/2016_Illinois_State_Problem_Briefing.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Illinois_State_Problem_Briefing.pdf",
+  "wayback": "http://web.archive.org/web/20241207144046id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Illinois_State_Problem_Briefing.pdf",
+  "bytes": 2865188
+ },
+ {
+  "path": "coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf",
+  "wayback": "http://web.archive.org/web/20241005090625id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf",
+  "bytes": 1883534
+ },
+ {
+  "path": "coal/2016/2016_Post_5_Day_2_Mine_Rescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Post_5_Day_2_Mine_Rescue.pdf",
+  "wayback": "http://web.archive.org/web/20241205142708id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2016/2016_Post_5_Day_2_Mine_Rescue.pdf",
+  "bytes": 2677623
+ },
+ {
+  "path": "coal/2017/2017_Post_5_Day_1_Mine_Rescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2017/2017_Post_5_Day_1_Mine_Rescue.pdf",
+  "wayback": "http://web.archive.org/web/20230127083454id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2017/2017_Post_5_Day_1_Mine_Rescue.pdf",
+  "bytes": 218717
+ },
+ {
+  "path": "coal/2017/2017_Post_5_Day_2_Mine_Rescue.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2017/2017_Post_5_Day_2_Mine_Rescue.pdf",
+  "wayback": "http://web.archive.org/web/20230127084157id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2017/2017_Post_5_Day_2_Mine_Rescue.pdf",
+  "bytes": 220228
+ },
+ {
+  "path": "coal/2018/2018 Post 5 Day 1 mine rescue .pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2018/2018%20Post%205%20Day%201%20mine%20rescue%20.pdf",
+  "wayback": "http://web.archive.org/web/20230127070957id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2018/2018%20Post%205%20Day%201%20mine%20rescue%20.pdf",
+  "bytes": 228649
+ },
+ {
+  "path": "coal/2018/2018 Post 5 Day 2 mine rescue problem.pdf",
+  "source": "https://arlweb.msha.gov/minerescue/contest/problems/coal/2018/2018%20Post%205%20Day%202%20mine%20rescue%20problem.pdf",
+  "wayback": "http://web.archive.org/web/20230127080347id_/https://arlweb.msha.gov/minerescue/contest/problems/coal/2018/2018%20Post%205%20Day%202%20mine%20rescue%20problem.pdf",
+  "bytes": 202336
+ },
+ {
+  "path": "coal/international/inatproblem.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/coal/international/inatproblem.pdf",
+  "wayback": "http://web.archive.org/web/20100528004928id_/http://www.msha.gov/MineRescue/problems/coal/international/inatproblem.pdf",
+  "bytes": 188496
+ },
+ {
+  "path": "metal/carlsbad/carlsbad2000.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/carlsbad/carlsbad2000.pdf",
+  "wayback": "http://web.archive.org/web/20100601232530id_/http://www.msha.gov/MineRescue/problems/metal/carlsbad/carlsbad2000.pdf",
+  "bytes": 91831
+ },
+ {
+  "path": "metal/north/98north.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/north/98north.pdf",
+  "wayback": "http://web.archive.org/web/20090507142218id_/http://www.msha.gov/MineRescue/problems/metal/north/98north.pdf",
+  "bytes": 65923
+ },
+ {
+  "path": "metal/north/99north.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/north/99north.pdf",
+  "wayback": "http://web.archive.org/web/20090507142115id_/http://www.msha.gov/MineRescue/problems/metal/north/99north.pdf",
+  "bytes": 89341
+ },
+ {
+  "path": "metal/rolla/2000rolla.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/rolla/2000rolla.pdf",
+  "wayback": "http://web.archive.org/web/20100601232442id_/http://www.msha.gov/MineRescue/problems/metal/rolla/2000rolla.pdf",
+  "bytes": 126532
+ },
+ {
+  "path": "metal/rolla/98rolla.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/rolla/98rolla.pdf",
+  "wayback": "http://web.archive.org/web/20090506142728id_/http://www.msha.gov/MineRescue/problems/metal/rolla/98rolla.pdf",
+  "bytes": 107166
+ },
+ {
+  "path": "metal/south/98south.pdf",
+  "source": "http://www.msha.gov/MineRescue/problems/metal/south/98south.pdf",
+  "wayback": "http://web.archive.org/web/20090506143514id_/http://www.msha.gov/MineRescue/problems/metal/south/98south.pdf",
+  "bytes": 71488
+ }
+]
