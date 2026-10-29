@@ -8,9 +8,10 @@
  * pillars (110 px and 220 px), so positions are converted from page pixels at 5.5 px per foot. The map is not
  * to scale, so only positions relative to the openings matter.
  *
- * Reading of the 2016 symbols against the 2026 legend: the chevrons in the crosscuts are stoppings not intact
- * (double lines permanent, single lines temporary); dashed rectangles are unsafe roof; the box with bars at the
- * No. 2 Entry rib is unsafe rib; the scalloped blob marked "Over Knee Deep" is water partly across the entry.
+ * Reading of the 2016 symbols against the 2026 legend: a stopping drawn as a broken arrow (the chevrons in the
+ * crosscuts and the "\ /" in No. 2 Entry) is a temporary stopping that is down (confirmed by Odin), so the team
+ * travels through it; dashed rectangles are unsafe roof; the box with bars at the No. 2 Entry rib is unsafe rib;
+ * the scalloped blob marked "Over Knee Deep" is water partly across the entry.
  */
 import { cellKey } from '../geometry';
 import type { Kind } from '../catalog';
@@ -26,8 +27,8 @@ function el(id: string, kind: Kind, px: number, py: number, extra: Partial<El> =
 }
 const x = (id: string, sub: XSub, px: number, py: number, text: string, extra: Partial<El> = {}) => el(id, 'x', px, py, { text, ...extra }, sub);
 const gas = (id: string, px: number, py: number, ch4: number, co: number, o2: number) => el(id, 'gas', px, py, { ch4, co, o2 });
-const brokenPerm = { intact: false, airtight: false, text: 'PERMANENT STOPPING NOT INTACT' };
-const brokenTemp = { intact: false, airtight: false, text: 'TEMPORARY STOPPING NOT INTACT' };
+/** Broken-arrow stopping: a temporary stopping that is down. */
+const down = { intact: false, airtight: false, text: 'TEMPORARY STOPPING DOWN' };
 
 export function post5Day1(): Problem {
   const l = defaultLayout(3, 5);
@@ -67,9 +68,9 @@ export function post5Day1(): Problem {
     x('timber-set-n3-2', 'other', 1088, 1461, 'TIMBER SET'),
 
     // Crosscut 2 (row 1).
-    el('stop-xc2-12', 'perm-stopping', 610, 1362, brokenPerm),
+    el('stop-xc2-12', 'temp-stopping', 610, 1362, down),
     x('saw', 'other', 695, 1403, 'SAW'),
-    el('stop-xc2-23', 'perm-stopping', 945, 1362, brokenPerm),
+    el('stop-xc2-23', 'temp-stopping', 945, 1362, down),
 
     // Pillar band between Crosscuts 2 and 3.
     x('timber-set-n1', 'other', 472, 1261, 'TIMBER SET'),
@@ -78,8 +79,8 @@ export function post5Day1(): Problem {
     x('scoop-1', 'equipment', 800, 1088, 'BATTERY SCOOP', { energized: false }),
 
     // Crosscut 3 (row 2).
-    el('stop-xc3-12', 'temp-stopping', 610, 1032, brokenTemp),
-    el('stop-xc3-23', 'temp-stopping', 945, 1032, brokenTemp),
+    el('stop-xc3-12', 'temp-stopping', 610, 1032, down),
+    el('stop-xc3-23', 'temp-stopping', 945, 1032, down),
     gas('gas-xc3-23', 978, 990, 4.5, 9, 19.9),
 
     // Pillar band between Crosscuts 3 and 4.
@@ -91,11 +92,11 @@ export function post5Day1(): Problem {
     // Crosscut 4 (row 3).
     el('bc-n1-r3', 'brattice', 399, 707),
     x('hammer', 'other', 497, 743, 'HAMMER'),
-    el('stop-xc4-12', 'temp-stopping', 607, 703, brokenTemp),
+    el('stop-xc4-12', 'temp-stopping', 607, 703, down),
     x('scoop-2', 'equipment', 973, 662, 'BATTERY SCOOP', { energized: false }),
 
     // Pillar band between Crosscuts 4 and 5.
-    el('stop-n2', 'temp-stopping', 760, 617, brokenTemp),
+    el('stop-n2', 'temp-stopping', 760, 617, down),
     x('glue', 'other', 426, 597, 'GLUE STICK'),
     x('axe-n2', 'other', 803, 640, 'AXE'),
     x('tape', 'other', 716, 586, 'BLACK TAPE'),
