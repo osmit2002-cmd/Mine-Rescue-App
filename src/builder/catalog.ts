@@ -329,6 +329,7 @@ export const X_DEFS: XDef[] = [
   { sub: 'battery', name: 'Battery', text: 'BATTERY', hint: 'All batteries except cap light batteries count as ignition sources (Rule 31B).', defaults: { energized: true } },
   { sub: 'borehole', name: 'Borehole', text: 'OPEN BOREHOLE', hint: 'Open boreholes are gas-test locations (Rule 24A). Boreholes cannot be used for ventilation (Rule 19).' },
   { sub: 'shaft', name: 'Air shaft', text: 'AIR SHAFT', hint: 'An opening to the surface. All air shafts are shown on the team map (A Card 5B).', defaults: { preMapped: true } },
+  { sub: 'outby', name: 'Opening outby', text: 'OPENING OUTBY', hint: 'The entry continues outby the FAB (to the surface or the rest of the mine): air can enter or leave the section here (Miscellaneous rule 4). Place it in the FAB at that entry.', defaults: { preMapped: true } },
   { sub: 'face', name: 'Face', text: 'FACE', hint: 'Faces get roof/face/rib tests, a gas test and dates and initials (Rules 23, 24A, 27).' },
   { sub: 'old-works', name: 'Cut into old works', text: 'CUT INTO OLD WORKS', hint: 'Inaccessible (Rule 44). Gas test where it prohibits further travel (Rule 24A).' },
   { sub: 'materials', name: 'Materials', text: 'STOPPING MATERIAL', hint: 'Ventilation material for temporary stoppings (Rule 45).' },

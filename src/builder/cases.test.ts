@@ -49,6 +49,16 @@ describe('2016 Post 5 Day 1 specifics', () => {
     expect(idx('recover', 'person-b1')).toBeGreaterThan(idx('breach', 'barricade-1'));
     expect(idx('recover', 'person-b1')).toBeLessThan(idx('breach', 'barricade-2'));
   });
+  it('ventilates the explosive mixture, then the 19.0% O2, before airlocking the second barricade', () => {
+    expect(sol.plan.vents.map((v) => [v.plan.target, v.plan.ok, v.plan.mode])).toEqual([
+      ['gas-b1-outby', true, 'wing'],
+      ['gas-b1', true, 'wing']
+    ]);
+    expect(idx('ventilate', 'gas-b1')).toBeLessThan(idx('breach', 'barricade-2'));
+    const first = sol.plan.steps[idx('ventilate', 'gas-b1-outby')].actions.map((a) => a.text).join(' ');
+    expect(first).toMatch(/line curtain/);
+    expect(first).toMatch(/start the fan \(blowing\)/);
+  });
   it('travels through stoppings found not intact instead of breaching them', () => {
     expect(sol.plan.steps.filter((s) => s.kind === 'breach').map((s) => s.subject)).toEqual(['barricade-1', 'barricade-2', 'barricade-3']);
   });

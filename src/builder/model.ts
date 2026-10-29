@@ -91,6 +91,7 @@ export type XSub =
   | 'battery'
   | 'borehole'
   | 'shaft'
+  | 'outby'
   | 'face'
   | 'old-works'
   | 'materials'
@@ -112,6 +113,8 @@ export interface Problem {
   timeLimit: number;
   /** The FAB is open to fresh outby air (the default). */
   fabFresh: boolean;
+  /** The briefing officer / CCA is outside (on the surface), not at the FAB: the FAB need not stay respirable (Rule 30). */
+  boOutside?: boolean;
   /** Materials the team may take from the FAB, as stated in the problem. */
   fabMaterials: { timbers: number; pump: boolean; brattice: boolean; lineCurtain: boolean };
   /** Designer's answer notes (key points, expected discounts). */
@@ -168,7 +171,7 @@ const num = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? v : u
 const str = (v: unknown) => (typeof v === 'string' ? v : undefined);
 const bool = (v: unknown) => (typeof v === 'boolean' ? v : undefined);
 
-const X_SUBS: XSub[] = ['lunch-pail', 'note', 'timbers', 'pump', 'equipment', 'cable', 'battery', 'borehole', 'shaft', 'face', 'old-works', 'materials', 'other'];
+const X_SUBS: XSub[] = ['lunch-pail', 'note', 'timbers', 'pump', 'equipment', 'cable', 'battery', 'borehole', 'shaft', 'outby', 'face', 'old-works', 'materials', 'other'];
 
 /** Clean one element from untrusted JSON. Returns null when it is not usable. */
 export function normalizeElement(raw: unknown): El | null {
@@ -242,6 +245,7 @@ export function normalizeProblem(raw: unknown): Problem {
     missing: clamp(r.missing, [0, 50], 0),
     timeLimit: clamp(r.timeLimit, [0, 600], 0),
     fabFresh: bool(r.fabFresh) ?? true,
+    ...(bool(r.boOutside) !== undefined ? { boOutside: bool(r.boOutside) } : {}),
     fabMaterials: {
       timbers: clamp(fm.timbers, [0, 200], 0),
       pump: bool(fm.pump) ?? false,

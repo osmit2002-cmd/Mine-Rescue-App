@@ -20,6 +20,7 @@ import { nodeName, type Port } from './geometry';
 import { buildGraph, endOf, otherEnd, subOfPlaced, type Board, type Graph, type Placed } from './graph';
 import { entryName, xcName, type El } from './model';
 import { classifyGas, gasReasons, isAirtight, isIgnition, travelBlock } from './rules';
+import { emptyVentState, planVent, type VentPlan, type VentState } from './ventplan';
 
 export interface Action {
   text: string;
@@ -28,7 +29,7 @@ export interface Action {
   level?: 'info' | 'must' | 'danger';
 }
 
-export type StepKind = 'fab' | 'stop' | 'recover' | 'breach' | 'support' | 'pump' | 'withdraw' | 'done';
+export type StepKind = 'fab' | 'stop' | 'recover' | 'ventilate' | 'breach' | 'support' | 'pump' | 'withdraw' | 'done';
 
 export interface Step {
   kind: StepKind;
@@ -63,6 +64,11 @@ export interface Plan {
   personsFound: number;
   withdrawal: { step: number; reason: string } | null;
   hazards: Hazard[];
+  /** Ventilation worked out on the way (step index → plan), and the changes they leave in the mine. */
+  vents: { step: number; plan: VentPlan }[];
+  ventState: VentState;
+  /** Gas and smoke placards removed by ventilation (element id → step index). */
+  cleared: Map<string, number>;
   /** Openings the team never reached, with what stopped it. */
   unexplored: { where: string; why: string }[];
 }
@@ -84,7 +90,11 @@ export function explore(board: Board): Plan {
   const changed = new Map<string, string>();
   const active = (el: El) => !removed.has(el.id);
   const approach = approachSides(board);
-  const hz = hazards(board, approach);
+  const hzAll = hazards(board, approach);
+  const cleared = new Map<string, number>(); // placards ventilated away → step
+  const vents: Plan['vents'] = [];
+  const ventState: VentState = emptyVentState();
+  let hz = hzAll;
   const airG = buildGraph(board, 'air');
   let g: Graph = buildGraph(board, 'travel', active);
 
@@ -626,6 +636,7 @@ export function explore(board: Board): Plan {
     for (const [id] of found) {
       const q = board.placed.get(id);
       if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
+        ventBefore(q);
         resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
         return true;
       }
@@ -647,6 +658,49 @@ export function explore(board: Board): Plan {
     }
     return null;
   };
+
+  // ------------------------------------------------------------ ventilation
+
+  /**
+   * Irrespirable air between the team and a barricade must be removed before it is breached (Rule 35). Ventilate
+   * every explosive or irrespirable placard on that side, explosive mixtures first, with the ventilation planner.
+   */
+  function ventBefore(blk: Placed) {
+    if (blk.loc.type !== 'edge') return;
+    const where = blk.loc.edge;
+    const [a] = g.ends.get(where)!;
+    const fromA = explored(a) && seenOf(where).a >= blk.s0 - 0.5;
+    const between = (board.onEdge.get(where) ?? []).filter((x) => x.el.kind === 'gas' || x.el.kind === 'smoke').filter((x) => (fromA ? x.s <= blk.s0 : x.s >= blk.s1) && found.has(x.el.id) && !cleared.has(x.el.id));
+    const bad = between.map((x) => hz.find((h) => h.el.id === x.el.id)!).filter((h) => h && (h.cls.explosive || h.cls.irrespirable));
+    if (!bad.some((h) => h.cls.irrespirable)) return;
+    bad.sort((x, y) => Number(y.cls.explosive) - Number(x.cls.explosive));
+    for (const h of bad) {
+      ventState.removed = new Set([...removed, ...recovered]);
+      const ctx = {
+        explored: new Set([...exploredSubs].map((s) => sub(s).base)),
+        seen: spansOf(),
+        unaccounted: Math.max(0, p.missing - personsTotal()),
+        extinguished: new Set([...changed].filter(([, w]) => w === 'extinguished').map(([id]) => id)),
+        removedPersons: new Set(recovered),
+        protect: new Set([...board.placed.values()].filter((x) => x.el.kind === 'body' && !/BODY/i.test(x.el.text ?? '')).map((x) => x.el.id))
+      };
+      const plan = planVent(board, h.el.id, ctx, ventState);
+      const step = newStep('ventilate', `Ventilate before breaching — ${h.cls.explosive ? 'explosive mixture' : 'irrespirable air'} at placard ${placardText(h.el)}`, [cur]);
+      step.subject = h.el.id;
+      if (plan.ok) {
+        step.actions.push(...plan.steps.map((s): Action => ({ text: s.text, rules: s.rules, el: s.el, level: s.kind === 'course' ? 'info' : 'must' })));
+        ventState.built.push(...plan.built);
+        ventState.fanOn = true;
+        cleared.set(h.el.id, steps.length);
+        changed.set(h.el.id, 'gas removed by ventilation');
+        hz = hzAll.filter((x) => !cleared.has(x.el.id));
+      } else {
+        step.notes.push(`No safe ventilation found: ${plan.why}`);
+      }
+      vents.push({ step: steps.length, plan });
+      pushStep(step);
+    }
+  }
 
   // ------------------------------------------------------------ resolving blocks
 
@@ -879,7 +933,10 @@ export function explore(board: Board): Plan {
     changed,
     personsFound: persons.length,
     withdrawal,
-    hazards: hz,
+    hazards: hzAll,
+    vents,
+    ventState,
+    cleared,
     unexplored
   };
 }

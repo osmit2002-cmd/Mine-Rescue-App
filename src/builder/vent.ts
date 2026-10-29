@@ -56,7 +56,7 @@ function cg(rows: Map<number, number>[], diag: number[], b: number[]): number[] 
 }
 
 /** Nearest end (sub-node) of the edge an element sits on, or the intersection it is in. */
-function attachSub(g: Graph, q: Placed): string | null {
+export function attachSub(g: Graph, q: Placed): string | null {
   if (q.loc.type === 'node') return subOfPlaced(g, q) ?? q.loc.node;
   if (q.loc.type !== 'edge') return null;
   const e = g.board.topo.edges.get(q.loc.edge)!;
@@ -85,7 +85,9 @@ export function airflow(board: Board): Airflow {
   const fixed = new Map<string, { p: number; r: number }[]>(); // sub → connections to fixed pressure
   const openings: string[] = [];
   const addFixed = (sub: string, p: number, r: number) => fixed.set(sub, [...(fixed.get(sub) ?? []), { p, r }]);
-  if (board.problem.fabFresh) {
+  // A running fan in the FAB drives it: the FAB is then the intake (or return), not open to the atmosphere.
+  const fanInFab = [...board.placed.values()].some((q) => q.el.kind === 'fan' && q.el.on !== false && g.subs.get(attachSub(g, q) ?? '')?.node.r === 0);
+  if (board.problem.fabFresh && !fanInFab) {
     for (const s of g.subs.values()) if (s.node.fab) addFixed(s.id, 0, 0.01);
     openings.push('FAB (fresh air)');
   }
@@ -93,7 +95,7 @@ export function airflow(board: Board): Airflow {
   for (const q of board.placed.values()) {
     const s = attachSub(g, q);
     if (!s) continue;
-    if (q.el.kind === 'x' && q.el.sub === 'shaft') {
+    if (q.el.kind === 'x' && (q.el.sub === 'shaft' || q.el.sub === 'outby')) {
       addFixed(s, 0, 0.05);
       openings.push(`${elementName(q.el)}${placardText(q.el) ? ` (${placardText(q.el)})` : ''}`);
     } else if (q.el.kind === 'fan' && q.el.on !== false) {
@@ -208,6 +210,8 @@ export interface VentContext {
   extinguished: Set<string>;
   /** Patients already taken out. */
   removedPersons: Set<string>;
+  /** Other elements to treat as potentially live persons (e.g. a placard that only says "person", not yet examined). */
+  protect?: Set<string>;
 }
 
 /** What the airflow would do with the smoke and gases as found: Rules 30F, 30G, 30H and 31A/C/D. */
@@ -217,6 +221,7 @@ export function ventFindings(board: Board, af: Airflow, hz: Hazard[], ctx: VentC
   const baseOfSub = (s: string) => s.split('#')[0];
   const fullySeen = (eid: string) => {
     const e = board.topo.edges.get(eid)!;
+    if (board.topo.nodes.get(e.a)?.fab && board.topo.nodes.get(e.b)?.fab) return true; // the FAB itself
     const spans = ctx.seen.get(eid) ?? [];
     const covered = spans.reduce((t, [a, b]) => t + (b - a), 0);
     return covered >= e.len - 0.5;
@@ -256,8 +261,8 @@ export function ventFindings(board: Board, af: Airflow, hz: Hazard[], ctx: VentC
       if (ux && ctx.unaccounted > 0)
         out.push({ level: 'danger', text: `Irrespirable ${label(h)} would be ventilated over ${ux} unexplored area(s) while ${ctx.unaccounted} person(s) are unaccounted for (potentially live) — 5 points per mixture × area × person (max 3 persons).`, rules: ['b-card-30'] });
       const fab = [...d.subs].filter((s) => g.subs.get(s)?.node.fab);
-      if (fab.length) out.push({ level: 'warn', text: `Irrespirable ${label(h)} reaches the FAB. The briefing officer's designated location must stay respirable (not by apparatus or SCSR).`, rules: ['b-card-30'] });
-      const ppl = here.filter((q) => q.el.kind === 'person' && !ctx.removedPersons.has(q.el.id));
+      if (fab.length && !board.problem.boOutside) out.push({ level: 'warn', text: `Irrespirable ${label(h)} reaches the FAB. The briefing officer's designated location must stay respirable (not by apparatus or SCSR).`, rules: ['b-card-30'] });
+      const ppl = here.filter((q) => (q.el.kind === 'person' && !ctx.removedPersons.has(q.el.id)) || !!ctx.protect?.has(q.el.id));
       if (ppl.length) out.push({ level: 'warn', text: `Irrespirable ${label(h)} would reach ${ppl.length} live person(s): protect them first.`, rules: ['b-card-34'] });
     }
     if (out.length === before)

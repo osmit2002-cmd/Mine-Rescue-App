@@ -6,6 +6,7 @@
  * intersection means it may be stop 4 or stop 5. Key points the solver cannot be checked against yet (most of
  * them about ventilation) are kept verbatim as `manual` so the report shows the gap.
  */
+import { placardText } from './catalog';
 import { nodeId } from './geometry';
 import type { Problem } from './model';
 import type { Solution } from './solve';
@@ -23,6 +24,11 @@ export interface JudgeKey {
   rescue: { el: string; before?: number }[];
   /** Bodies or persons the team must reach (examine) before this stop starts. */
   reachBefore?: { el: string; before: number }[];
+  /**
+   * Gas placards the team must ventilate away: before a structure is breached (`beforeBreach`), and/or after another
+   * placard has been ventilated (`after`).
+   */
+  vents?: { el: string; beforeBreach?: string; after?: string }[];
   /** The judges expect the team to withdraw (Rule 31B). */
   withdrawal: boolean;
   /** The judge book's key points, verbatim. */
@@ -63,7 +69,7 @@ export function compareToKey(sol: Solution, key: JudgeKey): KeyReport {
   const checks: KeyCheck[] = [];
   const name = (id: string) => {
     const q = board.placed.get(id);
-    return q ? `${q.el.kind} “${q.el.text ?? ''}” (${id})` : id;
+    return q ? `${q.el.kind} “${placardText(q.el)}” (${id})` : id;
   };
 
   // Stop numbers: the first stop the solver makes at each intersection.
@@ -112,6 +118,28 @@ export function compareToKey(sol: Solution, key: JudgeKey): KeyReport {
     const limit = stepOfStop(r.before);
     const ok = at !== undefined && (limit < 0 || at < limit);
     checks.push({ id: `reach:${r.el}`, what: `Reach ${name(r.el)} before stop ${r.before}`, ok, expected: `before stop ${r.before}`, got: at === undefined ? 'not found' : `found at step ${at}${limit >= 0 ? `, stop ${r.before} is step ${limit}` : ''}` });
+  }
+
+  const breachStep = (id: string) => steps.findIndex((s) => s.kind === 'breach' && s.subject === id);
+  for (const v of key.vents ?? []) {
+    const at = plan.cleared.get(v.el);
+    const conds: string[] = [];
+    let ok = at !== undefined;
+    if (v.beforeBreach) {
+      conds.push(`before ${name(v.beforeBreach)} is breached`);
+      const bs = breachStep(v.beforeBreach);
+      if (at !== undefined && bs >= 0 && at > bs) ok = false;
+    }
+    if (v.after) {
+      conds.push(`after ${name(v.after)} is ventilated`);
+      const af = plan.cleared.get(v.after);
+      if (at !== undefined && (af === undefined || af > at)) ok = false;
+    }
+    checks.push({ id: `vent:${v.el}`, what: `Ventilate ${name(v.el)}`, ok, expected: ['ventilated', ...conds].join(' '), got: at === undefined ? 'never ventilated' : `ventilated at step ${at}` });
+  }
+  if (key.vents?.length) {
+    const bad = plan.vents.filter((v) => !v.plan.ok);
+    checks.push({ id: 'vents-safe', what: 'Every ventilation change is safe (Rules 30, 31)', ok: bad.length === 0, expected: 'no unsafe or failed plan', got: bad.length ? bad.map((v) => `${name(v.plan.target)}: ${v.plan.why}`).join('; ') : `${plan.vents.length} plan(s), all safe` });
   }
 
   const passed = checks.filter((c) => c.ok).length;

@@ -44,6 +44,8 @@ export function post5Day1(): Problem {
     el('bc-fab-1', 'brattice', 593, 1725, { preMapped: true }),
     el('bc-fab-2', 'brattice', 922, 1725, { preMapped: true }),
     x('shaft', 'shaft', 1090, 252, "8' AIR SHAFT", { preMapped: true }),
+    // No. 3 Entry continues outby the FAB (Nos. 1 and 2 are caved airtight outby): the return in the judges' vent maps.
+    x('outby-3', 'outby', 1090, 1735, 'NO. 3 ENTRY OPEN OUTBY', { preMapped: true }),
 
     // No. 1 Entry, FAB to Crosscut 2: two barricades with persons, unsafe roof outby Crosscut 2.
     gas('gas-b1-outby', 429, 1600, 5.5, 5, 19.5),
@@ -138,6 +140,7 @@ export function post5Day1(): Problem {
     missing: 6,
     timeLimit: 0,
     fabFresh: true,
+    boOutside: true, // "BO/CCA IS OUTSIDE AND ISOLATED"
     fabMaterials: { timbers: 0, pump: false, brattice: true, lineCurtain: false },
     keyNotes: KEY.notes.join(' '),
     layout: l,
@@ -169,10 +172,14 @@ export const KEY: JudgeKey = {
     { el: 'person-b2', before: 12 }
   ],
   reachBefore: [{ el: 'body-n3', before: 12 }],
+  vents: [
+    { el: 'gas-b1-outby', beforeBreach: 'barricade-2' },
+    { el: 'gas-b1', beforeBreach: 'barricade-2', after: 'gas-b1-outby' }
+  ],
   withdrawal: false,
   manual: [
-    'Ventilation: put the first barricade back up to wing out the explosive mixture (vent 1), then take it down to ventilate the 19.0% O2 to the second barricade (vent 2), before stop 12.',
-    'Ventilation: never send low O2 over the person under unsafe roof in No. 3 Entry.',
+    'Ventilation: the judges put the first barricade back up for vent 1 and take it down again for vent 2; the solver wings both placards from the FAB with the barricade left down.',
+    'Ventilation: the judges vent the 19.0% O2 after exploring (before stop 12) and route it through the explored mine; the solver vents it before breaching the second barricade, out through No. 3 Entry outby.',
     'Materials: the four broken timbers cannot be used; the three timbers from the barricade are the ones used to reach the person in No. 3.'
   ],
   notes: [
