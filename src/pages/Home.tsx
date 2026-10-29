@@ -67,6 +67,10 @@ export default function Home() {
           <strong>Search</strong>
           <span>Rules, statements and parts together</span>
         </Link>
+        <Link className="tile" to="/builder">
+          <strong>Problem builder</strong>
+          <span>Place placards on a blank mine map, then solve it: team stops, mapping key, ventilation</span>
+        </Link>
         {evFigures.length > 0 && (
           <Link className="tile" to="/figures">
             <strong>Figures</strong>

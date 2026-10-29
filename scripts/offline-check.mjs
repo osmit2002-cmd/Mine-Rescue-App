@@ -87,10 +87,10 @@ await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
 ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.3.0', 'footer shows v0.3.0');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.4.0', 'footer shows v0.4.0');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.3.0'), 'About shows v0.3.0');
+ok((await page.textContent('main')).includes('v0.4.0'), 'About shows v0.4.0');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
@@ -490,6 +490,20 @@ if (galleryOn) {
   ok(await page.evaluate(() => document.querySelector('[data-testid=lightbox-img]').naturalWidth > 0), 'fullscreen viewer works offline');
   await page.keyboard.press('Escape');
 }
+// v0.4.0: the problem builder works offline; the Figure 7 sample solves to the rule book's nine team stops.
+await page.goto(url + '#/builder');
+await page.reload();
+await page.waitForSelector('.b-center .mine-map', { timeout: 10000 });
+ok((await page.$$('.b-center .mine-map [data-el]')).length > 0, 'problem builder opens offline with a sample problem on the map');
+await page.selectOption('[data-testid=problem-select]', 'sample-fig7');
+await page.click('button[role=tab]:has-text("Solve")');
+await page.waitForSelector('.steps .step-head');
+const fig7 = await page.$$eval('.steps .step-head', (n) => n.map((x) => x.textContent).filter((t) => t.startsWith('#')));
+ok(fig7.length === 9 && fig7[3].includes('No. 2 Entry at Crosscut 3') && fig7[8].includes('No. 3 Entry at Crosscut 3'), `Figure 7 solves to the rule book's team stops offline (${fig7.length} stops)`);
+await page.click('button[role=tab]:has-text("Ventilation")');
+await page.waitForSelector('.vent-panel');
+ok((await page.textContent('.vent-panel')).includes('No fan is running'), 'ventilation tab: no fan, no airflow (Miscellaneous rule 4)');
+await page.click('button[role=tab]:has-text("Build")');
 await ctx.setOffline(false);
 
 // Timer auto-submit (fake clock): preshift mock is 10 questions / 15 minutes.
