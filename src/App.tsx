@@ -14,6 +14,7 @@ import Figures from './pages/Figures';
 import { PartsList, PartsTable } from './pages/Parts';
 
 const About = lazy(() => import('./pages/About'));
+const Builder = lazy(() => import('./pages/Builder'));
 
 function ScrollTop() {
   const { pathname } = useLocation();
@@ -68,6 +69,7 @@ function Shell() {
             <Route path="/parts" element={<PartsList />} />
             <Route path="/parts/:id" element={<PartsTable />} />
             <Route path="/about" element={<About />} />
+            <Route path="/builder" element={<Builder />} />
             <Route path="*" element={<div className="card"><h2>Page not found</h2><Link to="/">Home</Link></div>} />
           </Routes>
         </Suspense>
@@ -104,6 +106,7 @@ function Header() {
         <NavLink to="/statements">Statements</NavLink>
         <NavLink to="/quiz">Quiz</NavLink>
         <NavLink to="/search">Search</NavLink>
+        <NavLink to="/builder">Builder</NavLink>
         {hasParts && <NavLink to="/parts">Parts</NavLink>}
       </nav>
       {events.length > 1 && (
@@ -121,15 +124,23 @@ function Header() {
   );
 }
 
+/** The problem builder uses the full window width; other pages keep the reading width. */
+function Main() {
+  const { pathname } = useLocation();
+  return (
+    <main className={`main${pathname.startsWith('/builder') ? ' wide' : ''}`}>
+      <DataGate />
+    </main>
+  );
+}
+
 export default function App() {
   return (
     <DataProvider>
       <EventProvider>
         <ScrollTop />
         <Header />
-        <main className="main">
-          <DataGate />
-        </main>
+        <Main />
         <PwaStatus />
       </EventProvider>
     </DataProvider>

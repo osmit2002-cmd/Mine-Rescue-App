@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.4.0
+
+- **Problem builder** (`#/builder`, new **Builder** tab): design coal mine rescue field problems on a blank map and have the app work them out from the 2026 rules.
+  - Blank map with entries, crosscuts, equal pillars (General Information rule 7), side and inby stubs; each opening is mined (solid lines), projected (dotted) or not mined (Miscellaneous rule 3). The FAB is the bottom row.
+  - Every MSHA Mine Map Legend symbol (rule book pp. 51–55) plus the common "X" objects, drawn as on a contest map. Symbols snap into openings and turn to fit a crosscut. Drag to move; the inspector holds the verbatim placard wording, the legend note and links to the rules. Undo and redo, plus keyboard shortcuts.
+  - **Solve:** a step-by-step walk-through of one rule-consistent solution. It covers FAB checks, systematic team stops (Rules 29, 44B–E), gas tests in every opening, roof tests and dates and initials, and patients taken out promptly (Rules 33, 34, 41). The team timbers to a patient under unsafe roof, pumps water to reach one, and airlocks and breaches a barricade that answers (Rules 35, 41, 42). An explosive mixture next to evidence of fire, or energized equipment in one, means withdrawal (31B). Separations are airlocked through to reach accessible areas behind them (42), and inaccessible areas are opened up while persons are unaccounted for (44F). The rule book's Figure 7 comes out in exactly its printed team-stop order.
+  - **Mapping key** for the team map (A Card 5) and the BO/CCA map (A Card 6), with the conditions to note at the end and the objects never reached, which must not be mapped (A Card 4).
+  - **Hazards:** gas placards are classed as explosive, irrespirable or contaminant using the rule book's thresholds. Extents of gases and smoke follow Rule 24E and are hatched on the map.
+  - **Ventilation:** an airflow estimate with *what if* changes (take structures down, open doors, put fires out, build temporary stoppings, change the fan). It flags explosive or irrespirable air carried over ignition sources, unexplored areas, an inextinguishable fire or the FAB (Rules 30F/G/H, 31A/C/D).
+  - **Design checks:** placard wording rules (permanent/temporary stopping, “unsafe roof”, no “air clear”), gas readings, one live person per refuge alternative, and objects placed outside the openings.
+  - Problems are saved on the device, with export/import as `.mrs-problem.json`. Print gives a blank map (fitted to a page or at 1 in = 10 ft, with only FAB objects and air shafts) or a key map with the mapping key and team stops.
+  - Samples: rule book Figure 7 and Figure 5 drawn as problems, and a practice problem written for the app.
+- Works offline like the rest of the app; the end-to-end offline check opens the builder offline and solves Figure 7.
+- Version 0.4.0.
+
 ## 0.3.0
 
 - **Figure gallery on rule pages.** A rule whose content lists cropped figures (`figures` on the rule item, in display order, merged with `content/figures.json`) shows "Figures (N)" under the rule wording:
