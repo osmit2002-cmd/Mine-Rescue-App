@@ -41,6 +41,8 @@ export interface Step {
   /** Sub-nodes travelled through to get here, including start and end. */
   route: string[];
   via?: string;
+  /** The element a recover, breach, support or pump step is about. */
+  subject?: string;
   found: string[];
   actions: Action[];
   notes: string[];
@@ -207,7 +209,7 @@ export function explore(board: Board): Plan {
   const atmosphereAt = (q: Placed) => hz.filter((h) => h.cls.irrespirable && contains(h.extent, airG, q));
 
   const timbersAvailable = () =>
-    p.fabMaterials.timbers > 0 || [...found.keys()].some((id) => board.placed.get(id)?.el.kind === 'x' && board.placed.get(id)?.el.sub === 'timbers' && !changed.has(id));
+    p.fabMaterials.timbers > 0 || [...found.keys()].some((id) => board.placed.get(id)?.el.kind === 'x' && board.placed.get(id)?.el.sub === 'timbers' && (board.placed.get(id)?.el.count ?? 1) > 0 && !changed.has(id));
   const pumpAvailable = () => p.fabMaterials.pump || [...found.keys()].some((id) => board.placed.get(id)?.el.kind === 'x' && board.placed.get(id)?.el.sub === 'pump');
 
   const actionsFor = (q: Placed): Action[] => {
@@ -567,19 +569,12 @@ export function explore(board: Board): Plan {
 
   const handlePatients = (): boolean => {
     let acted = false;
-    // Verbal contact at a barricade: the persons behind it must be reached promptly (Rule 41A).
-    for (const [id] of found) {
-      const q = board.placed.get(id);
-      if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
-        resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
-        return true;
-      }
-    }
     for (const [id] of found) {
       const q = board.placed.get(id);
       if (!q || q.el.kind !== 'person' || recovered.has(id)) continue;
       if (reachable(q)) {
         const step = newStep('recover', `Take the patient to the FAB — ${elementName(q.el)} “${placardText(q.el)}”`, [cur]);
+        step.subject = id;
         step.actions.push(
           { text: 'Every effort to remove the patient safely and promptly; exploring ahead of this location is limited to 25 ft; no ventilation controls, timbering or pumping unless needed to recover the patient.', rules: ['b-card-41'], level: 'must' },
           { text: 'A team member stays within 10 ft of the patient at all times; secure any extra apparatus to the stretcher.', rules: ['b-card-40', 'b-card-16'], level: 'must' },
@@ -625,6 +620,16 @@ export function explore(board: Board): Plan {
         );
       }
     }
+    if (acted) return true;
+    // Verbal contact at a barricade: the persons behind it must be reached promptly (Rule 41A) — after any patient
+    // already reached is on the way out (Rule 41B: no ventilation controls while removing a patient).
+    for (const [id] of found) {
+      const q = board.placed.get(id);
+      if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
+        resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
+        return true;
+      }
+    }
     return acted;
   };
 
@@ -650,6 +655,7 @@ export function explore(board: Board): Plan {
     const info = travelBlock(el)!;
     const where = blk.loc.type === 'edge' ? blk.loc.edge : null;
     const step = newStep(kind, `${title} — ${elementName(el)}${placardText(el) ? ` “${placardText(el)}”` : ''}`, [cur]);
+    step.subject = el.id;
     if (kind === 'support') {
       step.actions.push(
         { text: 'Roof test at the outby end (sound and vibration); set the first timber outby the unsafe roof no more than 5 ft from a safe rib (or two timbers no more than 5 ft apart), then timbers at no more than 5-ft intervals, then the last timber inby; roof test at the inby end. Stay between the timbers and the safe rib.', rules: ['b-card-30', 'b-card-23'], level: 'must' },

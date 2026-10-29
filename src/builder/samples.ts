@@ -6,6 +6,7 @@ import { makeElement, PALETTE } from './catalog';
 import { cellKey, entryX, makeGeo, rowYc } from './geometry';
 import { defaultLayout, SCHEMA, type El, type Layout, type Problem, type XSub } from './model';
 import type { Kind } from './catalog';
+import { post5Day1 } from './cases/post5-2016-day1';
 
 /** Positions by entry and crosscut instead of feet. f runs 0..1 between the two imaginary rib lines. */
 export const at = {
@@ -162,5 +163,6 @@ export function practice1(): Problem {
 export const SAMPLES: { id: string; make: () => Problem; blurb: string }[] = [
   { id: 'sample-fig7', make: figure7, blurb: 'The rule book’s Rule 44 example with its official team-stop order.' },
   { id: 'sample-fig5', make: figure5, blurb: 'Open three-entry section from the Rule 29 figure.' },
-  { id: 'sample-practice-1', make: practice1, blurb: 'Smoke, fire, a barricade, unsafe roof and three missing miners.' }
+  { id: 'sample-practice-1', make: practice1, blurb: 'Smoke, fire, a barricade, unsafe roof and three missing miners.' },
+  { id: 'case-post5-2016-day1', make: post5Day1, blurb: 'A past contest problem: three barricades, six missing miners and explosive methane in No. 1 Entry.' }
 ];

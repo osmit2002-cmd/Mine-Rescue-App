@@ -56,7 +56,8 @@ export interface BlockInfo {
 /**
  * Does this element stop team travel along its opening? Rule 44 defines inaccessible areas (seals; unsafe roof rib
  * to rib; inextinguishable fires; water over knee deep; caved areas; cut into old works). Stoppings, doors and
- * barricades are separations the team can breach after building an airlock (Rule 42).
+ * barricades are separations the team can breach after building an airlock (Rule 42); one found not intact has an
+ * opening and does not stop travel (2016 Post 5 Day 1: the judges tie across through broken crosscut stoppings).
  */
 export function travelBlock(el: El): BlockInfo | null {
   switch (el.kind) {
@@ -76,11 +77,14 @@ export function travelBlock(el: El): BlockInfo | null {
     case 'perm-stopping':
     case 'temp-stopping':
     case 'diagonal':
+      // Not intact (partly or completely down, legend p. 51): there is an opening, so the team travels through.
+      if (el.intact === false) return null;
       return { type: 'separation', fix: isAirtight(el) ? 'airlock' : 'breach', reason: el.kind === 'perm-stopping' ? 'permanent stopping' : 'temporary stopping' };
     case 'barricade':
+      if (el.intact === false) return null;
       return { type: 'separation', fix: isAirtight(el) ? 'airlock' : 'breach', reason: 'barricade' };
     case 'door':
-      return el.open ? null : { type: 'separation', fix: isAirtight(el) ? 'airlock' : 'breach', reason: 'closed door' };
+      return el.open || el.intact === false ? null : { type: 'separation', fix: isAirtight(el) ? 'airlock' : 'breach', reason: 'closed door' };
     default:
       return null;
   }

@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- **Reference cases for the solver** (`src/builder/cases/`): past contest problems from `problems/` transcribed into builder problems, each with its judge book's key as a typed `JudgeKey` (accepted team-stop numbers per intersection, patients to rescue and by which stop, objects to find, withdrawal, and the key points not yet checkable, verbatim).
+  - `compareToKey()` (`src/builder/judge.ts`) checks a solution against the key and reports each check with what the judges expect and what the solver did. The tests pin the checks that still fail, so progress shows up as a smaller list.
+  - First case: 2016 Post 5 & WV State, Day 1 (MSHA archive). The solver now matches 14 of its 18 checks; the remaining four are the order of the last three team stops and the rescue that depends on it. The case is also in the builder's samples.
+- Solver fixes found with the first case:
+  - Stoppings, doors and barricades found **not intact** no longer stop travel; the team ties across through them instead of airlocking.
+  - A patient already reached is taken to the FAB before the team airlocks into another barricade that answers (Rule 41B).
+  - Timbers whose placard gives a count of 0 (e.g. "broken, cannot use") are not counted as roof supports.
+
 ## 0.4.0
 
 - **Problem builder** (`#/builder`, new **Builder** tab): design coal mine rescue field problems on a blank map and have the app work them out from the 2026 rules.
