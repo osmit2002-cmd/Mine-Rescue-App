@@ -103,6 +103,8 @@ npm run preview    # serve dist/ on :4173 to check the service worker
 node scripts/offline-check.mjs   # headless end-to-end + offline check (needs preview running + Chrome)
 ```
 
+To try the solver: `npm run dev`, open `http://localhost:5173/#/builder`, pick a problem (or **Samples → 2016 Post 5 & WV State — Day 1**) and open the **Solve** tab. `npx vitest run src/builder` runs just the builder, solver, ventilation planner and judge-key tests; a failing judge-key test prints the full comparison with the judges.
+
 ## Deploy
 
 `dist/` is a static site (relative paths, hash routing). Serve it from any static host, at a domain root or in a sub-folder:
