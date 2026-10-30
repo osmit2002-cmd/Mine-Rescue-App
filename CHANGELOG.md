@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.5.0 (unreleased)
+
+- Version 0.5.0, so a running build of the layout editing and pillar numbering changes shows v0.5.0 in the footer and on About.
 
 - **Edit the mine layout on the map** (Builder → **Edit layout**): a layout bar adds or removes entries on the left or right, makes the problem longer or shorter at the face, and changes pillar, entry and face stub sizes; clicking an entry, crosscut or stub opens a ring to set it mined, projected or not mined. Placed symbols and opening settings stay in their openings when the grid changes, and the builder asks before removing an entry or crosscut that has symbols in it. Typing a new entry or crosscut count in the panel applies when you leave the field.
 - **Pillar numbering** from an editable file, `src/builder/pillar-numbering.json`. Default: the two pillars outby the FAB are 0 and 00 (left to right), then 1, 2, …, N left to right across each row moving inby to the face. Other schemes (columns, right to left, back and forth, prefixes, other outby labels) can be set in the file or per device in **Blank map → Pillar numbers**, with import and export. Maps now draw the row of pillars outby the FAB (Layout `outbyPillars`, on by default).
