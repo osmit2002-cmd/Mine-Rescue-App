@@ -28,6 +28,12 @@ export interface Layout {
   entryNames: string[];
   /** Number printed for crosscut row 0 (the FAB row). Row r is crosscut xcStart + r. */
   xcStart: number;
+  /**
+   * Draw the row of pillars just outby the FAB (between the entries, below row 0). Drawing only: the team does
+   * not explore outby the FAB, so these pillars are not part of the openings graph. They carry the first pillar
+   * numbers (0, 00 in the default scheme, see pillars.ts).
+   */
+  outbyPillars: boolean;
 }
 
 /** One placard, object or condition on the map. Optional fields apply only to some kinds (see catalog.ts). */
@@ -133,7 +139,7 @@ export function newId(prefix = 'e'): string {
 }
 
 export function defaultLayout(entries = 3, rows = 6): Layout {
-  return { entries, rows, entryWidth: 20, pillarWidth: 60, pillarLength: 60, stubLength: 40, cells: {}, entryNames: [], xcStart: 0 };
+  return { entries, rows, entryWidth: 20, pillarWidth: 60, pillarLength: 60, stubLength: 40, cells: {}, entryNames: [], xcStart: 0, outbyPillars: true };
 }
 
 export function blankProblem(title = 'New problem'): Problem {
@@ -226,7 +232,8 @@ export function normalizeProblem(raw: unknown): Problem {
     stubLength: clamp(lr.stubLength, LIMITS.stub, d.stubLength),
     cells,
     entryNames: Array.isArray(lr.entryNames) ? lr.entryNames.map((n) => (typeof n === 'string' ? n.slice(0, 40) : '')) : [],
-    xcStart: clamp(lr.xcStart, [0, 999], 0)
+    xcStart: clamp(lr.xcStart, [0, 999], 0),
+    outbyPillars: bool(lr.outbyPillars) ?? true
   };
   const fm = (r.fabMaterials && typeof r.fabMaterials === 'object' ? r.fabMaterials : {}) as Record<string, unknown>;
   const els = Array.isArray(r.elements) ? r.elements.map(normalizeElement).filter((e): e is El => !!e) : [];

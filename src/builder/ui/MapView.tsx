@@ -2,10 +2,14 @@ import { useMemo, useRef, useState, type PointerEvent as RPointerEvent } from 'r
 import { KIND_DEFS } from '../catalog';
 import type { Hazard } from '../extents';
 import { acrossRot, buildTopo, cellRect, cellState, cellType, makeGeo, ribLines, snap, type Geo, type Topo } from '../geometry';
-import { entryName, type El, type Problem } from '../model';
+import { entryName, type El, type Layout, type Problem } from '../model';
+import { outbyBand, pillarLabels, type PillarNumbering } from '../pillars';
 import { mapLabel, SymbolShape } from './symbols';
 
 export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
+
+/** Margins around the map in feet: the bottom one also holds the drawn row of pillars outby the FAB. */
+export const mapMargins = (layout: Layout) => ({ ...MARGIN, b: MARGIN.b + outbyBand(makeGeo(layout)) });
 
 export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' };
 
@@ -45,6 +49,10 @@ interface Props {
   onOpeningClick?: (x: number, y: number) => void;
   /** Feet per inch when printing (10 = contest scale 1 in = 10 ft); null fits the page. */
   printScale?: number | null;
+  /** Pillar numbering scheme; numbers are drawn when it is given and its `show` is on. */
+  numbering?: PillarNumbering;
+  /** Opening highlighted in the layout tool (its options ring is open), as "cx,cy". */
+  activeCell?: string | null;
 }
 
 const HZ_COLOR = (h: Hazard) => (h.cls.explosive ? '#dc2626' : h.el.kind === 'smoke' ? '#4b5563' : h.cls.irrespirable ? '#ea580c' : '#ca8a04');
@@ -102,9 +110,16 @@ export function MapView(props: Props) {
   const W = problem.layout.entryWidth;
   const k = Math.max(0.6, Math.min(1.6, W / 20));
   const Y = (y: number) => H - y;
-  const vbW = geo.width + MARGIN.l + MARGIN.r;
-  const vbH = H + MARGIN.t + MARGIN.b;
+  const M = mapMargins(problem.layout);
+  const band = outbyBand(geo);
+  const vbW = geo.width + M.l + M.r;
+  const vbH = H + M.t + M.b;
   const print = printMode !== null;
+  const numbering = props.numbering;
+  const pillarNums = useMemo(
+    () => (numbering && numbering.show && (printMode !== 'blank' || numbering.showOnBlankMap) ? pillarLabels(geo, numbering) : []),
+    [geo, numbering, printMode]
+  );
 
   const toFeet = (e: { clientX: number; clientY: number }) => {
     const svg = svgRef.current;
@@ -209,7 +224,7 @@ export function MapView(props: Props) {
     <svg
       ref={svgRef}
       className={`mine-map tool-${tool.type}`}
-      viewBox={`${-MARGIN.l} ${-MARGIN.t} ${vbW} ${vbH}`}
+      viewBox={`${-M.l} ${-M.t} ${vbW} ${vbH}`}
       style={widthStyle}
       onPointerMove={onMoveP}
       onPointerUp={onUp}
@@ -230,7 +245,7 @@ export function MapView(props: Props) {
           <path d="M0 0L10 5L0 10z" fill="#2563eb" />
         </marker>
       </defs>
-      <rect x={-MARGIN.l} y={-MARGIN.t} width={vbW} height={vbH} fill="#fff" onClick={onBgClick} />
+      <rect x={-M.l} y={-M.t} width={vbW} height={vbH} fill="#fff" onClick={onBgClick} />
       {/* Solid ground (screen only) */}
       {!print &&
         cells.map(({ cx, cy }) => {
@@ -238,6 +253,32 @@ export function MapView(props: Props) {
           const r = cellRect(geo, cx, cy);
           return <rect key={`s${cx},${cy}`} x={r.x} y={Y(r.y + r.h)} width={r.w} height={r.h} className="map-solid" onClick={onBgClick} />;
         })}
+      {/* Pillars outby the FAB (drawing only: outby the FAB is not part of the problem) */}
+      {band > 0 && (
+        <g pointerEvents="none">
+          {!print &&
+            Array.from({ length: geo.E - 1 }, (_, i) => {
+              const cx = 2 * i + 2;
+              return <rect key={`ob${cx}`} x={geo.colX[cx]} y={Y(0)} width={geo.colW[cx]} height={problem.layout.pillarLength} className="map-solid" />;
+            })}
+          <g stroke="#111" strokeWidth={0.7} strokeLinecap="square">
+            {Array.from({ length: geo.E - 1 }, (_, i) => {
+              const cx = 2 * i + 2;
+              const x0 = geo.colX[cx];
+              const x1 = x0 + geo.colW[cx];
+              const yb = Y(-problem.layout.pillarLength);
+              return <path key={`obl${cx}`} d={`M${x0} ${Y(0)}V${yb}H${x1}V${Y(0)}`} fill="none" />;
+            })}
+            {/* Outer ribs of the outside entries run on outby. */}
+            <line x1={geo.colX[1]} y1={Y(0)} x2={geo.colX[1]} y2={Y(-band)} />
+            <line x1={geo.colX[2 * geo.E]} y1={Y(0)} x2={geo.colX[2 * geo.E]} y2={Y(-band)} />
+            {(['l', 'r'] as const).map((side) => {
+              const cx = side === 'l' ? 0 : 2 * geo.E;
+              return cellState(geo, cx, 0) === 'solid' ? null : <line key={side} x1={geo.colX[cx]} y1={Y(0)} x2={geo.colX[cx] + geo.colW[cx]} y2={Y(0)} />;
+            })}
+          </g>
+        </g>
+      )}
       {/* Openings: click target */}
       {cells.map(({ cx, cy }) => {
         const st = cellState(geo, cx, cy);
@@ -254,7 +295,7 @@ export function MapView(props: Props) {
             y={Y(r.y + r.h)}
             width={r.w}
             height={r.h}
-            className={`map-open${st === 'projected' ? ' projected' : ''}${layoutTool ? ' editable' : ''}${layoutTool && hoverCell === key ? ' hover' : ''}${layoutTool && st === 'solid' ? ' solid' : ''}`}
+            className={`map-open${st === 'projected' ? ' projected' : ''}${layoutTool ? ' editable' : ''}${layoutTool && (hoverCell === key || props.activeCell === key) ? ' hover' : ''}${layoutTool && st === 'solid' ? ' solid' : ''}`}
             onClick={(e) => {
               if (layoutTool) {
                 if (ty !== 'int') props.onCell?.(cx, cy);
@@ -263,7 +304,7 @@ export function MapView(props: Props) {
             onPointerEnter={layoutTool ? () => setHoverCell(key) : undefined}
             onPointerLeave={layoutTool ? () => setHoverCell(null) : undefined}
           >
-            {layoutTool && <title>{ty === 'int' ? 'Intersection (follows its openings)' : `${st} — click to change`}</title>}
+            {layoutTool && <title>{ty === 'int' ? 'Intersection (follows its openings)' : `${st === 'open' ? 'Mined' : st === 'projected' ? 'Projected' : 'Not mined'}: click to change`}</title>}
           </rect>
         );
       })}
@@ -292,26 +333,36 @@ export function MapView(props: Props) {
           <line key={i} x1={l.x1} y1={Y(l.y1)} x2={l.x2} y2={Y(l.y2)} strokeDasharray={l.dotted ? '2.2 1.6' : undefined} />
         ))}
       </g>
+      {/* Pillar numbers */}
+      {pillarNums.length > 0 && (
+        <g className="map-pillar-nums" fontFamily="Arial, sans-serif" textAnchor="middle" pointerEvents="none">
+          {pillarNums.map((p) => (
+            <text key={`pn${p.cx},${p.cy}`} x={p.x} y={Y(p.y) + Math.min(9, problem.layout.pillarWidth / 5) * 0.35} fontSize={Math.min(9, problem.layout.pillarWidth / 5, problem.layout.pillarLength / 3)} fill={print ? '#333' : '#8a7a5c'} fontWeight={700} data-pillar={p.label}>
+              {p.label}
+            </text>
+          ))}
+        </g>
+      )}
       {/* Labels (not on a blank contest map: maps are not labeled, General Information rule 7) */}
       {printMode !== 'blank' && (
         <g className="map-axis" fontFamily="Arial, sans-serif" fill="#333" pointerEvents="none">
           {Array.from({ length: geo.E }, (_, i) => (
-            <text key={`en${i}`} x={geo.colX[2 * i + 1] + W / 2} y={H + 8} fontSize={4} textAnchor="middle">
+            <text key={`en${i}`} x={geo.colX[2 * i + 1] + W / 2} y={H + band + 8} fontSize={4} textAnchor="middle">
               {entryName(problem.layout, i).replace(/\s*Entry$/i, '')}
             </text>
           ))}
-          <text x={geo.width / 2} y={H + 18} fontSize={5} textAnchor="middle" fontWeight={700}>
+          <text x={geo.width / 2} y={H + band + 18} fontSize={5} textAnchor="middle" fontWeight={700}>
             FAB
           </text>
           {Array.from({ length: geo.R - 1 }, (_, j) => {
             const r = j + 1;
             return (
-              <text key={`xc${r}`} x={-MARGIN.l + 3} y={Y(geo.rowY[2 * r] + W / 2) + 1.5} fontSize={4}>
+              <text key={`xc${r}`} x={-M.l + 3} y={Y(geo.rowY[2 * r] + W / 2) + 1.5} fontSize={4}>
                 XC {problem.layout.xcStart + r}
               </text>
             );
           })}
-          <text x={-MARGIN.l + 3} y={-MARGIN.t + 6} fontSize={3.4} fill="#666">
+          <text x={-M.l + 3} y={-M.t + 6} fontSize={3.4} fill="#666">
             1 in = 10 ft · pillars {problem.layout.pillarWidth}×{problem.layout.pillarLength} ft
           </text>
         </g>
