@@ -14,7 +14,7 @@
 //    content/pages/ and cached by the service worker when first viewed ("Download all for offline" on the
 //    Figures page fetches them all). Without cropped figures every image is precached, as before.
 //  - sources.md: copied for the About page.
-import { existsSync, readFileSync, writeFileSync, mkdirSync, copyFileSync, statSync, rmSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, copyFileSync, statSync, rmSync, readdirSync, renameSync } from 'node:fs';
 import { dirname, join, resolve, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -146,6 +146,12 @@ if (info.rules.used === 'real' && existsSync(figDir)) {
   }
   const walk = (d) => readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]));
   const images = walk(figDir).filter((p) => /\.(png|jpe?g|webp)$/i.test(p));
+  // Re-encoding every figure takes a minute or more, so converted files are kept in a cache keyed by the
+  // source bytes and settings; later runs only convert new or changed figures.
+  const cacheDir = join(appDir, 'node_modules', '.cache', 'copy-content-figures');
+  if (sharp) mkdirSync(cacheDir, { recursive: true });
+  let converted = 0;
+  console.log(`[copy-content] figures: preparing ${images.length} image(s)${sharp ? ' (first run converts them all to WebP and can take a minute or two)' : ''}...`);
   for (const src of images) {
     const rel = relative(contentDir, src).split('\\').join('/');
     const crop = cropFiles.has(rel);
@@ -160,12 +166,19 @@ if (info.rules.used === 'real' && existsSync(figDir)) {
       outRel = outRel.slice(0, -extname(outRel).length) + `.${h}` + extname(outRel);
     }
     mkdirSync(dirname(join(outDir, outRel)), { recursive: true });
-    if (sharp)
-      await sharp(src)
-        .resize({ width: crop ? CROP_MAX_WIDTH : FIG_MAX_WIDTH, withoutEnlargement: true })
-        .webp(crop ? { quality: CROP_QUALITY, effort: 6 } : { quality: FIG_QUALITY })
-        .toFile(join(outDir, outRel));
-    else copyFileSync(src, join(outDir, outRel));
+    if (sharp) {
+      const settings = crop ? `crop/${CROP_MAX_WIDTH}/${CROP_QUALITY}/6` : `page/${FIG_MAX_WIDTH}/${FIG_QUALITY}`;
+      const cached = join(cacheDir, createHash('sha256').update(readFileSync(src)).update(settings).digest('hex') + '.webp');
+      if (!existsSync(cached)) {
+        await sharp(src)
+          .resize({ width: crop ? CROP_MAX_WIDTH : FIG_MAX_WIDTH, withoutEnlargement: true })
+          .webp(crop ? { quality: CROP_QUALITY, effort: 6 } : { quality: FIG_QUALITY })
+          .toFile(cached + '.tmp');
+        renameSync(cached + '.tmp', cached);
+        if (++converted % 25 === 0) console.log(`[copy-content]   converted ${converted} figure(s)...`);
+      }
+      copyFileSync(cached, join(outDir, outRel));
+    } else copyFileSync(src, join(outDir, outRel));
     const after = statSync(join(outDir, outRel)).size;
     info.figures.count++;
     info.figures.originalBytes += before;
@@ -179,7 +192,7 @@ if (info.rules.used === 'real' && existsSync(figDir)) {
   }
   info.figures.format = sharp ? 'webp' : 'original';
   const mb = (n) => (n / 1048576).toFixed(1);
-  console.log(`[copy-content] figures: ${info.figures.count} image(s), ${mb(info.figures.originalBytes)} MB -> ${mb(info.figures.builtBytes)} MB (${info.figures.format})`);
+  console.log(`[copy-content] figures: ${info.figures.count} image(s), ${mb(info.figures.originalBytes)} MB -> ${mb(info.figures.builtBytes)} MB (${info.figures.format}${sharp ? `, ${converted} converted, ${info.figures.count - converted} from cache` : ''})`);
   if (cropFiles.size)
     console.log(`[copy-content]   ${info.figures.crops} cropped figures, ${mb(info.figures.cropBytes)} MB precached; ${info.figures.runtime.length} full pages, ${mb(info.figures.builtBytes - info.figures.cropBytes)} MB cached on first view`);
 }
@@ -223,3 +236,4 @@ info.sources = info.rules.used === 'real' && existsSync(sources);
 if (info.sources) copyFileSync(sources, join(outDir, 'sources.md'));
 
 writeFileSync(join(outDir, 'build-info.json'), JSON.stringify(info, null, 2));
+console.log('[copy-content] done');

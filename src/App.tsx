@@ -43,6 +43,41 @@ function DataGate() {
   return <Shell />;
 }
 
+/** An unknown page is often a page from a newer version than the one the service worker still serves: if a
+ *  newer version is waiting (or turns up on a check), switch to it at once, since there is nothing here to lose. */
+function NotFound() {
+  useEffect(() => {
+    const sw = typeof navigator !== 'undefined' ? navigator.serviceWorker : undefined;
+    if (!sw) return;
+    let reloading = false;
+    const onChange = () => {
+      if (reloading) return;
+      reloading = true;
+      window.location.reload();
+    };
+    sw.addEventListener('controllerchange', onChange);
+    sw.getRegistration()
+      .then(async (reg) => {
+        if (!reg) return;
+        if (!reg.waiting) await reg.update().catch(() => undefined);
+        const next = reg.waiting ?? reg.installing;
+        if (!next) return;
+        const skip = () => next.postMessage({ type: 'SKIP_WAITING' });
+        if (next.state === 'installed') skip();
+        else next.addEventListener('statechange', () => next.state === 'installed' && skip());
+      })
+      .catch(() => undefined);
+    return () => sw.removeEventListener('controllerchange', onChange);
+  }, []);
+  return (
+    <div className="card">
+      <h2>Page not found</h2>
+      <p className="muted">If this page is new, the app is fetching the latest version and will reload by itself.</p>
+      <Link to="/">Home</Link>
+    </div>
+  );
+}
+
 function Shell() {
   const { editionFor, sample, parts } = useData();
   const { event } = useEvent();
@@ -70,7 +105,7 @@ function Shell() {
             <Route path="/parts/:id" element={<PartsTable />} />
             <Route path="/about" element={<About />} />
             <Route path="/builder" element={<Builder />} />
-            <Route path="*" element={<div className="card"><h2>Page not found</h2><Link to="/">Home</Link></div>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
