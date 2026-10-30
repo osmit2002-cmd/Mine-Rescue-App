@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { makeElement } from './catalog';
 import { buildTopo, cellKey, locate, locName, makeGeo } from './geometry';
 import { editLayout, openingState } from './layoutEdit';
+import { normalizeProblem, sideDepth } from './model';
 import { blankProblem, defaultLayout, type El, type Problem } from './model';
 import { SAMPLES } from './samples';
 
@@ -114,5 +115,52 @@ describe('editing the mine layout', () => {
         expect(e.y).toBeCloseTo(p.elements[i].y, 0);
       });
     }
+  });
+
+  describe('side rooms', () => {
+    const t = (p: Problem) => buildTopo(makeGeo(p.layout));
+    it('pulls a room out of a crosscut, sets the side depth, and closes it again', () => {
+      const p = fixture();
+      expect(t(p).nodes.has('sL2')).toBe(false);
+      const r = editLayout(p, { type: 'room', side: 'left', row: 2, depth: 63 });
+      expect(r.problem.layout.sideLeft).toBe(63);
+      expect(r.problem.layout.sideRight).toBeUndefined();
+      expect(t(r.problem).nodes.get('sL2')).toMatchObject({ end: true, x: 0 });
+      // Placed items move right with the wider side.
+      expect(where(r.problem, 'gas')).toBe('No. 2 Entry between Crosscut 1 and Crosscut 2');
+      const closed = editLayout(r.problem, { type: 'room', side: 'left', row: 2, depth: 4 });
+      expect(t(closed.problem).nodes.has('sL2')).toBe(false);
+      expect(closed.problem.layout.sideLeft).toBe(63);
+      expect(editLayout(p, { type: 'room', side: 'right', row: 0, depth: 40 }).refused).toBeTruthy();
+    });
+
+    it('takes a whole side of rooms off and puts it back', () => {
+      const p = fixture();
+      const g0 = makeGeo(p.layout);
+      const room = makeElement({ kind: 'x', sub: 'face' }, g0.width - 10, g0.rowY[4] + 10, 'room');
+      p.elements.push(room);
+      p.layout.cells[cellKey(6, 4)] = 'open';
+      const off = editLayout(p, { type: 'set', patch: { sideRight: 0 } });
+      expect(off.lost.map((e) => e.id)).toEqual(['room']);
+      expect(off.problem.layout.cells[cellKey(6, 4)]).toBeUndefined();
+      const g = makeGeo(off.problem.layout);
+      expect(g.width).toBe(g0.width - 40);
+      expect([...t(off.problem).nodes.keys()].some((k) => k.startsWith('sR'))).toBe(false);
+      expect(where(off.problem, 'bar')).toBe('No. 3 Entry inby Crosscut 3');
+      const back = editLayout(off.problem, { type: 'set', patch: { sideRight: 40 } });
+      expect(makeGeo(back.problem.layout).width).toBe(g0.width);
+      expect(openingState(back.problem.layout, 6, 4)).toBe('solid');
+    });
+
+    it('keeps side rooms where they are when only the face stubs change, and old files follow the stub depth', () => {
+      const p = fixture();
+      const r = editLayout(p, { type: 'set', patch: { stubLength: 80 } });
+      expect(sideDepth(r.problem.layout, 'left')).toBe(40);
+      expect(sideDepth(r.problem.layout, 'right')).toBe(40);
+      const old = normalizeProblem({ ...JSON.parse(JSON.stringify(p)), layout: { ...p.layout, stubLength: 30 } });
+      expect(old.layout.sideLeft).toBeUndefined();
+      expect(makeGeo(old.layout).colW[0]).toBe(30);
+      expect(normalizeProblem({ ...p, layout: { ...p.layout, sideLeft: 0, sideRight: 999 } }).layout).toMatchObject({ sideLeft: 0, sideRight: 200 });
+    });
   });
 });

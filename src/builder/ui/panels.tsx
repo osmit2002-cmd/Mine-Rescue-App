@@ -1,7 +1,7 @@
 import { useState, type FocusEvent, type MouseEvent, type ReactNode } from 'react';
 import { elementName, GROUPS, KIND_DEFS, LEGEND_NOTE, PALETTE, placardText, X_DEFS, xDef, makeElement, type PaletteItem } from '../catalog';
 import { locName, locate, type Topo } from '../geometry';
-import { entryName, LIMITS, type El, type Layout, type Problem, type XSub } from '../model';
+import { entryName, LIMITS, sideDepth, type El, type Layout, type Problem, type XSub } from '../model';
 import type { NumberDirection, NumberOrder, PillarNumbering } from '../pillars';
 import { classifyGas, gasReasons } from '../rules';
 import type { Check } from '../solve';
@@ -461,6 +461,36 @@ export function LayoutBar({ l, onOp }: { l: Layout; onOp: (op: LayoutBarOp) => v
         {size('Pillar L', 'pillarLength', LIMITS.pillar)}
         {size('Entry', 'entryWidth', LIMITS.entryWidth)}
         {size('Face stub', 'stubLength', LIMITS.stub)}
+      </span>
+      <span className="grp">
+        <span>Side rooms</span>
+        {(['left', 'right'] as const).map((side) => {
+          const d = sideDepth(l, side);
+          const key = side === 'left' ? 'sideLeft' : 'sideRight';
+          return (
+            <span key={side} className="inline">
+              <label className="inline">
+                <input type="checkbox" checked={d > 0} onChange={(e) => onOp({ type: 'set', patch: { [key]: e.target.checked ? l.stubLength : 0 } })} />
+                <span>{side === 'left' ? 'Left' : 'Right'}</span>
+              </label>
+              {d > 0 && (
+                <input
+                  type="number"
+                  inputMode="numeric"
+                  min={10}
+                  max={LIMITS.side[1]}
+                  value={d}
+                  aria-label={`${side === 'left' ? 'Left' : 'Right'} side room depth (ft)`}
+                  {...selectOnFocus}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    if (e.target.value !== '' && Number.isFinite(v) && v >= 1) onOp({ type: 'set', patch: { [key]: Math.round(v) } });
+                  }}
+                />
+              )}
+            </span>
+          );
+        })}
       </span>
       <label className="inline">
         <input type="checkbox" checked={l.outbyPillars} onChange={(e) => onOp({ type: 'set', patch: { outbyPillars: e.target.checked } })} />
