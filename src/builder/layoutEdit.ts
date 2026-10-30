@@ -2,10 +2,11 @@
  * Editing the mine layout of a problem: add or remove entries (on either side) and crosscuts (at the face), change
  * sizes, and set each opening mined / projected / not mined. Placed items and opening overrides stay in the same
  * opening, at the same relative spot, when the grid around them changes; items in a removed entry or crosscut are
- * dropped and reported so the builder can ask first.
+ * dropped and reported so the builder can ask first. Side rooms (side stubs off the outer entries) can be pulled
+ * out one crosscut at a time, and a whole side can be taken off (depth 0) or put back.
  */
 import { cellAt, cellKey, cellRect, cellType, makeGeo, type Geo } from './geometry';
-import { entryName, LIMITS, xcName, type El, type Layout, type Problem, type SegState } from './model';
+import { entryName, LIMITS, sideDepth, xcName, type El, type Layout, type Problem, type SegState } from './model';
 
 export type LayoutOp =
   | { type: 'add-entry'; side: 'left' | 'right' }
@@ -13,7 +14,12 @@ export type LayoutOp =
   | { type: 'add-row' }
   | { type: 'remove-row' }
   | { type: 'set'; patch: Partial<Layout> }
-  | { type: 'cell'; cx: number; cy: number; state: SegState };
+  | { type: 'cell'; cx: number; cy: number; state: SegState }
+  /** Pull a side room out of crosscut `row` to `depth` feet (the whole side's rooms share one depth), or close it (depth under 10). */
+  | { type: 'room'; side: 'left' | 'right'; row: number; depth: number };
+
+/** Shallowest side room; a drag shorter than this closes the room. */
+export const MIN_ROOM = 10;
 
 export interface LayoutResult {
   problem: Problem;
@@ -121,7 +127,18 @@ export function editLayout(p: Problem, op: LayoutOp): LayoutResult {
       if (patch.pillarWidth !== undefined) sized.pillarWidth = size(patch.pillarWidth, LIMITS.pillar);
       if (patch.pillarLength !== undefined) sized.pillarLength = size(patch.pillarLength, LIMITS.pillar);
       if (patch.stubLength !== undefined) sized.stubLength = size(patch.stubLength, LIMITS.stub);
-      const r = remap(res.problem, sized, same, same);
+      // The side rooms used to follow the face stub depth: keep them where they are when only the face stubs change.
+      if (patch.stubLength !== undefined) {
+        sized.sideLeft = patch.sideLeft ?? sideDepth(cur, 'left');
+        sized.sideRight = patch.sideRight ?? sideDepth(cur, 'right');
+      }
+      if (patch.sideLeft !== undefined) sized.sideLeft = clampTo(patch.sideLeft, LIMITS.side);
+      if (patch.sideRight !== undefined) sized.sideRight = clampTo(patch.sideRight, LIMITS.side);
+      // Taking a side's rooms off drops what was in them (and their mined / not mined settings).
+      const goneL = sideDepth(cur, 'left') > 0 && sideDepth(sized, 'left') === 0;
+      const goneR = sideDepth(cur, 'right') > 0 && sideDepth(sized, 'right') === 0;
+      const lastCol = 2 * cur.entries;
+      const r = remap(res.problem, sized, (cx) => ((cx === 0 && goneL) || (cx === lastCol && goneR) ? null : cx), same);
       return { problem: r.problem, lost: [...res.lost, ...r.lost], refused: res.refused };
     }
     case 'cell': {
@@ -130,6 +147,15 @@ export function editLayout(p: Problem, op: LayoutOp): LayoutResult {
       const t = cellType(g, op.cx, op.cy);
       if (t === 'pillar' || t === 'int') return { problem: p, lost: [], refused: t === 'pillar' ? 'Pillars are solid.' : 'An intersection follows the openings around it.' };
       return { problem: { ...p, layout: { ...l, cells: { ...l.cells, [cellKey(op.cx, op.cy)]: op.state } } }, lost: [] };
+    }
+    case 'room': {
+      if (op.row < 1 || op.row >= R) return { problem: p, lost: [], refused: 'Side rooms come off a crosscut inby the FAB.' };
+      const cx = op.side === 'left' ? 0 : 2 * E;
+      const key = cellKey(cx, 2 * op.row);
+      if (op.depth < MIN_ROOM) return { problem: { ...p, layout: { ...l, cells: { ...l.cells, [key]: 'solid' } } }, lost: [] };
+      const depth = clampTo(op.depth, [MIN_ROOM, LIMITS.side[1]]);
+      const opened = { ...p, layout: { ...l, cells: { ...l.cells, [key]: 'open' as SegState } } };
+      return editLayout(opened, { type: 'set', patch: op.side === 'left' ? { sideLeft: depth } : { sideRight: depth } });
     }
   }
 }

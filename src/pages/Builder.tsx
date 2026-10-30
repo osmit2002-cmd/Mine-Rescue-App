@@ -4,7 +4,7 @@ import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
 import { editLayout, openingName, openingState, type LayoutOp } from '../builder/layoutEdit';
 import { makeBoard } from '../builder/graph';
-import { blankProblem, newId, type El, type Problem } from '../builder/model';
+import { blankProblem, newId, sideDepth, type El, type Problem } from '../builder/model';
 import { BUILT_IN, loadNumbering, normalizeNumbering, saveNumbering, type PillarNumbering } from '../builder/pillars';
 import { SAMPLES } from '../builder/samples';
 import { designChecks, solve } from '../builder/solve';
@@ -588,7 +588,7 @@ export default function Builder() {
             <>
               <LayoutBar l={problem.layout} onOp={onLayoutBar} />
               <p className="tool-hint" role="status">
-                Click an entry, crosscut or stub to set it mined, projected or not mined. Placed items stay in their openings when the layout changes.
+                Click an entry, crosscut or stub to set it mined, projected or not mined. Drag the handle at either end of a crosscut outward to pull a side room out (all rooms on a side share one depth), or back to the entry to close it. Placed items stay in their openings when the layout changes.
               </p>
             </>
           )}
@@ -620,6 +620,13 @@ export default function Builder() {
                 }}
                 onPlace={(x, y) => place(x, y, shiftDown.current)}
                 onCell={(cx, cy) => setActiveCell({ cx, cy })}
+                onRoom={(side, row, depth) => {
+                  const l = problem.layout;
+                  const open = openingState(l, side === 'left' ? 0 : 2 * l.entries, 2 * row) !== 'solid' && sideDepth(l, side) > 0;
+                  // A tap toggles the room (opening it at the side's depth, or the face stub depth if that side has none).
+                  const d = depth ?? (open ? 0 : sideDepth(l, side) || l.stubLength);
+                  layoutOp({ type: 'room', side, row, depth: d });
+                }}
                 onElementClick={ventToggle}
                 onOpeningClick={ventBuild}
               />

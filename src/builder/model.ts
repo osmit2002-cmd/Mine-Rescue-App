@@ -20,8 +20,14 @@ export interface Layout {
   /** Pillar size across the entries (x) and along them (y), in feet. All pillar blocks are equal size (General Information rule 7). */
   pillarWidth: number;
   pillarLength: number;
-  /** Depth of the inby stubs (entries past the last crosscut) and of the side stubs, in feet. */
+  /** Depth of the inby stubs (entries past the last crosscut), in feet; also of the side rooms unless sideLeft / sideRight say otherwise. */
   stubLength: number;
+  /**
+   * Depth of the side rooms (side stubs off the outer entries) on the left and right, in feet. 0 = no side rooms on
+   * that side. Unset = stubLength (problems saved before these existed).
+   */
+  sideLeft?: number;
+  sideRight?: number;
   /** Cell state overrides, keyed "cx,cy". Unlisted cells use defaultCellState. */
   cells: Record<string, SegState>;
   /** Entry names, left to right. Blank entries are named "No. N Entry". */
@@ -132,7 +138,10 @@ export interface Problem {
 
 export const SCHEMA = 'mrs-problem/1';
 
-export const LIMITS = { entries: [1, 12], rows: [2, 24], entryWidth: [10, 40], pillar: [20, 200], stub: [10, 200] } as const;
+export const LIMITS = { entries: [1, 12], rows: [2, 24], entryWidth: [10, 40], pillar: [20, 200], stub: [10, 200], side: [0, 200] } as const;
+
+/** Depth of the side rooms on one side, in feet (0 = none). */
+export const sideDepth = (l: Layout, side: 'left' | 'right') => (side === 'left' ? l.sideLeft : l.sideRight) ?? l.stubLength;
 
 export function newId(prefix = 'e'): string {
   return `${prefix}${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
@@ -230,6 +239,8 @@ export function normalizeProblem(raw: unknown): Problem {
     pillarWidth: clamp(lr.pillarWidth, LIMITS.pillar, d.pillarWidth),
     pillarLength: clamp(lr.pillarLength, LIMITS.pillar, d.pillarLength),
     stubLength: clamp(lr.stubLength, LIMITS.stub, d.stubLength),
+    ...(num(lr.sideLeft) !== undefined ? { sideLeft: clamp(lr.sideLeft, LIMITS.side, 0) } : {}),
+    ...(num(lr.sideRight) !== undefined ? { sideRight: clamp(lr.sideRight, LIMITS.side, 0) } : {}),
     cells,
     entryNames: Array.isArray(lr.entryNames) ? lr.entryNames.map((n) => (typeof n === 'string' ? n.slice(0, 40) : '')) : [],
     xcStart: clamp(lr.xcStart, [0, 999], 0),

@@ -420,3 +420,8 @@ button.danger { color: var(--bad); }
 .layout-bar input[type='number'] { width: 4.2rem; }
 .layout-bar label.inline { display: inline-flex; gap: 0.25rem; align-items: center; }
 .numbering-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 0.6rem; }
+.room-grip { fill: #a8780f; opacity: 0.75; cursor: ew-resize; }
+.room-handle:hover .room-grip, .room-handle.dragging .room-grip { opacity: 1; }
+.room-preview { fill: #f6ead0; stroke: #a8780f; stroke-width: 0.5; stroke-dasharray: 2 1.4; }
+.room-preview.closing { fill: #fee2e2; stroke: #dc2626; }
+.room-depth { fill: #7a5608; font-family: Arial, sans-serif; font-weight: 700; }

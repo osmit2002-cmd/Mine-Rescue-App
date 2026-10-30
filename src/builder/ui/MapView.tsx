@@ -4,6 +4,7 @@ import type { Hazard } from '../extents';
 import { acrossRot, buildTopo, cellRect, cellState, cellType, makeGeo, ribLines, snap, type Geo, type Topo } from '../geometry';
 import { entryName, type El, type Layout, type Problem } from '../model';
 import { outbyBand, pillarLabels, type PillarNumbering } from '../pillars';
+import { MIN_ROOM } from '../layoutEdit';
 import { mapLabel, SymbolShape } from './symbols';
 
 export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
@@ -53,6 +54,8 @@ interface Props {
   numbering?: PillarNumbering;
   /** Opening highlighted in the layout tool (its options ring is open), as "cx,cy". */
   activeCell?: string | null;
+  /** Layout tool: a side room handle was dragged out to `depth` feet (under MIN_ROOM closes it), or tapped (depth null: toggle). */
+  onRoom?: (side: 'left' | 'right', row: number, depth: number | null) => void;
 }
 
 const HZ_COLOR = (h: Hazard) => (h.cls.explosive ? '#dc2626' : h.el.kind === 'smoke' ? '#4b5563' : h.cls.irrespirable ? '#ea580c' : '#ca8a04');
@@ -106,6 +109,8 @@ export function MapView(props: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [drag, setDrag] = useState<{ id: string; dx: number; dy: number; x: number; y: number; moved: boolean } | null>(null);
   const [hoverCell, setHoverCell] = useState<string | null>(null);
+  /** Side room handle being dragged: depth in feet so far. */
+  const [roomDrag, setRoomDrag] = useState<{ side: 'left' | 'right'; row: number; depth: number; moved: boolean } | null>(null);
   const H = geo.height;
   const W = problem.layout.entryWidth;
   const k = Math.max(0.6, Math.min(1.6, W / 20));
@@ -147,7 +152,18 @@ export function MapView(props: Props) {
     svgRef.current?.setPointerCapture(e.pointerId);
     setDrag({ id: el.id, dx: el.x - f.x, dy: el.y - f.y, x: el.x, y: el.y, moved: false });
   };
+  const roomDepthAt = (side: 'left' | 'right', x: number) => Math.max(0, Math.round((side === 'left' ? geo.colX[1] - x : x - geo.colX[2 * geo.E]) / 5) * 5);
+  const onRoomDown = (e: RPointerEvent, side: 'left' | 'right', row: number) => {
+    e.stopPropagation();
+    svgRef.current?.setPointerCapture(e.pointerId);
+    setRoomDrag({ side, row, depth: roomDepthAt(side, toFeet(e).x), moved: false });
+  };
   const onMoveP = (e: RPointerEvent) => {
+    if (roomDrag) {
+      const d = roomDepthAt(roomDrag.side, toFeet(e).x);
+      if (d !== roomDrag.depth) setRoomDrag({ ...roomDrag, depth: d, moved: true });
+      return;
+    }
     if (!drag) return;
     const f = toFeet(e);
     const el = problem.elements.find((x) => x.id === drag.id);
@@ -156,6 +172,11 @@ export function MapView(props: Props) {
     if (s && (Math.abs(s.x - drag.x) > 0.3 || Math.abs(s.y - drag.y) > 0.3)) setDrag({ ...drag, x: s.x, y: s.y, moved: true });
   };
   const onUp = () => {
+    if (roomDrag) {
+      props.onRoom?.(roomDrag.side, roomDrag.row, roomDrag.moved ? roomDrag.depth : null);
+      setRoomDrag(null);
+      return;
+    }
     if (drag?.moved) props.onMove?.(drag.id, drag.x, drag.y);
     else if (drag) props.onElementTap?.(drag.id);
     setDrag(null);
@@ -228,7 +249,10 @@ export function MapView(props: Props) {
       style={widthStyle}
       onPointerMove={onMoveP}
       onPointerUp={onUp}
-      onPointerCancel={() => setDrag(null)}
+      onPointerCancel={() => {
+        setDrag(null);
+        setRoomDrag(null);
+      }}
       role="img"
       aria-label={`Mine map: ${problem.layout.entries} entries, ${problem.layout.rows - 1} crosscuts`}
     >
@@ -333,6 +357,51 @@ export function MapView(props: Props) {
           <line key={i} x1={l.x1} y1={Y(l.y1)} x2={l.x2} y2={Y(l.y2)} strokeDasharray={l.dotted ? '2.2 1.6' : undefined} />
         ))}
       </g>
+      {/* Layout tool: a grab handle at each end of every crosscut pulls a side room out (or pushes it back in). */}
+      {!print && tool.type === 'layout' && props.onRoom &&
+        Array.from({ length: geo.R - 1 }, (_, j) => j + 1).flatMap((r) =>
+          (['left', 'right'] as const).map((side) => {
+            const cx = side === 'left' ? 0 : 2 * geo.E;
+            const rib = side === 'left' ? geo.colX[1] : geo.colX[2 * geo.E];
+            const s = side === 'left' ? -1 : 1;
+            const open = cellState(geo, cx, 2 * r) !== 'solid';
+            const dragging = roomDrag && roomDrag.side === side && roomDrag.row === r ? roomDrag : null;
+            const depth = dragging ? dragging.depth : open ? geo.colW[cx] : 0;
+            const yc = geo.rowY[2 * r] + W / 2;
+            const hx = rib + s * depth;
+            return (
+              <g key={`rh${side}${r}`} className={`room-handle${dragging ? ' dragging' : ''}`} data-room={`${side}${r}`}>
+                {dragging && dragging.moved && (
+                  <rect
+                    x={Math.min(rib, hx)}
+                    y={Y(geo.rowY[2 * r] + W)}
+                    width={Math.abs(hx - rib)}
+                    height={W}
+                    className={`room-preview${depth < MIN_ROOM ? ' closing' : ''}`}
+                    pointerEvents="none"
+                  />
+                )}
+                <rect
+                  x={hx - (s < 0 ? 4.5 : 0)}
+                  y={Y(yc) - W / 2}
+                  width={4.5}
+                  height={W}
+                  rx={1.2}
+                  className="room-grip"
+                  style={{ touchAction: 'none' }}
+                  onPointerDown={(e) => onRoomDown(e, side, r)}
+                >
+                  <title>{open ? 'Drag to make this side room deeper or shallower; drag back to the entry to close it; tap to close' : 'Drag out to pull a side room out of this crosscut; tap for a room'}</title>
+                </rect>
+                {dragging && dragging.moved && (
+                  <text x={hx + s * 6} y={Y(yc) + 1.5} fontSize={4} textAnchor={s < 0 ? 'end' : 'start'} className="room-depth" pointerEvents="none">
+                    {depth < MIN_ROOM ? 'close' : `${depth} ft`}
+                  </text>
+                )}
+              </g>
+            );
+          })
+        )}
       {/* Pillar numbers */}
       {pillarNums.length > 0 && (
         <g className="map-pillar-nums" fontFamily="Arial, sans-serif" textAnchor="middle" pointerEvents="none">
