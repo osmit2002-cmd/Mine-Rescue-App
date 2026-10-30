@@ -112,7 +112,7 @@ function Shell() {
       <footer className="footer">
         <span>{edition ?? (sample.rules || sample.facts ? 'SAMPLE data — not the real rule book' : '')}</span>
         <span>
-          <Link to="/figures">Figures</Link>{parts.length > 0 && <> · <Link to="/parts">Parts</Link></>} · <Link to="/about">About &amp; sources</Link> · <span data-testid="footer-version">v{__APP_VERSION__}</span>
+          <Link to="/figures">Figures</Link>{parts.length > 0 && <> · <Link to="/parts">Parts</Link></>} · <Link to="/about">About &amp; sources</Link> · <span data-testid="footer-version">v{__APP_VERSION__}</span>{__APP_COMMIT__ && <span className="muted"> · {__APP_COMMIT__.split(' ')[0]}</span>}
         </span>
       </footer>
     </>

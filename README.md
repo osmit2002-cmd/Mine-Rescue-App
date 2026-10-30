@@ -96,14 +96,14 @@ The solver gives one acceptable order, not the only one, and the airflow is an e
 
 ```bash
 npm ci             # first time, or after dependency changes
-npm run dev        # http://localhost:5173 (wait for the "Local:" line; see below)
+npm run dev        # http://localhost:5173
 npm test           # vitest
 npm run build      # copy content + typecheck + production build into dist/
 npm run preview    # serve dist/ on :4173 to check the service worker
 node scripts/offline-check.mjs   # headless end-to-end + offline check (needs preview running + Chrome)
 ```
 
-The first `npm run dev` or `npm run build` converts all rule-book figures to WebP before Vite starts, which can take a minute or two with only a `preparing ... image(s)` line on screen. Leave it running: Vite prints `Local: http://localhost:5173/` when it is ready. Converted figures are cached in `node_modules/.cache/copy-content-figures`, so later runs start in about a second.
+`npm run dev` starts in a few seconds: it does not convert the rule-book figures and serves the originals (or WebP files already converted on this machine). `npm run build` converts them to WebP using all CPU cores, once per machine: converted files are cached in `~/.cache/mine-rescue-study/figures` (set `FIGURE_CACHE_DIR` to move it) and shared by every checkout and branch. The footer and About page show the commit the app was built from, so two pull requests with the same version number can be told apart.
 
 To try the solver: `npm run dev`, open `http://localhost:5173/#/builder`, pick a problem (or **Samples → 2016 Post 5 & WV State — Day 1**) and open the **Solve** tab. `npx vitest run src/builder` runs just the builder, solver, ventilation planner and judge-key tests; a failing judge-key test prints the full comparison with the judges.
 
