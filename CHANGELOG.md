@@ -1,5 +1,34 @@
 # Changelog
 
+## Unreleased
+
+- **Reference cases for the solver** (`src/builder/cases/`): past contest problems from `problems/` transcribed into builder problems, each with its judge book's key as a typed `JudgeKey` (accepted team-stop numbers per intersection, patients to rescue and by which stop, objects to find, withdrawal, and the key points not yet checkable, verbatim).
+  - `compareToKey()` (`src/builder/judge.ts`) checks a solution against the key and reports each check with what the judges expect and what the solver did. The tests pin the checks that still fail, so progress shows up as a smaller list.
+  - First case: 2016 Post 5 & WV State, Day 1 (MSHA archive). The solver now matches 14 of its 18 checks; the remaining four are the order of the last three team stops and the rescue that depends on it. The case is also in the builder's samples.
+- **Ventilation planner** (`src/builder/ventplan.ts`): works out, step by step, how to move a gas or smoke placard out of the team's way. It picks an air course from the intake to the placard and on to a return, where the contaminated leg may not pass an ignition source, an unexplored area, a live or not-yet-examined person, or the FAB while the briefing officer is there (Rules 30, 31). Every opening that would short-circuit the course gets a team-built temporary stopping, a placard in a dead end gets a line curtain winged to it, and the fan is started if needed. The result is checked with the airflow estimate before it is accepted.
+  - The solver uses it before breaching a barricade with irrespirable air on the team's side (Rule 35): explosive mixtures first, then the irrespirable air. On 2016 Post 5 Day 1 it vents the methane and then the 19.0% O2 before the second barricade, as the judges do.
+  - Judge keys can list required ventilation (`vents`), and the comparison checks the order and that every plan was safe. 2016 Post 5 Day 1 now passes 17 of 21 checks.
+  - New "Opening outby" object (an entry that continues outby the FAB, used as a return or intake) and a "BO outside" problem setting (the FAB need not stay respirable). A running fan in the FAB now drives the FAB instead of the FAB being open to the atmosphere.
+- Solver fixes found with the first case:
+  - Stoppings, doors and barricades found **not intact** no longer stop travel; the team ties across through them instead of airlocking. On contest maps a stopping drawn as a broken arrow is a temporary stopping that is down.
+  - A patient already reached is taken to the FAB before the team airlocks into another barricade that answers (Rule 41B).
+  - Timbers whose placard gives a count of 0 (e.g. "broken, cannot use") are not counted as roof supports.
+
+## 0.4.0
+
+- **Problem builder** (`#/builder`, new **Builder** tab): design coal mine rescue field problems on a blank map and have the app work them out from the 2026 rules.
+  - Blank map with entries, crosscuts, equal pillars (General Information rule 7), side and inby stubs; each opening is mined (solid lines), projected (dotted) or not mined (Miscellaneous rule 3). The FAB is the bottom row.
+  - Every MSHA Mine Map Legend symbol (rule book pp. 51–55) plus the common "X" objects, drawn as on a contest map. Symbols snap into openings and turn to fit a crosscut. Drag to move; the inspector holds the verbatim placard wording, the legend note and links to the rules. Undo and redo, plus keyboard shortcuts.
+  - **Solve:** a step-by-step walk-through of one rule-consistent solution. It covers FAB checks, systematic team stops (Rules 29, 44B–E), gas tests in every opening, roof tests and dates and initials, and patients taken out promptly (Rules 33, 34, 41). The team timbers to a patient under unsafe roof, pumps water to reach one, and airlocks and breaches a barricade that answers (Rules 35, 41, 42). An explosive mixture next to evidence of fire, or energized equipment in one, means withdrawal (31B). Separations are airlocked through to reach accessible areas behind them (42), and inaccessible areas are opened up while persons are unaccounted for (44F). The rule book's Figure 7 comes out in exactly its printed team-stop order.
+  - **Mapping key** for the team map (A Card 5) and the BO/CCA map (A Card 6), with the conditions to note at the end and the objects never reached, which must not be mapped (A Card 4).
+  - **Hazards:** gas placards are classed as explosive, irrespirable or contaminant using the rule book's thresholds. Extents of gases and smoke follow Rule 24E and are hatched on the map.
+  - **Ventilation:** an airflow estimate with *what if* changes (take structures down, open doors, put fires out, build temporary stoppings, change the fan). It flags explosive or irrespirable air carried over ignition sources, unexplored areas, an inextinguishable fire or the FAB (Rules 30F/G/H, 31A/C/D).
+  - **Design checks:** placard wording rules (permanent/temporary stopping, “unsafe roof”, no “air clear”), gas readings, one live person per refuge alternative, and objects placed outside the openings.
+  - Problems are saved on the device, with export/import as `.mrs-problem.json`. Print gives a blank map (fitted to a page or at 1 in = 10 ft, with only FAB objects and air shafts) or a key map with the mapping key and team stops.
+  - Samples: rule book Figure 7 and Figure 5 drawn as problems, and a practice problem written for the app.
+- Works offline like the rest of the app; the end-to-end offline check opens the builder offline and solves Figure 7.
+- Version 0.4.0.
+
 ## 0.3.0
 
 - **Figure gallery on rule pages.** A rule whose content lists cropped figures (`figures` on the rule item, in display order, merged with `content/figures.json`) shows "Figures (N)" under the rule wording:

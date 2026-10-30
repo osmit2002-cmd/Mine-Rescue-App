@@ -1,4 +1,4 @@
-# Mine Rescue Study (v0.1.0)
+# Mine Rescue Study (v0.4.0)
 
 Offline study aid for the **2026 MSHA mine rescue contest rules**. It is a Vite + React + TypeScript app that installs as a progressive web app and works with no connection after the first load. It covers all six coal contest events (654 statements of fact).
 
@@ -52,8 +52,45 @@ Mock exams use **statements of fact only**. Sizes and official times come from `
   - **Mock exam:** the event's exam size. It scores out of the full length (unanswered questions count as wrong) and then shows a full review.
   - **Timer** (mock exams and practice): an on/off switch and a length in minutes, saved on the device (`mrs.timer.v1`). Mock exams are timed by default when the event has an official limit; practice is untimed by default. The length defaults to the official time (15 minutes for Coal Mine Rescue, per rule 3 on p. 7), or 15 minutes for an event without one. When time runs out, answers are submitted automatically.
   - Practice sessions show score and streak and let you retry the questions you missed.
+- **Problem builder** (`#/builder`): design a coal mine rescue field problem on a blank map and let the app work it. See [Problem builder](#problem-builder) below.
 - **About:** each event's document, edition, publisher, exam format and rules file, plus the redline notes, the figure size report, content-check results and `sources.md`.
 - **Installable PWA:** after the first load, everything (app, all JSON, all figures) works with no connection.
+
+## Problem builder
+
+`#/builder` (the **Builder** tab) builds coal mine rescue field problems and works them out from the 2026 Coal Mine Rescue Rules. Everything runs on the device and works offline.
+
+**Build**
+- **Blank map:** set the entries, crosscuts, entry width and pillar size. All pillar blocks are equal size (General Information rule 7) and the fresh air base is the bottom row. With **Edit openings…**, click any entry, crosscut or stub to cycle it through three states: *mined* (solid lines: actual, accurately measured workings), *projected* (dotted lines) and *not mined* (Miscellaneous rule 3). Side stubs off the outer entries give rooms, faces, shafts and sealed areas.
+- **Placards and objects:** every symbol of the MSHA Mine Map Legend (rule book pp. 51–55) is available: permanent and temporary stoppings (intact or not), seal, door, barricade, diagonal, overcast, line curtain (installed or carried), caved, unsafe roof (rib to rib or partial), unsafe rib, water (depth, over knee deep, roofed), smoke and end of smoke, gas placards (% CH4, PPM CO, % O2), air movement, fire (extinguishable or not), fan (running, exhausting or blowing), body, live person (conscious or not, orientation), refuge alternative, brattice cloth, roof support, FPA, and the "X" objects: lunch pail, note, timbers, pump, equipment, cable and battery (energized or not), borehole, air shaft, face, cut into old works, materials and other.
+- Click a symbol, then click the map. It snaps into the opening, and across-symbols turn to fit an entry or a crosscut. Drag to move. The inspector holds the verbatim placard wording, the legend note and links to the rules. Keyboard: arrows nudge, Shift+arrows move 5 ft, R rotates, Delete removes, Ctrl+Z / Ctrl+Shift+Z undo and redo. Gas and smoke extents are hatched on the map as you build.
+- The problem statement, written instructions, missing persons, time limit and materials at the FAB go in the Problem panel. **Design checks** flag rule-book problems: stopping placards that don't say permanent or temporary, unsafe roof placards without "unsafe roof", "air clear" placards, missing gas readings, more than one live person in a refuge alternative, and symbols placed outside the openings.
+
+**Solve.** Walk through one rule-consistent solution step by step: the map shows only what has been found, the explored area, the route and numbered team stops.
+- The FAB checklist: clock, equipment and communication checks, check board, and gas tests at every entrance (Rules 14, 17, 26, 24C, 28).
+- Team stops in systematic order (Rules 29, 44): outby areas before advancing, tie across into open crosscuts while tying outby (44D), the contaminated entry or the entries next to it first (44B/C), and the 25-ft limit into openings at each stop. The rule book's own example, Figure 7, comes out in exactly its printed order; a test checks this.
+- At each stop: gas tests in each opening (24B, or immediately outby a blocking condition), roof/rib/face tests, dates and initials, and what to do with each object found, with links to the rules.
+- **Patients:** live persons are taken to the FAB as soon as they can be reached (Rules 33, 34, 41). The team timbers to a patient under unsafe roof once timbers have been found (Rule 41C1), pumps water when it has a pump (41C2), and airlocks and breaches a barricade where someone answers (Rules 35, 41, 42).
+- **Withdrawal (Rule 31B):** an explosive mixture (5–15% CH4 with 12.1% O2 or more) with no non-explosive separation from evidence of fire (fire, smoke, CO above 10 PPM), or energized equipment in an explosive mixture, ends exploration.
+- Separations that hide accessible areas are airlocked through (Rule 42). While missing persons are still unaccounted for, inaccessible areas are opened up when the materials are there (Rule 44F).
+- **Mapping key:** everything to put on the team map (A Card 5) and the briefing officer/CCA map (A Card 6), with the wording to write beside each symbol, plus the conditions to note at the end (5L) and objects that must *not* be mapped because they are never reached (A Card 4).
+- **Hazards:** each gas placard is classed as explosive (Rule 31), irrespirable (Rule 34: under 19.5% O2, over 50 PPM CO, smoke) or a contaminant (Rule 44). Extents follow Rule 24E: a placard in an intersection is confined to the intersection; otherwise the gas extends to a placard showing a change, an airtight separation or the next required test location; smoke extends to "end of smoke" or an airtight separation.
+
+**Ventilation.** An airflow estimate over the openings (Kirchhoff's laws: airtight separations block, damaged structures leak, the FAB and air shafts are open to fresh air, and a running fan exhausts or blows). With no fan running, no air moves (Miscellaneous rule 4). In the *what if* view you can take structures down, open doors, put fires out, build temporary stoppings or change the fan. The app then reports where the smoke and gases would be carried: an explosive mixture over an ignition source or an unexplored area (Rule 31A/C/D), irrespirable air over unexplored areas while persons are unaccounted for (30F), air over an inextinguishable fire (30G), and irrespirable air reaching the FAB (30H).
+
+**Save, share, print.** Problems are saved in the browser (`localStorage`). **Export** downloads a `.mrs-problem.json` file and **Import** reads one back, so problems can be shared. **Print** produces the blank map, either fitted to a page or at the contest scale of 1 in = 10 ft for large-format paper. The blank map shows only FAB objects and air shafts (A Card 5B). Print can also produce the key map with the statement, the mapping key and the team stops.
+
+**Samples.** *Rule book Figure 7* (Rule 44 systematic exploration, with the rule book's own team-stop numbering) and *Rule book Figure 5* (Rule 29) are figures from the rule book drawn as problems. *Practice 1* was written for this app and is not an official contest problem; it has smoke, a fire, an explosive face, a barricade, unsafe roof and three missing miners. *2016 Post 5 & WV State — Day 1* is a past contest problem transcribed from `problems/` (see Reference cases).
+
+**Reference cases.** `src/builder/cases/` holds past contest problems transcribed from the PDFs in `problems/`, each with its judge book's key (`JudgeKey` in `src/builder/judge.ts`): the team-stop numbers the judges accept at each intersection, the patients to rescue and by which stop, and the key points the solver cannot be checked against yet. `compareToKey()` reports where the solver agrees with the judges; `src/builder/cases.test.ts` pins the checks that still fail.
+
+**Past contest problems.** Archived problems (MSHA's contest problem archive, state judge packets) can be entered with the builder and exported as files. None ship with the app: those sites could not be reached when this was built, so no past problem has been checked against the solver yet.
+
+**Problem file format** (`schema: "mrs-problem/1"`): `layout` (entries, rows, entryWidth, pillarWidth, pillarLength, stubLength, `cells` overrides keyed `"cx,cy"` → `open` / `projected` / `solid`, entryNames, xcStart) and `elements` (each with `kind`, `x`/`y` in feet from the outby-left corner of the FAB row, placard `text`, and fields for its kind such as `ch4`/`co`/`o2`, `intact`, `airtight`, `open`, `across`, `len`, `overKnee`, `extinguishable`, `fanMode`, `dir`, `sub`). Imports are validated and cleaned: unknown kinds and bad fields are dropped, and sizes are clamped (`src/builder/model.ts`).
+
+**Code:** `src/builder/` holds `model.ts` (problem format and validation), `catalog.ts` (legend symbols and verbatim legend notes), `geometry.ts` (map grid, openings graph, snapping), `rules.ts` (gas classes and what blocks travel or air), `extents.ts` (Rule 24E), `explore.ts` (the solver), `vent.ts` (airflow and checks), `ventplan.ts` (step-by-step ventilation planner), `solve.ts` (mapping key and design checks), `judge.ts` (judge keys and the comparison), `samples.ts`, `cases/` (reference cases), and `ui/` (SVG map, symbols, panels). The page is `src/pages/Builder.tsx`. Tests are in `src/builder/builder.test.ts`, `src/builder/ventplan.test.ts` and `src/builder/cases.test.ts`.
+
+The solver gives one acceptable order, not the only one, and the airflow is an estimate. This is a study aid: check problems against the official rule book and with your contest director.
 
 ## Run
 
@@ -65,6 +102,8 @@ npm run build      # copy content + typecheck + production build into dist/
 npm run preview    # serve dist/ on :4173 to check the service worker
 node scripts/offline-check.mjs   # headless end-to-end + offline check (needs preview running + Chrome)
 ```
+
+To try the solver: `npm run dev`, open `http://localhost:5173/#/builder`, pick a problem (or **Samples → 2016 Post 5 & WV State — Day 1**) and open the **Solve** tab. `npx vitest run src/builder` runs just the builder, solver, ventilation planner and judge-key tests; a failing judge-key test prints the full comparison with the judges.
 
 ## Deploy
 
@@ -104,7 +143,8 @@ All figures are precached. As WebP the whole content folder is 4.7 MB, so the fi
 - parts questions;
 - the answer checker, fact picking and stats;
 - the content validator;
-- two checks against the real files when `content/` is present: every record of every event loads with zero errors, and every statement and part row yields a valid three-choice question.
+- two checks against the real files when `content/` is present: every record of every event loads with zero errors, and every statement and part row yields a valid three-choice question;
+- the problem builder: gas thresholds (Rules 31, 34, 44), map geometry and snapping, the exploration solver (rule book Figure 7's team-stop order, Figure 5, withdrawal, patients behind water with and without a pump, the practice problem), Rule 24E extents, the airflow estimate, and problem-file validation.
 
 ## Deferred (known issues for after v0.1.0)
 
