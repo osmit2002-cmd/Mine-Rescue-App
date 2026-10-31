@@ -22,7 +22,7 @@ export function PwaStatus() {
         </>
       ) : (
         <>
-          <span>Ready to work offline.</span>
+          <span>Ready to work offline</span>
           <button onClick={() => setOfflineReady(false)}>OK</button>
         </>
       )}
