@@ -111,9 +111,11 @@ function outbyLabel(n: PillarNumbering, k: number): string | null {
   return ls[ls.length - 1] + '0'.repeat(k - ls.length + 1);
 }
 
-/** Height of the drawn band of pillars outby the FAB (0 when the layout has none). Entries run on a little past them. */
-export const OUTBY_RUNOUT = 8;
-export const outbyBand = (g: Geo) => (g.layout.outbyPillars && g.E > 1 ? g.layout.pillarLength + OUTBY_RUNOUT : 0);
+/**
+ * Height of the drawn band of pillars outby the FAB (0 when the layout has none). The FAB is the crosscut just inby
+ * them; they are outby the problem, so they are drawn cut in half by the edge of the map, as on contest maps.
+ */
+export const outbyBand = (g: Geo) => (g.layout.outbyPillars && g.E > 1 ? Math.round(g.layout.pillarLength / 2) : 0);
 
 /** A pillar takes a number when at least one opening beside it is mined (solid coal all round is not a pillar). */
 function isPillar(g: Geo, cx: number, cy: number): boolean {
@@ -133,7 +135,7 @@ export function pillarLabels(g: Geo, n: PillarNumbering): PillarLabel[] {
   if (g.layout.outbyPillars && cols.length) {
     cols.forEach((cx, k) => {
       const label = outbyLabel(n, k);
-      if (label !== null) out.push({ cx, cy: -1, label, x: g.colX[cx] + g.colW[cx] / 2, y: -g.layout.pillarLength / 2 });
+      if (label !== null) out.push({ cx, cy: -1, label, x: g.colX[cx] + g.colW[cx] / 2, y: -outbyBand(g) / 2 });
     });
   }
   const lastBand = n.faceBlocks ? 2 * g.R - 1 : 2 * g.R - 3;

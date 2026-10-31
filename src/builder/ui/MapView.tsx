@@ -121,6 +121,8 @@ export function MapView(props: Props) {
   const vbH = H + M.t + M.b;
   const print = printMode !== null;
   const numbering = props.numbering;
+  /** Pillar number size: smaller in the half pillars outby the FAB. */
+  const numSize = (cy: number) => Math.min(9, problem.layout.pillarWidth / 5, (cy < 0 ? band : problem.layout.pillarLength) / 3);
   const pillarNums = useMemo(
     () => (numbering && numbering.show && (printMode !== 'blank' || numbering.showOnBlankMap) ? pillarLabels(geo, numbering) : []),
     [geo, numbering, printMode]
@@ -277,21 +279,21 @@ export function MapView(props: Props) {
           const r = cellRect(geo, cx, cy);
           return <rect key={`s${cx},${cy}`} x={r.x} y={Y(r.y + r.h)} width={r.w} height={r.h} className="map-solid" onClick={onBgClick} />;
         })}
-      {/* Pillars outby the FAB (drawing only: outby the FAB is not part of the problem) */}
+      {/* Pillars outby the FAB, cut in half by the map edge (drawing only: outby the FAB is not part of the problem) */}
       {band > 0 && (
         <g pointerEvents="none">
           {!print &&
             Array.from({ length: geo.E - 1 }, (_, i) => {
               const cx = 2 * i + 2;
-              return <rect key={`ob${cx}`} x={geo.colX[cx]} y={Y(0)} width={geo.colW[cx]} height={problem.layout.pillarLength} className="map-solid" />;
+              return <rect key={`ob${cx}`} x={geo.colX[cx]} y={Y(0)} width={geo.colW[cx]} height={band} className="map-solid" />;
             })}
           <g stroke="#111" strokeWidth={0.7} strokeLinecap="square">
             {Array.from({ length: geo.E - 1 }, (_, i) => {
               const cx = 2 * i + 2;
               const x0 = geo.colX[cx];
               const x1 = x0 + geo.colW[cx];
-              const yb = Y(-problem.layout.pillarLength);
-              return <path key={`obl${cx}`} d={`M${x0} ${Y(0)}V${yb}H${x1}V${Y(0)}`} fill="none" />;
+              const yb = Y(-band);
+              return <path key={`obl${cx}`} d={`M${x0} ${yb}V${Y(0)}H${x1}V${yb}`} fill="none" />;
             })}
             {/* Outer ribs of the outside entries run on outby. */}
             <line x1={geo.colX[1]} y1={Y(0)} x2={geo.colX[1]} y2={Y(-band)} />
@@ -406,7 +408,7 @@ export function MapView(props: Props) {
       {pillarNums.length > 0 && (
         <g className="map-pillar-nums" fontFamily="Arial, sans-serif" textAnchor="middle" pointerEvents="none">
           {pillarNums.map((p) => (
-            <text key={`pn${p.cx},${p.cy}`} x={p.x} y={Y(p.y) + Math.min(9, problem.layout.pillarWidth / 5) * 0.35} fontSize={Math.min(9, problem.layout.pillarWidth / 5, problem.layout.pillarLength / 3)} fill={print ? '#333' : '#8a7a5c'} fontWeight={700} data-pillar={p.label}>
+            <text key={`pn${p.cx},${p.cy}`} x={p.x} y={Y(p.y) + numSize(p.cy) * 0.35} fontSize={numSize(p.cy)} fill={print ? '#333' : '#8a7a5c'} fontWeight={700} data-pillar={p.label}>
               {p.label}
             </text>
           ))}
@@ -420,7 +422,7 @@ export function MapView(props: Props) {
               {entryName(problem.layout, i).replace(/\s*Entry$/i, '')}
             </text>
           ))}
-          <text x={geo.width / 2} y={H + band + 18} fontSize={5} textAnchor="middle" fontWeight={700}>
+          <text x={-M.l + 3} y={Y(W / 2) + 1.8} fontSize={5} fontWeight={700}>
             FAB
           </text>
           {Array.from({ length: geo.R - 1 }, (_, j) => {
