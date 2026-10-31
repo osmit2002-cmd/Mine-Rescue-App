@@ -21,7 +21,8 @@ if (!(await page.evaluate(() => !!navigator.serviceWorker.controller))) await pa
 ok(await page.evaluate(() => !!navigator.serviceWorker.controller), 'page is controlled by the service worker');
 const home = await page.textContent('main');
 ok(/100 rules/.test(home) && /\d{3} statements/.test(home), `home shows rule and statement counts (${(home.match(/\d+ statements[^A-Z]*/) ?? [""])[0].trim()})`);
-ok((await page.textContent('header')).includes('2026 MSHA rules, approved 1/15/2026'), 'edition shown in header');
+ok((await page.textContent('.hero-edition')).includes('2026 MSHA rules, approved 1/15/2026'), 'edition shown once on Home, as the hero badge');
+ok(!(await page.textContent('header')).includes('2026 MSHA rules') && !(await page.textContent('footer')).includes('2026 MSHA rules'), 'Home header and footer do not repeat the edition');
 ok(!(await page.$('.sample-banner')), 'no SAMPLE banner with real content');
 
 await page.goto(url + '#/rules');
@@ -54,7 +55,10 @@ await page.selectOption('[data-testid=event-select]', 'bench-biopak');
 await page.reload();
 await page.waitForSelector('.tiles');
 ok((await page.inputValue('[data-testid=event-select]')) === 'bench-biopak', 'selected event persists across reloads');
-ok((await page.textContent('header')).includes('1/5/2026'), 'header edition follows the event');
+ok((await page.textContent('.hero-edition')).includes('1/5/2026'), 'hero edition follows the event');
+await page.goto(url + '#/rules');
+await page.waitForSelector('main h1');
+ok((await page.textContent('footer')).includes('1/5/2026'), 'other pages show the edition in the footer');
 await page.goto(url + '#/parts');
 await page.waitForSelector('.rule-link');
 const tables = (await page.$$('.rule-link')).length;

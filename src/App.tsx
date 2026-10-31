@@ -82,7 +82,9 @@ function Shell() {
   const { editionFor, sample, parts } = useData();
   const { event } = useEvent();
   const loc = useLocation();
-  const edition = editionFor(event === ALL_EVENTS ? undefined : event);
+  // Home shows the edition once, as a badge in its hero; every other page shows it here in the footer.
+  const edition = loc.pathname === '/' ? undefined : editionFor(event === ALL_EVENTS ? undefined : event);
+  const footNote = edition ?? (sample.rules || sample.facts ? 'SAMPLE data — not the real rule book' : undefined);
   return (
     <>
       <SampleBanner />
@@ -110,7 +112,7 @@ function Shell() {
         </Suspense>
       </ErrorBoundary>
       <footer className="footer">
-        <span>{edition ?? (sample.rules || sample.facts ? 'SAMPLE data — not the real rule book' : '')}</span>
+        {footNote && <span>{footNote}</span>}
         <span>
           <Link to="/figures">Figures</Link>{parts.length > 0 && <> · <Link to="/parts">Parts</Link></>} · <Link to="/about">About &amp; sources</Link> · <span data-testid="footer-version">v{__APP_VERSION__}</span>{__APP_COMMIT__ && <span className="muted"> · {__APP_COMMIT__.split(' ')[0]}</span>}
         </span>
@@ -122,8 +124,10 @@ function Shell() {
 function Header() {
   const { state } = useLoadState();
   const { event, setEvent } = useEvent();
+  const { pathname } = useLocation();
   const data = state.status === 'ready' ? state.data : undefined;
-  const edition = data?.editionFor(event === ALL_EVENTS ? undefined : event);
+  // The subtitle is a wide-screen extra (CSS hides it on phones) and Home already shows the edition in its hero.
+  const edition = pathname === '/' ? undefined : data?.editionFor(event === ALL_EVENTS ? undefined : event);
   const events = data?.factEvents ?? [];
   const hasParts = !!data?.parts.some((t) => event === ALL_EVENTS || t.event === event);
   return (

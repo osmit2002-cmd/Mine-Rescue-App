@@ -1,4 +1,4 @@
-# Mine Rescue Study (v0.4.0)
+# Mine Rescue Study (v0.4.1)
 
 Offline study aid for the **2026 MSHA mine rescue contest rules**. It is a Vite + React + TypeScript app that installs as a progressive web app and works with no connection after the first load. It covers all six coal contest events (654 statements of fact).
 
@@ -155,7 +155,6 @@ From King Grok's testing and the reviews:
 
 - **Weak or oddly capitalized distractors** on some statements (e.g. Mine Rescue #186, #70). Improve term grouping and casing for those token kinds.
 - **A repeated word is blanked everywhere** (e.g. Preshift #19, Mine Rescue #54/#70). The real exam allows at most 2 blanks per statement, so the cloze should cap at 2 occurrences and show the rest.
-- **The "Ready to work offline" toast covers content** on small screens. Auto-dismiss it or move it clear of the bottom nav.
 - **Opening `index.html` from `file://` shows a blank page.** The app and service worker need http(s) hosting (GitHub Pages, any static host, or `npm run preview` locally). Add a no-JS/file:// hint.
 - A one-question "Practice this one" from a statement page always runs without a timer.
 - The practice timer keeps running while answer feedback is shown.

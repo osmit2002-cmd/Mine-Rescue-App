@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import { useRegisterSW } from 'virtual:pwa-register/react';
+
+/** How long the "ready offline" note stays before it goes away on its own. The update prompt stays until answered. */
+const OFFLINE_READY_MS = 4000;
 
 /** Shows "ready offline" once and an "update available" prompt when a new version is deployed. */
 export function PwaStatus() {
@@ -11,6 +15,12 @@ export function PwaStatus() {
       console.warn('Service worker registration failed', error);
     }
   });
+  const showOfflineReady = offlineReady && !needRefresh;
+  useEffect(() => {
+    if (!showOfflineReady) return;
+    const t = window.setTimeout(() => setOfflineReady(false), OFFLINE_READY_MS);
+    return () => window.clearTimeout(t);
+  }, [showOfflineReady, setOfflineReady]);
   if (!offlineReady && !needRefresh) return null;
   return (
     <div className="toast" role="status">

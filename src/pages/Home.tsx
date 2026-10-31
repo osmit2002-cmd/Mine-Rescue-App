@@ -7,18 +7,21 @@ import { loadStats } from '../quiz/stats';
 /**
  * A fragment of a mine map, the thing a rescue team studies: pillars of coal, three entries,
  * crosscuts between them, two stoppings, air direction, and the team's route with its stops.
+ * The route comes in from outby (it fades in on the left) and runs off the map inby on the right.
  */
 function MineMap() {
   // Pillars 70 wide by 40 tall; entries run left to right between the rows, crosscuts top to bottom between the columns.
-  const cols = [20, 110, 200, 290];
+  const cols = [-70, 20, 110, 200, 290];
   const rows = [-20, 60, 120, 180];
   return (
-    <svg className="mine-map" viewBox="0 0 360 200" width="360" height="200" aria-hidden="true" focusable="false">
+    <svg className="hero-map" viewBox="0 0 360 200" width="360" height="200" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="hero-route-in" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
+          <stop offset="0" stopColor="currentColor" stopOpacity="0" />
+          <stop offset="1" stopColor="currentColor" stopOpacity="1" />
+        </linearGradient>
+      </defs>
       {rows.map((y) => cols.map((x) => <rect key={`${x}-${y}`} className="pillar" x={x} y={y} width={70} height={40} rx={3} />))}
-      <rect className="pillar" x={-60} y={-20} width={70} height={40} rx={3} />
-      <rect className="pillar" x={-60} y={60} width={70} height={40} rx={3} />
-      <rect className="pillar" x={-60} y={120} width={70} height={40} rx={3} />
-      <rect className="pillar" x={-60} y={180} width={70} height={40} rx={3} />
       {/* Stoppings across two crosscuts between the first and second entry */}
       <line className="stopping" x1={110} y1={80} x2={90} y2={80} />
       <line className="stopping" x1={290} y1={80} x2={270} y2={80} />
@@ -26,8 +29,9 @@ function MineMap() {
       <path className="air" d="M332 170h-20m5-5-5 5 5 5" />
       <path className="air" d="M242 170h-20m5-5-5 5 5 5" />
       <path className="air" d="M152 170h-20m5-5-5 5 5 5" />
-      {/* Team route: along the first entry, down a crosscut, along the second, down again */}
-      <path className="route" d="M-10 50H190V110H280V170H372" />
+      {/* Team route: in along the first entry, down a crosscut, along the second, down again */}
+      <path className="route route-in" d="M-10 50H100" />
+      <path className="route" d="M100 50H190V110H280V170H372" />
       <circle className="stop" cx={100} cy={50} r={5} />
       <circle className="stop" cx={190} cy={50} r={5} />
       <circle className="stop" cx={190} cy={110} r={5} />
@@ -36,6 +40,17 @@ function MineMap() {
     </svg>
   );
 }
+
+function Chevron() {
+  return (
+    <svg className="tile-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+      <path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/** Zero or missing optional content (parts tables) shows as an em dash, in every cell alike. */
+const dash = (n: number) => (n > 0 ? n : '—');
 
 export default function Home() {
   const data = useData();
@@ -58,9 +73,9 @@ export default function Home() {
     <div>
       <section className="hero">
         <div className="hero-text">
+          {edition && <p className="hero-edition">{edition}</p>}
           <h1>{title}</h1>
           <p className="hero-doc">{ev?.documentTitle ?? document.title ?? 'Mine rescue contest rules and statements'}</p>
-          {edition && <p className="hero-edition">{edition}</p>}
         </div>
         <MineMap />
       </section>
@@ -70,20 +85,23 @@ export default function Home() {
         <div className="tile-grid">
           <Link className="tile" to="/quiz">
             <strong>Quiz</strong>
-            <span>{quizConfig.distractorCount + 1}-choice questions from the statements{evParts.length ? ' and parts tables' : ''}</span>
+            <span className="tile-desc">{quizConfig.distractorCount + 1}-choice questions from the statements{evParts.length ? ' and parts tables' : ''}</span>
+            <span className="tile-go">Start<Chevron /></span>
           </Link>
           {!all && (
-            <Link className="tile" to="/quiz?mode=mock">
+            <Link className="tile primary" to="/quiz?mode=mock">
               <strong>Mock exam</strong>
-              <span>
+              <span className="tile-desc">
                 {plan.facts} statements{plan.parts ? ` + ${plan.parts} parts` : ''}, {mMin ? `${mMin} min timer` : 'untimed'}, scored at the end
               </span>
+              <span className="tile-go">Start<Chevron /></span>
             </Link>
           )}
           {!all && evRules.length > 0 && (
             <Link className="tile" to="/quiz?kind=rules">
               <strong>Rules quiz</strong>
-              <span>Fill the blank in sentences from the {ev?.name ?? ''} rule book</span>
+              <span className="tile-desc">Fill the blank in sentences from the {ev?.name ?? ''} rule book</span>
+              <span className="tile-go">Start<Chevron /></span>
             </Link>
           )}
         </div>
@@ -145,10 +163,10 @@ export default function Home() {
               return (
                 <tr key={e.id} className={current ? 'current' : undefined} aria-current={current ? 'true' : undefined}>
                   <td>{e.name}</td>
-                  <td>{rules.filter((r) => r.event === e.id).length}</td>
-                  <td>{facts.filter((f) => f.event === e.id).length}</td>
-                  <td>{parts.filter((t) => t.event === e.id).length || '—'}</td>
-                  <td>{figures.filter((f) => f.event === e.id).length}</td>
+                  <td data-label="Rules">{rules.filter((r) => r.event === e.id).length}</td>
+                  <td data-label="Statements">{facts.filter((f) => f.event === e.id).length}</td>
+                  <td data-label="Parts tables">{dash(parts.filter((t) => t.event === e.id).length)}</td>
+                  <td data-label="Figures">{figures.filter((f) => f.event === e.id).length}</td>
                 </tr>
               );
             })}

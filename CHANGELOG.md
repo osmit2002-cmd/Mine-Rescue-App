@@ -20,6 +20,16 @@
   - A patient already reached is taken to the FAB before the team airlocks into another barricade that answers (Rule 41B).
   - Timbers whose placard gives a count of 0 (e.g. "broken, cannot use") are not counted as roof supports.
 
+## 0.4.1
+
+- **Home redesign.** No feature, route, content, quiz, data or service-worker change; the same things are on the page in the same order, drawn with more care.
+  - A coal-dark hero with the event name, its document title and the edition as one small badge, next to a fragment of a mine map drawn in code: pillars, three entries, two stoppings, air direction and the team's route with its stops. The route comes in from outby and runs off the map inby. On phones the map fills the panel's width under the text.
+  - Practice as three cards (Quiz, Mock exam, Rules quiz), each with a Start row and chevron, hover, pressed and keyboard focus states; the mock exam is the primary card with a quiet amber edge. Reference and tools as one list. The per-event counts table stacks into compact rows on phones, with an em dash for events without parts tables.
+  - One warm neutral ramp (coal and paper) with amber as the only accent, a 4 px spacing scale, two type weights, quiet hairlines, and a custom arrow on the event menu. The header subtitle shows the edition only on wide screens; other pages keep it in the footer and on rule and section pages.
+  - The "Ready to work offline" note is a small toast just above the bottom tab bar (safe area respected) and goes away by itself after 4 s; the update prompt still waits for an answer.
+  - Redesigned with Claude Code using the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
+- Version 0.4.1.
+
 ## 0.4.0
 
 - **Problem builder** (`#/builder`, new **Builder** tab): design coal mine rescue field problems on a blank map and have the app work them out from the 2026 rules.
@@ -79,7 +89,6 @@
 
 - Weak or oddly capitalized distractors in the Statements quiz (e.g. Mine Rescue #186, #70).
 - The Statements quiz blanks a repeated word everywhere (e.g. Preshift #19, Mine Rescue #54/#70); the real exam caps it at 2. The Rules quiz already caps at 2.
-- The "Ready to work offline" toast covers content on small screens.
 - Opening `index.html` from `file://` shows a blank page; it needs http(s) hosting.
 - In the Rules quiz, "All" counts sentences that have a blankable token. A few cannot produce three good options and are skipped, so a session can be slightly shorter than shown.
 - Rules quiz distractors are sometimes loosely related (e.g. a person's role versus a place); there is no semantic typing beyond token kind, section and unit.
