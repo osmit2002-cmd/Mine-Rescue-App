@@ -23,11 +23,23 @@
   --bad-soft: #fbe5e3;
   --mark: #ffe28a;
   --warn-soft: #fff1dc;
+  /* Home accents: one ink and one tint per destination, so each card and row reads at a glance.
+     Inks pass 4.5:1 as text on the card and on their own tint; tints are quiet. Dark values below. */
+  --blue: #1f5fa8;   --blue-soft: #e3ecf8;
+  --green: #27773a;  --green-soft: #e1f1e4;
+  --rust: #a4411d;   --rust-soft: #fae6dd;
+  --teal: #166d6b;   --teal-soft: #dbf0ee;
+  --olive: #5e6a17;  --olive-soft: #eef1d8;
+  --slate: #4b5f82;  --slate-soft: #e6eaf1;
+  --violet: #7a3f9e; --violet-soft: #f1e5f7;
+  --rose: #b02a50;   --rose-soft: #fbe3e9;
   --radius: 12px;
   --nav-h: 56px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   /* Height of the fixed bottom tab bar on phones, safe area included; content is padded by this much so the bar never covers it. */
   --nav-space: calc(var(--nav-h) + var(--safe-b));
+  /* Height of the offline/update bar while it shows (set from its measured size); 0 when hidden. */
+  --toast-h: 0px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light dark;
@@ -60,12 +72,20 @@
     --bad-soft: #3d1d1b;
     --mark: #7a5d00;
     --warn-soft: #3a2a12;
+    --blue: #8db7f2;   --blue-soft: #1b2a3f;
+    --green: #7fd092;  --green-soft: #17311f;
+    --rust: #f2a07f;   --rust-soft: #3b2219;
+    --teal: #72d0c9;   --teal-soft: #13302f;
+    --olive: #c6cf6f;  --olive-soft: #2b2e14;
+    --slate: #adbdd9;  --slate-soft: #252b36;
+    --violet: #d2a8ea; --violet-soft: #2f2239;
+    --rose: #f59db7;   --rose-soft: #3b1f2a;
   }
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--bg); color: var(--fg); }
-body { padding-bottom: var(--nav-space); }
-html { scroll-padding-bottom: var(--nav-space); }
+body { padding-bottom: calc(var(--nav-space) + var(--toast-h)); }
+html { scroll-padding-bottom: calc(var(--nav-space) + var(--toast-h)); }
 a { color: var(--accent); }
 mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
 h1 { font-size: 1.45rem; font-weight: 600; margin: 0.4rem 0 0.8rem; line-height: 1.25; }
@@ -105,8 +125,8 @@ input[type='search'], input:not([type]), .fill input {
 .nav a { flex: 1; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--muted); font-size: 12px; font-weight: 500; transition: color 150ms var(--ease); }
 .nav a.active { color: var(--accent); box-shadow: inset 0 2px 0 var(--accent); }
 @media (min-width: 760px) {
-  body { padding-bottom: 0; }
-  html { scroll-padding-bottom: 0; }
+  body { padding-bottom: var(--toast-h); }
+  html { scroll-padding-bottom: var(--toast-h); }
   .header { padding-left: 24px; padding-right: 24px; }
   .nav { position: static; height: auto; border: none; background: none; gap: 4px; padding: 0; }
   .nav a { flex: none; height: 36px; padding: 0 12px; border-radius: 8px; font-size: 15px; color: var(--fg-2); transition: color 150ms var(--ease), background-color 150ms var(--ease); }
@@ -142,54 +162,77 @@ input[type='search'], input:not([type]), .fill input {
   align-self: flex-start; padding: 2px 8px; border: 1px solid var(--coal-hairline); border-radius: 6px; background: var(--coal-2);
   font-family: var(--mono); font-size: 12px; line-height: 16px; letter-spacing: 0.01em; color: var(--coal-muted);
 }
+/* The map keeps its 360:200 shape at every width (viewBox + meet), so nothing is cropped on a 390 phone or a 1440 desktop. */
 .hero-map { display: block; width: calc(100% + 40px); height: auto; margin: 0 -20px; color: var(--lamp); }
-.hero-map .pillar { fill: var(--coal-2); stroke: var(--coal-hairline); stroke-width: 1; }
-.hero-map .stopping { stroke: var(--coal-muted); stroke-width: 3; stroke-linecap: round; }
+.hero-map .rib, .hero-map .pillar { fill: var(--coal-2); stroke: var(--coal-hairline); stroke-width: 1; }
 .hero-map .air { fill: none; stroke: var(--coal-muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; }
 .hero-map .route { fill: none; stroke: var(--lamp); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-.hero-map .route-in { stroke: url(#hero-route-in); stroke-linecap: butt; }
 .hero-map .stop { fill: var(--coal); stroke: var(--lamp); stroke-width: 2.5; }
 .hero-map .team { fill: var(--lamp); }
 @media (min-width: 760px) {
   .hero { grid-template-columns: minmax(0, 1fr) 360px; align-items: center; gap: 32px; padding: 32px; }
   .hero h1 { font-size: 32px; line-height: 36px; }
-  .hero-map { width: 100%; margin: 0; mask-image: linear-gradient(to right, transparent, #000 24%); -webkit-mask-image: linear-gradient(to right, transparent, #000 24%); }
+  .hero-map { width: 100%; margin: 0; border-radius: 8px; }
 }
 .home-note { margin: 16px 0 0; }
 .home-h { margin: 32px 0 12px; font-size: 15px; line-height: 20px; font-weight: 500; color: var(--fg-2); }
 .tiles { display: block; margin: 0; }
 .tile-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
 @media (min-width: 640px) { .tile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-/* Practice cards: title, one line of what the session is, then a Start row with a chevron. The mock exam is the primary card. */
+/* Each card and row has its own ink and tint (--tile, --tile-soft): the icon sits in a tinted square, the edge and the
+   Start row take the ink, and hover fills the card with the tint. Text on a tint is always --fg / --fg-2 or the ink. */
+.tile, .tile-row { --tile: var(--accent); --tile-soft: var(--accent-soft); }
+.tile.quiz { --tile: var(--blue); --tile-soft: var(--blue-soft); }
+.tile.mock { --tile: var(--accent); --tile-soft: var(--accent-soft); }
+.tile.rules { --tile: var(--green); --tile-soft: var(--green-soft); }
+.tile-row.book { --tile: var(--rust); --tile-soft: var(--rust-soft); }
+.tile-row.statements { --tile: var(--teal); --tile-soft: var(--teal-soft); }
+.tile-row.parts { --tile: var(--olive); --tile-soft: var(--olive-soft); }
+.tile-row.search { --tile: var(--slate); --tile-soft: var(--slate-soft); }
+.tile-row.tool-builder { --tile: var(--violet); --tile-soft: var(--violet-soft); }
+.tile-row.figures { --tile: var(--rose); --tile-soft: var(--rose-soft); }
+.tile-icon { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 40px; height: 40px; border-radius: 10px; background: var(--tile-soft); color: var(--tile); }
+.tile-icon svg { width: 20px; height: 20px; }
+/* Practice cards: icon, title, one line of what the session is, then a Start row with a chevron. The mock exam is the primary card. */
 .tile {
-  display: flex; flex-direction: column; gap: 4px; min-height: 132px; padding: 20px; background: var(--card); border: 1px solid var(--hairline); border-radius: 12px;
+  display: flex; flex-direction: column; gap: 4px; min-height: 172px; padding: 20px; background: var(--card); border: 1px solid color-mix(in srgb, var(--tile) 40%, var(--border)); border-radius: 12px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tile) 12%, transparent);
   text-decoration: none; color: var(--fg); transition: background-color 150ms var(--ease), border-color 150ms var(--ease), transform 150ms var(--ease);
 }
+.tile .tile-icon { margin-bottom: 8px; }
 .tile strong { font-size: 17px; line-height: 24px; font-weight: 500; }
 .tile-desc { color: var(--fg-2); font-size: 14px; line-height: 20px; }
-.tile-go { display: inline-flex; align-items: center; gap: 2px; margin-top: auto; padding-top: 12px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--fg-2); transition: color 150ms var(--ease); }
+.tile-go { display: inline-flex; align-items: center; gap: 2px; margin-top: auto; padding-top: 12px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--tile); transition: color 150ms var(--ease); }
 .tile-chevron { flex: none; transition: transform 150ms var(--ease); }
-.tile:hover { background: var(--raised); border-color: var(--border); }
-.tile:hover .tile-go { color: var(--fg); }
+.tile:hover { background: var(--tile-soft); border-color: var(--tile); }
+.tile:hover .tile-icon { background: var(--card); }
 .tile:hover .tile-chevron { transform: translateX(2px); }
-.tile:active { background: var(--raised); transform: scale(0.99); }
-.tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.tile.primary { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 20%, transparent); }
-.tile.primary .tile-go { color: var(--accent); }
-.tile.primary:hover { border-color: var(--accent); background: var(--accent-soft); }
-.tile.primary:hover .tile-go { color: var(--accent); }
-@media (prefers-reduced-motion: reduce) { .tile, .tile-chevron { transition: none; } .tile:hover .tile-chevron { transform: none; } .tile:active { transform: none; } }
+.tile:active { background: var(--tile-soft); transform: scale(0.99); }
+.tile:focus-visible { outline: 2px solid var(--tile); outline-offset: 2px; }
+.tile.primary { background: var(--tile-soft); border-color: color-mix(in srgb, var(--tile) 70%, var(--border)); }
+.tile.primary .tile-icon { background: var(--tile); color: var(--accent-fg); }
+.tile.primary:hover { border-color: var(--tile); }
+.tile.primary:hover .tile-icon { background: var(--tile); }
+@media (prefers-reduced-motion: reduce) { .tile, .tile-chevron { transition: none; } .tile:hover .tile-chevron, .tile-row:hover .tile-chevron { transform: none; } .tile:active { transform: none; } }
+/* Reference rows: a 36 px tinted icon, title and description, and a chevron so each row reads as a tap target. */
 .tile-list { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
 .tile-list li + li { border-top: 1px solid var(--hairline); }
 .tile-row {
-  display: grid; grid-template-columns: 1fr; gap: 2px 16px; min-height: 56px; padding: 12px 20px; align-items: baseline;
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) 16px; grid-template-areas: 'icon title chev' 'icon desc chev'; gap: 0 14px; min-height: 64px; padding: 12px 16px 12px 16px; align-items: center;
   text-decoration: none; color: var(--fg); transition: background-color 150ms var(--ease);
 }
-.tile-row strong { font-size: 17px; line-height: 24px; font-weight: 500; }
-.tile-row span { color: var(--fg-2); font-size: 14px; line-height: 20px; }
-.tile-row:hover, .tile-row:active { background: var(--raised); }
+.tile-row .tile-icon { grid-area: icon; width: 36px; height: 36px; border-radius: 9px; }
+.tile-row .tile-icon svg { width: 18px; height: 18px; }
+.tile-row strong { grid-area: title; font-size: 17px; line-height: 24px; font-weight: 500; }
+.tile-row-desc { grid-area: desc; color: var(--fg-2); font-size: 14px; line-height: 20px; }
+.tile-row .tile-chevron { grid-area: chev; color: var(--muted); }
+.tile-row:hover, .tile-row:active { background: var(--tile-soft); }
+.tile-row:hover .tile-icon { background: var(--card); }
+.tile-row:hover .tile-chevron { color: var(--tile); transform: translateX(2px); }
 .tile-row:focus-visible { outline-offset: -2px; }
-@media (min-width: 640px) { .tile-row { grid-template-columns: 200px minmax(0, 1fr); } }
+@media (min-width: 640px) {
+  .tile-row { grid-template-columns: 36px 200px minmax(0, 1fr) 16px; grid-template-areas: 'icon title desc chev'; gap: 0 16px; padding: 12px 20px; }
+}
 .progress-line, .home-warn { margin: 16px 0 0; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.4rem 0 0.8rem; }
@@ -257,20 +300,31 @@ progress { width: 100%; height: 6px; accent-color: var(--accent); margin: 0.4rem
 .review .prompt { font-size: 1rem; margin: 0 0 0.2rem; }
 .review li.bad > p:nth-child(2) { color: var(--bad); }
 
-/* Small toast just above the bottom tab bar (safe area included); on wide screens it sits in the bottom right corner. */
+/* Offline / update bar: a slim full-width bar docked directly above the bottom tab bar, never over a tap target.
+   While it shows, the page gets the same height as extra bottom padding (--toast-h, set by PwaStatus) so content scrolls clear. */
 .toast {
-  position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--nav-space) + 12px); z-index: 10;
-  background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 6px 6px 6px 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  display: flex; gap: 10px; align-items: center; max-width: calc(100% - 32px); font-size: 14px; line-height: 20px;
+  position: fixed; left: 0; right: 0; bottom: var(--nav-space); z-index: 6;
+  background: var(--raised); border-top: 1px solid var(--hairline); padding: 8px 16px;
+  display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; font-size: 14px; line-height: 20px; color: var(--fg);
   animation: toast-in 300ms var(--ease);
 }
-.toast span { min-width: 0; }
-.toast button { flex: none; min-height: 32px; padding: 0 10px; border-radius: 6px; font-size: 14px; }
-@keyframes toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.toast > span:first-child { flex: 1 1 200px; min-width: 0; }
+.toast-actions { display: flex; flex: none; gap: 8px; margin-left: auto; }
+.toast button { flex: none; min-height: 32px; padding: 0 12px; border-radius: 6px; font-size: 14px; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+/* Wide screens: no tab bar, so the bar docks at the very bottom; wider than the content column plus the bar, it becomes a
+   bottom-right card in the empty margin, where it covers nothing. */
 @media (min-width: 760px) {
-  .toast { left: auto; right: 24px; bottom: calc(16px + var(--safe-b)); transform: none; max-width: 420px; }
-  @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .toast { bottom: 0; padding: 8px 24px; padding-bottom: calc(8px + var(--safe-b)); }
+}
+@media (min-width: 1760px) {
+  body { padding-bottom: 0; }
+  html { scroll-padding-bottom: 0; }
+  .toast {
+    left: auto; right: 24px; bottom: calc(16px + var(--safe-b)); max-width: 420px; padding: 6px 6px 6px 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .markdown table { border-collapse: collapse; font-size: 0.85rem; }

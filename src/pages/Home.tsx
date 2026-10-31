@@ -5,38 +5,35 @@ import { loadTimerSettings, mockPlan, sessionMinutes } from '../quiz/mock';
 import { loadStats } from '../quiz/stats';
 
 /**
- * A fragment of a mine map, the thing a rescue team studies: pillars of coal, three entries,
- * crosscuts between them, two stoppings, air direction, and the team's route with its stops.
- * The route comes in from outby (it fades in on the left) and runs off the map inby on the right.
+ * A contest problem map, the thing a rescue team studies: two pillars of coal with the entries and
+ * crosscuts open around them, the ribs of the mine at the edges, air direction, and the team's route
+ * with its team stops. The whole map is inside the viewBox, so it scales without cropping on any screen.
  */
 function MineMap() {
-  // Pillars 70 wide by 40 tall; entries run left to right between the rows, crosscuts top to bottom between the columns.
-  const cols = [-70, 20, 110, 200, 290];
-  const rows = [-20, 60, 120, 180];
+  // Openings are 36 wide. Entries run left (outby) to right (inby) above and below the pillars,
+  // and three crosscuts run top to bottom: outby of the first pillar, between the two, and inby of the second.
+  const stops: Array<[number, number]> = [
+    [42, 158],
+    [178, 158],
+    [178, 42],
+    [314, 42]
+  ];
   return (
-    <svg className="hero-map" viewBox="0 0 360 200" width="360" height="200" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="hero-route-in" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0">
-          <stop offset="0" stopColor="currentColor" stopOpacity="0" />
-          <stop offset="1" stopColor="currentColor" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      {rows.map((y) => cols.map((x) => <rect key={`${x}-${y}`} className="pillar" x={x} y={y} width={70} height={40} rx={3} />))}
-      {/* Stoppings across two crosscuts between the first and second entry */}
-      <line className="stopping" x1={110} y1={80} x2={90} y2={80} />
-      <line className="stopping" x1={290} y1={80} x2={270} y2={80} />
-      {/* Air direction in the return entry */}
-      <path className="air" d="M332 170h-20m5-5-5 5 5 5" />
-      <path className="air" d="M242 170h-20m5-5-5 5 5 5" />
-      <path className="air" d="M152 170h-20m5-5-5 5 5 5" />
-      {/* Team route: in along the first entry, down a crosscut, along the second, down again */}
-      <path className="route route-in" d="M-10 50H100" />
-      <path className="route" d="M100 50H190V110H280V170H372" />
-      <circle className="stop" cx={100} cy={50} r={5} />
-      <circle className="stop" cx={190} cy={50} r={5} />
-      <circle className="stop" cx={190} cy={110} r={5} />
-      <circle className="stop" cx={280} cy={110} r={5} />
-      <circle className="team" cx={280} cy={170} r={6} />
+    <svg className="hero-map" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+      {/* Ribs: the solid coal around the openings, drawn as one frame that runs off every edge */}
+      <path className="rib" fillRule="evenodd" d="M-10-10H370V210H-10Z M24 24V176H332V24Z" />
+      {/* Two pillars */}
+      <rect className="pillar" x={60} y={60} width={100} height={80} rx={3} />
+      <rect className="pillar" x={196} y={60} width={100} height={80} rx={3} />
+      {/* Air direction: up the outby crosscut and out along the top entry */}
+      <path className="air" d="M42 114V94m-5 5 5-5 5 5" />
+      <path className="air" d="M142 42h-20m5-5-5 5 5 5" />
+      {/* Team route: along the bottom entry, up the middle crosscut, along the top entry, down the inby crosscut */}
+      <path className="route" d="M42 158H178V42H314V100" />
+      {stops.map(([x, y]) => (
+        <circle key={`${x}-${y}`} className="stop" cx={x} cy={y} r={5} />
+      ))}
+      <circle className="team" cx={314} cy={100} r={6} />
     </svg>
   );
 }
@@ -46,6 +43,29 @@ function Chevron() {
     <svg className="tile-chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
       <path d="M6 3.5 10.5 8 6 12.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+/** Simple stroke icons on a 24 grid, one per destination, drawn in the card's or row's own colour. */
+const ICONS = {
+  quiz: 'm3 7 2 2 4-4M3 17l2 2 4-4M13 6h8M13 12h8M13 18h8',
+  mock: 'M10 2h4M12 14l3-3M12 22a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z',
+  rules: 'M12 20h9M16.4 3.6a2.1 2.1 0 0 1 3 3L7.4 18.6l-4 1 1-4Z',
+  book: 'M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20',
+  statements: 'M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7ZM14 2v5h6M10 9H8M16 13H8M16 17H8',
+  parts: 'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9Z',
+  search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM21 21l-4.3-4.3',
+  builder: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z',
+  figures: 'M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2ZM9 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM21 15l-3.1-3.1a2 2 0 0 0-2.8 0L6 21'
+} as const;
+
+function Icon({ name }: { name: keyof typeof ICONS }) {
+  return (
+    <span className="tile-icon">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d={ICONS[name]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
   );
 }
 
@@ -83,13 +103,15 @@ export default function Home() {
       <div className="tiles">
         <h2 className="home-h">Practice</h2>
         <div className="tile-grid">
-          <Link className="tile" to="/quiz">
+          <Link className="tile quiz" to="/quiz">
+            <Icon name="quiz" />
             <strong>Quiz</strong>
             <span className="tile-desc">{quizConfig.distractorCount + 1}-choice questions from the statements{evParts.length ? ' and parts tables' : ''}</span>
             <span className="tile-go">Start<Chevron /></span>
           </Link>
           {!all && (
-            <Link className="tile primary" to="/quiz?mode=mock">
+            <Link className="tile mock primary" to="/quiz?mode=mock">
+              <Icon name="mock" />
               <strong>Mock exam</strong>
               <span className="tile-desc">
                 {plan.facts} statements{plan.parts ? ` + ${plan.parts} parts` : ''}, {mMin ? `${mMin} min timer` : 'untimed'}, scored at the end
@@ -98,7 +120,8 @@ export default function Home() {
             </Link>
           )}
           {!all && evRules.length > 0 && (
-            <Link className="tile" to="/quiz?kind=rules">
+            <Link className="tile rules" to="/quiz?kind=rules">
+              <Icon name="rules" />
               <strong>Rules quiz</strong>
               <span className="tile-desc">Fill the blank in sentences from the {ev?.name ?? ''} rule book</span>
               <span className="tile-go">Start<Chevron /></span>
@@ -108,44 +131,56 @@ export default function Home() {
         <h2 className="home-h">Reference and tools</h2>
         <ul className="tile-list">
           <li>
-            <Link className="tile-row" to="/rules">
+            <Link className="tile-row book" to="/rules">
+              <Icon name="book" />
               <strong>Rule book</strong>
-              <span>{evRules.length} rules by section</span>
+              <span className="tile-row-desc">{evRules.length} rules by section</span>
+              <Chevron />
             </Link>
           </li>
           <li>
-            <Link className="tile-row" to="/statements">
+            <Link className="tile-row statements" to="/statements">
+              <Icon name="statements" />
               <strong>Statements</strong>
-              <span>{evFacts.length} statements</span>
+              <span className="tile-row-desc">{evFacts.length} statements</span>
+              <Chevron />
             </Link>
           </li>
           {evParts.length > 0 && (
             <li>
-              <Link className="tile-row" to="/parts">
+              <Link className="tile-row parts" to="/parts">
+                <Icon name="parts" />
                 <strong>Identification of Parts</strong>
-                <span>
+                <span className="tile-row-desc">
                   {evParts.length} tables, {evParts.reduce((n, t) => n + t.rows.length, 0)} parts
                 </span>
+                <Chevron />
               </Link>
             </li>
           )}
           <li>
-            <Link className="tile-row" to="/search">
+            <Link className="tile-row search" to="/search">
+              <Icon name="search" />
               <strong>Search</strong>
-              <span>Rules, statements and parts together</span>
+              <span className="tile-row-desc">Rules, statements and parts together</span>
+              <Chevron />
             </Link>
           </li>
           <li>
-            <Link className="tile-row" to="/builder">
+            <Link className="tile-row tool-builder" to="/builder">
+              <Icon name="builder" />
               <strong>Problem builder</strong>
-              <span>Place placards on a blank mine map, then solve it: team stops, mapping key, ventilation</span>
+              <span className="tile-row-desc">Place placards on a blank mine map, then solve it: team stops, mapping key, ventilation</span>
+              <Chevron />
             </Link>
           </li>
           {evFigures.length > 0 && (
             <li>
-              <Link className="tile-row" to="/figures">
+              <Link className="tile-row figures" to="/figures">
+                <Icon name="figures" />
                 <strong>Figures</strong>
-                <span>{evFigures.length} diagrams, skill sheets and legend pages</span>
+                <span className="tile-row-desc">{evFigures.length} diagrams, skill sheets and legend pages</span>
+                <Chevron />
               </Link>
             </li>
           )}
