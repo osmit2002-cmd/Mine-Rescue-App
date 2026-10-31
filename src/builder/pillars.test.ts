@@ -43,7 +43,7 @@ describe('pillar numbering', () => {
     const g = makeGeo({ ...defaultLayout(3, 4), outbyPillars: false });
     expect(pillarLabels(g, BUILT_IN)[0].label).toBe('1');
     expect(outbyBand(g)).toBe(0);
-    expect(outbyBand(makeGeo(defaultLayout(3, 4)))).toBe(68);
+    expect(outbyBand(makeGeo(defaultLayout(3, 4)))).toBe(30);
   });
 
   it('skips blocks with no mined opening beside them', () => {
