@@ -2,7 +2,7 @@
 
 Offline study aid for the **2026 MSHA mine rescue contest rules**. It is a Vite + React + TypeScript app that installs as a progressive web app and works with no connection after the first load. It covers all six coal contest events (654 statements of fact).
 
-**Live app:** https://osmit2002-cmd.github.io/Mine-rescue-study/
+**Live app:** https://osmit2002-cmd.github.io/Mine-Rescue-App/ (served by the Pages workflow from `main`; Pages must be turned on in the repository settings, and a private repository needs a paid GitHub plan for Pages)
 
 ## Build
 
