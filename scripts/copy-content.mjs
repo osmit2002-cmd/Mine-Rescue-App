@@ -6,7 +6,7 @@
 //  - rules-*.json (other events) and parts.json: copied when present and valid (real content only).
 //  - figures/**: downscaled to max 1400 px wide and re-encoded as WebP q75 with sharp (falls back to a
 //    plain copy if sharp is unavailable). build-info.json maps original paths to the built files.
-//    Converted files are cached per user (~/.cache/mine-rescue-study/figures, or FIGURE_CACHE_DIR); with --dev
+//    Converted files are cached per user (~/.cache/mine-rescue-app/figures, or FIGURE_CACHE_DIR); with --dev
 //    (npm run dev) nothing is converted and uncached figures are copied unchanged.
 //  - figures.json (cropped-figure index): copied when present and valid. Every cropped figure (figures.json and
 //    the `figures` lists on rule items and sections) is checked: file exists, rule/section ids resolve, no
@@ -155,7 +155,7 @@ if (info.rules.used === 'real' && existsSync(figDir)) {
   // (shared by every checkout and branch) keyed by the source bytes and settings; only new or changed figures
   // are converted, in parallel. With --dev (npm run dev) nothing is converted: figures already in the cache
   // are used and the rest are copied unchanged, so the dev server starts at once.
-  const cacheDir = resolve(process.env.FIGURE_CACHE_DIR ?? join(homedir(), '.cache', 'mine-rescue-study', 'figures'));
+  const cacheDir = resolve(process.env.FIGURE_CACHE_DIR ?? join(homedir(), '.cache', 'mine-rescue-app', 'figures'));
   const convert = !!sharp && !DEV;
   if (convert) mkdirSync(cacheDir, { recursive: true });
   const jobs = images.map((src) => {

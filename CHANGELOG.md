@@ -1,6 +1,18 @@
 # Changelog
 
-## 0.5.0 (unreleased)
+## 0.5.1
+
+- **Home page redesign**, the three commits that landed on the previous repository as 0.4.1, brought onto this repository on top of the 0.5.0 builder work. The version is 0.5.1 so the footer stays ahead of both.
+  - A coal-dark hero with the event name, its document title and the edition as one small badge, next to a fragment of a mine map drawn in code: pillars, three entries, two stoppings, air direction and the team's route with its stops. The route comes in from outby and runs off the map inby. On phones the map fills the panel's width under the text.
+  - Practice as three cards (Quiz, Mock exam, Rules quiz), each with a Start row and chevron, hover, pressed and keyboard focus states; the mock exam is the primary card with a quiet amber edge. Reference and tools as one list. The per-event counts table stacks into compact rows on phones, with an em dash for events without parts tables.
+  - One warm neutral ramp (coal and paper) with amber as the only accent, a 4 px spacing scale, two type weights, quiet hairlines, and a custom arrow on the event menu. The header subtitle shows the edition only on wide screens; other pages keep it in the footer and on rule and section pages.
+  - The "Ready to work offline" note is a small toast just above the bottom tab bar (safe area respected) and goes away by itself after 4 s; the update prompt still waits for an answer.
+  - Round 3: the hero map is now a contest-style problem map with two pillars, the entries and crosscuts open around them and the ribs at the edges, the team route attached end to end (no fade-out) and drawn whole at every width. Each practice card and reference row has its own colour and a stroke icon in a tinted square (Quiz blue, Mock exam amber, Rules quiz green; Rule book, Statements, Identification of Parts, Search, Problem builder and Figures each their own), with a trailing chevron on the rows; every text-on-tint pair passes WCAG AA in light and dark. The offline/update note is a slim bar docked above the bottom tab bar (bottom of the window on wide screens) and the page pads itself by the same height, so it never covers a tap target.
+  - Redesigned with Claude Code using the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
+- Figure conversion cache is `~/.cache/mine-rescue-app/figures`. Vite `base`, the web app manifest `start_url` and `scope`, and the service-worker precache URLs stay relative, so this build is served at https://osmit2002-cmd.github.io/Mine-Rescue-App/. The name shown in the app is still Mine Rescue Study.
+- Version 0.5.1.
+
+## 0.5.0
 
 - Version 0.5.0, so a running build of the layout editing and pillar numbering changes shows v0.5.0 in the footer and on About.
 
@@ -19,17 +31,6 @@
   - Stoppings, doors and barricades found **not intact** no longer stop travel; the team ties across through them instead of airlocking. On contest maps a stopping drawn as a broken arrow is a temporary stopping that is down.
   - A patient already reached is taken to the FAB before the team airlocks into another barricade that answers (Rule 41B).
   - Timbers whose placard gives a count of 0 (e.g. "broken, cannot use") are not counted as roof supports.
-
-## 0.4.1
-
-- **Home redesign.** No feature, route, content, quiz, data or service-worker change; the same things are on the page in the same order, drawn with more care.
-  - A coal-dark hero with the event name, its document title and the edition as one small badge, next to a fragment of a mine map drawn in code: pillars, three entries, two stoppings, air direction and the team's route with its stops. The route comes in from outby and runs off the map inby. On phones the map fills the panel's width under the text.
-  - Practice as three cards (Quiz, Mock exam, Rules quiz), each with a Start row and chevron, hover, pressed and keyboard focus states; the mock exam is the primary card with a quiet amber edge. Reference and tools as one list. The per-event counts table stacks into compact rows on phones, with an em dash for events without parts tables.
-  - One warm neutral ramp (coal and paper) with amber as the only accent, a 4 px spacing scale, two type weights, quiet hairlines, and a custom arrow on the event menu. The header subtitle shows the edition only on wide screens; other pages keep it in the footer and on rule and section pages.
-  - The "Ready to work offline" note is a small toast just above the bottom tab bar (safe area respected) and goes away by itself after 4 s; the update prompt still waits for an answer.
-  - Round 3: the hero map is now a contest-style problem map with two pillars, the entries and crosscuts open around them and the ribs at the edges, the team route attached end to end (no fade-out) and drawn whole at every width. Each practice card and reference row has its own colour and a stroke icon in a tinted square (Quiz blue, Mock exam amber, Rules quiz green; Rule book, Statements, Identification of Parts, Search, Problem builder and Figures each their own), with a trailing chevron on the rows; every text-on-tint pair passes WCAG AA in light and dark. The offline/update note is a slim bar docked above the bottom tab bar (bottom of the window on wide screens) and the page pads itself by the same height, so it never covers a tap target.
-  - Redesigned with Claude Code using the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
-- Version 0.4.1.
 
 ## 0.4.0
 
