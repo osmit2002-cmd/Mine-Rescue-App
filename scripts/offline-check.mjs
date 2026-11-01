@@ -19,6 +19,8 @@ ok(await page.evaluate(async () => !!(await navigator.serviceWorker.ready)), 'se
 await page.waitForFunction(() => !!navigator.serviceWorker.controller, null, { timeout: 15000 }).catch(() => {});
 if (!(await page.evaluate(() => !!navigator.serviceWorker.controller))) await page.reload();
 ok(await page.evaluate(() => !!navigator.serviceWorker.controller), 'page is controlled by the service worker');
+// The reload that lets the new service worker take control paints "Loading…" first. Wait for Home again.
+await page.waitForSelector('.tiles');
 const home = await page.textContent('main');
 ok(/100 rules/.test(home) && /\d{3} statements/.test(home), `home shows rule and statement counts (${(home.match(/\d+ statements[^A-Z]*/) ?? [""])[0].trim()})`);
 ok((await page.textContent('.hero-edition')).includes('2026 MSHA rules, approved 1/15/2026'), 'edition shown once on Home, as the hero badge');
