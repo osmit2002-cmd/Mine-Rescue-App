@@ -135,7 +135,7 @@ function Header() {
       <Link to="/" className="brand">
         <img src={`${import.meta.env.BASE_URL}icons/icon-192.png`} alt="" width={28} height={28} />
         <span>
-          Mine Rescue Study
+          Mine Rescue App
           {edition && <small className="edition">{edition}</small>}
         </span>
       </Link>

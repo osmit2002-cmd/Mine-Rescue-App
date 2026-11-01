@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.2
+
+- The name shown to users is **Mine Rescue App**: the header brand, the page title, the Apple home-screen title, and the installed app name and short name. The home page uses that name when no event is selected.
+- Version 0.5.2.
+
 ## 0.5.1
 
 - **Home page redesign**, the three commits that landed on the previous repository as 0.4.1, brought onto this repository on top of the 0.5.0 builder work. The version is 0.5.1 so the footer stays ahead of both.

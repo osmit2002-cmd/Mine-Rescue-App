@@ -93,10 +93,11 @@ await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
 ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.5.1', 'footer shows v0.5.1');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.5.2', 'footer shows v0.5.2');
+ok((await page.textContent('header .brand')).includes('Mine Rescue App'), 'header brand is Mine Rescue App');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.5.1'), 'About shows v0.5.1');
+ok((await page.textContent('main')).includes('v0.5.2'), 'About shows v0.5.2');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');

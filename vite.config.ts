@@ -35,8 +35,8 @@ export default defineConfig({
       injectRegister: false,
       includeAssets: ['icons/*.png', 'icons/*.svg'],
       manifest: {
-        name: 'Mine Rescue Study',
-        short_name: 'MR Study',
+        name: 'Mine Rescue App',
+        short_name: 'Mine Rescue App',
         description: 'Offline study aid for the coal mine rescue contest rules and statements of fact.',
         start_url: './',
         scope: './',

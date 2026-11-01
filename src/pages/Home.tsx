@@ -88,7 +88,7 @@ export default function Home() {
   const stats = loadStats();
   const errors = issues.filter((i) => i.level === 'error').length;
   const edition = data.editionFor(all ? undefined : event);
-  const title = all ? 'All events' : ev?.name ?? 'Mine Rescue Study';
+  const title = all ? 'All events' : ev?.name ?? 'Mine Rescue App';
   return (
     <div>
       <section className="hero">

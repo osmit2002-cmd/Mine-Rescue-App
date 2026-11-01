@@ -1,4 +1,4 @@
-# Mine Rescue Study (v0.5.1)
+# Mine Rescue App (v0.5.2)
 
 Offline study aid for the **2026 MSHA mine rescue contest rules**. It is a Vite + React + TypeScript app that installs as a progressive web app and works with no connection after the first load. It covers all six coal contest events (654 statements of fact).
 

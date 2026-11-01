@@ -1,4 +1,4 @@
-# Sources – Mine Rescue Study App content
+# Sources – Mine Rescue App content
 
 Compiled 2026-10-15 (updated the same day to add First Aid, all three 2026 coal bench events, and Preshift). All documents downloaded from msha.gov on that date. Originals are in `/workspace/mine-rescue/sources/` with `pdftotext -layout` extractions (`.txt`) next to them. Strike-through-aware extractions live in `/workspace/mine-rescue/work/*.clean.json`.
 
