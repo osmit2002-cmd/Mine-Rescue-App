@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Highlight } from '../components/Highlight';
 import { SearchBar } from '../components/SearchBar';
 import { NotFound } from '../components/common';
+import { SelectField } from '../components/SelectField';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import type { Fact } from '../data/types';
 import { buildTextIndex, filterMatches, useUrlQuery } from '../lib/textSearch';
@@ -34,12 +35,12 @@ export function FactList() {
         count={`${shown.length} of ${inEvent.length} statements${ev && factEvents.length > 1 ? ` (${eventName(ev)})` : ''}.`}
       >
         {categories.length > 0 && (
-          <div className="chips" role="group" aria-label="Filter by category">
-            <button aria-pressed={!cat} className={`chip ${!cat ? 'on' : ''}`} onClick={() => setCat('')}>All</button>
-            {categories.map((c) => (
-              <button key={c} aria-pressed={cat === c} className={`chip ${cat === c ? 'on' : ''}`} onClick={() => setCat(c)}>{c}</button>
-            ))}
-          </div>
+          <SelectField
+            label="Category"
+            value={cat}
+            onChange={setCat}
+            options={[{ value: '', label: 'All' }, ...categories.map((c) => ({ value: c, label: c }))]}
+          />
         )}
       </SearchBar>
       <ol className="fact-list">

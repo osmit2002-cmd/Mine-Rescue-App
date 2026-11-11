@@ -9,6 +9,7 @@ import { BUILT_IN, loadNumbering, normalizeNumbering, saveNumbering, type Pillar
 import { SAMPLES } from '../builder/samples';
 import { designChecks, solve } from '../builder/solve';
 import { downloadProblem, loadCurrentId, loadProblems, readProblemFile, saveCurrentId, saveProblems } from '../builder/storage';
+import { SelectField } from '../components/SelectField';
 import { mapMargins, MapView, type Overlays, type Tool } from '../builder/ui/MapView';
 import { OpeningRing, RadialMenu, type RadialAction } from '../builder/ui/RadialMenu';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
@@ -508,29 +509,22 @@ export default function Builder() {
       {!saveOk && <p className="warn small">This browser is not saving problems (storage blocked). Use Export to keep your work.</p>}
       {sample && <p className="small muted">{problem.source}. Edits are saved on this device; open it again from Samples for a fresh copy.</p>}
 
-      <div className="builder-tabs" role="tablist">
-        {(
-          [
-            ['build', 'Build'],
-            ['solve', 'Solve'],
-            ['vent', 'Ventilation']
-          ] as [Tab, string][]
-        ).map(([t, label]) => (
-          <button
-            key={t}
-            role="tab"
-            type="button"
-            aria-selected={tab === t}
-            className={`tab${tab === t ? ' on' : ''}`}
-            onClick={() => {
-              setTab(t);
-              setTool({ type: 'select' });
-              if (t !== 'build') setSelectedId(null);
-            }}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="builder-tabs">
+        <SelectField
+          label="View"
+          value={tab}
+          onChange={(v) => {
+            const next = v as Tab;
+            setTab(next);
+            setTool({ type: 'select' });
+            if (next !== 'build') setSelectedId(null);
+          }}
+          options={[
+            { value: 'build', label: 'Build' },
+            { value: 'solve', label: 'Solve' },
+            { value: 'vent', label: 'Ventilation' }
+          ]}
+        />
         <span className="spacer" />
         <div className="view-ctl">
           <button type="button" onClick={() => setZoom((z) => Math.max(0.6, z / 1.25))} aria-label="Zoom out">

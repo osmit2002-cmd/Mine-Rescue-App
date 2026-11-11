@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Highlight, snippet } from '../components/Highlight';
 import { SearchBar } from '../components/SearchBar';
 import { FigureBadge, pagesLabel, ruleLink } from '../components/common';
+import { SelectField } from '../components/SelectField';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import { filterRuleTree, type RuleNode, type SectionNode } from '../data/ruleTree';
 import { buildRuleSearchIndex, filterMatches, useUrlQuery } from '../lib/textSearch';
@@ -107,16 +108,15 @@ export default function Rules() {
   return (
     <div>
       <h1>Rule book{!all && data.factEvents.length > 1 ? ` — ${data.eventName(event)}` : ''}</h1>
-      <SearchBar value={query} onChange={setQuery} placeholder="Search rules… number, title or wording" label="Search rules" count={count}>
+      <SearchBar value={query} onChange={setQuery} placeholder="Number, title, or wording" label="Search rules" count={count}>
         {tree.sections.length > 1 && (
-          <div className="chips" role="group" aria-label="Filter rules by section" data-testid="rule-section-filter">
-            <span className="chips-label">Section:</span>
-            <button aria-pressed={!top} className={`chip small ${!top ? 'on' : ''}`} onClick={() => setSectionKey('')}>All sections</button>
-            {tree.sections.map((s) => (
-              <button key={s.key} aria-pressed={top === s.key} className={`chip small ${top === s.key ? 'on' : ''}`} onClick={() => setSectionKey(s.key)}>
-                {s.name}
-              </button>
-            ))}
+          <div data-testid="rule-section-filter">
+            <SelectField
+              label="Section"
+              value={top}
+              onChange={setSectionKey}
+              options={[{ value: '', label: 'All sections' }, ...tree.sections.map((s) => ({ value: s.key, label: s.name }))]}
+            />
           </div>
         )}
         {!hits && (

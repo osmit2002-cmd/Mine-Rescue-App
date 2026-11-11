@@ -136,6 +136,14 @@ export default function About() {
           <Markdown source={sources} />
         </>
       )}
+      <h2>Credits</h2>
+      <p>
+        The photograph on the home page shows a miner spraying rock dust in an underground bituminous coal mine: a dark coal rib, a roof whitened with rock dust, and roof bolts.
+        National Institute for Occupational Safety and Health (NIOSH), public domain (U.S. government work). Wikimedia Commons, file “Coal miner spraying rock dust.”
+      </p>
+      <p className="small">
+        The visual design of version 0.6.0 follows the unslop skill by Damir Sokolovsky (<a href="https://heydamir.design/unslop">heydamir.design/unslop</a>), used under CC BY 4.0.
+      </p>
       <p className="muted small" data-testid="app-version">Version {__APP_VERSION__} (build {__APP_BUILD__}). Works offline once loaded; install it from your browser menu (“Add to Home screen” / “Install app”).</p>
     </article>
   );

@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Highlight, snippet } from '../components/Highlight';
 import { FigureBadge, ruleLabel, ruleLink } from '../components/common';
+import { SelectField } from '../components/SelectField';
 import { ALL_EVENTS, useData, useEvent, type Data } from '../data/DataContext';
 import { useUrlQuery } from '../lib/textSearch';
 
@@ -73,27 +74,31 @@ export default function Search() {
     <div>
       <h1>Search</h1>
       <div className="toolbar">
-        <input type="search" autoFocus placeholder="Search rules and statements… e.g. methane, 20 minutes, lifeline" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Search" />
+        <input type="search" autoFocus placeholder="e.g. methane, 20 minutes, lifeline" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Search" />
       </div>
       {query.trim() && (
         <>
-          <div className="chips" role="group" aria-label="Filter by type">
-            {(['all', 'rule', 'fact', 'section', 'part'] as const).map((t) =>
-              t !== 'all' && counts[t] === 0 ? null : (
-                <button key={t} aria-pressed={type === t} className={`chip ${type === t ? 'on' : ''}`} onClick={() => setFilter('type', t)}>
-                  {t === 'all' ? 'All' : t === 'rule' ? 'Rules' : t === 'fact' ? 'Statements' : t === 'part' ? 'Parts' : 'Sections'} ({counts[t]})
-                </button>
-              )
+          <div className="filter-row">
+            <SelectField
+              label="Type"
+              value={type}
+              onChange={(v) => setFilter('type', v)}
+              options={(['all', 'rule', 'fact', 'section', 'part'] as const)
+                .filter((t) => t === 'all' || counts[t] > 0)
+                .map((t) => ({
+                  value: t,
+                  label: `${t === 'all' ? 'All' : t === 'rule' ? 'Rules' : t === 'fact' ? 'Statements' : t === 'part' ? 'Parts' : 'Sections'} (${counts[t]})`
+                }))}
+            />
+            {groups.length > 1 && (
+              <SelectField
+                label="Section"
+                value={group}
+                onChange={(v) => setFilter('group', v)}
+                options={[{ value: '', label: 'Any section' }, ...groups.map((g) => ({ value: g, label: g }))]}
+              />
             )}
           </div>
-          {groups.length > 1 && (
-            <div className="chips" role="group" aria-label="Filter by section">
-              <button aria-pressed={!group} className={`chip small ${!group ? 'on' : ''}`} onClick={() => setFilter('group', '')}>Any section</button>
-              {groups.map((g) => (
-                <button key={g} aria-pressed={group === g} className={`chip small ${group === g ? 'on' : ''}`} onClick={() => setFilter('group', g)}>{g}</button>
-              ))}
-            </div>
-          )}
         </>
       )}
       <ul className="results">

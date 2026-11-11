@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+- A reading-first design across the whole app. One warm paper-and-coal palette in light and dark (`prefers-color-scheme`), 17px body text, 1.5 line height, and a 70-character measure on rules, statements, and quiz prompts. Tap targets are at least 44px, and keyboard focus is a 3px ring.
+- The home banner is a real photograph of rock dusting in an underground coal mine (NIOSH, public domain): coal rib, rock-dusted roof, roof bolts. The picture fades into the page background in both themes, with the two-pillar map kept as a small drawing under the title. Responsive AVIF, WebP, and JPEG, precached with the app. Credit is on About.
+- Choosing among rule books, quiz options, sections, search filters, figure groups, and builder views is a labeled dropdown with a chevron, instead of a row of buttons that ran off a phone screen. Statement-number ranges stay a multi-select menu. Start, Check, and the other single actions stay buttons.
+- Redesigned with the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
+- Version 0.6.0.
+
 ## 0.5.2
 
 - The name shown to users is **Mine Rescue App**: the header brand, the page title, the Apple home-screen title, and the installed app name and short name. The home page uses that name when no event is selected.

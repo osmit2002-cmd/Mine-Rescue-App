@@ -157,10 +157,10 @@ export function Palette({ active, onPick }: { active: string | null; onPick: (it
 // ------------------------------------------------------------ inspector
 
 const DIRS = [
-  [0, 'Inby ↑'],
-  [90, 'Right →'],
-  [180, 'Outby ↓'],
-  [270, 'Left ←']
+  [0, 'Inby'],
+  [90, 'Right'],
+  [180, 'Outby'],
+  [270, 'Left']
 ] as const;
 
 export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }: { el: El; topo: Topo; onChange: (patch: Partial<El>) => void; onDelete: () => void; onDuplicate: () => void; onClose: () => void }) {
@@ -207,13 +207,13 @@ export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }
         </>
       )}
       {el.kind === 'diagonal' && (
-        <div className="seg" role="group" aria-label="Diagonal direction">
-          {(['/', '\\'] as const).map((v) => (
-            <button key={v} type="button" className={`chip${(el.diag ?? '/') === v ? ' on' : ''}`} onClick={() => onChange({ diag: v })}>
-              {v === '/' ? '／ outby-left to inby-right' : '＼ inby-left to outby-right'}
-            </button>
-          ))}
-        </div>
+        <label className="field">
+          <span>Diagonal direction</span>
+          <select aria-label="Diagonal direction" value={el.diag ?? '/'} onChange={(e) => onChange({ diag: e.target.value as '/' | '\\' })}>
+            <option value="/">Outby-left to inby-right</option>
+            <option value={'\\'}>Inby-left to outby-right</option>
+          </select>
+        </label>
       )}
       {el.kind === 'barricade' && <Check label="A person answers from behind it" hint="verbal contact" checked={!!el.response} onChange={(v) => onChange({ response: v })} />}
       {el.kind === 'door' && <Check label="Open" checked={!!el.open} onChange={(v) => onChange({ open: v })} />}
@@ -253,14 +253,14 @@ export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }
       {directional && (
         <div className="field">
           <span>{el.kind === 'body' || el.kind === 'person' ? 'Head toward' : el.kind === 'refuge' ? 'Door side' : 'Direction'}</span>
-          <div className="seg">
-            {DIRS.map(([v, l]) => (
-              <button key={v} type="button" className={`chip small${((el.dir ?? 0) % 360) === v ? ' on' : ''}`} onClick={() => onChange({ dir: v })}>
-                {l}
-              </button>
-            ))}
-            <button type="button" className="chip small" onClick={() => onChange({ dir: ((el.dir ?? 0) + 45) % 360 })} title="Rotate 45°">
-              ↻ 45°
+          <div className="dir-row">
+            <select aria-label="Direction" value={String((el.dir ?? 0) % 360)} onChange={(e) => onChange({ dir: Number(e.target.value) })}>
+              {DIRS.map(([v, l]) => (
+                <option key={v} value={String(v)}>{l}</option>
+              ))}
+            </select>
+            <button type="button" onClick={() => onChange({ dir: ((el.dir ?? 0) + 45) % 360 })} title="Rotate 45 degrees">
+              Rotate 45°
             </button>
           </div>
         </div>
