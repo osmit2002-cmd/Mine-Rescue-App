@@ -88,3 +88,17 @@ Rules for First Aid, the three benches and Preshift are **separate files** (`rul
 6. **Fact categories.** Left null; any topical grouping would be ours.
 7. **Superseded editions** (2023–2025) exist on msha.gov. Numbering can change year to year; the app should show the edition.
 8. **Rebuild.** `build.py` (coal mine rescue only) then `build_events.py` (the other five events + merge into `facts.json`). Both use the `.venv` in `/workspace/mine-rescue`.
+
+## Home banner photograph
+
+File in the app: `public/hero/mine-{640,960,1280}.{avif,webp,jpg}`, made from the original JPEG (no AI image).
+
+| | |
+|---|---|
+| What it shows | A mine rescue team in closed-circuit breathing apparatus and cap lamps, linked by a lifeline, ready to work a problem. 2015 National Coal Mine Rescue, First Aid, Bench and Preshift Competition, Lexington, Kentucky, September 14–17, 2015. |
+| MSHA caption | “A team, tethered together, ready to work a problem.” |
+| Agency | Mine Safety and Health Administration, U.S. Department of Labor |
+| Photograph | https://www.msha.gov/sites/default/files/Mine%20Rescue/2015-minerescue/Day2_0274.jpg |
+| Gallery | https://www.msha.gov/archive-mnm-and-coal-mine-rescue-contests/2015-national-mine-rescue-competition |
+| License | Public domain, as a work of the U.S. government. The gallery page attaches no copyright notice to this photograph. The Department of Labor copyright notice (https://www.dol.gov/general/aboutdol/copyright) says material created by the federal government is in the public domain, and that copyrighted third-party images on DOL sites are accompanied by a copyright notice. This photograph has none. |
+| Not used | The earlier NIOSH rock-dusting photograph was removed from the banner and from the About credit. |

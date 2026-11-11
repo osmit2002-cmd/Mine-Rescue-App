@@ -116,7 +116,7 @@ export default function Home() {
               sizes="(min-width: 760px) 520px, 100vw"
               width={1280}
               height={845}
-              alt="A miner sprays rock dust on the roof of an underground bituminous coal mine. The roof is white with rock dust and roof bolts, and the rib beside him is dark coal."
+              alt="A mine rescue team in closed-circuit breathing apparatus and cap lamps, linked by a lifeline, ready to work a problem at a contest."
               decoding="async"
               fetchPriority="high"
             />
