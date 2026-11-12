@@ -178,9 +178,7 @@ export const KEY: JudgeKey = {
   ],
   withdrawal: false,
   manual: [
-    'Ventilation: the judges put the first barricade back up for vent 1 and take it down again for vent 2; the solver wings both placards from the FAB with the barricade left down.',
-    'Ventilation: the judges vent the 19.0% O2 after exploring (before stop 12) and route it through the explored mine; the solver vents it before breaching the second barricade, out through No. 3 Entry outby.',
-    'Materials: the four broken timbers cannot be used; the three timbers from the barricade are the ones used to reach the person in No. 3.'
+    'The first and second vent maps mark some temporary stoppings “Either”, so more than one air course is accepted. The solver rebuilds the first barricade to wing the explosive mixture, takes it down to wing the 19.0% O2, and does not carry that oxygen across the person under unsafe roof in No. 3. It does not copy one particular set of arrows off the vent map.'
   ],
   notes: [
     'Team must rescue patient in first Barricade before entire team goes inby fresh air base.',
