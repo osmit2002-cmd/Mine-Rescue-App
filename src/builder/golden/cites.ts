@@ -13,6 +13,18 @@ export const RULE_44B: RuleCite = {
   text: 'As the team advances into a contaminated entry and subsequently encounters a placard(s) indicating that all contaminants are cleared prior to reaching an intersection, the team must make further advances in the other contaminated or adjacent entry.'
 };
 
+export const RULE_44E: RuleCite = {
+  id: 'b-card-44',
+  name: 'Rule 44E',
+  text: 'Where crosscuts are blocked, the No. 5 team member may not advance beyond the inby corner of the second crosscut before the team ties across and/or behind into all accessible areas outby that crosscut.'
+};
+
+export const RULE_24E: RuleCite = {
+  id: 'b-card-24',
+  name: 'Rule 24E',
+  text: 'Elsewhere a gas extends, in the direction of team travel, to a gas placard indicating a change, an airtight separation, or the next normal/required area to be tested.'
+};
+
 export const RULE_44A: RuleCite = {
   id: 'b-card-44',
   name: 'Rule 44A',
