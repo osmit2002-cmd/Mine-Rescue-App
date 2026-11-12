@@ -8,6 +8,7 @@ import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
 import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
 import { KEY as N11_KEY, national2011Day2 } from '../cases/national-2011-day2';
 import { KEY as N26_KEY, national2026Day2 } from '../cases/national-2026-day2';
+import { KEY as N19_KEY, national2019Day1 } from '../cases/national-2019-day1';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
 import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_31C, RULE_31D, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
@@ -324,6 +325,19 @@ export const OPEN: OfficialFixture[] = [
     source: '2026 National Coal Day 2 judges’ packet, page 5, read at 300 dpi. The PDF is not committed.',
     problem: national2026Day2,
     key: N26_KEY,
+    stopRule: RULE_44D,
+    rescueRule: RULE_41,
+    reachRule: RULE_32,
+    ventRule: RULE_35,
+    withdrawalRule: RULE_31B,
+    foundRule: RULE_44A
+  },
+  {
+    id: 'national-2019-day1',
+    title: '2019 National — Coal Day 1',
+    source: '2019 National Coal Day 1 judges’ briefing and team-stop map, read at 300 dpi. The PDF is not committed.',
+    problem: national2019Day1,
+    key: N19_KEY,
     stopRule: RULE_44D,
     rescueRule: RULE_41,
     reachRule: RULE_32,

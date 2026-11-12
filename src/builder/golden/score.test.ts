@@ -41,6 +41,13 @@ describe('solver accuracy', () => {
     expect(s.checks.filter((c) => !c.ok).map((c) => c.id)).toEqual(['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']);
   });
 
+  it('reports 2019 Day 1 with the stops that do not match', () => {
+    const s = open.find((x) => x.id === 'national-2019-day1')!;
+    expect(s.passed).toBe(11);
+    expect(s.total).toBe(16);
+    expect(s.checks.filter((c) => !c.ok).map((c) => c.id)).toEqual(['stop:2,1', 'stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']);
+  });
+
   it.each(OFFICIAL.map((f) => f.id))('%s scores 100%', (id) => {
     const s = scores.find((x) => x.id === id)!;
     expect(s.percent, s.first ? `${s.first.what}: expected ${s.first.expected}; got ${s.first.got} (${s.first.rule.name})` : '').toBe(100);
