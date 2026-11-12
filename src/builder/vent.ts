@@ -89,7 +89,7 @@ export function airflow(board: Board): Airflow {
   // and air still enters the other fresh openings (Miscellaneous rule 4).
   const fanQ = [...board.placed.values()].find((q) => q.el.kind === 'fan' && q.el.on !== false);
   const fanNode = fanQ ? g.subs.get(attachSub(g, fanQ) ?? '')?.node : undefined;
-  const exhaustReturn = fanNode?.fab && fanQ?.fanMode !== 'blowing' ? fanNode.i : null;
+  const exhaustReturn = fanNode?.fab && fanQ?.el.fanMode !== 'blowing' ? fanNode.i : null;
   if (board.problem.fabFresh && !fanNode?.fab) {
     for (const s of g.subs.values()) if (s.node.fab) addFixed(s.id, 0, 0.01);
     openings.push('FAB (fresh air)');
@@ -251,7 +251,7 @@ export function ventFindings(board: Board, af: Airflow, hz: Hazard[], ctx: VentC
   const fanQ = [...board.placed.values()].find((q) => q.el.kind === 'fan' && q.el.on !== false);
   const fanNode = fanQ ? g.subs.get(attachSub(g, fanQ) ?? '')?.node : undefined;
   // The return entry at the FAB is the way out to an exhausting fan, not the briefing officer's location.
-  const exhaustReturn = fanNode?.fab && fanQ?.fanMode !== 'blowing' ? fanNode.i : null;
+  const exhaustReturn = fanNode?.fab && fanQ?.el.fanMode !== 'blowing' ? fanNode.i : null;
   for (const h of hz) {
     if (!h.cls.irrespirable && !h.cls.explosive && !h.cls.contaminant) continue;
     const moving = [...h.extent.edges.keys()].some((e) => af.flow.has(e)) || [...h.extent.nodes].some((s) => (g.adj.get(s) ?? []).some((e) => af.flow.has(e)));
