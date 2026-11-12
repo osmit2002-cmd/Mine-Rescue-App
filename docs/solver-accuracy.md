@@ -14,6 +14,21 @@ The solver in `src/builder/explore.ts` is checked against official step-by-step 
 
 Before the Rule 44B change, Figure 7 was already 11/11. The 2016 judge key was 17/21 (81%). The first divergence was the team stop at No. 2 Entry, crosscut row 4: the judges number it 10 and the solver numbered it 11, so the barricade patient there was rescued after stop 11 (Rule 41) instead of before it.
 
+2024 National Day 1 was 10/16 on the twelve printed stops before the two-break, borehole, and barricade-hold rules, then 16/16 when the vents and the finds inby the barricade were left out of the key. It is now 29/29 on the checks that include those vents and finds. Three judges' steps are listed on the fixture and are not marked passed.
+
+## Not encoded
+
+These were opened in the same pass. No route was invented, so they are not scored.
+
+| Problem | Why it is not scored |
+|---|---|
+| [2026 National Coal Day 2](https://minerescuecenter.com/media/problems/2026_national_Coal_Day_2_Field_26_Nationals_Day_2.pdf) | The judges' packet is image-only. The briefing lists team stops 1–12 and ventilations 1–5, and it does not say which intersection each stop is. The circled numbers on the map did not read out to positions. |
+| 2019 National Coal Day 1 | The field packet is a scan with no text layer. Not transcribed. |
+| 2017 National Coal Day 1 | The text layer has a blank "Team Working Order" sheet. The stop route is on the map, which was not read into positions. |
+| 2011 National Coal Day 2 | The MSHA file (public domain) writes team stops 1–12. The gas placards are in a spaced map text layer with no coordinates, so placing them would be a guess. Left unscored. |
+| 2007 National Coal Day 1 | The problem file is a scan with no text layer. Not transcribed. |
+| 2016 Post 5 Day 2, 2017 Post 5, 2018 Post 5 | Still in `problems/`. Not transcribed in this pass. |
+
 ## How to add a problem
 
 1. Transcribe the map into a builder problem, the way `src/builder/cases/post5-2016-day1.ts` does. Positions only have to fall in the right openings.
