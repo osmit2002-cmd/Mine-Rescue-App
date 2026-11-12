@@ -7,6 +7,7 @@ import type { JudgeKey } from '../judge';
 import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
 import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
 import { KEY as N11_KEY, national2011Day2 } from '../cases/national-2011-day2';
+import { KEY as N26_KEY, national2026Day2 } from '../cases/national-2026-day2';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
 import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_31C, RULE_31D, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
@@ -303,6 +304,26 @@ export const OFFICIAL: OfficialFixture[] = [
     source: 'MSHA 2011 National Coal Day 2 problem (public domain). Team stops from the judges’ written order and the team-stop map.',
     problem: national2011Day2,
     key: N11_KEY,
+    stopRule: RULE_44D,
+    rescueRule: RULE_41,
+    reachRule: RULE_32,
+    ventRule: RULE_35,
+    withdrawalRule: RULE_31B,
+    foundRule: RULE_44A
+  }
+];
+
+/**
+ * Fixtures whose judge key is encoded, including the checks the solver does not pass.
+ * These are scored and reported. They are not in OFFICIAL, so a miss stays a miss.
+ */
+export const OPEN: OfficialFixture[] = [
+  {
+    id: 'national-2026-day2',
+    title: '2026 National — Coal Day 2',
+    source: '2026 National Coal Day 2 judges’ packet, page 5, read at 300 dpi. The PDF is not committed.',
+    problem: national2026Day2,
+    key: N26_KEY,
     stopRule: RULE_44D,
     rescueRule: RULE_41,
     reachRule: RULE_32,

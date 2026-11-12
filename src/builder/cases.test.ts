@@ -10,7 +10,11 @@ import { solve } from './solve';
  * When a solver change fixes one, remove it here; when a change breaks a check that passed, the test fails.
  */
 const KNOWN_GAPS: Record<string, string[]> = {
-  'post5-2016-day1': []
+  'post5-2016-day1': [],
+  // 2026 Day 2. The page-5 circles put stop 4 in No. 3 and stop 5 in No. 2, and stop 12 in No. 1 with 10/11
+  // in the other two entries. Nothing in those entries reads as a block, so the solver's systematic order
+  // (lowest open entry first) is a different legal route and these four stops do not match. They are not passed.
+  'national-2026-day2': ['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']
 };
 
 describe('judge key comparison', () => {
