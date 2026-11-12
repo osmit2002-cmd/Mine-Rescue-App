@@ -67,6 +67,18 @@ export const RULE_31A: RuleCite = {
   text: 'Changing conditions of the mine ventilation system in such a manner that an explosive mixture is moved over an ignition source.'
 };
 
+export const RULE_31C: RuleCite = {
+  id: 'b-card-31',
+  name: 'Rule 31C',
+  text: 'Changing conditions of the mine ventilation in such a manner that an explosive mixture is moved over an unexplored area.'
+};
+
+export const RULE_31D: RuleCite = {
+  id: 'b-card-31',
+  name: 'Rule 31D',
+  text: 'Energizing electrical equipment, electrical circuits, or cables in an explosive mixture, or moving any of the above ignition sources into an explosive mixture.'
+};
+
 export const RULE_42: RuleCite = {
   id: 'b-card-42',
   name: 'Rule 42',

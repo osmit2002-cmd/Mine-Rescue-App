@@ -20,9 +20,11 @@
  * are scored once that barricade is opened.
  *
  * Scored on the 2026 rule text. The 2024 judges cite Rule 31C for moving the stop-11 explosive mixture over
- * a caved area. In the 2026 text, Rule 31C is moving an explosive mixture over an unexplored area. That
- * airlock-back-out, and moving the pump cable out of the 5.7% mixture before it is energized (Rule 31D),
- * are flagged in the key rather than marked passed: the solver has no move-object action.
+ * a caved area or unsafe roof. In the 2026 text, Rule 31C is moving an explosive mixture over an unexplored
+ * area; Rule 30F is the low oxygen through unexplored ground while persons are missing; Rule 42 is the
+ * airlock on the way out when leaving it down would change the ventilation. The No. 1 opening is caved, so
+ * the team cannot travel it, and the gas-extent map still shows intake air moving up that entry, so the
+ * cave does not seal the airway.
  */
 import { makeElement, type Kind } from '../catalog';
 import { cellKey } from '../geometry';
@@ -52,7 +54,9 @@ export function national2024Day1(): Problem {
     el('x', at.entry(l, 0, 4, 0.55), { id: 'intake-shaft', text: 'INTAKE AIR SHAFT' }, 'shaft'),
 
     // Openings inby the fresh air base. No. 1 is caved and No. 3 is a rib-to-rib diagonal unsafe roof, so the first team stop is up No. 2.
-    el('caved', at.entry(l, 0, 0, 0.5), { airtight: true, text: 'CAVED AIRTIGHT' }),
+    // The cave stops the team (Rule 44). The gas-extent map draws the intake arrow up this same entry, and vents 1 and 2
+    // clear the No. 1 gases before either water is pumped, so the cave does not seal the airway.
+    el('caved', at.entry(l, 0, 0, 0.5), { airtight: false, text: 'CAVED' }),
     el('x', at.entry(l, 1, 0, 0.15), { text: 'ENERGIZED POWER CABLE' }, 'cable'),
     el('gas', at.entry(l, 1, 0, 0.4), { id: 'gas-57', ch4: 5.7, co: 5, o2: 19.4, text: '5.7% CH4, 5 PPM CO, 19.4% O2' }),
     // The pump cable lies in the 5.7% mixture. It is not energized until the team asks the briefing officer to start the pump.
@@ -159,10 +163,7 @@ export const KEY: JudgeKey = {
     'After the live person from the barricade is at the fresh air base, use the two timbers to check the body in the elongated unsafe roof before the clock stops (Rule 32).'
   ],
   manual: [
-    'The judges do vents 1 and 2 before either water is pumped. The planner’s safe course for those mixtures draws intake from the No. 1 intake shaft and sends the air out the No. 3 return. The water roofed seals that shaft until it is pumped, and a course that uses the No. 2 intake instead drags the 5.7% mixture onto the ram car (Rule 31A). The four cleared placards are ventilated, in the judges’ grouping, after both waters are pumped and before the barricade is opened. The before-the-pump timing is not marked passed.',
-    'After both vents are completed, the team having the three timbers must timber through the diagonal unsafe roof to reroute the pump cable up number 3, out of the explosive mixture that still remains just inby the fresh air base in the number 2 opening, before the team can energize the cable and pump (Rule 31D). The solver does not move an object, so this step is not marked passed. The 5.7% mixture is not one of the cleared placards.',
-    'Whichever water is pumped first, the team must airlock back out. The fan cannot be stopped; otherwise air is drawn down the intake shaft in the No. 1 face and the explosive mixture at team stop 11 is moved over the caved area or the unsafe roof. The 2024 judges cite Rule 31C for that. In the 2026 text, Rule 31C is moving an explosive mixture over an unexplored area, and they also cite Rule 30F for the low oxygen through unexplored areas while three persons are unaccounted for. The airlock back out is not marked passed.',
-    'Placards that stay face down until a water placard is flipped — three timbers and caved inby the stop-9 water, and the unsafe roof with an unsafe rib plus caved airtight and three timbers inby the stop-3 water — are not given a separate location in the judges’ text, so they are not encoded.'
+    'Placards that stay face down until a water placard is flipped — three timbers and caved inby the stop-9 water, and the unsafe roof with an unsafe rib plus caved airtight and three timbers inby the stop-3 water — are not given a separate location in the judges’ text, so they are not encoded. The three timbers the judges use to timber the diagonal unsafe roof are among those face-down placards, so that timber sentence is not a separate scored stop.'
   ]
 };
 

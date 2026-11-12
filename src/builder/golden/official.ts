@@ -8,7 +8,7 @@ import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
 import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
-import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
+import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_31C, RULE_31D, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
 import type { ExtraCheck, OfficialFixture } from './types';
 
 const fig7Key: JudgeKey = {
@@ -240,6 +240,58 @@ export const OFFICIAL: OfficialFixture[] = [
         run: (sol) => {
           const cleared = sol.plan.cleared.has('gas-57');
           return { ok: !cleared, expected: '5.7% mixture left in place', got: cleared ? 'ventilated' : 'left in place' };
+        }
+      },
+      {
+        id: 'vents-before-water',
+        what: 'Vents 1 and 2 clear the No. 1 and No. 3 explosive mixtures before either water is pumped',
+        rule: RULE_31A,
+        run: (sol) => {
+          const firstPump = sol.plan.steps.findIndex((s) => s.kind === 'pump');
+          const ids = ['gas-v1a', 'gas-v1b', 'gas-v2a', 'gas-v2b'];
+          const late = ids.filter((id) => {
+            const at = sol.plan.cleared.get(id);
+            return at === undefined || firstPump < 0 || at > firstPump;
+          });
+          return {
+            ok: late.length === 0,
+            expected: '5.3/6/19.3, 5.1/7/19.1, 5.3/7/19.5 and 5.1/5/19.5 cleared before the first pump',
+            got: late.length === 0 ? 'all four cleared before the first pump' : `${late.join(', ')} not cleared before the pump`
+          };
+        }
+      },
+      {
+        id: 'move-pump-cable',
+        what: 'The pump cable is moved out of the 5.7% mixture before the pump is energized',
+        rule: RULE_31D,
+        run: (sol) => {
+          const move = sol.plan.steps.findIndex((s) => s.kind === 'move' && s.subject === 'pump-cable');
+          const pump = sol.plan.steps.findIndex((s) => s.kind === 'pump');
+          const still = sol.plan.steps.some((s) => s.kind === 'withdraw');
+          return {
+            ok: move >= 0 && pump > move && !still,
+            expected: 'pump cable moved, then the pump energized, and the team does not withdraw',
+            got: move < 0 ? 'cable not moved' : pump < 0 ? 'never pumped' : pump < move ? 'pumped before the move' : still ? 'team withdrew' : `moved at step ${move}, pumped at step ${pump}`
+          };
+        }
+      },
+      {
+        id: 'airlock-back-out',
+        what: 'After each water is pumped, the airlock is put back so the running fan does not move the stop-11 explosive over unexplored ground',
+        rule: RULE_31C,
+        run: (sol) => {
+          const after = (id: string) => {
+            const pump = sol.plan.steps.findIndex((s) => s.kind === 'pump' && s.subject === id);
+            const back = sol.plan.steps.findIndex((s, i) => i > pump && s.kind === 'airlock' && s.subject === id);
+            return pump >= 0 && back > pump;
+          };
+          const a = after('water-stop3');
+          const b = after('water-stop9');
+          return {
+            ok: a && b,
+            expected: 'airlock put back after water-stop3 and after water-stop9',
+            got: `stop-3 water ${a ? 'closed back' : 'left open'}; stop-9 water ${b ? 'closed back' : 'left open'}`
+          };
         }
       }
     ]
