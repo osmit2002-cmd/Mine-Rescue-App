@@ -23,9 +23,26 @@ export interface ExtraCheck {
   run: (sol: Solution) => { ok: boolean; expected: string; got: string };
 }
 
+/**
+ * A divergence in an older fixture that a newer key or the 2026 rule text overrides. The old check is still listed in
+ * the report, marked superseded, and left out of the pass/fail gate. `by` must be a fixture from a later contest year.
+ */
+export interface Supersession {
+  /** Check ids on the older fixture this applies to, e.g. "stop:2,1". */
+  checks: string[];
+  /** Id of the newer fixture whose key or rule text wins. */
+  by: string;
+  /** The newer rule text, verbatim from content/rules.md or the newer key's citation. */
+  newer: RuleCite;
+  /** Why the newer text wins over the older key step. */
+  reason: string;
+}
+
 export interface OfficialFixture {
   id: string;
   title: string;
+  /** Contest year. Drives the recency weight (see `recencyWeight`). The 2026 rule book counts as 2026. */
+  year: number;
   /** Where the official solution was read. */
   source: string;
   /** Contest PDF this fixture transcribes, relative to the repo, if it came from problems/. */
@@ -35,6 +52,8 @@ export interface OfficialFixture {
   /** Citation for team-stop checks. `stopRules` overrides by "entry,row". */
   stopRule: RuleCite;
   stopRules?: Record<string, RuleCite>;
+  /** Older divergences a newer key or the 2026 rule text overrides. See `Supersession`. */
+  supersedes?: Supersession[];
   rescueRule: RuleCite;
   reachRule: RuleCite;
   ventRule: RuleCite;
@@ -51,18 +70,25 @@ export interface ScoredCheck {
   expected: string;
   got: string;
   rule: RuleCite;
+  /** Set when a newer key or rule overrides this older check. The check is listed but not counted. */
+  superseded?: { by: string; newer: RuleCite; reason: string };
 }
 
 export interface ProblemScore {
   id: string;
   title: string;
+  year: number;
   source: string;
+  /** Counted checks that passed. Superseded checks are not counted. */
   passed: number;
+  /** Counted checks. Superseded checks are not counted. */
   total: number;
-  /** 0–100. 100 means every official check passed. */
+  /** 0–100 over the counted checks. 100 means every counted official check passed. */
   percent: number;
+  /** Recency weight, 0–1. See `recencyWeight`. */
+  weight: number;
   checks: ScoredCheck[];
-  /** The first check, in solution order, that does not match. Absent when percent is 100. */
+  /** The first counted check, in solution order, that does not match. Absent when percent is 100. */
   first?: ScoredCheck;
 }
 

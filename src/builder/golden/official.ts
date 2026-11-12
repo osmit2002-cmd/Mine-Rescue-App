@@ -124,6 +124,7 @@ export const OFFICIAL: OfficialFixture[] = [
   {
     id: 'figure-7',
     title: 'Rule book Figure 7 — systematic exploration',
+    year: 2026,
     source: '2026 Coal Mine Rescue Rules, Figure 7, page 49. Team stops are printed on the figure.',
     problem: figure7,
     key: fig7Key,
@@ -137,6 +138,7 @@ export const OFFICIAL: OfficialFixture[] = [
   {
     id: 'post5-2016-day1',
     title: '2016 Post 5 & WV State — Day 1',
+    year: 2016,
     source: 'problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf, team-stop map and Keys to Problem',
     pdf: 'problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf',
     problem: post5Day1,
@@ -153,6 +155,7 @@ export const OFFICIAL: OfficialFixture[] = [
   {
     id: 'national-2024-day1',
     title: '2024 National — Coal Day 1',
+    year: 2024,
     source: 'https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf — judges’ stop-by-stop text. Scored on the 2026 rule text; the 2024 judges cite the same rule numbers.',
     problem: national2024Day1,
     key: N24_KEY,
@@ -302,6 +305,7 @@ export const OFFICIAL: OfficialFixture[] = [
   {
     id: 'national-2011-day2',
     title: '2011 National — Coal Day 2',
+    year: 2011,
     source: 'MSHA 2011 National Coal Day 2 problem (public domain). Team stops from the judges’ written order and the team-stop map.',
     problem: national2011Day2,
     key: N11_KEY,
@@ -322,6 +326,7 @@ export const OPEN: OfficialFixture[] = [
   {
     id: 'national-2026-day2',
     title: '2026 National — Coal Day 2',
+    year: 2026,
     source: '2026 National Coal Day 2 judges’ packet, page 5, read at 300 dpi. The PDF is not committed.',
     problem: national2026Day2,
     key: N26_KEY,
@@ -335,6 +340,7 @@ export const OPEN: OfficialFixture[] = [
   {
     id: 'national-2019-day1',
     title: '2019 National — Coal Day 1',
+    year: 2019,
     source: '2019 National Coal Day 1 judges’ briefing and team-stop map, read at 300 dpi. The PDF is not committed.',
     problem: national2019Day1,
     key: N19_KEY,

@@ -1,6 +1,6 @@
 # Solver accuracy
 
-The solver in `src/builder/explore.ts` is checked against official step-by-step solutions that are already written down in this repo. `npm run score:solver` prints a score for each one. A score of 100% means every check passed. The first check that disagrees is the divergence, and the report quotes the rule that applies.
+The solver in `src/builder/explore.ts` is checked against official step-by-step solutions that are already written down in this repo. `npm run score:solver` prints a score for each one, then the raw and recency-weighted overall (see Recency weighting below). A score of 100% means every counted check passed. The first check that disagrees is the divergence, and the report quotes the rule that applies.
 
 `npm test` runs the same checks and fails if any official fixture is under 100%.
 
@@ -28,6 +28,29 @@ These were opened in the same pass. No route was invented, so they are not score
 | 2017 National Coal Day 1 | Page 5 was rendered at 300 dpi and cropped by entry. The circles that read cleanly are stop 2 in No. 1 and stop 1 in No. 2 at the fresh air base, then 3 and 6, then 4 and 5, with 13, 11, and 12 at the faces. Stop 15 is circled in a crosscut, not at an intersection, and the No. 3 circles do not sit on those same rows, so the grid is not encoded. |
 | 2007 National Coal Day 1 | The judges' briefing (pages 10 and 12) lists team stops 1–17 by entry and crosscut letter A–E. The field map (pages 11 and 13) is a scan whose placards did not read into openings, and the ventilation drawing (pages 7–8) is the mine schematic, not that field grid. The stops are not encoded until the letters can be placed on the field map. |
 | 2016 Post 5 Day 2, 2017 Post 5, 2018 Post 5 | Still in `problems/`. Not transcribed in this pass. |
+
+## Recency weighting
+
+Each fixture has a contest `year`. The rule book changes between contests, so a newer problem says more about the current rules than an old one. `npm run score:solver` prints each fixture's raw score (the percent of its counted checks) and its weight, then two overall figures: the unweighted mean and the weighted mean.
+
+- `recencyWeight(year) = 1 / (1 + (2026 − year) / 5)`, from `src/builder/golden/score.ts`. 2026 is 1.00, 2024 is 0.71, 2019 is 0.42, 2016 is 0.33, and 2011 is 0.25. A year after 2026 is capped at 1.00.
+- Figure 7 comes from the 2026 Coal Mine Rescue Rules, so it is 2026 and weighs 1.00.
+- The weighted overall is the weight-times-percent sum over the sum of the weights. Each fixture counts once, whatever its number of checks.
+
+The weight changes only the overall figure. The pass/fail gate in `npm test` is still 100% for every `OFFICIAL` fixture.
+
+## Superseded by a rule change
+
+When an older key step conflicts with a newer key or with the 2026 rule text, the newer one wins. The mechanism is `supersedes` on an `OfficialFixture`:
+
+- `checks` names the older check ids the rule applies to, such as `stop:2,1`.
+- `by` names the newer fixture whose key or rule text wins. It must have a later `year`; a test enforces this.
+- `newer` is the newer rule text, quoted verbatim. The older check still shows its own rule.
+- `reason` says why the newer text wins.
+
+A superseded check that fails is listed in the report as "superseded (not counted)", with both the older and the newer rule text. It is removed from the counted total and from `passed`, so it cannot fail the gate. Only a failing check is marked; a check that passes stays counted.
+
+No divergence in the current fixtures conflicts with a newer key or the 2026 text, so no `supersedes` entry is in use. The 2024 key's Rule 31C citation is for the same airlock step that already passes under the 2026 Rule 31C text, so it is not a conflict. Adding a supersession needs a real conflict in the older fixture's key, not a divergence the solver happens to have.
 
 ## How to add a problem
 

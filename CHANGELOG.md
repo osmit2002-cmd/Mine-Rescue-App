@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- **Solver accuracy: recency weighting.** Each official fixture has a contest year. `npm run score:solver` prints each raw score with its weight (`1 / (1 + (2026 − year) / 5)`, so 2026 is 1.00 and 2011 is 0.25) and the weighted overall next to the raw mean. The pass/fail gate is unchanged. See `docs/solver-accuracy.md`.
+- **Solver accuracy: superseded steps.** An older fixture can list a check that a newer key or the 2026 rule text overrides (`supersedes`). The check is reported with both rule texts and left out of the counted total. Each supersession must name a later fixture; a test checks it. No current divergence conflicts with a newer key, so none is in use.
+
 ## 0.6.1
 
 - The top bar with the rule-book menu folds away. A button at its right end hides or shows the menu; folded, the bar is one slim row with the brand and the current rule book's name, so it no longer covers the controls at the top of the page. The choice is remembered on the device. Phones start folded, and on a phone the menu folds again after you pick a rule book; wide screens start open. The button has `aria-expanded` and `aria-controls`, works from the keyboard, and is at least 44px tall.
