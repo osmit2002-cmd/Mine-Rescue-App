@@ -61,6 +61,18 @@ export const RULE_31B: RuleCite = {
   text: 'Continuing exploration after conditions are found to indicate an imminent explosion is possible by the presence of an explosive mixture and evidence of fire (visual acknowledgment of a fire, smoke or carbon monoxide above 10 ppm), or continuing exploration when energized electrical equipment, energized circuits (including all batteries except cap light batteries) or energized cables are found in an explosive mixture.'
 };
 
+export const RULE_31A: RuleCite = {
+  id: 'b-card-31',
+  name: 'Rule 31A',
+  text: 'Changing conditions of the mine ventilation system in such a manner that an explosive mixture is moved over an ignition source.'
+};
+
+export const RULE_42: RuleCite = {
+  id: 'b-card-42',
+  name: 'Rule 42',
+  text: 'Failure to air lock when ventilating into an accessible unexplored area, or when opening a permanent or temporary stopping, door, line curtain, check curtain, barricade, or diagonal curtain or when pumping water roofed.'
+};
+
 export const RULE_30F: RuleCite = {
   id: 'b-card-30',
   name: 'Rule 30F',

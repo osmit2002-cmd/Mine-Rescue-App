@@ -69,6 +69,23 @@ describe('ventilation planner', () => {
     expect(planVent(b, p.elements[2].id, allKnown(b, { unaccounted: 2 })).ok).toBe(true);
   });
 
+  it('draws intake from the other fresh-air-base entries when an exhausting fan is on the return at the FAB', () => {
+    // Miscellaneous rule 4: exhaust ventilation enters at the fresh openings and leaves at the fan.
+    // The fan's own entry is the return, so irrespirable air may leave along it without crossing the briefing officer.
+    const p = blankProblem('exhaust at fab');
+    p.layout = defaultLayout(3, 4);
+    p.elements = [
+      mk('fan', at.node(p.layout, 2, 0), { fanMode: 'exhausting', on: true, text: 'EXHAUSTING FAN' }),
+      mk('x', at.entry(p.layout, 0, 3, 0.8), { text: 'INTAKE AIR SHAFT' }, 'shaft'),
+      mk('gas', at.entry(p.layout, 2, 2, 0.4), { ch4: 4.7, co: 9, o2: 18.3, text: '4.7% CH4, 9 PPM CO, 18.3% O2' })
+    ];
+    const b = makeBoard(p);
+    const plan = planVent(b, p.elements[2].id, allKnown(b));
+    expect(plan.ok, plan.why).toBe(true);
+    expect(plan.why ?? '').not.toMatch(/no intake/);
+    expect(plan.course.length).toBeGreaterThan(0);
+  });
+
   it('wings a line curtain to a placard in a dead end', () => {
     const p = mine((l) => [mk('gas', at.entry(l, 1, 3, 0.6), { ch4: 6, co: 0, o2: 20 })]);
     const b = makeBoard(p);

@@ -6,7 +6,7 @@
 - The solver follows Rule 44B when a contaminant has ended: it does not go deeper in that entry while another entry is still contaminated ahead. On the 2016 problem the last three team stops are now No. 2, No. 3, then No. 1, and the barricade patient at stop 10 is out before stop 11 (Rule 41).
 - An explosive mixture outby a breached airtight separation, with irrespirable air inby it, is winged with that separation put back up, then taken down before the inby atmosphere is moved (Rules 48E and 35).
 - A body under elongated unsafe roof is timbered to after every missing person is found and before the next team stop (Rule 32). Timbers whose placard count is 0 are not used.
-- 2024 National Coal Day 1 is scored from the judges' stop-by-stop text (16/16). The packet is cited and not committed. An open borehole stops a gas at that required test (Rules 24A and 24E). A blocked crosscut holds the team at the two-break limit until it is tied into (Rule 44E). An airtight barricade with irrespirable air still outby it is not breached (Rule 35).
+- 2024 National Coal Day 1 is scored on the full judges' key that can be checked (29/29): twelve team stops, vents 1–4, either water first, and the finds inby the barricade. An exhausting fan draws intake from the other fresh openings and the intake shaft; the 18.3% oxygen leaves along the return and the barricade opens only after that (Miscellaneous rule 4, Rules 30H and 35). Not marked passed: doing vents 1 and 2 before either pump, moving the pump cable out of the 5.7% mixture (Rule 31D), and airlocking back out after pumping.
 - Version 0.5.3.
 
 ## 0.5.2
