@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1
+
+- The top bar with the rule-book menu folds away. A button at its right end hides or shows the menu; folded, the bar is one slim row with the brand and the current rule book's name, so it no longer covers the controls at the top of the page. The choice is remembered on the device. Phones start folded, and on a phone the menu folds again after you pick a rule book; wide screens start open. The button has `aria-expanded` and `aria-controls`, works from the keyboard, and is at least 44px tall.
+- The header publishes its height, so the builder's sticky side panels and anything scrolled to or focused stop just below it instead of under it.
+- `scripts/top-controls-check.mjs` checks every page at 390px and 1440px, light and dark, folded and open: each button, menu, and link at the top of the page must be fully on screen below the header and above the tab bar, and a tap at its centre and near each corner must land on it.
+- Version 0.6.1.
+
 ## 0.6.0
 
 - A reading-first design across the whole app. One warm paper-and-coal palette in light and dark (`prefers-color-scheme`), 17px body text, 1.5 line height, and a 70-character measure on rules, statements, and quiz prompts. Tap targets are at least 44px, and keyboard focus is a 3px ring.

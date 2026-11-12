@@ -11,6 +11,11 @@ const page = await ctx.newPage();
 const errors = [];
 page.on('pageerror', (e) => errors.push(e.message));
 page.on('console', (m) => m.type() === 'error' && errors.push(m.text()));
+// The rule-book menu sits behind the header toggle when the header is collapsed (the phone default); open it first.
+const pickEvent = async (pg, id) => {
+  if ((await pg.getAttribute('header.header', 'data-collapsed')) === 'true') await pg.click('[data-testid=header-toggle]');
+  await pg.selectOption('[data-testid=event-select]', id);
+};
 const ok = (cond, msg) => { console.log(`${cond ? 'PASS' : 'FAIL'} ${msg}`); if (!cond) process.exitCode = 1; };
 
 await page.goto(url);
@@ -51,9 +56,36 @@ for (let i = 0; i < 10; i++) {
 const score = await page.textContent('[data-testid=final-score]');
 ok(/\/ 10/.test(score), `mine rescue mock exam scored out of 10 (${score.trim()})`);
 
+// Collapsible header: phones start with the rule-book menu folded into a slim bar that names the rule book.
+await page.goto(url + '#/');
+await page.waitForSelector('.tiles');
+await page.evaluate(() => localStorage.removeItem('mrs.headerCollapsed'));
+await page.reload();
+await page.waitForSelector('.tiles');
+const toggle = '[data-testid=header-toggle]';
+ok((await page.getAttribute(toggle, 'aria-expanded')) === 'false' && !(await page.isVisible('[data-testid=event-select]')), 'phone header starts collapsed, menu hidden');
+ok((await page.textContent('[data-testid=header-current]')).includes('Coal Mine Rescue'), 'collapsed bar names the current rule book');
+const tb = await page.locator(toggle).boundingBox();
+ok(tb.height >= 44 && tb.width >= 44, `header toggle is a 44px tap target (${Math.round(tb.width)}x${Math.round(tb.height)})`);
+ok((await page.locator('header.header').boundingBox()).height <= 56, 'collapsed header is one slim row');
+await page.focus(toggle);
+await page.keyboard.press('Enter');
+ok((await page.getAttribute(toggle, 'aria-expanded')) === 'true' && (await page.isVisible('[data-testid=event-select]')), 'Enter on the toggle opens the rule-book menu');
+ok((await page.getAttribute(toggle, 'aria-controls')) === 'header-rulebook' && !!(await page.$('#header-rulebook [data-testid=event-select]')), 'toggle controls the menu panel');
+await page.reload();
+await page.waitForSelector('.tiles');
+ok((await page.getAttribute(toggle, 'aria-expanded')) === 'true', 'open/closed state persists across reloads');
+await page.focus(toggle);
+await page.keyboard.press('Space');
+ok((await page.getAttribute(toggle, 'aria-expanded')) === 'false', 'Space folds it again');
+await page.click(toggle);
+await page.selectOption('[data-testid=event-select]', 'first-aid');
+ok((await page.getAttribute(toggle, 'aria-expanded')) === 'false' && (await page.textContent('[data-testid=header-current]')).includes('First Aid'), 'picking a rule book on a phone folds the menu and names the new book');
+await pickEvent(page, 'mine-rescue');
+
 // Event picker: switch to a bench event (persisted), check parts, preformatted rules and the timed mock.
 await page.goto(url + '#/');
-await page.selectOption('[data-testid=event-select]', 'bench-biopak');
+await pickEvent(page, 'bench-biopak');
 await page.reload();
 await page.waitForSelector('.tiles');
 ok((await page.inputValue('[data-testid=event-select]')) === 'bench-biopak', 'selected event persists across reloads');
@@ -94,15 +126,15 @@ ok((await page.inputValue('[aria-label="Question source"]')) === 'facts', 'bench
 ok((await page.locator('[aria-label="Question source"] option').allTextContents()).some((t) => /Parts/.test(t)), 'parts practice still offered');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.6.0', 'footer shows v0.6.0');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.6.1', 'footer shows v0.6.1');
 ok((await page.textContent('header .brand')).includes('Mine Rescue App'), 'header brand is Mine Rescue App');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.6.0'), 'About shows v0.6.0');
+ok((await page.textContent('main')).includes('v0.6.1'), 'About shows v0.6.1');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
-await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+await pickEvent(page, 'mine-rescue');
 await page.goto(url + '#/quiz?mode=mock');
 await page.waitForSelector('[data-testid=timer-toggle]');
 ok(await page.isChecked('[data-testid=timer-toggle]'), 'mine rescue mock timer is on by default');
@@ -133,7 +165,7 @@ await page.evaluate(() => localStorage.removeItem('mrs.timer.v1'));
 
 // First aid: timed 15-question exam; find a preformatted rule and check it renders in <pre>.
 await page.goto(url + '#/');
-await page.selectOption('[data-testid=event-select]', 'first-aid');
+await pickEvent(page, 'first-aid');
 await page.goto(url + '#/rules/first-aid-materials-1');
 await page.waitForSelector('pre.rule-pre');
 const preText = await page.textContent('pre.rule-pre');
@@ -148,7 +180,7 @@ await page.waitForSelector('[data-testid=choice]');
 ok(/of 15/.test(await page.textContent('.quiz-status')), 'first aid mock has 15 questions');
 ok(/(20:00|19:5\d)/.test((await page.textContent('[role=timer]')).trim()), 'first aid timer starts at 20 minutes');
 // v0.2.0: the header menu is the only event control, and "Facts" is now "Statements".
-await page.selectOption('[data-testid=event-select]', 'all');
+await pickEvent(page, 'all');
 await page.goto(url + '#/statements');
 await page.waitForSelector('.fact-list li');
 const allCount = await page.textContent('main');
@@ -171,7 +203,7 @@ ok((await page.evaluate(() => location.hash)).startsWith('#/statements/coal-mr-s
 await page.goto(url + '#/search?q=oxygen');
 await page.waitForSelector('.results li');
 ok(/Statements \(\d+\)/.test(await page.textContent('main')), 'search filter chip says Statements');
-await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+await pickEvent(page, 'mine-rescue');
 
 // Rules quiz (Coal Mine Rescue): verbatim sentence, 3 choices, rule reference with a link.
 await page.goto(url + '#/quiz?kind=rules');
@@ -198,7 +230,7 @@ ok(ruleHref.includes('#/rules/'), 'rule reference links to the rule detail page'
 await page.goto(url + '#/quiz?fact=first-aid-sof-001');
 await page.waitForSelector('[data-testid=choice]');
 ok((await page.inputValue('[data-testid=event-select]')) === 'first-aid', 'deep link to a First Aid statement switches the event');
-await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+await pickEvent(page, 'mine-rescue');
 await page.waitForTimeout(300);
 ok((await page.$$('[data-testid=choice]')).length === 3, 'changing the event mid-quiz keeps the running question intact');
 await page.goto(url + '#/');
@@ -256,13 +288,13 @@ await page.waitForSelector('.rule-text');
 const hitRuleText = (await page.textContent('.rule-text')).replace(/\s+/g, ' ');
 ok(hitRuleText.includes(snip.replace(/\s+/g, ' ').trim()), 'matched snippet is verbatim rule text');
 ok((await page.$$('.rule-text mark')).length > 0, 'the rule opened from a search highlights the words');
-await page.selectOption('[data-testid=event-select]', 'bench-biopak');
+await pickEvent(page, 'bench-biopak');
 await page.goto(url + '#/rules?q=diaphragm');
 await page.reload();
 await page.waitForSelector('[data-testid=rule-hit]');
 ok((await page.$$('.rule-snippet.pre mark')).length > 0, "search covers 'pre' parts lists and skill sheets (BioPak: diaphragm)");
 ok(/of 63 rules match/.test(await count()), `search is scoped to the header event (${await count()})`);
-await page.selectOption('[data-testid=event-select]', 'mine-rescue');
+await pickEvent(page, 'mine-rescue');
 await page.goto(url + '#/statements?q=lifelin');
 await page.reload();
 await page.waitForSelector('.fact-list li');
@@ -522,7 +554,7 @@ await ctx.setOffline(false);
   await p2.clock.install();
   await p2.goto(url);
   await p2.waitForSelector('[data-testid=event-select]');
-  await p2.selectOption('[data-testid=event-select]', 'preshift');
+  await pickEvent(p2, 'preshift');
   await p2.goto(url + '#/quiz?mode=mock');
   await p2.click('button.primary:has-text("Start")');
   await p2.waitForSelector('[data-testid=choice]');

@@ -1,7 +1,9 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
 import { Link, Navigate, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { ErrorBoundary, SampleBanner } from './components/common';
 import { PwaStatus } from './components/PwaStatus';
+import { HeaderToggle } from './components/HeaderToggle';
+import { isNarrow, readHeaderCollapsed, writeHeaderCollapsed } from './lib/headerPrefs';
 import { ALL_EVENTS, DataProvider, EventProvider, useData, useEvent, useLoadState } from './data/DataContext';
 import Home from './pages/Home';
 import { FactDetail, FactList } from './pages/Facts';
@@ -121,22 +123,50 @@ function Shell() {
   );
 }
 
+/** Publishes the header's height as --header-h, so sticky panels and scroll-padding sit below it rather than under it. */
+function useHeaderHeight(ref: RefObject<HTMLElement>) {
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const root = document.documentElement;
+    const set = () => root.style.setProperty('--header-h', `${Math.ceil(el.getBoundingClientRect().height)}px`);
+    set();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', set);
+      return () => window.removeEventListener('resize', set);
+    }
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+}
+
 function Header() {
   const { state } = useLoadState();
   const { event, setEvent } = useEvent();
   const { pathname } = useLocation();
+  const ref = useRef<HTMLElement>(null);
+  useHeaderHeight(ref);
+  const [collapsed, setCollapsedState] = useState(() => readHeaderCollapsed(isNarrow()));
+  const setCollapsed = useCallback((c: boolean) => {
+    setCollapsedState(c);
+    writeHeaderCollapsed(c);
+  }, []);
   const data = state.status === 'ready' ? state.data : undefined;
   // The subtitle is a wide-screen extra (CSS hides it on phones) and Home already shows the edition in its hero.
   const edition = pathname === '/' ? undefined : data?.editionFor(event === ALL_EVENTS ? undefined : event);
   const events = data?.factEvents ?? [];
   const hasParts = !!data?.parts.some((t) => event === ALL_EVENTS || t.event === event);
+  const canCollapse = events.length > 1;
+  const isCollapsed = canCollapse && collapsed;
+  const current = event === ALL_EVENTS ? 'All events' : events.find((e) => e.id === event)?.name ?? '';
   return (
-    <header className="header">
+    <header ref={ref} className={`header${isCollapsed ? ' collapsed' : ''}`} data-collapsed={isCollapsed ? 'true' : 'false'}>
       <Link to="/" className="brand">
         <img src={`${import.meta.env.BASE_URL}icons/icon-192.png`} alt="" width={28} height={28} />
         <span>
           Mine Rescue App
-          {edition && <small className="edition">{edition}</small>}
+          {edition && !isCollapsed && <small className="edition">{edition}</small>}
         </span>
       </Link>
       <nav className="nav" aria-label="Main">
@@ -148,16 +178,30 @@ function Header() {
         <NavLink to="/builder">Builder</NavLink>
         {hasParts && <NavLink to="/parts">Parts</NavLink>}
       </nav>
-      {events.length > 1 && (
-        <label className="event-select">
-          <span className="select-label">Rule book</span>
-          <select value={event} onChange={(e) => setEvent(e.target.value)} aria-label="Rule book" data-testid="event-select">
-            {events.map((e) => (
-              <option key={e.id} value={e.id}>{e.name}</option>
-            ))}
-            <option value={ALL_EVENTS}>All events</option>
-          </select>
-        </label>
+      {canCollapse && (
+        <>
+          <div id="header-rulebook" className="header-panel" hidden={isCollapsed}>
+            <label className="event-select">
+              <span className="select-label">Rule book</span>
+              <select
+                value={event}
+                onChange={(e) => {
+                  setEvent(e.target.value);
+                  // On a phone the menu row is in the way once a rule book is picked; fold it back to the slim bar.
+                  if (isNarrow()) setCollapsed(true);
+                }}
+                aria-label="Rule book"
+                data-testid="event-select"
+              >
+                {events.map((e) => (
+                  <option key={e.id} value={e.id}>{e.name}</option>
+                ))}
+                <option value={ALL_EVENTS}>All events</option>
+              </select>
+            </label>
+          </div>
+          <HeaderToggle collapsed={isCollapsed} controls="header-rulebook" current={current} onToggle={() => setCollapsed(!isCollapsed)} />
+        </>
       )}
     </header>
   );
