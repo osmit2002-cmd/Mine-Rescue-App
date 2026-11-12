@@ -2,7 +2,7 @@ import { readdirSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { OFFICIAL } from './official';
+import { OFFICIAL, OPEN } from './official';
 import { formatScores, scoreFixture } from './score';
 import { TRIAGE } from './triage';
 import { UNVERIFIED_BUILT } from './unverified';
@@ -21,9 +21,10 @@ function pdfsUnder(dir: string): string[] {
 
 describe('solver accuracy', () => {
   const scores = OFFICIAL.map(scoreFixture);
+  const open = OPEN.map(scoreFixture);
 
   it('prints the per-problem score', () => {
-    const lines = [formatScores(scores), '', 'Unverified (not scored):'];
+    const lines = [formatScores([...scores, ...open]), '', 'Unverified (not scored):'];
     for (const u of UNVERIFIED_BUILT) lines.push(`  ${u.id}: ${u.reason}`);
     const officialPdfs = new Set(OFFICIAL.flatMap((f) => (f.pdf ? [f.pdf] : [])));
     const unread = pdfsUnder(join(ROOT, 'problems')).filter((p) => !officialPdfs.has(p));
@@ -31,6 +32,13 @@ describe('solver accuracy', () => {
     lines.push(`  ${unread.length} contest PDFs are not transcribed. ${yes} of ${TRIAGE.length} contain an official solution or judge key.`);
     console.log(lines.join('\n'));
     expect(scores.length).toBeGreaterThan(0);
+  });
+
+  it('reports 2026 Day 2 with the stops that do not match', () => {
+    const s = open.find((x) => x.id === 'national-2026-day2')!;
+    expect(s.passed).toBe(14);
+    expect(s.total).toBe(18);
+    expect(s.checks.filter((c) => !c.ok).map((c) => c.id)).toEqual(['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']);
   });
 
   it.each(OFFICIAL.map((f) => f.id))('%s scores 100%', (id) => {
