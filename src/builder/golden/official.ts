@@ -331,6 +331,7 @@ export const OPEN: OfficialFixture[] = [
     problem: national2026Day2,
     key: N26_KEY,
     stopRule: RULE_44D,
+    captainRule: RULE_44B,
     rescueRule: RULE_41,
     reachRule: RULE_32,
     ventRule: RULE_35,

@@ -52,6 +52,8 @@ export interface OfficialFixture {
   /** Citation for team-stop checks. `stopRules` overrides by "entry,row". */
   stopRule: RuleCite;
   stopRules?: Record<string, RuleCite>;
+  /** Citation for a team-stop check the key lets the captain choose (JudgeKey.captainOrder). */
+  captainRule?: RuleCite;
   /** Older divergences a newer key or the 2026 rule text overrides. See `Supersession`. */
   supersedes?: Supersession[];
   rescueRule: RuleCite;
@@ -70,6 +72,8 @@ export interface ScoredCheck {
   expected: string;
   got: string;
   rule: RuleCite;
+  /** Set when the check is a captain's-choice stop (JudgeKey.captainOrder). */
+  captain?: boolean;
   /** Set when a newer key or rule overrides this older check. The check is listed but not counted. */
   superseded?: { by: string; newer: RuleCite; reason: string };
 }

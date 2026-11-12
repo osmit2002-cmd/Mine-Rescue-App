@@ -106,6 +106,27 @@ export const KEY: JudgeKey = {
     { at: [1, 4], n: [10, 11] },
     { at: [2, 4], n: [10, 11] }
   ],
+  // Rule 44B, first paragraph: "If the team encounters contaminants in multiple entries, the team has the option of
+  // which entry to examine first." Row 2 has contaminants ahead in No. 1, No. 2 and No. 3 (5.2% CH4 placards between
+  // rows 2 and 3). Row 4 has contaminants ahead in No. 1 (2.5% CH4, 20 PPM CO) and No. 3 (2.5% CH4). No. 2 at row 4 has
+  // no placard, so 11 there is not in a group.
+  captainOrder: [
+    {
+      at: [
+        [0, 2],
+        [1, 2],
+        [2, 2]
+      ],
+      why: 'Rule 44B: “If the team encounters contaminants in multiple entries, the team has the option of which entry to examine first.” Row 2 contaminants ahead in No. 1, No. 2 and No. 3.'
+    },
+    {
+      at: [
+        [0, 4],
+        [2, 4]
+      ],
+      why: 'Rule 44B: “If the team encounters contaminants in multiple entries, the team has the option of which entry to examine first.” Row 4 contaminants ahead in No. 1 and No. 3.'
+    }
+  ],
   find: ['person-phil', 'person-jeff', 'person-jerry', 'person-shawn'],
   rescue: [{ el: 'person-phil' }, { el: 'person-jeff' }, { el: 'person-jerry' }, { el: 'person-shawn' }],
   withdrawal: false,

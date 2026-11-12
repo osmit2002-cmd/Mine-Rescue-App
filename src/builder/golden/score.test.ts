@@ -36,11 +36,11 @@ describe('solver accuracy', () => {
     expect(scores.length).toBeGreaterThan(0);
   });
 
-  it('reports 2026 Day 2 with the stops that do not match', () => {
+  it('scores 2026 Day 2 at 18/18 with the row-2 and row-4 captain’s-choice stops', () => {
     const s = open.find((x) => x.id === 'national-2026-day2')!;
-    expect(s.passed).toBe(14);
+    expect(s.passed).toBe(18);
     expect(s.total).toBe(18);
-    expect(s.checks.filter((c) => !c.ok).map((c) => c.id)).toEqual(['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']);
+    expect(s.checks.filter((c) => c.captain).map((c) => c.id)).toEqual(['stop:0,2', 'stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']);
   });
 
   it('reports 2019 Day 1 with the stops that do not match', () => {

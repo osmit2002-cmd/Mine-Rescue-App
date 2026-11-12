@@ -29,6 +29,13 @@ export interface JudgeKey {
    * placard has been ventilated (`after`).
    */
   vents?: { el: string; beforeBreach?: string; after?: string }[];
+  /**
+   * Intersections whose stop numbers the judge book does not fix against each other. Each group is a set of
+   * intersections where the rule text gives the captain the option of which contaminated entry to examine first.
+   * The stop checks for the group pass when the solver's numbers can be matched to the group's intersections in
+   * some order, each within that intersection's accepted numbers. `why` is the source text.
+   */
+  captainOrder?: { at: [number, number][]; why: string }[];
   /** The judges expect the team to withdraw (Rule 31B). */
   withdrawal: boolean;
   /** The judge book's key points, verbatim. */
@@ -50,6 +57,8 @@ export interface KeyCheck {
   ok: boolean;
   expected: string;
   got: string;
+  /** Set on a stop the key lets the captain number in either order (JudgeKey.captainOrder). */
+  captain?: boolean;
 }
 
 export interface KeyReport {
@@ -76,15 +85,41 @@ export function compareToKey(sol: Solution, key: JudgeKey): KeyReport {
   const stopAt = new Map<string, number>();
   for (const s of steps) if (s.kind === 'stop' && s.n !== undefined && !stopAt.has(baseOf(s.at))) stopAt.set(baseOf(s.at), s.n);
   const stepOfStop = (n: number) => steps.findIndex((s) => s.kind === 'stop' && s.n === n);
+  // A captain's-choice group passes when its solver numbers can be assigned to its intersections in some order.
+  const groupOf = new Map<string, number>();
+  (key.captainOrder ?? []).forEach((g, gi) => g.at.forEach(([i, r]) => groupOf.set(`${i},${r}`, gi)));
+  const groupOk = (gi: number): boolean => {
+    const cells = key.captainOrder![gi].at.map(([i, r]) => ({
+      opts: key.stops.find((s) => s.at[0] === i && s.at[1] === r)?.n ?? [],
+      got: stopAt.get(nodeId(i, r))
+    }));
+    if (cells.some((c) => c.got === undefined)) return false;
+    const nums = cells.map((c) => c.got!);
+    const fits = (k: number, used: boolean[]): boolean => {
+      if (k === cells.length) return true;
+      for (let j = 0; j < nums.length; j++) {
+        if (used[j] || !cells[k].opts.includes(nums[j])) continue;
+        used[j] = true;
+        const ok = fits(k + 1, used);
+        used[j] = false;
+        if (ok) return true;
+      }
+      return false;
+    };
+    return fits(0, nums.map(() => false));
+  };
   for (const st of key.stops) {
     const [i, r] = st.at;
     const got = stopAt.get(nodeId(i, r));
+    const gi = groupOf.get(`${i},${r}`);
+    const captain = gi !== undefined;
     checks.push({
       id: `stop:${i},${r}`,
       what: `Team stop at No. ${i + 1} Entry, crosscut row ${r}`,
-      ok: got !== undefined && st.n.includes(got),
-      expected: st.n.join(' or '),
-      got: got === undefined ? 'never stopped there' : String(got)
+      ok: captain ? groupOk(gi) : got !== undefined && st.n.includes(got),
+      expected: captain ? `${st.n.join(' or ')}, in any order among the captain's-choice stops` : st.n.join(' or '),
+      got: got === undefined ? 'never stopped there' : String(got),
+      ...(captain ? { captain: true } : {})
     });
   }
 

@@ -22,6 +22,7 @@ export function recencyWeight(year: number, current = CURRENT_RULE_YEAR): number
 }
 
 function citeFor(fix: OfficialFixture, check: KeyCheck): RuleCite {
+  if (check.captain) return fix.captainRule ?? fix.stopRule;
   if (check.id.startsWith('stop:')) {
     const at = check.id.slice('stop:'.length);
     return fix.stopRules?.[at] ?? fix.stopRule;
@@ -36,7 +37,9 @@ function citeFor(fix: OfficialFixture, check: KeyCheck): RuleCite {
 
 function fromKey(fix: OfficialFixture, check: KeyCheck): ScoredCheck {
   const rule = citeFor(fix, check);
-  return { id: check.id, what: check.what, ok: check.ok, expected: check.expected, got: check.got, rule };
+  const out: ScoredCheck = { id: check.id, what: check.what, ok: check.ok, expected: check.expected, got: check.got, rule };
+  if (check.captain) out.captain = true;
+  return out;
 }
 
 /** Compare the solver's solution with the official fixture. */
