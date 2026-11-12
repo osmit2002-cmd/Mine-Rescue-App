@@ -25,7 +25,7 @@ These were opened in the same pass. No route was invented, so they are not score
 
 | Problem | Why it is not scored |
 |---|---|
-| 2017 National Coal Day 1 | The team-stop map is page 5 and the problem map is page 3, both rendered at 300 dpi. Pages 20–23 are judges' notes for individual stops, not a full intersection list. The stop circles were not placed on a grid. |
+| 2017 National Coal Day 1 | Page 5 was rendered at 300 dpi and cropped by entry. The circles that read cleanly are stop 2 in No. 1 and stop 1 in No. 2 at the fresh air base, then 3 and 6, then 4 and 5, with 13, 11, and 12 at the faces. Stop 15 is circled in a crosscut, not at an intersection, and the No. 3 circles do not sit on those same rows, so the grid is not encoded. |
 | 2007 National Coal Day 1 | The judges' briefing (pages 10 and 12) lists team stops 1–17 by entry and crosscut letter A–E. The field map (pages 11 and 13) is a scan whose placards did not read into openings, and the ventilation drawing (pages 7–8) is the mine schematic, not that field grid. The stops are not encoded until the letters can be placed on the field map. |
 | 2016 Post 5 Day 2, 2017 Post 5, 2018 Post 5 | Still in `problems/`. Not transcribed in this pass. |
 
