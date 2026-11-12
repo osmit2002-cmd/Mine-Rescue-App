@@ -51,7 +51,7 @@ The 59 without a recovered solution are problem statements, team maps, written e
 | `msha-archive/BenchResources/BG-4.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
 | `msha-archive/BenchResources/Bio-Pac 240-R.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
 | `msha-archive/BenchResources/Bio-Pac 240-S.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
-| `msha-archive/coal/2004/2004GovsCupBooklets.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2004/2004GovsCupBooklets.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2004/2004KMI.pdf` | yes | no | — | Scanned judges notes include Team Stop No. 13 and airlock instructions. |
 | `msha-archive/coal/2004/2004PaStateminerescue.pdf` | unconfirmed | no | — | Image-only. OCR of the first, middle, and last pages did not recover a sentence. Not marked yes. |
 | `msha-archive/coal/2004/2004PaoniaColoradoContest.pdf` | yes | no | — | Judges ventilation / final map and placard-location pages. |
@@ -59,25 +59,25 @@ The 59 without a recovered solution are problem statements, team maps, written e
 | `msha-archive/coal/2004/2004PriceUtahContest.pdf` | yes | no | — | Labeled ventilation-change maps (change 2 and change 3). |
 | `msha-archive/coal/2004/2004WesternKYMiningInstitute.pdf` | yes | no | — | Pages titled as outby / alternate ventilation. OCR of the drawings is poor. |
 | `msha-archive/coal/2004/ACA2004/2004ACAMINERESCUECONTESTexploration.pdf` | yes | no | — | Written team stops (TS-8, TS-13, TS-15, TS-16) in the exploration narrative. |
-| `msha-archive/coal/2004/ACA2004/2004ACAsupersstatement.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2004/ACA2004/2004ACAsupersstatement.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2004/ACA2004/alabama contest 04.pdf` | yes | no | — | Ventilation maps numbered 3 and 4. |
 | `msha-archive/coal/2005/AlabamaMineRescue2005.pdf` | yes | no | — | Written team stops TS-3 through TS-12, five ventilation maps, and a team-stop map. |
 | `msha-archive/coal/2005/CraigColorado2005.pdf` | yes | no | — | Page titled 3rd Right team stops. |
-| `msha-archive/coal/2005/MorgantownContestProblem2005.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2005/MorgantownContestProblem2005.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2005/PriceUtah2005.pdf` | yes | no | — | Step 2 ventilation map, with areas marked clear and stoppings to build or close. |
-| `msha-archive/coal/2005/illinois2005.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2005/illinois2005.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2005/pastate2005.pdf` | yes | no | — | Judges exploration briefing with Team Stop No. 1 onward, plus a final ventilation map. |
 | `msha-archive/coal/2005/stclairesvillejudgesbriefing2005.pdf` | yes | no | — | Judges briefing. Page titled 1st Ventilation, with builds marked. The opening pages are the superintendent statement. |
 | `msha-archive/coal/2006/2006AlabamaMineRescueContest.pdf` | yes | no | — | Team-stop instructions (TS-1 and later) and the discount rulings for this problem. |
-| `msha-archive/coal/2006/GovenorsCup2006VA.pdf` | yes | no | — | Second ventilation map in the judges\ |
-| `msha-archive/coal/2006/KyStateMRContest.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2006/GovenorsCup2006VA.pdf` | yes | no | — | Second ventilation map in the judges' set. |
+| `msha-archive/coal/2006/KyStateMRContest.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2006/MorgantownWV.pdf` | yes | no | — | Team Stops page. |
-| `msha-archive/coal/2006/Pennsylvania.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `msha-archive/coal/2006/SouthernWVMRContest2006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `msha-archive/coal/2006/StClairesville.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `msha-archive/coal/2006/VAMiningInstitueDay12006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `msha-archive/coal/2006/VAMiningInstitueDay22006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `msha-archive/coal/2006/WVStateMRContest2006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2006/Pennsylvania.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `msha-archive/coal/2006/SouthernWVMRContest2006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `msha-archive/coal/2006/StClairesville.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `msha-archive/coal/2006/VAMiningInstitueDay12006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `msha-archive/coal/2006/VAMiningInstitueDay22006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `msha-archive/coal/2006/WVStateMRContest2006.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2006/WesternKentucy2006.pdf` | yes | no | — | Page titled ventilation after the area is explored. |
 | `msha-archive/coal/2007/2007 KMI Mine Rescue Contest.pdf` | yes | no | — | Judges packet. Page 16 states the Rule 31B and Rule 42 conditions the team must not break. |
 | `msha-archive/coal/2007/FIRST AID NATIONAL NO1.pdf` | no | no | — | First-aid problem, not mine exploration. |
@@ -91,21 +91,21 @@ The 59 without a recovered solution are problem statements, team maps, written e
 | `msha-archive/coal/2007/Preshift/Preshift Record Completed.pdf` | no | no | — | Preshift exam or record, not mine exploration. |
 | `msha-archive/coal/2007/WesternKentucy2007.pdf` | yes | no | — | Judges briefing with roof/rib/gas-test and map-judge pages. |
 | `msha-archive/coal/2008/Post11MRC2008.pdf` | yes | no | — | Judges briefing packet with the patient statement and the working maps. |
-| `msha-archive/coal/2008/VMI Day 1 Problem 080708.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2008/VMI Day 1 Problem 080708.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2008/VMI Day 2 Problem 080708.pdf` | yes | no | — | Last page is a judges map: gas that must be ventilated, build and remove notes. |
-| `msha-archive/coal/2009/2009NationalDay1.pdf` | yes | no | — | Written Team Stop No. 1 through 13, including two captain\ |
+| `msha-archive/coal/2009/2009NationalDay1.pdf` | yes | no | — | Written Team Stop No. 1 through 13, including two captain's options, and the ventilation maps. |
 | `msha-archive/coal/2009/2009NationalDay2.pdf` | yes | no | — | Written team stops (Team Stop No. 3 recovered) and an extent-of-gases map. |
 | `msha-archive/coal/2009/2009NationalFirstAidProb1.pdf` | no | no | — | First-aid problem, not mine exploration. |
 | `msha-archive/coal/2009/2009NationalFirstAidProb2.pdf` | no | no | — | First-aid problem, not mine exploration. |
 | `msha-archive/coal/2009/AlabamaCoalAssoc2009.pdf` | yes | no | — | Keys to Problem. |
-| `msha-archive/coal/2009/Craig Mine Rescue Problem.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2009/Craig Mine Rescue Problem.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2009/Farmington NM 2009 Mine Rescue.pdf` | yes | no | — | Ventilation map labeled for the novice class. |
 | `msha-archive/coal/2009/Post5MineRescueContest.pdf` | yes | no | — | Team-stop conditions in the text (irrespirable air outby a stopping). |
 | `msha-archive/coal/2009/Price Mine Rescue Contest.pdf` | yes | no | — | Compliance ventilation map, step 2. |
 | `msha-archive/coal/2009/StClairsville2009.pdf` | yes | no | — | Keys to Problem. |
 | `msha-archive/coal/2010/2010AlabamaMRC.pdf` | yes | no | — | Keys to Problem, including ventilate the refuge alternative before team stop 12. |
 | `msha-archive/coal/2010/2010NationalSkillsMRChamp.pdf` | yes | no | — | Keys to Problem, including why team stop 5 is at the overcast. |
-| `msha-archive/coal/2010/Delta 2010 - Problem A revised.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2010/Delta 2010 - Problem A revised.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2010/Delta Problem B.pdf` | yes | no | — | Team stops page. |
 | `msha-archive/coal/2010/Farmington Mine Rescue Problem0001.pdf` | yes | no | — | Index team-stop map. |
 | `msha-archive/coal/2010/Price Mine Rescue Problem.pdf` | yes | no | — | Page titled Judges vent / final map. |
@@ -132,7 +132,7 @@ The 59 without a recovered solution are problem statements, team maps, written e
 | `msha-archive/coal/2014/2014-ACA-DAY-1-JUDGES-BOOK.pdf` | yes | no | — | Keys to Problem for four ventilations. |
 | `msha-archive/coal/2014/2014-mttc-nationwide-minerescue.pdf` | yes | no | — | Keys to Problem. |
 | `msha-archive/coal/2014/2014KCASkillsContest.pdf` | yes | no | — | Keys to Problem. |
-| `msha-archive/coal/2014/2014KYRiverContestProblems.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/coal/2014/2014KYRiverContestProblems.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `msha-archive/coal/2015/2015-ACA-DAY1.pdf` | yes | no | — | Judges book. Problem Keys page: move the battery phone before the first ventilation. |
 | `msha-archive/coal/2015/2015-ACA-DAY2.pdf` | yes | no | — | Text points at the team-stop map in the same book. |
 | `msha-archive/coal/2015/2015-kca-skills-contest.pdf` | yes | no | — | Keys to Problem. |
@@ -150,37 +150,37 @@ The 59 without a recovered solution are problem statements, team maps, written e
 | `msha-archive/metal/carlsbad/carlsbad2000.pdf` | yes | no | — | Written solution. Metal/nonmetal rules, not the coal solver. |
 | `msha-archive/metal/north/98north.pdf` | yes | no | — | Problem solution. Metal/nonmetal rules, not the coal solver. |
 | `msha-archive/metal/north/99north.pdf` | yes | no | — | Problem solution with two options. Metal/nonmetal rules, not the coal solver. |
-| `msha-archive/metal/rolla/2000rolla.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `msha-archive/metal/rolla/2000rolla.pdf` | no | no | — | First-aid discount sheets. No exploration solution was found. |
 | `msha-archive/metal/rolla/98rolla.pdf` | yes | no | — | Problem solution, plus a first-aid discount sheet. Metal/nonmetal rules. |
 | `msha-archive/metal/south/98south.pdf` | yes | no | — | Written solution. Metal/nonmetal rules, not the coal solver. |
 | `virginia-energy/2026/Indiana/IndianaMap.pdf` | yes | no | — | BO/CCA ventilation maps with the cleared areas and airflow. The team-working-order sheet is blank, so there is no numbered team-stop key. |
-| `virginia-energy/2026/MorgantownWV/2026 post 5 day 1 packet.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/MorgantownWV/2026 post 5 day 2 packet.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/MorgantownWV/Day 1 MR_NMRA Post 5_07.28.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/MorgantownWV/Day 2 MR Overall_NMRA Post 5_07.29.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/MorgantownWV/Day 2 MR_NMRA Post 5_07.29.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `virginia-energy/2026/MorgantownWV/2026 post 5 day 1 packet.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/MorgantownWV/2026 post 5 day 2 packet.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/MorgantownWV/Day 1 MR_NMRA Post 5_07.28.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/MorgantownWV/Day 2 MR Overall_NMRA Post 5_07.29.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/MorgantownWV/Day 2 MR_NMRA Post 5_07.29.26.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `virginia-energy/2026/MorgantownWV/Day 3 BG4_NMRA Post 5_07.30.26.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
 | `virginia-energy/2026/MorgantownWV/Day 3 BioPak 240R_NMRA Post 5_07.30.26.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
 | `virginia-energy/2026/MorgantownWV/Day 3 First Aid_NMRA Post 5_07.30.26.pdf` | no | no | — | First-aid problem, not mine exploration. |
 | `virginia-energy/2026/MorgantownWV/Day 3 Preshift_NMRA Post 5_07.30.26.pdf` | no | no | — | Preshift exam or record, not mine exploration. |
 | `virginia-energy/2026/MorgantownWV/Day 3 ProAir_NMRA Post 5_07.30.26.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |
 | `virginia-energy/2026/MorgantownWV/Day 3 Two Day Combo Results_NMRA Post 5_07.30.26.pdf` | no | no | — | Contest results, not a solution. |
-| `virginia-energy/2026/Ohio/Ohio NMRA Post 6 Day 1.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/Ohio/Ohio NMRA Post 6 Day 2.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
+| `virginia-energy/2026/Ohio/Ohio NMRA Post 6 Day 1.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/Ohio/Ohio NMRA Post 6 Day 2.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
 | `virginia-energy/2026/Tennessee/2025 Tenn Preshift Judges Book.pdf` | no | no | — | Preshift exam or record, not mine exploration. |
-| `virginia-energy/2026/Tennessee/Day 1-Judge Packet.pdf` | yes | no | — | Judges\ |
-| `virginia-energy/2026/Tennessee/Day 1.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/Tennessee/Day 2-Judge Packet.pdf` | yes | no | — | Judges\ |
-| `virginia-energy/2026/Tennessee/Day 2.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\ |
-| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 1 Written.pdf` | no | no | — | Written examination, not the field problem\ |
+| `virginia-energy/2026/Tennessee/Day 1-Judge Packet.pdf` | yes | no | — | Judges' instructions and a Solutions section. This packet is the metal/nonmetal problem, not coal. |
+| `virginia-energy/2026/Tennessee/Day 1.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/Tennessee/Day 2-Judge Packet.pdf` | yes | no | — | Judges' instructions and a Solutions section. Metal/nonmetal, not coal. |
+| `virginia-energy/2026/Tennessee/Day 2.pdf` | no | no | — | Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges' ventilation answer was recovered from the text or from OCR of sample pages. |
+| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 1 Written.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
 | `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 1.pdf` | yes | no | — | Coal judges packet. Team Stop #4 and #5 are written; a final vent map is included. |
-| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 2 Written.pdf` | no | no | — | Written examination, not the field problem\ |
-| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 2.pdf` | yes | no | — | Coal judges packet. Sampled map pages did not OCR; the packet is the judges\ |
-| `virginia-energy/2026/Utah/PriceDay1WrittenStatement.pdf` | no | no | — | Written examination, not the field problem\ |
+| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 2 Written.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
+| `virginia-energy/2026/Tennessee/Nationals/26 Nationals Day 2.pdf` | yes | no | — | Coal judges packet. Sampled map pages did not OCR; the packet is the judges' copy and includes the patient statements. |
+| `virginia-energy/2026/Utah/PriceDay1WrittenStatement.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
 | `virginia-energy/2026/Utah/PriceDay2WrittenStatement.pdf` | yes | no | — | Vent 3 and Vent 4 maps are in the packet with the written statement. |
-| `virginia-energy/2026/Utah/PriceTest.pdf` | no | no | — | Written examination, not the field problem\ |
-| `virginia-energy/2026/Virginia/NCPA-Post 7-2026Day1WrittenExam.pdf` | no | no | — | Written examination, not the field problem\ |
-| `virginia-energy/2026/Virginia/NCPA-Post 7-2026Day2WrittenExam.pdf` | no | no | — | Written examination, not the field problem\ |
+| `virginia-energy/2026/Utah/PriceTest.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
+| `virginia-energy/2026/Virginia/NCPA-Post 7-2026Day1WrittenExam.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
+| `virginia-energy/2026/Virginia/NCPA-Post 7-2026Day2WrittenExam.pdf` | no | no | — | Written examination, not the field problem's team-stop key. |
 | `virginia-energy/2026/Virginia/Post7-Day1-Problem.pdf` | yes | no | — | Ventilation maps through Vent 8. |
 | `virginia-energy/2026/Virginia/Post7-Day2-Problem.pdf` | yes | no | — | Final ventilation map. |
 | `virginia-energy/2026/WVU_BenchBash/240 Day 1a.pdf` | no | no | — | Bench apparatus contest, not a mine exploration problem. |

@@ -733,7 +733,7 @@ export const TRIAGE: TriageRow[] = [
     official: 'no',
     transcribed: false,
     score: '',
-    note: 'Problem statement, team map, or instructions. No numbered team stops, keys-to-problem, or judges\' ventilation answer was recovered from the text or from OCR of sample pages.'
+    note: 'First-aid discount sheets. No exploration solution was found.'
   },
   {
     pdf: 'problems/msha-archive/metal/rolla/98rolla.pdf',
