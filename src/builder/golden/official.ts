@@ -6,6 +6,7 @@
 import type { JudgeKey } from '../judge';
 import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
 import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
+import { KEY as N11_KEY, national2011Day2 } from '../cases/national-2011-day2';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
 import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_31C, RULE_31D, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
@@ -295,5 +296,18 @@ export const OFFICIAL: OfficialFixture[] = [
         }
       }
     ]
+  },
+  {
+    id: 'national-2011-day2',
+    title: '2011 National — Coal Day 2',
+    source: 'MSHA 2011 National Coal Day 2 problem (public domain). Team stops from the judges’ written order and the team-stop map.',
+    problem: national2011Day2,
+    key: N11_KEY,
+    stopRule: RULE_44D,
+    rescueRule: RULE_41,
+    reachRule: RULE_32,
+    ventRule: RULE_35,
+    withdrawalRule: RULE_31B,
+    foundRule: RULE_44A
   }
 ];
