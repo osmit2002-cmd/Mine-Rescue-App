@@ -8,7 +8,7 @@ import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
 import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
-import { RULE_30A_TIMBERS, RULE_30F, RULE_32, RULE_35, RULE_41, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E, RULE_31B } from './cites';
+import { RULE_30A_TIMBERS, RULE_30F, RULE_31A, RULE_31B, RULE_32, RULE_35, RULE_41, RULE_42, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E } from './cites';
 import type { ExtraCheck, OfficialFixture } from './types';
 
 const fig7Key: JudgeKey = {
@@ -177,16 +177,69 @@ export const OFFICIAL: OfficialFixture[] = [
         }
       },
       {
-        id: 'barricade-held',
-        what: 'The No. 3 face barricade stays closed while 18.3% oxygen is immediately outby it',
+        id: 'barricade-after-vent',
+        what: 'The No. 3 face barricade is opened only after the 18.3% oxygen is removed',
         rule: RULE_35,
         run: (sol) => {
-          const breached = sol.plan.steps.some((s) => s.kind === 'breach' && s.subject === 'barricade-face');
+          const vent = sol.plan.cleared.get('gas-barricade');
+          const breach = sol.plan.steps.findIndex((s) => s.kind === 'breach' && s.subject === 'barricade-face');
+          const ok = vent !== undefined && breach > vent;
           return {
-            ok: !breached,
-            expected: 'barricade not breached',
-            got: breached ? 'barricade was breached' : 'barricade left closed'
+            ok,
+            expected: '18.3% oxygen ventilated, then the barricade breached',
+            got: vent === undefined ? '18.3% oxygen never ventilated' : breach < 0 ? 'barricade not breached' : `ventilated at step ${vent}, breached at step ${breach}`
           };
+        }
+      },
+      {
+        id: 'unconscious-before-barricade',
+        what: 'The unconscious person is at the FAB before the barricade is opened',
+        rule: RULE_41,
+        run: (sol) => {
+          const rescue = sol.plan.steps.findIndex((s) => s.kind === 'recover' && s.subject === 'person-unconscious');
+          const breach = sol.plan.steps.findIndex((s) => s.kind === 'breach' && s.subject === 'barricade-face');
+          const ok = rescue >= 0 && breach > rescue;
+          return { ok, expected: 'unconscious person rescued before the barricade is breached', got: rescue < 0 ? 'not rescued' : breach < 0 ? 'barricade not breached' : `rescued at step ${rescue}, barricade at step ${breach}` };
+        }
+      },
+      {
+        id: 'timber-elongated-body',
+        what: 'The body under the elongated unsafe roof is timbered after the barricade patient is at the FAB',
+        rule: RULE_32,
+        run: (sol) => {
+          const rescue = sol.plan.steps.findIndex((s) => s.kind === 'recover' && s.subject === 'person-barricade');
+          const timber = sol.plan.steps.findIndex((s) => s.kind === 'support' && s.subject === 'body-elongated');
+          const ok = rescue >= 0 && timber > rescue;
+          return { ok, expected: 'body timbered after the barricade patient reaches the FAB', got: timber < 0 ? 'body not timbered' : `timbered at step ${timber}, patient at step ${rescue}` };
+        }
+      },
+      {
+        id: 'either-water-first',
+        what: 'Either water-roofed area may be pumped first, and both are pumped before the barricade is ventilated',
+        rule: RULE_42,
+        run: (sol) => {
+          const pumps = sol.plan.steps.filter((s) => s.kind === 'pump').map((s) => s.subject);
+          const a = pumps.indexOf('water-stop3');
+          const b = pumps.indexOf('water-stop9');
+          const vent = sol.plan.cleared.get('gas-barricade');
+          const pumpSteps = sol.plan.steps.map((s, i) => (s.kind === 'pump' ? i : -1)).filter((i) => i >= 0);
+          const lastPump = pumpSteps.length ? Math.max(...pumpSteps) : -1;
+          const both = a >= 0 && b >= 0;
+          const beforeVent = vent !== undefined && lastPump >= 0 && lastPump < vent;
+          return {
+            ok: both && beforeVent,
+            expected: 'both waters pumped, in either order, before the 18.3% oxygen is ventilated',
+            got: `pumps ${pumps.join(' then ') || 'none'}; 18.3% ventilated at step ${vent ?? 'never'}`
+          };
+        }
+      },
+      {
+        id: 'gas-57-remains',
+        what: 'The 5.7% mixture just inby the fresh air base is not cleared',
+        rule: RULE_31A,
+        run: (sol) => {
+          const cleared = sol.plan.cleared.has('gas-57');
+          return { ok: !cleared, expected: '5.7% mixture left in place', got: cleared ? 'ventilated' : 'left in place' };
         }
       }
     ]

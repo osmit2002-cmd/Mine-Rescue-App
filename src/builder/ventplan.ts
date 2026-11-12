@@ -123,15 +123,23 @@ export function planVent(base: Board, target: string, ctx: VentContext, st: Vent
   if (!fanSub) return fail('The fan is not connected to the workings.');
   const blowing = fan.el.fanMode === 'blowing';
 
-  // Openings to the atmosphere.
-  const fabAtm = b.problem.fabFresh && g.subs.get(fanSub)?.node.r !== 0;
+  // Miscellaneous rule 4: under exhaust ventilation air enters every fresh opening and leaves at the fan.
+  // A fan drawn in the fresh air base is the surface fan on that entry, so that entry is the return.
+  // Intake is drawn from the other FAB entries, from air shafts and from outby openings.
+  const fanNode = g.subs.get(fanSub)!.node;
+  const returnEntry = !blowing && fanNode.fab ? fanNode.i : null;
   const openings = new Set<string>();
   for (const p of b.placed.values()) if (p.el.kind === 'x' && (p.el.sub === 'shaft' || p.el.sub === 'outby')) {
     const s = attachSub(g, p);
-    if (s) openings.add(s);
+    if (s && s !== fanSub) openings.add(s);
   }
-  if (fabAtm) for (const s of g.subs.values()) if (s.node.fab) openings.add(s.id);
-  openings.delete(fanSub);
+  if (b.problem.fabFresh && (fanNode.r !== 0 || returnEntry !== null)) {
+    for (const s of g.subs.values()) {
+      if (!s.node.fab || s.id === fanSub) continue;
+      if (returnEntry !== null && s.node.i === returnEntry) continue;
+      openings.add(s.id);
+    }
+  }
   const intakes = blowing ? new Set([fanSub]) : openings;
   const exits = blowing ? openings : new Set([fanSub]);
   if (!exits.size || !intakes.size) return fail(blowing ? 'The fan blows but there is no shaft or outby opening for the return.' : 'There is no intake for the exhausting fan.');
@@ -162,7 +170,7 @@ export function planVent(base: Board, target: string, ctx: VentContext, st: Vent
     const where = nodeName(topo, n.id);
     let r: string | null = null;
     if (!n.end && !n.fab && !ctx.explored.has(n.id)) r = `unexplored ${where}`;
-    else if (H.cls.irrespirable && n.fab && !b.problem.boOutside) r = 'the FAB (the briefing officer is there)';
+    else if (H.cls.irrespirable && n.fab && !b.problem.boOutside && returnEntry !== n.i) r = 'the FAB (the briefing officer is there)';
     else r = dirtyBad((b.onNode.get(n.id) ?? []).filter((p) => (subOfPlaced(g, p) ?? n.id) === s), where);
     if (r && !why.has(s)) why.set(s, r);
     return !r;
@@ -203,7 +211,13 @@ export function planVent(base: Board, target: string, ctx: VentContext, st: Vent
   const tried: string[] = [];
   const candidates: { opt: Option; exit: string; cost: number; c1: { subs: string[]; edges: string[] }; c2: { subs: string[]; edges: string[] } }[] = [];
   const noExtra = new Set<string>();
-  const clean = dijkstra(g, new Map([...intakes].map((s) => [s, 0])), (e) => !blocks(e, noExtra), len, () => true);
+  // Intake air does not slip into the return through the fresh air base. That entry is the exhaust
+  // (Miscellaneous rule 4); fresh air reaches a placard in the return from an intake inby or across.
+  const clean = dijkstra(g, new Map([...intakes].map((s) => [s, 0])), (e) => !blocks(e, noExtra), len, (s) => {
+    if (returnEntry === null) return true;
+    const n = g.subs.get(s)!.node;
+    return !(n.fab && n.i === returnEntry);
+  });
   for (const opt of options) {
     const c1cost = clean.cost.get(opt.in);
     if (c1cost === undefined) {
@@ -307,14 +321,53 @@ export function planVent(base: Board, target: string, ctx: VentContext, st: Vent
     const fanOn = fan!.el.on !== false || st.fanOn;
     if (!fanOn) steps.push({ kind: 'fan', text: `Have the briefing officer start the fan (${blowing ? 'blowing' : 'exhausting'}).`, rules: ['b-card-19', 'misc-4'] });
 
-    // Check it with the airflow estimate.
-    const b2 = boardWith(base, st, built, true);
-    const af = airflow(b2);
-    const g2 = af.graph;
-    const hz2 = hazards(b2);
+    // Check it with the airflow estimate. If that course would also sweep a different explosive mixture onto an
+    // ignition source, seal the opening between that mixture and the source and check again (Rule 31A).
+    let af = airflow(boardWith(base, st, built, true));
     const moved = (h: Hazard): Hazard => (opt.mode === 'wing' && h.el.id === target ? { ...h, extent: { edges: new Map(), nodes: new Set([opt.out]) } } : h);
-    const findings = ventFindings(b2, af, hz2.map(moved), ctx).filter((f) => f.level !== 'info');
-    const flowsAt = opt.through ? af.flow.has(opt.through) : (g2.adj.get(opt.in) ?? []).some((e) => courseEdges.has(e) && af.flow.has(e));
+    const assess = (flow: Airflow) => {
+      const g2 = flow.graph;
+      const hz2 = hazards(boardWith(base, st, built, true)).map(moved);
+      const findings = ventFindings(boardWith(base, st, built, true), flow, hz2, ctx).filter((f) => f.level !== 'info');
+      const flowsAt = opt.through ? flow.flow.has(opt.through) : (g2.adj.get(opt.in) ?? []).some((e) => courseEdges.has(e) && flow.flow.has(e));
+      return { findings, flowsAt, hz2, g2 };
+    };
+    let judged = assess(af);
+    if (judged.flowsAt && judged.findings.some((f) => f.rules.includes('b-card-31'))) {
+      const seal: string[] = [];
+      for (const h of judged.hz2) {
+        if (h.el.id === target || !h.cls.explosive) continue;
+        for (const eid of h.extent.edges.keys()) {
+          if (!af.flow.has(eid) || eid === opt.through) continue;
+          const qf = af.flow.get(eid)!;
+          const ends = judged.g2.ends.get(eid);
+          if (!ends) continue;
+          const down = judged.g2.subs.get(qf > 0 ? ends[1] : ends[0])!;
+          const onEdge = (boardWith(base, st, built, true).onEdge.get(eid) ?? []).some((p) => isIgnition(p.el));
+          const onNode = (boardWith(base, st, built, true).onNode.get(down.base) ?? []).some((p) => isIgnition(p.el));
+          if (onEdge || onNode) seal.push(eid);
+        }
+      }
+      if (seal.length) {
+        for (const eid of [...new Set(seal)]) {
+          const e = topo.edges.get(eid)!;
+          const s = Math.min(e.len / 2, W / 2 + 3);
+          const pt = edgePoint(e, s);
+          const id = `vent-${++k}`;
+          built.push({ id, kind: 'temp-stopping', x: Math.round(pt.x * 10) / 10, y: Math.round(pt.y * 10) / 10, intact: true, airtight: true, text: 'TEMPORARY STOPPING (TEAM-BUILT)' });
+          steps.push({
+            kind: 'build',
+            el: id,
+            text: `Build a temporary stopping in ${locName(topo, { type: 'edge', edge: eid, s })} so this ventilation change does not carry a different explosive mixture onto an ignition source. Roof and rib test first; the captain dates and initials it.`,
+            rules: ['b-card-31', 'b-card-23', 'b-card-27']
+          });
+        }
+        af = airflow(boardWith(base, st, built, true));
+        judged = assess(af);
+      }
+    }
+    const findings = judged.findings;
+    const flowsAt = judged.flowsAt;
     const courseNames = courseSubs.map((s) => nodeName(topo, baseOf(s))).filter((n, i, a) => a.indexOf(n) === i);
     const exitSub = courseSubs[courseSubs.length - 1];
     const exitEl = [...b.placed.values()].find((p) => p.el.kind === 'x' && (p.el.sub === 'shaft' || p.el.sub === 'outby') && attachSub(g, p) === exitSub);

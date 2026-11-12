@@ -13,11 +13,16 @@
  * 35, 44D, 44E). Nothing in their text uses a threshold that differs from 2026 (explosive 5–15% CH4 with
  * oxygen at least 12.1%; irrespirable oxygen is below 19.5%).
  *
- * Not scored, and not guessed: the four ventilation maps. The exhausting fan has no encoded intake, so the
- * ventilation planner cannot move the 18.3% oxygen and the barricade stays closed (Rule 35). The conscious
- * person, the body, and the two timbers inby that barricade are face down until it is opened. The judges also
- * allow either water-roofed area to be pumped first. Team stops 10–12 still fall out in the printed order
- * when the No. 1 water is pumped first, which is what the solver does, and those stops are scored.
+ * Vents 1–4 are the placards the judges' maps mark "Cleared", in that order. The 5.7% mixture just inby the
+ * fresh air base is not cleared. The judges allow either water-roofed area to be pumped first; the printed
+ * stop numbers are the same for both orders because pumping the stop-9 water ends in an airlock back out
+ * and does not open a new team stop. The conscious person, the body and the two timbers inby the barricade
+ * are scored once that barricade is opened.
+ *
+ * Scored on the 2026 rule text. The 2024 judges cite Rule 31C for moving the stop-11 explosive mixture over
+ * a caved area. In the 2026 text, Rule 31C is moving an explosive mixture over an unexplored area. That
+ * airlock-back-out, and moving the pump cable out of the 5.7% mixture before it is energized (Rule 31D),
+ * are flagged in the key rather than marked passed: the solver has no move-object action.
  */
 import { makeElement, type Kind } from '../catalog';
 import { cellKey } from '../geometry';
@@ -42,12 +47,16 @@ export function national2024Day1(): Problem {
   l.cells[cellKey(4, 4)] = 'solid';
   const el = maker('n24');
   const elements: El[] = [
-    el('fan', at.node(l, 1, 0), { fanMode: 'exhausting', on: true, preMapped: true, text: 'EXHAUSTING MAIN FAN ON — cannot be stopped, stalled, or reversed' }),
+    // The surface fan exhausts the No. 3 return. Intake is the other fresh-air-base entries and the intake shaft at the No. 1 face.
+    el('fan', at.node(l, 2, 0), { fanMode: 'exhausting', on: true, preMapped: true, text: 'EXHAUSTING MAIN FAN ON — cannot be stopped, stalled, or reversed' }),
+    el('x', at.entry(l, 0, 4, 0.55), { id: 'intake-shaft', text: 'INTAKE AIR SHAFT' }, 'shaft'),
 
     // Openings inby the fresh air base. No. 1 is caved and No. 3 is a rib-to-rib diagonal unsafe roof, so the first team stop is up No. 2.
     el('caved', at.entry(l, 0, 0, 0.5), { airtight: true, text: 'CAVED AIRTIGHT' }),
     el('x', at.entry(l, 1, 0, 0.15), { text: 'ENERGIZED POWER CABLE' }, 'cable'),
-    el('gas', at.entry(l, 1, 0, 0.4), { ch4: 5.7, co: 5, o2: 19.4, text: '5.7% CH4, 5 PPM CO, 19.4% O2' }),
+    el('gas', at.entry(l, 1, 0, 0.4), { id: 'gas-57', ch4: 5.7, co: 5, o2: 19.4, text: '5.7% CH4, 5 PPM CO, 19.4% O2' }),
+    // The pump cable lies in the 5.7% mixture. It is not energized until the team asks the briefing officer to start the pump.
+    el('x', at.entry(l, 1, 0, 0.55), { id: 'pump-cable', energized: false, text: 'PUMP CABLE' }, 'cable'),
     el('x', at.entry(l, 1, 0, 0.72), { text: 'OPEN BOREHOLE' }, 'borehole'),
     el('unsafe-roof', at.entry(l, 2, 0, 0.5), { text: 'DIAGONAL UNSAFE ROOF' }),
 
@@ -56,17 +65,20 @@ export function national2024Day1(): Problem {
     el('perm-stopping', at.xc(l, 1, 1, 0.5), { id: 'perm-xc', text: 'PERMANENT STOPPING' }),
 
     // Stop 2 is No. 1 at that same intersection. The 5.3% mixture is inby, in No. 1.
-    el('gas', at.entry(l, 0, 1, 0.25), { ch4: 5.3, co: 6, o2: 19.3, text: '5.3% CH4, 6 PPM CO, 19.3% O2' }),
+    el('gas', at.entry(l, 0, 1, 0.25), { id: 'gas-v1a', ch4: 5.3, co: 6, o2: 19.3, text: '5.3% CH4, 6 PPM CO, 19.3% O2' }),
 
     // Stop 3, No. 1 at the second intersection: lunch box. Water roofed inby it is airtight, so the explosive mixture outby it stops there.
     el('x', at.node(l, 0, 2), { text: 'LUNCH BOX — note inside: We gassed up and flooded.' }, 'lunch-pail'),
-    el('gas', at.entry(l, 0, 2, 0.3), { ch4: 5.1, co: 7, o2: 19.1, text: '5.1% CH4, 7 PPM CO, 19.1% O2' }),
-    el('water', at.entry(l, 0, 2, 0.72), { roofed: true, overKnee: true, text: 'WATER ROOFED' }),
+    el('gas', at.entry(l, 0, 2, 0.3), { id: 'gas-v1b', ch4: 5.1, co: 7, o2: 19.1, text: '5.1% CH4, 7 PPM CO, 19.1% O2' }),
+    el('water', at.entry(l, 0, 2, 0.72), { id: 'water-stop3', roofed: true, overKnee: true, text: 'WATER ROOFED' }),
 
     // Stop 4, No. 2 at the second intersection: brattice cloth used to airlock the permanent stopping before the two-break limit.
     el('brattice', at.node(l, 1, 2), { text: 'BRATTICE CLOTH' }),
     el('overcast', at.entry(l, 1, 1, 0.85), { text: 'OVERCAST' }),
     el('overcast', at.entry(l, 2, 1, 0.85), { text: 'OVERCAST WALL' }),
+    // 2nd vent: 5.1% CH4 / 5 PPM CO / 19.5% O2 in No. 3, and 5.3% / 7 PPM / 19.5% just outby the open borehole at stop 7.
+    el('gas', at.entry(l, 2, 1, 0.7), { id: 'gas-v2b', ch4: 5.1, co: 5, o2: 19.5, text: '5.1% CH4, 5 PPM CO, 19.5% O2' }),
+    el('gas', at.entry(l, 2, 2, 0.75), { id: 'gas-v2a', ch4: 5.3, co: 7, o2: 19.5, text: '5.3% CH4, 7 PPM CO, 19.5% O2' }),
 
     // Stop 7, No. 3 at the third intersection: open borehole, and a temporary stopping that is not intact in the crosscut they tie through to stop 8.
     el('x', at.node(l, 2, 3), { text: 'OPEN BOREHOLE' }, 'borehole'),
@@ -75,19 +87,21 @@ export function national2024Day1(): Problem {
     el('caved', at.xc(l, 0, 3, 0.5), { airtight: true, text: 'CAVED AIRTIGHT' }),
 
     // Stop 9, No. 3 face: water is not what blocks the entry. The barricade has 18.3% oxygen immediately outby it.
-    el('gas', at.entry(l, 2, 4, 0.22), { ch4: 4.7, co: 9, o2: 18.3, text: '4.7% CH4, 9 PPM CO, 18.3% O2' }),
+    el('gas', at.entry(l, 2, 4, 0.22), { id: 'gas-barricade', ch4: 4.7, co: 9, o2: 18.3, text: '4.7% CH4, 9 PPM CO, 18.3% O2' }),
     el('barricade', at.entry(l, 2, 4, 0.4), { id: 'barricade-face', response: true, text: 'BARRICADE' }),
     el('person', at.entry(l, 2, 4, 0.62), { id: 'person-barricade', conscious: true, text: 'CONSCIOUS — Help! Get me out!' }),
     el('body', at.entry(l, 2, 4, 0.78), { id: 'body-barricade', text: 'BODY' }),
     el('x', at.entry(l, 2, 4, 0.7), { id: 'timbers-barricade', count: 2, text: '2 TIMBERS' }, 'timbers'),
 
     // Printed stops 11 and 12 are behind water roofed. The unconscious person is in 18.5% oxygen. The body is under elongated unsafe roof.
-    el('water', at.entry(l, 1, 3, 0.55), { roofed: true, overKnee: true, text: 'WATER ROOFED' }),
+    el('water', at.entry(l, 1, 3, 0.55), { id: 'water-stop9', roofed: true, overKnee: true, text: 'WATER ROOFED' }),
+    // 3rd vent: 5.1% CH4 / 5 PPM CO / 19.1% O2 in No. 1, inby the water roofed at stop 3.
+    el('gas', at.entry(l, 0, 3, 0.8), { id: 'gas-v3', ch4: 5.1, co: 5, o2: 19.1, text: '5.1% CH4, 5 PPM CO, 19.1% O2' }),
     el('gas', at.entry(l, 1, 4, 0.45), { ch4: 4.9, co: 7, o2: 18.5, text: '4.9% CH4, 7 PPM CO, 18.5% O2' }),
-    el('person', at.entry(l, 1, 4, 0.6), { conscious: false, text: 'UNCONSCIOUS' }),
+    el('person', at.entry(l, 1, 4, 0.6), { id: 'person-unconscious', conscious: false, text: 'UNCONSCIOUS' }),
     el('caved', at.xc(l, 1, 4, 0.5), { text: 'CAVED' }),
     el('unsafe-roof', at.xc(l, 0, 4, 0.4), { across: false, len: 12, text: 'ELONGATED UNSAFE ROOF' }),
-    el('body', at.xc(l, 0, 4, 0.45), { text: 'BODY' })
+    el('body', at.xc(l, 0, 4, 0.45), { id: 'body-elongated', text: 'BODY' })
   ];
   return {
     schema: SCHEMA,
@@ -109,11 +123,8 @@ export function national2024Day1(): Problem {
   };
 }
 
-/** Team stops printed on the judges' map. The three placards inby the barricade are not in `find`. */
-const BEHIND_BARRICADE = new Set(['person-barricade', 'body-barricade', 'timbers-barricade']);
-
 export const KEY: JudgeKey = {
-  source: 'https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf — judges’ stop-by-stop text and team-stop map',
+  source: 'https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf — judges’ stop-by-stop text, team-stop map, and vents 1–4',
   stops: [
     { at: [1, 1], n: [1] },
     { at: [0, 1], n: [2] },
@@ -128,17 +139,30 @@ export const KEY: JudgeKey = {
     { at: [0, 4], n: [11] },
     { at: [1, 4], n: [12] }
   ],
-  find: national2024Day1().elements.filter((e) => !e.preMapped && !BEHIND_BARRICADE.has(e.id)).map((e) => e.id),
-  rescue: [],
+  find: national2024Day1().elements.filter((e) => !e.preMapped).map((e) => e.id),
+  rescue: [{ el: 'person-unconscious' }, { el: 'person-barricade' }],
+  vents: [
+    { el: 'gas-v1a', beforeBreach: 'barricade-face' },
+    { el: 'gas-v1b', beforeBreach: 'barricade-face' },
+    { el: 'gas-v2a', beforeBreach: 'barricade-face', after: 'gas-v1a' },
+    { el: 'gas-v2b', beforeBreach: 'barricade-face', after: 'gas-v1b' },
+    { el: 'gas-v3', beforeBreach: 'barricade-face', after: 'gas-v2a' },
+    { el: 'gas-barricade', beforeBreach: 'barricade-face', after: 'gas-v3' }
+  ],
   withdrawal: false,
   notes: [
     'The gas test at the open borehole in No. 2 stops the 5.7% CH4 from extending into the intersection at stop 1, where the battery ram car is.',
     'Before breaking the two-break limit at stop 4, airlock through the permanent stopping found at stop 1 (Rule 44E).',
-    'Do not breach the barricade at stop 9 while low oxygen is immediately outby it (Rule 35).'
+    'See vents 1 and 2 before pumping. Any explosive mixture being moved cannot be directed over an ignition source (Rule 31A). Any oxygen below 19.5% cannot be directed over the fresh air base (Rule 30H).',
+    'The team may choose which water roofed they will pump first. Team stops 10, 11 and 12 are the numbers printed on the judges’ map for both orders.',
+    'Now its time to ventilate the barricade, see vents 3 and 4. After those vents, airlock and enter. The 4.7% CH4 / 9 PPM CO / 18.3% O2 is cleared on the 4th vent.',
+    'After the live person from the barricade is at the fresh air base, use the two timbers to check the body in the elongated unsafe roof before the clock stops (Rule 32).'
   ],
   manual: [
-    'The conscious person, the body, and the two timbers inby the No. 3 face barricade are face down until that barricade is opened. The ventilation planner reports no intake for the exhausting fan, so the 18.3% oxygen is not removed and the barricade is not breached (Rule 35). Vents 1–4 are drawn in the packet and are not encoded. The fan cannot be stopped, stalled, or reversed.',
-    'The judges allow either water-roofed area to be pumped first, with an airlock back out if pumping the stop-3 water would pull the stop-11 mixture over the cave or the unsafe roof (Rules 31C and 30F). The printed stops 10, 11 and 12 are the order scored here.'
+    'The judges do vents 1 and 2 before either water is pumped. The planner’s safe course for those mixtures draws intake from the No. 1 intake shaft and sends the air out the No. 3 return. The water roofed seals that shaft until it is pumped, and a course that uses the No. 2 intake instead drags the 5.7% mixture onto the ram car (Rule 31A). The four cleared placards are ventilated, in the judges’ grouping, after both waters are pumped and before the barricade is opened. The before-the-pump timing is not marked passed.',
+    'After both vents are completed, the team having the three timbers must timber through the diagonal unsafe roof to reroute the pump cable up number 3, out of the explosive mixture that still remains just inby the fresh air base in the number 2 opening, before the team can energize the cable and pump (Rule 31D). The solver does not move an object, so this step is not marked passed. The 5.7% mixture is not one of the cleared placards.',
+    'Whichever water is pumped first, the team must airlock back out. The fan cannot be stopped; otherwise air is drawn down the intake shaft in the No. 1 face and the explosive mixture at team stop 11 is moved over the caved area or the unsafe roof. The 2024 judges cite Rule 31C for that. In the 2026 text, Rule 31C is moving an explosive mixture over an unexplored area, and they also cite Rule 30F for the low oxygen through unexplored areas while three persons are unaccounted for. The airlock back out is not marked passed.',
+    'Placards that stay face down until a water placard is flipped — three timbers and caved inby the stop-9 water, and the unsafe roof with an unsafe rib plus caved airtight and three timbers inby the stop-3 water — are not given a separate location in the judges’ text, so they are not encoded.'
   ]
 };
 
