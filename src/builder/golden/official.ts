@@ -4,10 +4,11 @@
  * Do not fill one in by running the solver and calling that the official answer.
  */
 import type { JudgeKey } from '../judge';
-import { KEY, post5Day1 } from '../cases/post5-2016-day1';
+import { KEY as POST5_KEY, post5Day1 } from '../cases/post5-2016-day1';
+import { KEY as N24_KEY, national2024Day1 } from '../cases/national-2024-day1';
 import { FIGURE7_STOPS, figure7 } from '../samples';
 import type { Solution } from '../solve';
-import { RULE_30A_TIMBERS, RULE_30F, RULE_32, RULE_35, RULE_41, RULE_44A, RULE_44B, RULE_44D, RULE_48E, RULE_31B } from './cites';
+import { RULE_30A_TIMBERS, RULE_30F, RULE_32, RULE_35, RULE_41, RULE_44A, RULE_44B, RULE_44D, RULE_44E, RULE_48E, RULE_31B } from './cites';
 import type { ExtraCheck, OfficialFixture } from './types';
 
 const fig7Key: JudgeKey = {
@@ -136,7 +137,7 @@ export const OFFICIAL: OfficialFixture[] = [
     source: 'problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf, team-stop map and Keys to Problem',
     pdf: 'problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf',
     problem: post5Day1,
-    key: KEY,
+    key: POST5_KEY,
     stopRule: RULE_44D,
     stopRules: { '1,4': RULE_44B, '2,4': RULE_44B, '0,4': RULE_44B },
     rescueRule: RULE_41,
@@ -145,5 +146,49 @@ export const OFFICIAL: OfficialFixture[] = [
     withdrawalRule: RULE_31B,
     foundRule: RULE_44A,
     extras: post5Extras
+  },
+  {
+    id: 'national-2024-day1',
+    title: '2024 National — Coal Day 1',
+    source: 'https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf — judges’ stop-by-stop text. Scored on the 2026 rule text; the 2024 judges cite the same rule numbers.',
+    problem: national2024Day1,
+    key: N24_KEY,
+    stopRule: RULE_44D,
+    stopRules: { '2,1': RULE_44E },
+    rescueRule: RULE_41,
+    reachRule: RULE_32,
+    ventRule: RULE_35,
+    withdrawalRule: RULE_31B,
+    foundRule: RULE_44A,
+    extras: [
+      {
+        id: 'airlock-before:stop-5',
+        what: 'Airlock the permanent stopping at stop 1 before team stop 5',
+        rule: RULE_44E,
+        run: (sol) => {
+          const at = sol.plan.steps.findIndex((s) => s.kind === 'breach' && s.subject === 'perm-xc');
+          const limit = sol.plan.steps.findIndex((s) => s.kind === 'stop' && s.n === 5);
+          const ok = at >= 0 && limit > at;
+          return {
+            ok,
+            expected: 'permanent stopping opened before stop 5',
+            got: at < 0 ? 'never opened' : `opened at step ${at}; stop 5 is step ${limit}`
+          };
+        }
+      },
+      {
+        id: 'barricade-held',
+        what: 'The No. 3 face barricade stays closed while 18.3% oxygen is immediately outby it',
+        rule: RULE_35,
+        run: (sol) => {
+          const breached = sol.plan.steps.some((s) => s.kind === 'breach' && s.subject === 'barricade-face');
+          return {
+            ok: !breached,
+            expected: 'barricade not breached',
+            got: breached ? 'barricade was breached' : 'barricade left closed'
+          };
+        }
+      }
+    ]
   }
 ];

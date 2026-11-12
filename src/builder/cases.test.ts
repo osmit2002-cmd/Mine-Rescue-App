@@ -72,10 +72,11 @@ describe.each(CASES)('reference case $id', (c) => {
     expect(sol.checks.filter((k) => k.level === 'error')).toEqual([]);
   });
 
-  it('accounts for every missing person', () => {
+  it('accounts for every missing person the key requires the team to reach', () => {
     const persons = p.elements.filter((e) => e.kind === 'person' || e.kind === 'body').map((e) => e.id);
     expect(persons.length).toBe(p.missing);
-    expect(persons.filter((id) => !sol.plan.found.has(id))).toEqual([]);
+    const required = c.key.find ? persons.filter((id) => c.key.find!.includes(id)) : persons;
+    expect(required.filter((id) => !sol.plan.found.has(id))).toEqual([]);
   });
 
   it('matches the judge key except for the known gaps', () => {

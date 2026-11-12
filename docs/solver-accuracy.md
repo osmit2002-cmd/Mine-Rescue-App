@@ -10,6 +10,7 @@ The solver in `src/builder/explore.ts` is checked against official step-by-step 
 |---|---|---|---|
 | `figure-7` | 2026 Coal Mine Rescue Rules, Figure 7, page 49 | Nine team stops, numbered on the figure in Rule 44D order. No patients, no ventilation, no withdrawal. | 11/11, 100% |
 | `post5-2016-day1` | `problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf`, team-stop map and Keys to Problem | Team-stop numbers the judges accept (a "45" on the map is stop 4 or 5), three rescues, the two vents, timbering the person under unsafe roof in No. 3 before stop 12, and not using the broken timbers. | 26/26, 100% |
+| `national-2024-day1` | [2024 National Coal Day 1](https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf) (packet not committed; minerescuecenter.com states no license) | Twelve team stops printed on the judges' map. The open borehole stops the 5.7% CH4 short of the battery ram car (Rules 24A and 24E). The permanent stopping at stop 1 is airlocked before stop 5 (Rule 44E). The No. 3 face barricade stays closed while 18.3% oxygen is immediately outby it (Rule 35). Scored on the 2026 rule text; the 2024 judges cite these same rule numbers. | 16/16, 100% |
 
 Before the Rule 44B change, Figure 7 was already 11/11. The 2016 judge key was 17/21 (81%). The first divergence was the team stop at No. 2 Entry, crosscut row 4: the judges number it 10 and the solver numbered it 11, so the barricade patient there was rescued after stop 11 (Rule 41) instead of before it.
 
@@ -21,7 +22,7 @@ Before the Rule 44B change, Figure 7 was already 11/11. The 2016 judge key was 1
    - `key.rescue`, `key.vents`, `key.reachBefore`, and `key.withdrawal` cover patients, ventilation order, and Rule 31B.
    - `extras` is for a requirement the key fields cannot say, such as "put this barricade back up on the first vent" or "timber this body before stop 12". Each extra names the rule it comes from.
    - Set `pdf` to the file under `problems/` when the solution came from a contest PDF. That file is then official instead of unverified.
-3. Do not run the solver and paste its route in as the official solution. If the judge book is not in the repo, leave the problem unverified.
+3. Do not run the solver and paste its route in as the official solution. A contest packet that cannot be committed (minerescuecenter.com states no license) is still a fixture when the facts and the official stops are transcribed and the source URL is cited. If the official route is not in the source, leave the problem unverified.
 4. Run `npm run score:solver`. A miss prints the first divergence and the rule text.
 
 ## Rule interpretations
@@ -32,6 +33,9 @@ These are the readings the solver uses where the rule book allows more than one 
 - **Rules 48E and 35.** A line curtain wings contaminants from an airtight separation. When an explosive mixture is outby a barricade the team has already breached, and irrespirable air is inby that barricade, the first vent puts the barricade back up and the next vent takes it down before the irrespirable air is moved. Rule 35 still requires that irrespirable air to be gone before the inby barricade is breached.
 - **Rule 30F.** The 19.0% oxygen must not be carried through the opening where the person under unsafe roof in No. 3 is lying. The 2016 vent maps also mark some temporary stoppings "Either", so they do not fix one set of arrows. The solver's course meets the key and stays off that opening; it does not copy one of the "Either" layouts.
 - **Rule 32.** A body under unsafe roof, including elongated unsafe roof that does not reach rib to rib, is timbered to after every missing person has been found and before the next team stop. A timber placard with count 0 ("cannot use") is not a usable set (Rule 30A: timbers that cannot serve as the required supports are not counted).
+- **Rule 44E.** Where a crosscut is blocked by a stopping or a door, the team does not advance past the inby corner of the second crosscut until that crosscut has been tied into. On 2024 National Day 1 this is the airlock of the permanent stopping at stop 1 before stop 5. A barricade is not this limit. Figure 7 and the 2016 problem have no intact crosscut stopping, so their orders stay the same.
+- **Rules 24A and 24E.** A gas placard extends in the direction of travel only as far as the next required test. An open borehole is one of those tests, so the 5.7% CH4 in No. 2 on the 2024 problem stops at the borehole and does not reach the battery ram car in the intersection.
+- **Rule 35.** An airtight barricade with irrespirable air still immediately outby it is not breached. The 2024 packet's 18.3% oxygen stays in front of the No. 3 face barricade because the ventilation planner has no intake for the exhausting fan. Vents 1–4 in that packet are not encoded. The two people and the timbers inby the barricade are face down until it is opened, so they are not in the scored find list.
 
 ## Contest PDF triage
 

@@ -5,6 +5,8 @@
  * Move order (Rules 29 and 44):
  *   1. When tying outby and an unexplored open crosscut is at this intersection, tie across first (Rule 44D).
  *   2. Explore outby areas before advancing inby: the lowest crosscut row goes first (Rules 29, 44D, 44E).
+ *      Where a crosscut is blocked by a stopping or door, do not advance beyond the inby corner of the
+ *      second crosscut until that crosscut is tied into (Rule 44E).
  *   3. Prefer the contaminated entry or the entries next to it (Rule 44B, 44C). Once the team has reached
  *      the intersection where a contaminant ends, further moves in that entry wait while another entry is
  *      still contaminated ahead (Rule 44B).
@@ -111,6 +113,7 @@ export function explore(board: Board): Plan {
   const found = new Map<string, number>();
   const recovered = new Set<string>();
   const pendingPatients = new Map<string, string>(); // person id → note already given
+  const heldBarricades = new Set<string>();
   let withdrawal: Plan['withdrawal'] = null;
   let stopNo = 0;
 
@@ -529,6 +532,27 @@ export function explore(board: Board): Plan {
     key: number[];
   }
 
+  /**
+   * Rule 44E: where a crosscut is blocked by a stopping or a door, No. 5 may not advance beyond the inby
+   * corner of the second crosscut until the team ties across or behind into that crosscut. Barricades are
+   * not this limit (a barricade with no response and irrespirable air outby is excluded by the rule).
+   */
+  const pastTwoBreak = (destRow: number): boolean => {
+    for (const [eid, [a, b]] of g.ends) {
+      if (edge(eid).vertical) continue;
+      for (const blk of blocksOn(eid)) {
+        if (travelBlock(blk.el)!.type !== 'separation' || blk.el.kind === 'barricade') continue;
+        const fromA = explored(a);
+        const fromB = explored(b);
+        if (fromA === fromB) continue;
+        const beyond = fromA ? b : a;
+        if (isEnd(beyond) || explored(beyond)) continue;
+        if (destRow > rowOf(fromA ? a : b) + 1) return true;
+      }
+    }
+    return false;
+  };
+
   const candidates = (): Cand[] => {
     const paths = travel(cur);
     const ce = contamEntries();
@@ -545,6 +569,7 @@ export function explore(board: Board): Plan {
         const e = edge(eid);
         const fresh = !explored(v);
         if (forced && eid !== forced) continue;
+        if (fresh && e.vertical && rowOf(v) > rowOf(u) && pastTwoBreak(rowOf(v))) continue;
         const tieAcross = lastDir === 'outby' && u === cur && !e.vertical ? 0 : 1;
         const rank = fresh ? rowOf(v) : Math.min(rowOf(u), rowOf(v));
         const vi = colOf(v);
@@ -616,6 +641,13 @@ export function explore(board: Board): Plan {
 
   // ------------------------------------------------------------ patients and withdrawal
 
+  /** Rule 35: irrespirable air still sitting immediately outby an airtight barricade. */
+  const irrespirableImmediatelyOutby = (blk: Placed): boolean => {
+    if (blk.loc.type !== 'edge') return false;
+    const where = blk.loc.edge;
+    return hz.some((h) => h.cls.irrespirable && (h.extent.edges.get(where) ?? []).some(([a, b]) => a <= blk.s1 + 2 && b >= blk.s0 - 2));
+  };
+
   const handlePatients = (): boolean => {
     let acted = false;
     for (const [id] of found) {
@@ -676,6 +708,13 @@ export function explore(board: Board): Plan {
       const q = board.placed.get(id);
       if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
         ventBefore(q);
+        if (q.el.airtight !== false && irrespirableImmediatelyOutby(q)) {
+          if (!heldBarricades.has(id)) {
+            heldBarricades.add(id);
+            steps[steps.length - 1].notes.push('Irrespirable atmosphere immediately outby the barricade: do not breach it until that air is removed (Rule 35).');
+          }
+          continue;
+        }
         resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
         return true;
       }
@@ -946,7 +985,8 @@ export function explore(board: Board): Plan {
       }
     }
     sepCands.sort((x, y) => x.pri - y.pri);
-    const sep = sepCands.find((x) => x.blk.el.kind === 'barricade' && x.blk.el.response) ?? sepCands[0];
+    const canBreach = (blk: Placed) => !(blk.el.kind === 'barricade' && blk.el.airtight !== false && irrespirableImmediatelyOutby(blk));
+    const sep = sepCands.find((x) => canBreach(x.blk) && x.blk.el.kind === 'barricade' && x.blk.el.response) ?? sepCands.find((x) => canBreach(x.blk));
     if (sep) {
       resolve(sep.blk, 'breach', sep.blk.el.kind === 'barricade' && sep.blk.el.response ? 'Airlock and breach to reach the persons who answered' : 'Airlock through to explore the accessible area behind');
       continue;
