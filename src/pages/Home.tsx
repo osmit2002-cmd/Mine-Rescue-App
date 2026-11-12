@@ -9,6 +9,13 @@ import { loadStats } from '../quiz/stats';
  * crosscuts open around them, the ribs of the mine at the edges, air direction, and the team's route
  * with its team stops. The whole map is inside the viewBox, so it scales without cropping on any screen.
  */
+const HERO_WIDTHS = [640, 960, 1280] as const;
+
+function heroSet(ext: string) {
+  const base = import.meta.env.BASE_URL;
+  return HERO_WIDTHS.map((w) => `${base}hero/mine-${w}.${ext} ${w}w`).join(', ');
+}
+
 function MineMap() {
   // Openings are 36 wide. Entries run left (outby) to right (inby) above and below the pillars,
   // and three crosscuts run top to bottom: outby of the first pillar, between the two, and inby of the second.
@@ -19,7 +26,7 @@ function MineMap() {
     [314, 42]
   ];
   return (
-    <svg className="hero-map" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+    <svg className="hero-map" viewBox="0 0 360 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two pillars of coal with the team's route through the entries and crosscuts" focusable="false">
       {/* Ribs: the solid coal around the openings, drawn as one frame that runs off every edge */}
       <path className="rib" fillRule="evenodd" d="M-10-10H370V210H-10Z M24 24V176H332V24Z" />
       {/* Two pillars */}
@@ -96,8 +103,25 @@ export default function Home() {
           {edition && <p className="hero-edition">{edition}</p>}
           <h1>{title}</h1>
           <p className="hero-doc">{ev?.documentTitle ?? document.title ?? 'Mine rescue contest rules and statements'}</p>
+          <MineMap />
         </div>
-        <MineMap />
+        <div className="hero-scene">
+          <picture>
+            <source type="image/avif" srcSet={heroSet('avif')} sizes="(min-width: 760px) 520px, 100vw" />
+            <source type="image/webp" srcSet={heroSet('webp')} sizes="(min-width: 760px) 520px, 100vw" />
+            <img
+              className="hero-photo"
+              src={`${import.meta.env.BASE_URL}hero/mine-960.jpg`}
+              srcSet={heroSet('jpg')}
+              sizes="(min-width: 760px) 520px, 100vw"
+              width={1280}
+              height={845}
+              alt="A mine rescue team in closed-circuit breathing apparatus and cap lamps, linked by a lifeline, ready to work a problem at a contest."
+              decoding="async"
+              fetchPriority="high"
+            />
+          </picture>
+        </div>
       </section>
       {all && factEvents.length > 1 && <p className="note small home-note">Showing all events. Choose an event in the header menu to take a quiz or mock exam.</p>}
       <div className="tiles">

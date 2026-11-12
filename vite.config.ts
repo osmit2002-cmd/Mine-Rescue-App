@@ -41,8 +41,8 @@ export default defineConfig({
         start_url: './',
         scope: './',
         display: 'standalone',
-        background_color: '#14161a',
-        theme_color: '#c8961e',
+        background_color: '#131211',
+        theme_color: '#6b4c09',
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
@@ -51,7 +51,7 @@ export default defineConfig({
       },
       workbox: {
         // Precache the app shell AND the content JSON so everything works offline after first load.
-        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest,json,md,jpg,jpeg,webp}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest,json,md,jpg,jpeg,webp,avif}'],
         // Real rule books can be large; allow up to 15 MB per precached file.
         maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
         navigateFallback: 'index.html',

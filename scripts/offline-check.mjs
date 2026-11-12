@@ -89,15 +89,16 @@ ok(!sawPart, 'bench mock exam is statements of fact only (no parts questions)');
 ok(/\/ 20/.test(await page.textContent('[data-testid=final-score]')), 'bench mock scored out of 20');
 await page.goto(url + '#/quiz');
 await page.reload();
-await page.waitForSelector('[role=radiogroup][aria-label="Question source"]');
-ok((await page.getAttribute('[role=radiogroup][aria-label="Question source"] [role=radio] >> nth=0', 'aria-checked')) === 'true', 'bench practice defaults to Statements (parts practice still offered)');
+await page.waitForSelector('[aria-label="Question source"]');
+ok((await page.inputValue('[aria-label="Question source"]')) === 'facts', 'bench practice defaults to Statements');
+ok((await page.locator('[aria-label="Question source"] option').allTextContents()).some((t) => /Parts/.test(t)), 'parts practice still offered');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.5.2', 'footer shows v0.5.2');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.6.0', 'footer shows v0.6.0');
 ok((await page.textContent('header .brand')).includes('Mine Rescue App'), 'header brand is Mine Rescue App');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.5.2'), 'About shows v0.5.2');
+ok((await page.textContent('main')).includes('v0.6.0'), 'About shows v0.6.0');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
@@ -145,7 +146,7 @@ await page.goto(url + '#/quiz?mode=mock');
 await page.click('button.primary:has-text("Start")');
 await page.waitForSelector('[data-testid=choice]');
 ok(/of 15/.test(await page.textContent('.quiz-status')), 'first aid mock has 15 questions');
-ok(/^⏱ (20:00|19:5\d)/.test((await page.textContent('[role=timer]')).trim()), 'first aid timer starts at 20 minutes');
+ok(/(20:00|19:5\d)/.test((await page.textContent('[role=timer]')).trim()), 'first aid timer starts at 20 minutes');
 // v0.2.0: the header menu is the only event control, and "Facts" is now "Statements".
 await page.selectOption('[data-testid=event-select]', 'all');
 await page.goto(url + '#/statements');
@@ -156,7 +157,7 @@ let pickers = 0;
 for (const h of ['#/', '#/statements', '#/search?q=oxygen', '#/parts', '#/quiz', '#/rules', '#/figures']) {
   await page.goto(url + h);
   await page.waitForSelector('main h1');
-  pickers += (await page.$$('[aria-label="Contest event"][role=radiogroup], main select')).length;
+  pickers += (await page.$$('main [data-testid=event-select], main [aria-label="Rule book"]')).length;
 }
 ok(pickers === 0, 'no event selector inside any page (header menu only)');
 await page.goto(url + '#/quiz');
@@ -232,15 +233,16 @@ await page.waitForTimeout(200);
 ok(Number((await count()).split(' ')[0]) > 0, `typo "lifelinr" still matches (${await count()})`);
 await page.fill(rq, 'lifeline');
 await page.waitForTimeout(200);
-const chips = page.locator('[data-testid=rule-section-filter] button');
+const sectionFilter = page.locator('[data-testid=rule-section-filter] select');
+const sectionValues = await sectionFilter.locator('option').evaluateAll((opts) => opts.map((o) => o.value));
 let narrowed = null;
-for (let i = 1; i < (await chips.count()); i++) {
-  await chips.nth(i).click();
+for (const value of sectionValues.slice(1)) {
+  await sectionFilter.selectOption(value);
   const c = await count();
   if (/in this section/.test(c) && Number(c.split(' ')[0]) > 0) { narrowed = c; break; }
 }
 ok(narrowed && Number(narrowed.split(' ')[0]) <= nFull, `section filter narrows the search results (${narrowed})`);
-await chips.nth(0).click();
+await sectionFilter.selectOption('');
 await page.waitForTimeout(300);
 await page.reload();
 await page.waitForSelector('[data-testid=rule-hit]');
@@ -503,14 +505,14 @@ await page.reload();
 await page.waitForSelector('.b-center .mine-map', { timeout: 10000 });
 ok((await page.$$('.b-center .mine-map [data-el]')).length > 0, 'problem builder opens offline with a sample problem on the map');
 await page.selectOption('[data-testid=problem-select]', 'sample-fig7');
-await page.click('button[role=tab]:has-text("Solve")');
+await page.selectOption('select[aria-label="View"]', 'solve');
 await page.waitForSelector('.steps .step-head');
 const fig7 = await page.$$eval('.steps .step-head', (n) => n.map((x) => x.textContent).filter((t) => t.startsWith('#')));
 ok(fig7.length === 9 && fig7[3].includes('No. 2 Entry at Crosscut 3') && fig7[8].includes('No. 3 Entry at Crosscut 3'), `Figure 7 solves to the rule book's team stops offline (${fig7.length} stops)`);
-await page.click('button[role=tab]:has-text("Ventilation")');
+await page.selectOption('select[aria-label="View"]', 'vent');
 await page.waitForSelector('.vent-panel');
 ok((await page.textContent('.vent-panel')).includes('No fan is running'), 'ventilation tab: no fan, no airflow (Miscellaneous rule 4)');
-await page.click('button[role=tab]:has-text("Build")');
+await page.selectOption('select[aria-label="View"]', 'build');
 await ctx.setOffline(false);
 
 // Timer auto-submit (fake clock): preshift mock is 10 questions / 15 minutes.

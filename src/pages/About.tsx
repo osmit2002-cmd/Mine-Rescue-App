@@ -136,6 +136,15 @@ export default function About() {
           <Markdown source={sources} />
         </>
       )}
+      <h2>Credits</h2>
+      <p>
+        The photograph on the home page shows a mine rescue team in closed-circuit breathing apparatus, linked by a lifeline, at the 2015 National Coal Mine Rescue Competition in Lexington, Kentucky. Mine Safety and Health Administration caption: “A team, tethered together, ready to work a problem.”
+        Mine Safety and Health Administration, U.S. Department of Labor, public domain (work of the U.S. government). The gallery carries no separate copyright notice. The Department of Labor states that material it created is in the public domain, and that copyrighted third-party images on its sites are marked with a notice (<a href="https://www.dol.gov/general/aboutdol/copyright">dol.gov/general/aboutdol/copyright</a>).
+        Photograph: <a href="https://www.msha.gov/sites/default/files/Mine%20Rescue/2015-minerescue/Day2_0274.jpg">Day2_0274.jpg</a>. Gallery: <a href="https://www.msha.gov/archive-mnm-and-coal-mine-rescue-contests/2015-national-mine-rescue-competition">2015 National Mine Rescue Competition</a>.
+      </p>
+      <p className="small">
+        The visual design of version 0.6.0 follows the unslop skill by Damir Sokolovsky (<a href="https://heydamir.design/unslop">heydamir.design/unslop</a>), used under CC BY 4.0.
+      </p>
       <p className="muted small" data-testid="app-version">Version {__APP_VERSION__} (build {__APP_BUILD__}). Works offline once loaded; install it from your browser menu (“Add to Home screen” / “Install app”).</p>
     </article>
   );

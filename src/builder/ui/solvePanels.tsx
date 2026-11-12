@@ -4,6 +4,7 @@ import type { El, Problem } from '../model';
 import { gasReasons } from '../rules';
 import type { Solution } from '../solve';
 import type { Airflow, VentFinding } from '../vent';
+import { SelectField } from '../../components/SelectField';
 import { Checks, Section } from './panels';
 import { RuleRefs } from './RuleRefs';
 import { SymbolIcon } from './symbols';
@@ -265,14 +266,16 @@ export function VentPanel({
         <p className="small muted">A teaching estimate of “what moves where if we change this”, using Kirchhoff’s laws over the openings — not a ventilation survey.</p>
       </div>
       <Section title="What if the team…">
-        <div className="seg">
-          <button type="button" className={`chip${tool === 'vent-toggle' ? ' on' : ''}`} onClick={() => setTool(tool === 'vent-toggle' ? 'select' : 'vent-toggle')} aria-pressed={tool === 'vent-toggle'}>
-            Take down / put back a structure
-          </button>
-          <button type="button" className={`chip${tool === 'vent-build' ? ' on' : ''}`} onClick={() => setTool(tool === 'vent-build' ? 'select' : 'vent-build')} aria-pressed={tool === 'vent-build'}>
-            Build a temporary stopping
-          </button>
-        </div>
+        <SelectField
+          label="Change"
+          value={tool === 'vent-toggle' || tool === 'vent-build' ? tool : 'select'}
+          onChange={(v) => setTool(v === 'vent-toggle' || v === 'vent-build' ? v : 'select')}
+          options={[
+            { value: 'select', label: 'Pick a change' },
+            { value: 'vent-toggle', label: 'Take down or put back a structure' },
+            { value: 'vent-build', label: 'Build a temporary stopping' }
+          ]}
+        />
         <p className="small muted">
           {tool === 'vent-toggle'
             ? 'Click a stopping, door, seal, barricade, diagonal or fire on the map. Doors open and close; fires are put out.'

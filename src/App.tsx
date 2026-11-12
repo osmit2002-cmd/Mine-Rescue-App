@@ -150,8 +150,8 @@ function Header() {
       </nav>
       {events.length > 1 && (
         <label className="event-select">
-          <span className="sr-only">Contest event</span>
-          <select value={event} onChange={(e) => setEvent(e.target.value)} aria-label="Contest event" data-testid="event-select">
+          <span className="select-label">Rule book</span>
+          <select value={event} onChange={(e) => setEvent(e.target.value)} aria-label="Rule book" data-testid="event-select">
             {events.map((e) => (
               <option key={e.id} value={e.id}>{e.name}</option>
             ))}

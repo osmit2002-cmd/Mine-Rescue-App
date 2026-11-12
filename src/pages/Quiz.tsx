@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { pagesLabel, ruleLabel, ruleLink } from '../components/common';
+import { MultiMenu, SelectField } from '../components/SelectField';
 import { ALL_EVENTS, useData, useEvent } from '../data/DataContext';
 import type { Fact } from '../data/types';
 import { checkAnswer } from '../quiz/check';
@@ -323,13 +324,16 @@ export default function Quiz() {
     );
 
   const kindTabs = (
-    <div className="chips quiz-kinds" role="radiogroup" aria-label="Quiz type">
-      {(['statements', 'rules'] as QuizKind[]).map((k) => (
-        <button key={k} role="radio" aria-checked={kind === k} className={`chip ${kind === k ? 'on' : ''}`} onClick={() => setKind(k)} data-testid={`kind-${k}`}>
-          {k === 'statements' ? 'Statements quiz' : 'Rules quiz'}
-        </button>
-      ))}
-    </div>
+    <SelectField
+      label="Quiz type"
+      value={kind}
+      testId="quiz-kind"
+      onChange={(v) => setKind(v as QuizKind)}
+      options={[
+        { value: 'statements', label: 'Statements quiz' },
+        { value: 'rules', label: 'Rules quiz' }
+      ]}
+    />
   );
 
   if (phase === 'setup' && kind === 'rules') {
@@ -349,22 +353,18 @@ export default function Quiz() {
             <p className="small" data-testid="rules-pool">
               {ruleIndex.length} sentences from {rulesYielding} of {eventRules.length} rules.
             </p>
-            <h2>Answer type</h2>
-            <div className="chips" role="radiogroup" aria-label="Answer type">
-              {(['mc', 'fill'] as const).map((m) => (
-                <button key={m} role="radio" aria-checked={ruleMode === m} className={`chip ${ruleMode === m ? 'on' : ''}`} onClick={() => setRuleMode(m)}>
-                  {MODE_LABEL[m]}
-                </button>
-              ))}
-            </div>
-            <h2>Length</h2>
-            <div className="chips" role="radiogroup" aria-label="Length">
-              {quizConfig.sessionSizes.map((sz) => (
-                <button key={String(sz)} role="radio" aria-checked={ruleSize === sz} className={`chip ${ruleSize === sz ? 'on' : ''}`} onClick={() => setRuleSize(sz)}>
-                  {sz === 'all' ? `All (${ruleIndex.length})` : sz}
-                </button>
-              ))}
-            </div>
+            <SelectField
+              label="Answer type"
+              value={ruleMode}
+              onChange={(v) => setRuleMode(v as 'mc' | 'fill')}
+              options={(['mc', 'fill'] as const).map((m) => ({ value: m, label: MODE_LABEL[m] }))}
+            />
+            <SelectField
+              label="Length"
+              value={String(ruleSize)}
+              onChange={(v) => setRuleSize(v === 'all' ? 'all' : Number(v))}
+              options={quizConfig.sessionSizes.map((sz) => ({ value: String(sz), label: sz === 'all' ? `All (${ruleIndex.length})` : String(sz) }))}
+            />
           </>
         )}
         <TimerControls
@@ -413,14 +413,12 @@ export default function Quiz() {
           {pItems.length > 0 && ', or ask for a part name from the Identification of Parts'}.
           {stats.answered > 0 && ` Lifetime: ${stats.correct}/${stats.answered} correct, best streak ${stats.bestStreak}.`}
         </p>
-        <h2>Mode</h2>
-        <div className="chips" role="radiogroup" aria-label="Mode">
-          {(['mc', 'mock', 'fill'] as Mode[]).map((m) => (
-            <button key={m} role="radio" aria-checked={mode === m} className={`chip ${mode === m ? 'on' : ''}`} onClick={() => setMode(m)}>
-              {m === 'mock' ? `${MODE_LABEL.mock} (${mockTotal})` : MODE_LABEL[m]}
-            </button>
-          ))}
-        </div>
+        <SelectField
+          label="Mode"
+          value={mode}
+          onChange={(v) => setMode(v as Mode)}
+          options={(['mc', 'mock', 'fill'] as Mode[]).map((m) => ({ value: m, label: m === 'mock' ? `${MODE_LABEL.mock} (${mockTotal})` : MODE_LABEL[m] }))}
+        />
         {mode === 'mock' ? (
           <p className="small">
             {mockFacts} random statements{mockParts ? ` + ${mockParts} Identification of Parts questions` : ''}, {quizConfig.distractorCount + 1} choices each, no feedback until the end,
@@ -430,49 +428,28 @@ export default function Quiz() {
         ) : (
           <>
             {pItems.length > 0 && (
-              <>
-                <h2>Questions from</h2>
-                <div className="chips" role="radiogroup" aria-label="Question source">
-                  {(['facts', 'parts', 'both'] as Source[]).map((s) => (
-                    <button key={s} role="radio" aria-checked={source === s} className={`chip ${source === s ? 'on' : ''}`} onClick={() => setSource(s)}>
-                      {s === 'facts' ? `Statements (${facts.length})` : s === 'parts' ? `Parts (${pItems.length})` : 'Both'}
-                    </button>
-                  ))}
-                </div>
-              </>
+              <SelectField
+                label="Question source"
+                value={source}
+                onChange={(v) => setSource(v as Source)}
+                options={[
+                  { value: 'facts', label: `Statements (${facts.length})` },
+                  { value: 'parts', label: `Parts (${pItems.length})` },
+                  { value: 'both', label: 'Both' }
+                ]}
+              />
             )}
-            <h2>Length</h2>
-            <div className="chips" role="radiogroup" aria-label="Length">
-              {quizConfig.sessionSizes.map((s) => (
-                <button key={String(s)} role="radio" aria-checked={size === s} className={`chip ${size === s ? 'on' : ''}`} onClick={() => setSize(s)}>
-                  {s === 'all' ? `All (${pool.length})` : s}
-                </button>
-              ))}
-            </div>
+            <SelectField
+              label="Length"
+              value={String(size)}
+              onChange={(v) => setSize(v === 'all' ? 'all' : Number(v))}
+              options={quizConfig.sessionSizes.map((s) => ({ value: String(s), label: s === 'all' ? `All (${pool.length})` : String(s) }))}
+            />
             {effectiveSource !== 'parts' && categories.length > 0 && (
-              <>
-                <h2>Categories</h2>
-                <div className="chips">
-                  {categories.map((c) => (
-                    <button key={c} aria-pressed={cats.includes(c)} className={`chip ${cats.includes(c) ? 'on' : ''}`} onClick={() => setCats((xs) => (xs.includes(c) ? xs.filter((x) => x !== c) : [...xs, c]))}>
-                      {c}
-                    </button>
-                  ))}
-                </div>
-              </>
+              <MultiMenu label="Categories" options={categories.map((c) => ({ value: c, label: c }))} selected={cats} onChange={setCats} />
             )}
             {effectiveSource !== 'parts' && blocks.length > 1 && (
-              <>
-                <h2>Statements</h2>
-                <div className="chips">
-                  <button aria-pressed={blockSel.length === 0} className={`chip ${blockSel.length === 0 ? 'on' : ''}`} onClick={() => setBlockSel([])}>All</button>
-                  {blocks.map((b) => (
-                    <button key={b.key} aria-pressed={blockSel.includes(b.key)} className={`chip ${blockSel.includes(b.key) ? 'on' : ''}`} onClick={() => setBlockSel((xs) => (xs.includes(b.key) ? xs.filter((x) => x !== b.key) : [...xs, b.key]))}>
-                      {b.label}
-                    </button>
-                  ))}
-                </div>
-              </>
+              <MultiMenu label="Statements" options={blocks.map((b) => ({ value: b.key, label: b.label }))} selected={blockSel} onChange={setBlockSel} />
             )}
           </>
         )}
@@ -559,7 +536,7 @@ export default function Quiz() {
         </span>
         {deadline !== null && (
           <span className={`timer ${deadline - now < 60_000 ? 'warn' : ''}`} role="timer" aria-label="Time left">
-            ⏱ {fmtTime(deadline - now)}
+            {fmtTime(deadline - now)}
           </span>
         )}
         {runMode !== 'mock' && (
@@ -754,7 +731,7 @@ function ReviewItem({ a, fact }: { a: Answered; fact?: Fact }) {
     <li className={a.correct ? 'ok' : 'bad'}>
       <Prompt q={a.q} />
       <p className="small">
-        {a.correct ? '✓' : '✗'} Your answer: <b>{a.given || '—'}</b>
+        {a.correct ? 'Correct' : 'Missed'}. Your answer: <b>{a.given || '—'}</b>
         {!a.correct && (
           <>
             {' '}· Correct: <b>{a.q.answer}</b>

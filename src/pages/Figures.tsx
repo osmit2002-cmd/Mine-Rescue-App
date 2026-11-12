@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FigureCard } from '../components/common';
+import { SelectField } from '../components/SelectField';
 import { ALL_EVENTS, encodePath, useData, useEvent } from '../data/DataContext';
 
 const CROP_GROUPS: Record<string, string> = {
@@ -45,13 +46,15 @@ export default function Figures() {
         {figures.some((f) => f.kind === 'crop') ? 'Figures and page images' : 'Page images'} from the rule book. Tap an image to open it full size (works offline).
       </p>
       {runtimeFigures.length > 0 && <DownloadAll />}
-      <nav className="chips" aria-label="Jump to figure group">
-        {[...groups.keys()].map((g) => (
-          <a key={g} className="chip" href={`#/figures`} onClick={(e) => { e.preventDefault(); document.getElementById(`grp-${g.replace(/\W+/g, '-')}`)?.scrollIntoView({ behavior: 'smooth' }); }}>
-            {g}
-          </a>
-        ))}
-      </nav>
+      <SelectField
+        label="Jump to"
+        value=""
+        onChange={(g) => {
+          if (!g) return;
+          document.getElementById(`grp-${g.replace(/\W+/g, '-')}`)?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        options={[{ value: '', label: 'Choose a group' }, ...[...groups.keys()].map((g) => ({ value: g, label: g }))]}
+      />
       {[...groups.entries()].map(([g, figs]) => (
         <section key={g} id={`grp-${g.replace(/\W+/g, '-')}`}>
           <h2>{g}</h2>
