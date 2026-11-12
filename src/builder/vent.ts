@@ -85,11 +85,17 @@ export function airflow(board: Board): Airflow {
   const fixed = new Map<string, { p: number; r: number }[]>(); // sub → connections to fixed pressure
   const openings: string[] = [];
   const addFixed = (sub: string, p: number, r: number) => fixed.set(sub, [...(fixed.get(sub) ?? []), { p, r }]);
-  // A running fan in the FAB drives it: the FAB is then the intake (or return), not open to the atmosphere.
-  const fanInFab = [...board.placed.values()].some((q) => q.el.kind === 'fan' && q.el.on !== false && g.subs.get(attachSub(g, q) ?? '')?.node.r === 0);
-  if (board.problem.fabFresh && !fanInFab) {
+  // A running fan in the FAB drives that entry. Under exhaust ventilation the fan's entry is the return
+  // and air still enters the other fresh openings (Miscellaneous rule 4).
+  const fanQ = [...board.placed.values()].find((q) => q.el.kind === 'fan' && q.el.on !== false);
+  const fanNode = fanQ ? g.subs.get(attachSub(g, fanQ) ?? '')?.node : undefined;
+  const exhaustReturn = fanNode?.fab && fanQ?.el.fanMode !== 'blowing' ? fanNode.i : null;
+  if (board.problem.fabFresh && !fanNode?.fab) {
     for (const s of g.subs.values()) if (s.node.fab) addFixed(s.id, 0, 0.01);
     openings.push('FAB (fresh air)');
+  } else if (board.problem.fabFresh && exhaustReturn !== null) {
+    for (const s of g.subs.values()) if (s.node.fab && s.node.i !== exhaustReturn) addFixed(s.id, 0, 0.01);
+    openings.push('FAB (intake entries)');
   }
   let fans = 0;
   for (const q of board.placed.values()) {
@@ -242,6 +248,10 @@ export function ventFindings(board: Board, af: Airflow, hz: Hazard[], ctx: VentC
     for (const eid of edges) if (!fullySeen(eid)) names.push(eid);
     return names.length;
   };
+  const fanQ = [...board.placed.values()].find((q) => q.el.kind === 'fan' && q.el.on !== false);
+  const fanNode = fanQ ? g.subs.get(attachSub(g, fanQ) ?? '')?.node : undefined;
+  // The return entry at the FAB is the way out to an exhausting fan, not the briefing officer's location.
+  const exhaustReturn = fanNode?.fab && fanQ?.el.fanMode !== 'blowing' ? fanNode.i : null;
   for (const h of hz) {
     if (!h.cls.irrespirable && !h.cls.explosive && !h.cls.contaminant) continue;
     const moving = [...h.extent.edges.keys()].some((e) => af.flow.has(e)) || [...h.extent.nodes].some((s) => (g.adj.get(s) ?? []).some((e) => af.flow.has(e)));
@@ -260,7 +270,10 @@ export function ventFindings(board: Board, af: Airflow, hz: Hazard[], ctx: VentC
       const ux = unexploredIn(d.edges, d.subs);
       if (ux && ctx.unaccounted > 0)
         out.push({ level: 'danger', text: `Irrespirable ${label(h)} would be ventilated over ${ux} unexplored area(s) while ${ctx.unaccounted} person(s) are unaccounted for (potentially live) — 5 points per mixture × area × person (max 3 persons).`, rules: ['b-card-30'] });
-      const fab = [...d.subs].filter((s) => g.subs.get(s)?.node.fab);
+      const fab = [...d.subs].filter((s) => {
+        const n = g.subs.get(s)?.node;
+        return !!n?.fab && !(exhaustReturn !== null && n.i === exhaustReturn);
+      });
       if (fab.length && !board.problem.boOutside) out.push({ level: 'warn', text: `Irrespirable ${label(h)} reaches the FAB. The briefing officer's designated location must stay respirable (not by apparatus or SCSR).`, rules: ['b-card-30'] });
       const ppl = here.filter((q) => (q.el.kind === 'person' && !ctx.removedPersons.has(q.el.id)) || !!ctx.protect?.has(q.el.id));
       if (ppl.length) out.push({ level: 'warn', text: `Irrespirable ${label(h)} would reach ${ppl.length} live person(s): protect them first.`, rules: ['b-card-34'] });

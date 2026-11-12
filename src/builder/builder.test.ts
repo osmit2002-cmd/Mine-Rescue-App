@@ -68,6 +68,20 @@ describe('geometry', () => {
 });
 
 describe('exploration solver', () => {
+  it('leaves a cleared entry while another entry is still contaminated ahead (Rule 44B)', () => {
+    const p = prob(3, 4, (l) => [
+      mk('unsafe-roof', at.entry(l, 0, 1, 0.45), { across: true, text: 'UNSAFE ROOF' }),
+      mk('gas', at.entry(l, 0, 1, 0.05), { ch4: 2, co: 0, o2: 20.8 }),
+      mk('unsafe-roof', at.entry(l, 2, 2, 0.45), { across: true, text: 'UNSAFE ROOF' }),
+      mk('gas', at.entry(l, 2, 2, 0.05), { ch4: 2, co: 0, o2: 20.8 })
+    ]);
+    const atRow3 = explore(makeBoard(p)).steps.filter((s) => s.n && s.at!.endsWith(':3')).map((s) => s.at);
+    // No. 1's contaminant ended at the roof. No. 3 is still contaminated ahead, so the adjacent entry (No. 2)
+    // and the tie-in to No. 3 come before any further advance in No. 1.
+    expect(atRow3[0]).toBe(nodeId(1, 3));
+    expect(atRow3.indexOf(nodeId(2, 3))).toBeLessThan(atRow3.indexOf(nodeId(0, 3)));
+  });
+
   it('reproduces the rule book Figure 7 team stops (Rule 44D numbering)', () => {
     const plan = explore(makeBoard(figure7()));
     const stops = plan.steps.filter((s) => s.n).map((s) => s.at!.split('#')[0]);
@@ -148,6 +162,17 @@ describe('extent of gases and smoke (Rule 24E)', () => {
     const [h] = hazards(makeBoard(p));
     expect(h.extent.nodes.size).toBe(1);
     expect(h.extent.edges.size).toBe(0);
+  });
+  it('stops a gas at an open borehole, a required test location (Rule 24A)', () => {
+    const p = prob(1, 3, (l) => [mk('gas', at.entry(l, 0, 1, 0.2), { ch4: 5.7, co: 5, o2: 19.4 }), mk('x', at.entry(l, 0, 1, 0.7), { text: 'OPEN BOREHOLE' }, 'borehole')]);
+    const b = makeBoard(p);
+    const [h] = hazards(b);
+    const hole = [...b.placed.values()].find((q) => q.el.sub === 'borehole');
+    expect(hole?.loc.type).toBe('edge');
+    const spans = [...h.extent.edges.values()][0];
+    expect(spans[0][1]).toBeCloseTo(hole!.loc.type === 'edge' ? hole!.loc.s : -1);
+    expect(spans[0][1]).toBeLessThan(b.topo.edges.get([...h.extent.edges.keys()][0])!.len - p.layout.entryWidth / 2);
+    expect(h.extent.nodes.size).toBe(0);
   });
   it('stops a gas at the imaginary line of the next intersection', () => {
     const p = prob(2, 3, (l) => [mk('gas', at.entry(l, 0, 1, 0.2), { ch4: 2, co: 0, o2: 20 })]);
