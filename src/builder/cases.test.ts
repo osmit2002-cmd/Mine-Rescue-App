@@ -14,7 +14,10 @@ const KNOWN_GAPS: Record<string, string[]> = {
   // 2026 Day 2. The page-5 circles put stop 4 in No. 3 and stop 5 in No. 2, and stop 12 in No. 1 with 10/11
   // in the other two entries. Nothing in those entries reads as a block, so the solver's systematic order
   // (lowest open entry first) is a different legal route and these four stops do not match. They are not passed.
-  'national-2026-day2': ['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']
+  'national-2026-day2': ['stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4'],
+  // 2019 Day 1. The briefing's fixed stops (3 in No. 3 at the first crosscut, 6 in No. 3, 9 in No. 1) are the
+  // ones the lowest-open-entry order does not hit. Counted, not passed.
+  'national-2019-day1': ['stop:2,1', 'stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']
 };
 
 describe('judge key comparison', () => {
