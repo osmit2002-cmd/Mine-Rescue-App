@@ -6,14 +6,11 @@ import { FIGURE7_STOPS, figure7 } from './samples';
 import { solve } from './solve';
 
 /**
- * Checks each reference case still fails today, by check id. When a solver change fixes one, remove it here; when a
- * change breaks a check that passed, the test fails. Either way the diff shows the solver's progress against the
- * judges.
+ * Check ids that still disagree with the judge key. Empty means the solver matches every checked point.
+ * When a solver change fixes one, remove it here; when a change breaks a check that passed, the test fails.
  */
 const KNOWN_GAPS: Record<string, string[]> = {
-  // Row 4: the judges go No. 2 (10, the barricade), No. 3 (11), then No. 1 (12, after the second vent). The solver
-  // advances No. 1 first from stop 9 and so reaches the No. 2 barricade one stop late.
-  'post5-2016-day1': ['stop:1,4', 'stop:2,4', 'stop:0,4', 'rescue:person-n2']
+  'post5-2016-day1': []
 };
 
 describe('judge key comparison', () => {

@@ -106,7 +106,7 @@ node scripts/offline-check.mjs   # headless end-to-end + offline check (needs pr
 
 `npm run dev` starts in a few seconds: it does not convert the rule-book figures and serves the originals (or WebP files already converted on this machine). `npm run build` converts them to WebP using all CPU cores, once per machine: converted files are cached in `~/.cache/mine-rescue-app/figures` (set `FIGURE_CACHE_DIR` to move it) and shared by every checkout and branch. The footer and About page show the commit the app was built from, so two pull requests with the same version number can be told apart.
 
-To try the solver: `npm run dev`, open `http://localhost:5173/#/builder`, pick a problem (or **Samples → 2016 Post 5 & WV State — Day 1**) and open the **Solve** tab. `npx vitest run src/builder` runs just the builder, solver, ventilation planner and judge-key tests; a failing judge-key test prints the full comparison with the judges.
+To try the solver: `npm run dev`, open `http://localhost:5173/#/builder`, pick a problem (or **Samples → 2016 Post 5 & WV State — Day 1**) and open the **Solve** tab. `npx vitest run src/builder` runs just the builder, solver, ventilation planner and judge-key tests; a failing judge-key test prints the full comparison with the judges. `npm run score:solver` scores the solver against every official step-by-step solution transcribed in the repo (see `docs/solver-accuracy.md`).
 
 ## Deploy
 

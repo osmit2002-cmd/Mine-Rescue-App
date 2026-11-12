@@ -15,6 +15,14 @@
 - Redesigned with the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
 - Version 0.6.0.
 
+## 0.5.3
+
+- **Solver accuracy.** Official step-by-step solutions are scored with `npm run score:solver` (`src/builder/golden/`). Rule book Figure 7 and 2016 Post 5 & WV State Day 1 both score 100%. How to add another problem is in `docs/solver-accuracy.md`. Contest PDFs that have not been transcribed stay unverified; the harness does not invent a solution for them.
+- The solver follows Rule 44B when a contaminant has ended: it does not go deeper in that entry while another entry is still contaminated ahead. On the 2016 problem the last three team stops are now No. 2, No. 3, then No. 1, and the barricade patient at stop 10 is out before stop 11 (Rule 41).
+- An explosive mixture outby a breached airtight separation, with irrespirable air inby it, is winged with that separation put back up, then taken down before the inby atmosphere is moved (Rules 48E and 35).
+- A body under elongated unsafe roof is timbered to after every missing person is found and before the next team stop (Rule 32). Timbers whose placard count is 0 are not used.
+- Version 0.5.3.
+
 ## 0.5.2
 
 - The name shown to users is **Mine Rescue App**: the header brand, the page title, the Apple home-screen title, and the installed app name and short name. The home page uses that name when no event is selected.
