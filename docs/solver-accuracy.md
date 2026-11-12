@@ -11,6 +11,7 @@ The solver in `src/builder/explore.ts` is checked against official step-by-step 
 | `figure-7` | 2026 Coal Mine Rescue Rules, Figure 7, page 49 | Nine team stops, numbered on the figure in Rule 44D order. No patients, no ventilation, no withdrawal. | 11/11, 100% |
 | `post5-2016-day1` | `problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf`, team-stop map and Keys to Problem | Team-stop numbers the judges accept (a "45" on the map is stop 4 or 5), three rescues, the two vents, timbering the person under unsafe roof in No. 3 before stop 12, and not using the broken timbers. | 26/26, 100% |
 | `national-2024-day1` | [2024 National Coal Day 1](https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf) (packet not committed; minerescuecenter.com states no license) | Twelve team stops, vents 1–4 (the placards marked Cleared), vents 1 and 2 before either pump, the pump cable moved out of the 5.7% mixture before it is energized, both waters in either order with the airlock put back after each, the barricade opened only after the 18.3% O2 is removed, and the finds inby that barricade. The 5.7% mixture is not cleared. Scored on the 2026 rule text. The 2024 judges cite Rule 31C for moving explosive mixture over a cave or unsafe roof; the 2026 text of Rule 31C is an unexplored area, with Rule 30F for the low oxygen and Rule 42 for putting the airlock back. | 32/32, 100% |
+| `national-2011-day2` | [2011 National Coal Day 2](https://permanent.fdlp.gov/websites/www.msha.gov/MineRescue/PROBLEMS/coal/2011/NMRC%20Day%202%20Problem.pdf) (MSHA, public domain; PDF not committed) | Twelve team stops read from the judges' map at 300 dpi and the written stop order, and the five missing persons those two sources put in the same openings. | 17/17 of the encoded checks, 100%. The cells the map did not settle are listed on the fixture and are not counted as passed. |
 
 Before the Rule 44B change, Figure 7 was already 11/11. The 2016 judge key was 17/21 (81%). The first divergence was the team stop at No. 2 Entry, crosscut row 4: the judges number it 10 and the solver numbered it 11, so the barricade patient there was rescued after stop 11 (Rule 41) instead of before it.
 
@@ -25,7 +26,6 @@ These were opened in the same pass. No route was invented, so they are not score
 | [2026 National Coal Day 2](https://minerescuecenter.com/media/problems/2026_national_Coal_Day_2_Field_26_Nationals_Day_2.pdf) | The judges' packet is image-only. The briefing lists team stops 1–12 and ventilations 1–5, and it does not say which intersection each stop is. The circled numbers on the map did not read out to positions. |
 | 2019 National Coal Day 1 | The field packet is a scan with no text layer. Not transcribed. |
 | 2017 National Coal Day 1 | The text layer has a blank "Team Working Order" sheet. The stop route is on the map, which was not read into positions. |
-| 2011 National Coal Day 2 | The MSHA file (public domain) writes team stops 1–12. The gas placards are in a spaced map text layer with no coordinates, so placing them would be a guess. Left unscored. |
 | 2007 National Coal Day 1 | The problem file is a scan with no text layer. Not transcribed. |
 | 2016 Post 5 Day 2, 2017 Post 5, 2018 Post 5 | Still in `problems/`. Not transcribed in this pass. |
 
@@ -66,7 +66,7 @@ These are the readings the solver uses where the rule book allows more than one 
 | Official solution or judge key in the PDF | 81 |
 | No solution recovered | 59 |
 | Unconfirmed (scan could not be read) | 1 |
-| Transcribed into a fixture | 2 |
+| Transcribed into a fixture | 3 |
 
 The 59 without a recovered solution are problem statements, team maps, written exams, contest results, first-aid problems, preshift records, or bench-apparatus problems. Metal and nonmetal solutions are counted as yes and are not scored by the coal solver. The one unconfirmed file is `problems/msha-archive/coal/2004/2004PaStateminerescue.pdf`.
 

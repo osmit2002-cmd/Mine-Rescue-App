@@ -711,18 +711,23 @@ export function explore(board: Board): Plan {
     if (acted) return true;
     // Verbal contact at a barricade: the persons behind it must be reached promptly (Rule 41A) — after any patient
     // already reached is on the way out (Rule 41B: no ventilation controls while removing a patient).
-    for (const [id] of found) {
-      const q = board.placed.get(id);
-      if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
+    // A barricade that does not answer is still opened once the accessible areas are explored and someone is
+    // missing (Rule 44F), after the irrespirable air immediately outby it is removed (Rule 35).
+    const barricades = [...found.keys()]
+      .map((id) => board.placed.get(id))
+      .filter((q): q is Placed => !!q && q.el.kind === 'barricade' && active(q.el));
+    const stillMissing = p.missing > personsTotal();
+    for (const q of [...barricades.filter((q) => q.el.response), ...(stillMissing ? barricades.filter((q) => !q.el.response) : [])]) {
+      if (q.el.kind === 'barricade') {
         ventBefore(q);
         if (q.el.airtight !== false && irrespirableImmediatelyOutby(q)) {
-          if (!heldBarricades.has(id)) {
-            heldBarricades.add(id);
+          if (!heldBarricades.has(q.el.id)) {
+            heldBarricades.add(q.el.id);
             steps[steps.length - 1].notes.push('Irrespirable atmosphere immediately outby the barricade: do not breach it until that air is removed (Rule 35).');
           }
           continue;
         }
-        resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
+        resolve(q, 'breach', q.el.response ? 'Verbal contact at the barricade: airlock and breach to reach the persons' : 'Persons still missing: airlock and breach the barricade that did not answer');
         return true;
       }
     }
