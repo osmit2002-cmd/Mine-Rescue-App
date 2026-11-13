@@ -1,10 +1,17 @@
 # Changelog
 
-## Unreleased
+## 0.6.2
 
-- **Solver accuracy: recency weighting.** Each official fixture has a contest year. `npm run score:solver` prints each raw score with its weight (`1 / (1 + (2026 − year) / 5)`, so 2026 is 1.00 and 2011 is 0.25) and the weighted overall next to the raw mean. The pass/fail gate is unchanged. See `docs/solver-accuracy.md`.
+- **Solver accuracy.** Official step-by-step solutions are scored with `npm run score:solver` (`src/builder/golden/`). Rule book Figure 7 and 2016 Post 5 & WV State Day 1 both score 100%. How to add another problem is in `docs/solver-accuracy.md`. Contest PDFs that have not been transcribed stay unverified; the harness does not invent a solution for them.
+- **Solver accuracy: recency weighting.** Each official fixture has a contest year. `npm run score:solver` prints each raw score with its weight (`1 / (1 + (2026 − year) / 5)`, so 2026 is 1.00 and 2011 is 0.25) and the weighted overall next to the raw mean. The pass/fail gate is still 100% for every OFFICIAL fixture. See `docs/solver-accuracy.md`.
 - **Solver accuracy: 2026 National Day 2 is 18/18.** The row-2 and row-4 stops that the solver numbered in another order are a captain's choice under Rule 44B: contaminants are ahead in more than one entry there. The scorer accepts either order for those groups (`JudgeKey.captainOrder`), and the 2026 key cites Rule 44B for them. 2019 Day 1 is 11/15 counted: one stop (No. 3 at the first crosscut) is superseded by 2026 Rule 44D, which forbids leaving that crosscut for the fresh air base before tying across into the unexplored No. 2 crosscut. Four stops at the second and third crosscuts still do not match.
 - **Solver accuracy: superseded steps.** An older fixture can list a check that a newer key or the 2026 rule text overrides (`supersedes`). The check is reported with both rule texts and left out of the counted total. Each supersession must name a later fixture; a test checks it. One supersession is in use: the 2019 Day 1 stop at No. 3, first crosscut (`stop:2,1`), is superseded by 2026 Rule 44D.
+- The solver follows Rule 44B when a contaminant has ended: it does not go deeper in that entry while another entry is still contaminated ahead. On the 2016 problem the last three team stops are now No. 2, No. 3, then No. 1, and the barricade patient at stop 10 is out before stop 11 (Rule 41).
+- An explosive mixture outby a breached airtight separation, with irrespirable air inby it, is winged with that separation put back up, then taken down before the inby atmosphere is moved (Rules 48E and 35).
+- A body under elongated unsafe roof is timbered to after every missing person is found and before the next team stop (Rule 32). Timbers whose placard count is 0 are not used.
+- 2011 National Coal Day 2 is scored on the twelve team stops and the five missing persons the judges' map and the written stop order both place (17/17). Placards whose opening the 300 dpi read did not settle are not counted as passed. A barricade that does not answer is still opened when someone is missing, after the irrespirable air immediately outby it is removed (Rules 44F and 35).
+- 2024 National Coal Day 1 scores 32/32 on the judges' key that can be checked. Vents 1 and 2 clear the No. 1 and No. 3 explosive mixtures before either water is pumped: the No. 1 cave stops the team and does not seal the airway, so intake air moves up that entry without carrying the 5.7% mixture onto the ram car (Rule 31A), and the gas outby the airtight water can be winged from that separation (Rule 48E). A pump cable that is not yet energized is moved out of an explosive mixture before the pump energizes it (Rule 31D). After each water roofed is pumped, the airlock is put back because the fan is running (Rule 42); the 2024 judges cite Rule 31C for the explosive mixture that would move over a cave or unsafe roof, and the 2026 text of that rule is an unexplored area, with Rule 30F for the low oxygen. Face-down placards revealed only when a water placard is flipped are still not encoded.
+- Version 0.6.2.
 
 ## 0.6.1
 
@@ -20,18 +27,6 @@
 - Choosing among rule books, quiz options, sections, search filters, figure groups, and builder views is a labeled dropdown with a chevron, instead of a row of buttons that ran off a phone screen. Statement-number ranges stay a multi-select menu. Start, Check, and the other single actions stay buttons.
 - Redesigned with the [unslop](https://github.com/heydamir/unslop) skill by Damir Sokolovsky (CC BY 4.0).
 - Version 0.6.0.
-
-## 0.5.3
-
-- **Solver accuracy.** Official step-by-step solutions are scored with `npm run score:solver` (`src/builder/golden/`). Rule book Figure 7 and 2016 Post 5 & WV State Day 1 both score 100%. How to add another problem is in `docs/solver-accuracy.md`. Contest PDFs that have not been transcribed stay unverified; the harness does not invent a solution for them.
-- The solver follows Rule 44B when a contaminant has ended: it does not go deeper in that entry while another entry is still contaminated ahead. On the 2016 problem the last three team stops are now No. 2, No. 3, then No. 1, and the barricade patient at stop 10 is out before stop 11 (Rule 41).
-- An explosive mixture outby a breached airtight separation, with irrespirable air inby it, is winged with that separation put back up, then taken down before the inby atmosphere is moved (Rules 48E and 35).
-- A body under elongated unsafe roof is timbered to after every missing person is found and before the next team stop (Rule 32). Timbers whose placard count is 0 are not used.
-- 2019 National Coal Day 1 is scored from the judges' briefing and the team-stop map, both read at 300 dpi: 11 of 16 checks pass. Five fixed stops do not match the lowest-open-entry order. The two "Person/Body" placards and vents 1–3 are not scored.
-- 2026 National Coal Day 2 is scored from the page-5 stop circles, read at 300 dpi: 14 of 18 checks pass. Stops 4, 5, and 12, and the No. 3 stop at the 10/11 row, do not match the circles. Those entries show no block that would force the circled order, so the misses are counted and not marked passed. Johnny Sky and the ventilation maps are not scored.
-- 2011 National Coal Day 2 is scored on the twelve team stops and the five missing persons the judges' map and the written stop order both place (17/17). Placards whose opening the 300 dpi read did not settle are not counted as passed. A barricade that does not answer is still opened when someone is missing, after the irrespirable air immediately outby it is removed (Rules 44F and 35).
-- 2024 National Coal Day 1 scores 32/32 on the judges' key that can be checked. Vents 1 and 2 clear the No. 1 and No. 3 explosive mixtures before either water is pumped: the No. 1 cave stops the team and does not seal the airway, so intake air moves up that entry without carrying the 5.7% mixture onto the ram car (Rule 31A), and the gas outby the airtight water can be winged from that separation (Rule 48E). A pump cable that is not yet energized is moved out of an explosive mixture before the pump energizes it (Rule 31D). After each water roofed is pumped, the airlock is put back because the fan is running (Rule 42); the 2024 judges cite Rule 31C for the explosive mixture that would move over a cave or unsafe roof, and the 2026 text of that rule is an unexplored area, with Rule 30F for the low oxygen. Face-down placards revealed only when a water placard is flipped are still not encoded.
-- Version 0.5.3.
 
 ## 0.5.2
 

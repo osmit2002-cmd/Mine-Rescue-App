@@ -126,11 +126,11 @@ ok((await page.inputValue('[aria-label="Question source"]')) === 'facts', 'bench
 ok((await page.locator('[aria-label="Question source"] option').allTextContents()).some((t) => /Parts/.test(t)), 'parts practice still offered');
 
 // Version in the footer and on About.
-ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.6.1', 'footer shows v0.6.1');
+ok((await page.textContent('[data-testid=footer-version]')).trim() === 'v0.6.2', 'footer shows v0.6.2');
 ok((await page.textContent('header .brand')).includes('Mine Rescue App'), 'header brand is Mine Rescue App');
 await page.goto(url + '#/about');
 await page.waitForSelector('[data-testid=app-version]');
-ok((await page.textContent('main')).includes('v0.6.1'), 'About shows v0.6.1');
+ok((await page.textContent('main')).includes('v0.6.2'), 'About shows v0.6.2');
 
 // Mine rescue: mock timed at 15 min by default (rule 3, p. 7); the toggle and a custom length are remembered.
 await page.goto(url + '#/');
