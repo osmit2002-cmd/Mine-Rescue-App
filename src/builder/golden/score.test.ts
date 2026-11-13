@@ -43,11 +43,12 @@ describe('solver accuracy', () => {
     expect(s.checks.filter((c) => c.captain).map((c) => c.id)).toEqual(['stop:0,2', 'stop:1,2', 'stop:2,2', 'stop:0,4', 'stop:2,4']);
   });
 
-  it('reports 2019 Day 1 with the stops that do not match', () => {
+  it('reports 2019 Day 1 with the stops that do not match, and the one superseded by 2026 Rule 44D', () => {
     const s = open.find((x) => x.id === 'national-2019-day1')!;
     expect(s.passed).toBe(11);
-    expect(s.total).toBe(16);
-    expect(s.checks.filter((c) => !c.ok).map((c) => c.id)).toEqual(['stop:2,1', 'stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']);
+    expect(s.total).toBe(15);
+    expect(s.checks.filter((c) => !c.ok && !c.superseded).map((c) => c.id)).toEqual(['stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']);
+    expect(s.checks.filter((c) => c.superseded).map((c) => c.id)).toEqual(['stop:2,1']);
   });
 
   it.each(OFFICIAL.map((f) => f.id))('%s scores 100%', (id) => {
@@ -70,9 +71,10 @@ describe('solver accuracy', () => {
 
   it('a superseded check is listed but not counted, and the newer text is cited', () => {
     const base = OPEN.find((f) => f.id === 'national-2019-day1')!;
+    expect(scoreFixture({ ...base, supersedes: [] }).total).toBe(16);
     const fixed: OfficialFixture = {
       ...base,
-      supersedes: [{ checks: ['stop:2,1'], by: 'national-2026-day2', newer: { id: 'b-card-44', name: 'Rule 44B', text: 'test' }, reason: 'test' }]
+      supersedes: [{ checks: ['stop:2,1'], by: 'national-2026-day2', older: { id: 'k', name: 'key', text: 'test' }, newer: { id: 'b-card-44', name: 'Rule 44B', text: 'test' }, reason: 'test' }]
     };
     const s = scoreFixture(fixed);
     const sup = s.checks.find((c) => c.id === 'stop:2,1')!;

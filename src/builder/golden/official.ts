@@ -350,6 +350,16 @@ export const OPEN: OfficialFixture[] = [
     reachRule: RULE_32,
     ventRule: RULE_35,
     withdrawalRule: RULE_31B,
-    foundRule: RULE_44A
+    foundRule: RULE_44A,
+    supersedes: [
+      {
+        checks: ['stop:2,1'],
+        by: 'figure-7',
+        older: { id: 'key-2019-day1', name: '2019 key, row 1', text: 'Briefing plus the team-stop map: row 1 is 1/2, 2/3, 1/2.' },
+        newer: RULE_44D,
+        reason:
+          'The 2019 row 1 numbers force No. 1 and No. 3 to be stops 1 and 2 and No. 2 to be stop 3. No. 2 is stop 3 only if the team leaves No. 1 at the first crosscut, back to the fresh air base, before it ties across into the unexplored No. 2 crosscut. The 2026 text says teams tying outby must tie across into adjacent unexplored entries first. The 2026 text wins.'
+      }
+    ]
   }
 ];

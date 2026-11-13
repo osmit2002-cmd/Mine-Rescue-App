@@ -32,6 +32,8 @@ export interface Supersession {
   checks: string[];
   /** Id of the newer fixture whose key or rule text wins. */
   by: string;
+  /** The older key's own line, verbatim, so the report shows what the older fixture said. */
+  older: RuleCite;
   /** The newer rule text, verbatim from content/rules.md or the newer key's citation. */
   newer: RuleCite;
   /** Why the newer text wins over the older key step. */
@@ -75,7 +77,7 @@ export interface ScoredCheck {
   /** Set when the check is a captain's-choice stop (JudgeKey.captainOrder). */
   captain?: boolean;
   /** Set when a newer key or rule overrides this older check. The check is listed but not counted. */
-  superseded?: { by: string; newer: RuleCite; reason: string };
+  superseded?: { by: string; older: RuleCite; newer: RuleCite; reason: string };
 }
 
 export interface ProblemScore {

@@ -52,7 +52,7 @@ export function scoreSolution(sol: Solution, fix: OfficialFixture): ProblemScore
   for (const c of checks) {
     if (c.ok) continue;
     const s = (fix.supersedes ?? []).find((x) => x.checks.includes(c.id));
-    if (s) c.superseded = { by: s.by, newer: s.newer, reason: s.reason };
+    if (s) c.superseded = { by: s.by, older: s.older, newer: s.newer, reason: s.reason };
   }
   const counted = checks.filter((c) => !c.superseded);
   const passed = counted.filter((c) => c.ok).length;
@@ -99,7 +99,7 @@ export function formatScore(s: ProblemScore): string {
   }
   for (const c of s.checks.filter((x) => x.superseded)) {
     lines.push(`  superseded (not counted): ${c.what}; expected ${c.expected}; got ${c.got}`);
-    lines.push(`    older: ${c.rule.name}: “${c.rule.text}”`);
+    lines.push(`    older (${c.superseded!.older.name}): “${c.superseded!.older.text}”`);
     lines.push(`    newer (${c.superseded!.by}): ${c.superseded!.newer.name}: “${c.superseded!.newer.text}”`);
     lines.push(`    why: ${c.superseded!.reason}`);
   }
