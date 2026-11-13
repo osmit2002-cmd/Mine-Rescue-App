@@ -6,14 +6,21 @@ import { FIGURE7_STOPS, figure7 } from './samples';
 import { solve } from './solve';
 
 /**
- * Checks each reference case still fails today, by check id. When a solver change fixes one, remove it here; when a
- * change breaks a check that passed, the test fails. Either way the diff shows the solver's progress against the
- * judges.
+ * Check ids that still disagree with the judge key. Empty means the solver matches every checked point.
+ * When a solver change fixes one, remove it here; when a change breaks a check that passed, the test fails.
  */
 const KNOWN_GAPS: Record<string, string[]> = {
-  // Row 4: the judges go No. 2 (10, the barricade), No. 3 (11), then No. 1 (12, after the second vent). The solver
-  // advances No. 1 first from stop 9 and so reaches the No. 2 barricade one stop late.
-  'post5-2016-day1': ['stop:1,4', 'stop:2,4', 'stop:0,4', 'rescue:person-n2']
+  'post5-2016-day1': [],
+  // 2026 Day 2. The page-5 circles put stop 4 in No. 3 and stop 5 in No. 2, and stop 12 in No. 1 with 10/11
+  // in the other two entries. Rule 44B gives the team the option of which contaminated entry to examine first,
+  // and both row 2 and row 4 have contaminants ahead in more than one entry, so the key's stops are a captain's
+  // choice in those groups (JudgeKey.captainOrder). No known gaps.
+  'national-2026-day2': [],
+  // 2019 Day 1. The briefing's fixed stops (3 in No. 3 at the first crosscut, 6 in No. 3, 9 in No. 1) are the
+  // ones the lowest-open-entry order does not hit. stop:2,1 (No. 3 at the first crosscut) is superseded by 2026
+  // Rule 44D and is not counted in the golden score, but it still fails against the judge key, so it stays listed
+  // here. The other four stops are counted failures.
+  'national-2019-day1': ['stop:2,1', 'stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']
 };
 
 describe('judge key comparison', () => {
@@ -75,10 +82,11 @@ describe.each(CASES)('reference case $id', (c) => {
     expect(sol.checks.filter((k) => k.level === 'error')).toEqual([]);
   });
 
-  it('accounts for every missing person', () => {
+  it('accounts for every missing person the key requires the team to reach', () => {
     const persons = p.elements.filter((e) => e.kind === 'person' || e.kind === 'body').map((e) => e.id);
     expect(persons.length).toBe(p.missing);
-    expect(persons.filter((id) => !sol.plan.found.has(id))).toEqual([]);
+    const required = c.key.find ? persons.filter((id) => c.key.find!.includes(id)) : persons;
+    expect(required.filter((id) => !sol.plan.found.has(id))).toEqual([]);
   });
 
   it('matches the judge key except for the known gaps', () => {

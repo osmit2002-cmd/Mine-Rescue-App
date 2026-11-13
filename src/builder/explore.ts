@@ -5,7 +5,11 @@
  * Move order (Rules 29 and 44):
  *   1. When tying outby and an unexplored open crosscut is at this intersection, tie across first (Rule 44D).
  *   2. Explore outby areas before advancing inby: the lowest crosscut row goes first (Rules 29, 44D, 44E).
- *   3. Prefer the contaminated entry/crosscut or entries next to it (Rule 44B, 44C).
+ *      Where a crosscut is blocked by a stopping or door, do not advance beyond the inby corner of the
+ *      second crosscut until that crosscut is tied into (Rule 44E).
+ *   3. Prefer the contaminated entry or the entries next to it (Rule 44B, 44C). Once the team has reached
+ *      the intersection where a contaminant ends, further moves in that entry wait while another entry is
+ *      still contaminated ahead (Rule 44B).
  *   4. Then the shortest travel through explored workings.
  * Live persons are taken to the FAB as soon as they can be reached (Rule 41). Explosive mixture plus evidence of
  * fire, or energized equipment in an explosive mixture, stops exploration (Rule 31B). When nothing is left,
@@ -20,7 +24,8 @@ import { nodeName, type Port } from './geometry';
 import { buildGraph, endOf, otherEnd, subOfPlaced, type Board, type Graph, type Placed } from './graph';
 import { entryName, xcName, type El } from './model';
 import { classifyGas, gasReasons, isAirtight, isIgnition, travelBlock } from './rules';
-import { emptyVentState, planVent, type VentPlan, type VentState } from './ventplan';
+import { airflow, ventFindings } from './vent';
+import { boardWith, emptyVentState, planVent, type VentPlan, type VentState } from './ventplan';
 
 export interface Action {
   text: string;
@@ -29,7 +34,7 @@ export interface Action {
   level?: 'info' | 'must' | 'danger';
 }
 
-export type StepKind = 'fab' | 'stop' | 'recover' | 'ventilate' | 'breach' | 'support' | 'pump' | 'withdraw' | 'done';
+export type StepKind = 'fab' | 'stop' | 'recover' | 'ventilate' | 'breach' | 'support' | 'pump' | 'move' | 'airlock' | 'withdraw' | 'done';
 
 export interface Step {
   kind: StepKind;
@@ -87,6 +92,8 @@ export function explore(board: Board): Plan {
   const topo = board.topo;
   const W = p.layout.entryWidth;
   const removed = new Set<string>();
+  /** Cables moved out of an explosive mixture before they are energized (Rule 31D). */
+  const relocated = new Set<string>();
   const changed = new Map<string, string>();
   const active = (el: El) => !removed.has(el.id);
   const approach = approachSides(board);
@@ -109,6 +116,11 @@ export function explore(board: Board): Plan {
   const found = new Map<string, number>();
   const recovered = new Set<string>();
   const pendingPatients = new Map<string, string>(); // person id → note already given
+  const heldBarricades = new Set<string>();
+  // Explosive mixtures that have no safe course yet. Cleared after a new team stop, a breach, or a pump.
+  const ventFailed = new Set<string>();
+  /** Explosive mixtures whose own air can never leave without crossing an ignition source or the fresh air base. */
+  const ventStuck = new Set<string>();
   let withdrawal: Plan['withdrawal'] = null;
   let stopNo = 0;
 
@@ -333,7 +345,9 @@ export function explore(board: Board): Plan {
             out.push(A(`${name}: record the note's information on the map (one X per note).`, ['a-card-5']));
             break;
           case 'timbers':
-            out.push(A(`${name}${el.count ? ` (${el.count})` : ''}: roof supports available — if a patient is under or beyond unsafe roof, the team must use them.`, ['b-card-41', 'b-card-30'], 'info'));
+            if ((el.count ?? 1) <= 0)
+              out.push(A(`${name}: the placard says these cannot be used as the required roof supports.`, ['b-card-30'], 'info'));
+            else out.push(A(`${name} (${el.count ?? 1}): roof supports available — if a patient is under or beyond unsafe roof, the team must use them.`, ['b-card-41', 'b-card-30'], 'info'));
             break;
           case 'pump':
             out.push(A(`${name}: if a patient is beyond water over knee deep, stop, take the pump and pump the water.`, ['b-card-41'], 'info'));
@@ -366,6 +380,12 @@ export function explore(board: Board): Plan {
   const underBlock = (q: Placed): Placed | null => {
     if (q.loc.type !== 'edge') return null;
     return blocksOn(q.loc.edge).find((b) => b !== q && q.s >= b.s0 - 0.5 && q.s <= b.s1 + 0.5) ?? null;
+  };
+
+  /** Unsafe roof (rib to rib or elongated) whose placard covers this element. Rule 32, Figure 3. */
+  const roofOver = (q: Placed): Placed | null => {
+    if (q.loc.type !== 'edge') return null;
+    return (board.onEdge.get(q.loc.edge) ?? []).find((b) => b.el.kind === 'unsafe-roof' && q.s >= b.s0 - 0.5 && q.s <= b.s1 + 0.5) ?? null;
   };
 
   /** Can the team reach this element from explored workings without passing a block? */
@@ -445,6 +465,29 @@ export function explore(board: Board): Plan {
   /** Known contaminant locations (from hazards whose placard has been found). */
   const knownContam = () => hz.filter((h) => h.cls.contaminant && found.has(h.el.id));
 
+  /**
+   * Rule 44B, second paragraph: once the team has reached the intersection where a contaminant ends, further
+   * advances stay in an entry that is still contaminated or next to it. `cleared` = the team is already on the
+   * inby side of an impassable contaminant. `ahead` = that inby side has not been reached.
+   */
+  const contamProgress = (): { ahead: Set<number>; cleared: Set<number> } => {
+    const ahead = new Set<number>();
+    const cleared = new Set<number>();
+    for (const h of knownContam()) {
+      for (const eid of h.extent.edges.keys()) {
+        const ed = edge(eid);
+        const ends = g.ends.get(eid);
+        if (!ed.vertical || !ends || passable(eid)) continue;
+        const i = topo.nodes.get(ed.a)?.i;
+        if (i === undefined) continue;
+        if (explored(ends[1])) cleared.add(i);
+        else ahead.add(i);
+      }
+    }
+    for (const i of ahead) cleared.delete(i);
+    return { ahead, cleared };
+  };
+
   const contamEntries = () => {
     const out = new Set<number>();
     for (const h of knownContam()) {
@@ -496,9 +539,31 @@ export function explore(board: Board): Plan {
     key: number[];
   }
 
+  /**
+   * Rule 44E: where a crosscut is blocked by a stopping or a door, No. 5 may not advance beyond the inby
+   * corner of the second crosscut until the team ties across or behind into that crosscut. Barricades are
+   * not this limit (a barricade with no response and irrespirable air outby is excluded by the rule).
+   */
+  const pastTwoBreak = (destRow: number): boolean => {
+    for (const [eid, [a, b]] of g.ends) {
+      if (edge(eid).vertical) continue;
+      for (const blk of blocksOn(eid)) {
+        if (travelBlock(blk.el)!.type !== 'separation' || blk.el.kind === 'barricade') continue;
+        const fromA = explored(a);
+        const fromB = explored(b);
+        if (fromA === fromB) continue;
+        const beyond = fromA ? b : a;
+        if (isEnd(beyond) || explored(beyond)) continue;
+        if (destRow > rowOf(fromA ? a : b) + 1) return true;
+      }
+    }
+    return false;
+  };
+
   const candidates = (): Cand[] => {
     const paths = travel(cur);
     const ce = contamEntries();
+    const { ahead, cleared } = contamProgress();
     const contamEdges = new Set(knownContam().flatMap((h) => [...h.extent.edges.keys()]));
     const out: Cand[] = [];
     for (const u of exploredSubs) {
@@ -511,10 +576,16 @@ export function explore(board: Board): Plan {
         const e = edge(eid);
         const fresh = !explored(v);
         if (forced && eid !== forced) continue;
+        if (fresh && e.vertical && rowOf(v) > rowOf(u) && pastTwoBreak(rowOf(v))) continue;
         const tieAcross = lastDir === 'outby' && u === cur && !e.vertical ? 0 : 1;
         const rank = fresh ? rowOf(v) : Math.min(rowOf(u), rowOf(v));
         const vi = colOf(v);
-        const contam = contamEdges.has(eid) || (e.vertical && (ce.has(vi) || ce.has(vi - 1) || ce.has(vi + 1))) ? 0 : 1;
+        // 0 = preferred. 1 = ordinary. 2 = this entry's contaminant has already ended, and another entry is
+        // still contaminated ahead, so Rule 44B says to advance there (or next to it) instead of going deeper here.
+        let contam = contamEdges.has(eid) || (e.vertical && (ce.has(vi) || ce.has(vi - 1) || ce.has(vi + 1))) ? 0 : 1;
+        if (!ce.size) contam = 0;
+        // The contaminant in this entry has ended and another entry is still contaminated ahead (Rule 44B).
+        if (fresh && cleared.has(vi) && ahead.size && !contamEdges.has(eid)) contam = 2;
         out.push({ u, e: eid, v, fresh, key: [tieAcross, rank, contam, Math.round(pu.d), e.vertical ? 1 : 0, vi] });
       }
     }
@@ -577,6 +648,13 @@ export function explore(board: Board): Plan {
 
   // ------------------------------------------------------------ patients and withdrawal
 
+  /** Rule 35: irrespirable air still sitting immediately outby an airtight barricade. */
+  const irrespirableImmediatelyOutby = (blk: Placed): boolean => {
+    if (blk.loc.type !== 'edge') return false;
+    const where = blk.loc.edge;
+    return hz.some((h) => h.cls.irrespirable && (h.extent.edges.get(where) ?? []).some(([a, b]) => a <= blk.s1 + 2 && b >= blk.s0 - 2));
+  };
+
   const handlePatients = (): boolean => {
     let acted = false;
     for (const [id] of found) {
@@ -633,11 +711,23 @@ export function explore(board: Board): Plan {
     if (acted) return true;
     // Verbal contact at a barricade: the persons behind it must be reached promptly (Rule 41A) — after any patient
     // already reached is on the way out (Rule 41B: no ventilation controls while removing a patient).
-    for (const [id] of found) {
-      const q = board.placed.get(id);
-      if (q?.el.kind === 'barricade' && q.el.response && active(q.el)) {
+    // A barricade that does not answer is still opened once the accessible areas are explored and someone is
+    // missing (Rule 44F), after the irrespirable air immediately outby it is removed (Rule 35).
+    const barricades = [...found.keys()]
+      .map((id) => board.placed.get(id))
+      .filter((q): q is Placed => !!q && q.el.kind === 'barricade' && active(q.el));
+    const stillMissing = p.missing > personsTotal();
+    for (const q of [...barricades.filter((q) => q.el.response), ...(stillMissing ? barricades.filter((q) => !q.el.response) : [])]) {
+      if (q.el.kind === 'barricade') {
         ventBefore(q);
-        resolve(q, 'breach', 'Verbal contact at the barricade: airlock and breach to reach the persons');
+        if (q.el.airtight !== false && irrespirableImmediatelyOutby(q)) {
+          if (!heldBarricades.has(q.el.id)) {
+            heldBarricades.add(q.el.id);
+            steps[steps.length - 1].notes.push('Irrespirable atmosphere immediately outby the barricade: do not breach it until that air is removed (Rule 35).');
+          }
+          continue;
+        }
+        resolve(q, 'breach', q.el.response ? 'Verbal contact at the barricade: airlock and breach to reach the persons' : 'Persons still missing: airlock and breach the barricade that did not answer');
         return true;
       }
     }
@@ -662,6 +752,23 @@ export function explore(board: Board): Plan {
   // ------------------------------------------------------------ ventilation
 
   /**
+   * Water roofed the team has reached and not yet pumped. It is still an airtight seal (Rule 42). The barricade
+   * ventilation waits until that water is pumped, so the fan is not left drawing through an opening the team
+   * has not finished with.
+   */
+  const waterHidesGround = (): boolean => {
+    for (const [eid, [a, b]] of g.ends) {
+      for (const blk of blocksOn(eid)) {
+        if (blk.el.kind !== 'water' || !blk.el.roofed || removed.has(blk.el.id)) continue;
+        const fromA = explored(a) && seenOf(eid).a >= blk.s0 - 0.5;
+        const fromB = explored(b) && seenOf(eid).b <= blk.s1 + 0.5;
+        if (fromA || fromB) return true;
+      }
+    }
+    return false;
+  };
+
+  /**
    * Irrespirable air between the team and a barricade must be removed before it is breached (Rule 35). Ventilate
    * every explosive or irrespirable placard on that side, explosive mixtures first, with the ventilation planner.
    */
@@ -673,9 +780,32 @@ export function explore(board: Board): Plan {
     const between = (board.onEdge.get(where) ?? []).filter((x) => x.el.kind === 'gas' || x.el.kind === 'smoke').filter((x) => (fromA ? x.s <= blk.s0 : x.s >= blk.s1) && found.has(x.el.id) && !cleared.has(x.el.id));
     const bad = between.map((x) => hz.find((h) => h.el.id === x.el.id)!).filter((h) => h && (h.cls.explosive || h.cls.irrespirable));
     if (!bad.some((h) => h.cls.irrespirable)) return;
+    // Pump water that still hides unexplored ground before ventilating this barricade. Opening it first can pull
+    // irrespirable air through those areas while persons are unaccounted for (Rule 30F), and the persons behind
+    // the water can be reached with the pump (Rule 44F, Rule 41).
+    if (p.missing > personsTotal() && pumpAvailable() && waterHidesGround()) return;
+    // Rule 31A: a ventilation change must not drag an explosive mixture over an ignition source. Clear the
+    // explosive mixtures that already have a safe course before moving the irrespirable air at this barricade.
+    const otherExplosive = hz.some((h) => h.cls.explosive && found.has(h.el.id) && !cleared.has(h.el.id) && !bad.includes(h) && !ventFailed.has(h.el.id) && !ventStuck.has(h.el.id));
+    if (otherExplosive) return;
     bad.sort((x, y) => Number(y.cls.explosive) - Number(x.cls.explosive));
     for (const h of bad) {
       ventState.removed = new Set([...removed, ...recovered]);
+      // An explosive mixture outby a breached airtight separation, with irrespirable air inby it, is winged
+      // with that separation put back up (Rule 48E). It comes back down before the inby atmosphere is moved.
+      const gasP = between.find((x) => x.el.id === h.el.id);
+      let rebuild: Placed | null = null;
+      if (h.cls.explosive && gasP) {
+        rebuild =
+          (board.onEdge.get(where) ?? []).find((p) => {
+            if (!removed.has(p.el.id) || !isAirtight(p.el)) return false;
+            if (p.el.kind !== 'barricade' && p.el.kind !== 'temp-stopping' && p.el.kind !== 'perm-stopping') return false;
+            const splits = fromA ? p.s > gasP.s + 0.5 && p.s < blk.s0 - 0.5 : p.s < gasP.s - 0.5 && p.s > blk.s1 + 0.5;
+            if (!splits) return false;
+            return between.some((x) => (fromA ? x.s > p.s : x.s < p.s) && hz.some((z) => z.el.id === x.el.id && z.cls.irrespirable));
+          }) ?? null;
+        if (rebuild) ventState.removed.delete(rebuild.el.id);
+      }
       const ctx = {
         explored: new Set([...exploredSubs].map((s) => sub(s).base)),
         seen: spansOf(),
@@ -684,9 +814,31 @@ export function explore(board: Board): Plan {
         removedPersons: new Set(recovered),
         protect: new Set([...board.placed.values()].filter((x) => x.el.kind === 'body' && !/BODY/i.test(x.el.text ?? '')).map((x) => x.el.id))
       };
-      const plan = planVent(board, h.el.id, ctx, ventState);
+      let plan = planVent(board, h.el.id, ctx, ventState);
+      if (!plan.ok && ventState.built.length) {
+        const opened = planVent(board, h.el.id, ctx, { ...ventState, built: [] });
+        if (opened.ok) {
+          opened.steps.unshift({ kind: 'build', text: 'Take down the temporary stoppings built for the earlier ventilation. A structure that is moved is dismantled first, and this change replaces them.', rules: ['b-card-43'] });
+          ventState.built = [];
+          plan = opened;
+        }
+      }
+      if (rebuild && !plan.ok) {
+        ventState.removed.add(rebuild.el.id);
+        plan = planVent(board, h.el.id, ctx, ventState);
+        rebuild = null;
+      }
       const step = newStep('ventilate', `Ventilate before breaching — ${h.cls.explosive ? 'explosive mixture' : 'irrespirable air'} at placard ${placardText(h.el)}`, [cur]);
       step.subject = h.el.id;
+      if (rebuild) {
+        step.actions.push({
+          text: `Put the ${elementName(rebuild.el)} “${placardText(rebuild.el)}” back up, as a temporary stopping, so this explosive mixture can be winged from an airtight separation. Take it down again before ventilating the atmosphere inby it.`,
+          rules: ['b-card-48', 'b-card-35', 'b-card-43'],
+          el: rebuild.el.id,
+          level: 'must'
+        });
+      }
+      if (!plan.ok) console.log('BEFORE FAIL', h.el.id, plan.why);
       if (plan.ok) {
         step.actions.push(...plan.steps.map((s): Action => ({ text: s.text, rules: s.rules, el: s.el, level: s.kind === 'course' ? 'info' : 'must' })));
         ventState.built.push(...plan.built);
@@ -694,20 +846,120 @@ export function explore(board: Board): Plan {
         cleared.set(h.el.id, steps.length);
         changed.set(h.el.id, 'gas removed by ventilation');
         hz = hzAll.filter((x) => !cleared.has(x.el.id));
-      } else {
-        step.notes.push(`No safe ventilation found: ${plan.why}`);
+        vents.push({ step: steps.length, plan });
+        pushStep(step);
       }
-      vents.push({ step: steps.length, plan });
-      pushStep(step);
+      // A course that is not safe is not a ventilation change. It is tried again after the mine changes.
     }
   }
 
   // ------------------------------------------------------------ resolving blocks
 
+  /** Nearest explored intersection that is not inside an explosive mixture. */
+  const safeSpotFor = (q: Placed) => {
+    const explosiveThere = (id: string) =>
+      hz.some((h) => h.cls.explosive && !cleared.has(h.el.id) && [...h.extent.nodes].some((s) => s === id || s.startsWith(`${id}#`)));
+    const seenNode = (id: string) => [...exploredSubs].some((s) => s === id || s.startsWith(`${id}#`));
+    let best: { id: string; x: number; y: number; fab: boolean } | null = null;
+    let bestD = Infinity;
+    for (const node of board.topo.nodes.values()) {
+      if (node.end || !seenNode(node.id) || explosiveThere(node.id)) continue;
+      const d = (node.x - q.el.x) ** 2 + (node.y - q.el.y) ** 2 + (node.fab ? 1e6 : 0);
+      if (d < bestD) {
+        bestD = d;
+        best = node;
+      }
+    }
+    return best;
+  };
+  /**
+   * A cable that is not yet energized and lies in an explosive mixture is moved out of that mixture before
+   * the pump energizes it (Rule 31D). The mixture itself is left where it is.
+   */
+  const moveCablesBeforeEnergizing = () => {
+    for (const q of [...board.placed.values()]) {
+      if (relocated.has(q.el.id) || !found.has(q.el.id)) continue;
+      if (q.el.kind !== 'x' || q.el.sub !== 'cable' || q.el.energized !== false) continue;
+      if (!hz.some((h) => h.cls.explosive && !cleared.has(h.el.id) && contains(h.extent, airG, q))) continue;
+      const spot = safeSpotFor(q);
+      if (!spot) continue;
+      if (q.loc.type === 'edge') {
+        const list = board.onEdge.get(q.loc.edge);
+        const i = list?.indexOf(q) ?? -1;
+        if (list && i >= 0) list.splice(i, 1);
+      } else if (q.loc.type === 'node') {
+        const list = board.onNode.get(q.loc.node);
+        const i = list?.indexOf(q) ?? -1;
+        if (list && i >= 0) list.splice(i, 1);
+      }
+      q.el.x = spot.x;
+      q.el.y = spot.y;
+      q.loc = { type: 'node', node: spot.id };
+      q.s = 0;
+      q.s0 = 0;
+      q.s1 = 0;
+      board.onNode.set(spot.id, [...(board.onNode.get(spot.id) ?? []), q]);
+      relocated.add(q.el.id);
+      const step = newStep('move', `Move ${elementName(q.el)} out of the explosive mixture before it is energized`, [cur]);
+      step.subject = q.el.id;
+      step.actions.push({
+        text: `Move the ${elementName(q.el).toLowerCase()}${placardText(q.el) ? ` “${placardText(q.el)}”` : ''} to ${nodeName(board.topo, spot.id)}, out of the explosive mixture, and note the ignition source as relocated. Do not energize it until it is out of the mixture.`,
+        rules: ['b-card-31', 'a-card-5'],
+        el: q.el.id,
+        level: 'must'
+      });
+      pushStep(step);
+    }
+  };
+  /**
+   * After pumping water roofed, put the airlock back when leaving it down would let the running fan move an
+   * explosive mixture over an unexplored area (Rule 31C) or irrespirable air over unexplored ground while
+   * persons are missing (Rule 30F). Rule 42 requires the airlock on the way out in that case. The 2024 judges
+   * cite Rule 31C for the same moment, worded there as the mixture moving over a cave or unsafe roof.
+   */
+  const unexploredDanger = (removedIds: Set<string>) => {
+    const b = boardWith(board, { ...ventState, removed: removedIds });
+    const af = airflow(b);
+    const live = hazards(b).filter((h) => !cleared.has(h.el.id));
+    return ventFindings(b, af, live, ventCtx()).filter((f) => f.level === 'danger' && /unexplored/i.test(f.text));
+  };
+  /**
+   * The fan is already running, so leaving the pumped opening down changes the ventilation. Rule 42 requires
+   * the airlock on the way out in that case. The 2026 reason it is unsafe is Rule 31C when the change moves
+   * an explosive mixture over unexplored ground, and Rule 30F when it moves irrespirable air over unexplored
+   * ground while persons are missing. The 2024 judges cite Rule 31C for this moment, worded there as the
+   * mixture moving over a cave or unsafe roof.
+   */
+  const airlockBackOut = (blk: Placed) => {
+    const el = blk.el;
+    const fanOn = [...board.placed.values()].some((q) => q.el.kind === 'fan' && (q.el.on !== false || ventState.fanOn));
+    if (!fanOn) return;
+    const open = new Set([...removed, ...recovered]);
+    const closed = new Set(open);
+    closed.delete(el.id);
+    const before = new Set(unexploredDanger(closed).map((f) => f.text));
+    const fresh = unexploredDanger(open).filter((f) => !before.has(f.text));
+    const id = `airlock-${el.id}`;
+    ventState.built.push({ id, kind: 'temp-stopping', x: el.x, y: el.y, intact: true, airtight: true, text: 'TEMPORARY STOPPING (AIRLOCK BACK OUT)' });
+    const why = fresh.length
+      ? fresh[0].text
+      : 'Leaving the opening down would let the running fan draw intake air through ground the team has not finished.';
+    const step = newStep('airlock', `Airlock back out after pumping ${elementName(el)}`, [cur]);
+    step.subject = el.id;
+    step.actions.push({
+      text: `Put the airlock back before leaving this opening. The fan is running, so leaving it down changes the ventilation (Rule 42). That change moves explosive mixture over an unexplored area (Rule 31C) and can move irrespirable air over unexplored ground while persons are unaccounted for (Rule 30F). ${why}`,
+      rules: ['b-card-42', 'b-card-31', 'b-card-30'],
+      el: id,
+      level: 'must'
+    });
+    pushStep(step);
+  };
+
   function resolve(blk: Placed, kind: 'breach' | 'support' | 'pump', title: string) {
     const el = blk.el;
     const info = travelBlock(el)!;
     const where = blk.loc.type === 'edge' ? blk.loc.edge : null;
+    if (kind === 'pump') moveCablesBeforeEnergizing();
     const step = newStep(kind, `${title} — ${elementName(el)}${placardText(el) ? ` “${placardText(el)}”` : ''}`, [cur]);
     step.subject = el.id;
     if (kind === 'support') {
@@ -748,11 +1000,104 @@ export function explore(board: Board): Plan {
       for (const s of g.subsOf.get(blk.loc.node) ?? []) describeFound(step, nodeItems(s));
     }
     pushStep(step);
+    if (kind === 'pump' && el.roofed) airlockBackOut(blk);
   }
 
   // ------------------------------------------------------------ main loop
 
   const personsTotal = () => [...found.keys()].filter((id) => ['person', 'body'].includes(board.placed.get(id)?.el.kind ?? '')).length;
+  const timberedRoofs = new Set<string>();
+  /**
+   * Bodies under unsafe roof are timbered to after every missing person has been found, and before the clock
+   * stops (Rule 32). Doing it before the next team stop keeps it ahead of any exploration still left.
+   */
+  const timberBodies = (): boolean => {
+    if (personsTotal() < p.missing || !timbersAvailable()) return false;
+    for (const id of found.keys()) {
+      const q = board.placed.get(id);
+      if (q?.el.kind !== 'body') continue;
+      const roof = roofOver(q);
+      if (!roof || timberedRoofs.has(roof.el.id) || changed.get(roof.el.id) === 'roof supported') continue;
+      timberedRoofs.add(roof.el.id);
+      const step = newStep('support', `Timber to the body under unsafe roof and examine it`, [cur]);
+      step.subject = id;
+      step.actions.push({
+        text: `All missing persons are accounted for: timber to the body under unsafe roof${placardText(roof.el) ? ` (“${placardText(roof.el)}”)` : ''} and examine it before the clock is stopped. Timbers the placard says cannot be used are not counted.`,
+        rules: ['b-card-32', 'b-card-30'],
+        el: id,
+        level: 'must'
+      });
+      changed.set(roof.el.id, 'roof supported');
+      pushStep(step);
+      return true;
+    }
+    return false;
+  };
+  const ventCtx = () => ({
+    explored: new Set([...exploredSubs].map((s) => sub(s).base)),
+    seen: spansOf(),
+    unaccounted: Math.max(0, p.missing - personsTotal()),
+    extinguished: new Set([...changed].filter(([, w]) => w === 'extinguished').map(([id]) => id)),
+    removedPersons: new Set(recovered),
+    protect: new Set([...board.placed.values()].filter((x) => x.el.kind === 'body' && !/BODY/i.test(x.el.text ?? '')).map((x) => x.el.id))
+  });
+  /**
+   * Ventilate explosive mixtures that already have a safe course before a pump is energized (Rules 31A and 31D).
+   * A course that does not need the water opened is legal while the water is still there: the gas outby an
+   * airtight water roofed can be cleared from that separation (Rule 48E), and the change must not carry a
+   * different explosive mixture onto an ignition source (Rule 31A). Mixtures on the same edge as a barricade
+   * that is still up stay with that breach (Rule 35, Rule 48E). One mixture per pass.
+   */
+  const ventilateFoundExplosive = (): boolean => {
+    const ready = hz.filter((h) => {
+      if (!h.cls.explosive || !found.has(h.el.id) || cleared.has(h.el.id) || ventFailed.has(h.el.id) || ventStuck.has(h.el.id)) return false;
+      const q = board.placed.get(h.el.id);
+      if (q?.loc.type === 'edge' && (board.onEdge.get(q.loc.edge) ?? []).some((p) => p.el.kind === 'barricade' && active(p.el) && !removed.has(p.el.id))) return false;
+      return true;
+    });
+    ready.sort((a, b) => (found.get(a.el.id) ?? 0) - (found.get(b.el.id) ?? 0));
+    const firstPump = steps.findIndex((s) => s.kind === 'pump');
+    const pumpsStillOpen = waterHidesGround();
+    for (const h of ready) {
+      // Mixtures found by opening a water stay until every reached water roofed is pumped. The mixtures
+      // already found, whose safe course does not need that water opened, are cleared first (Rules 31A, 48E).
+      if (pumpsStillOpen && firstPump >= 0 && (found.get(h.el.id) ?? 0) > firstPump) continue;
+      ventState.removed = new Set([...removed, ...recovered]);
+      let plan = planVent(board, h.el.id, ventCtx(), ventState);
+      if (!plan.ok && ventState.built.length) {
+        const opened = planVent(board, h.el.id, ventCtx(), { ...ventState, built: [] });
+        if (opened.ok) {
+          opened.steps.unshift({ kind: 'build', text: 'Take down the temporary stoppings built for the earlier ventilation. A structure that is moved is dismantled first, and this change replaces them.', rules: ['b-card-43'] });
+          ventState.built = [];
+          plan = opened;
+        }
+      }
+      if (!plan.ok) {
+        // This mixture's own air cannot leave without crossing an ignition source or the fresh air base.
+        // That does not change when a pump opens a different opening, so it is not retried, and it does not
+        // hold up a later mixture that has its own safe course (Rule 31A).
+        const stuck = /contaminated air would leave into|no fresh air reaches|sealed off/i.test(plan.why ?? '');
+        if (stuck) {
+          ventStuck.add(h.el.id);
+          continue;
+        }
+        ventFailed.add(h.el.id);
+        return false;
+      }
+      const step = newStep('ventilate', `Ventilate explosive mixture at placard ${placardText(h.el)} before it is moved over an ignition source or a pump is energized in it`, [cur]);
+      step.subject = h.el.id;
+      step.actions.push(...plan.steps.map((s): Action => ({ text: s.text, rules: s.rules, el: s.el, level: s.kind === 'course' ? 'info' : 'must' })));
+      ventState.built.push(...plan.built);
+      ventState.fanOn = true;
+      cleared.set(h.el.id, steps.length);
+      changed.set(h.el.id, 'gas removed by ventilation');
+      hz = hzAll.filter((x) => !cleared.has(x.el.id));
+      vents.push({ step: steps.length, plan });
+      pushStep(step);
+      return true;
+    }
+    return false;
+  };
   let guard = 0;
   outer: while (guard++ < 2000) {
     // 1. Explore everything reachable.
@@ -769,6 +1114,7 @@ export function explore(board: Board): Plan {
         pushStep(step);
         break outer;
       }
+      if (timberBodies()) continue;
       const cands = candidates();
       if (!cands.length) {
         if (forced) {
@@ -782,7 +1128,10 @@ export function explore(board: Board): Plan {
       const route = [...routeTo(paths, c.u), c.v];
       const e = edge(c.e);
       const dir: Step['dir'] = e.vertical ? (rowOf(c.v) > rowOf(c.u) ? 'inby' : 'outby') : 'across';
-      if (c.fresh) stopNo++;
+      if (c.fresh) {
+        stopNo++;
+        ventFailed.clear();
+      }
       const title = c.fresh
         ? `${dir === 'inby' ? 'Advance' : dir === 'outby' ? 'Tie outby' : 'Tie across'} to ${subName(c.v)}`
         : `${dir === 'across' ? 'Tie across' : dir === 'outby' ? 'Tie outby' : 'Travel'} through ${portName(c.u, c.e)} to ${subName(c.v)} (already explored)`;
@@ -851,11 +1200,16 @@ export function explore(board: Board): Plan {
       }
     }
     sepCands.sort((x, y) => x.pri - y.pri);
-    const sep = sepCands.find((x) => x.blk.el.kind === 'barricade' && x.blk.el.response) ?? sepCands[0];
+    const canBreach = (blk: Placed) => !(blk.el.kind === 'barricade' && blk.el.airtight !== false && irrespirableImmediatelyOutby(blk));
+    const sep = sepCands.find((x) => canBreach(x.blk) && x.blk.el.kind === 'barricade' && x.blk.el.response) ?? sepCands.find((x) => canBreach(x.blk));
     if (sep) {
       resolve(sep.blk, 'breach', sep.blk.el.kind === 'barricade' && sep.blk.el.response ? 'Airlock and breach to reach the persons who answered' : 'Airlock through to explore the accessible area behind');
+      ventFailed.clear();
       continue;
     }
+    // A barricade is waiting on its ventilation. Clear explosive mixtures that already have a safe course
+    // before that change drags them over an ignition source (Rule 31A).
+    if (heldBarricades.size > 0 && ventilateFoundExplosive()) continue;
     // 3. Rule 44F: inaccessible areas only while missing persons are unaccounted for.
     if (missingLeft) {
       const fixes: Placed[] = [];
@@ -866,7 +1220,9 @@ export function explore(board: Board): Plan {
           if (!((info.fix === 'timber' && timbersAvailable()) || (info.fix === 'pump' && pumpAvailable()))) continue;
           const reached = (explored(a) && seenOf(eid).a >= blk.s0) || (explored(b) && seenOf(eid).b <= blk.s1);
           if (!reached) continue;
-          if (explored(a) && explored(b) && !isEnd(a) && !isEnd(b)) continue;
+          // Water roofed is an airtight seal. Pump it even when the team already reached the far side by another
+          // route, so intake air can move (Rule 42). Other inaccessible conditions are opened only to explore.
+          if (explored(a) && explored(b) && !isEnd(a) && !isEnd(b) && !(blk.el.kind === 'water' && blk.el.roofed)) continue;
           fixes.push(blk);
         }
       }
@@ -874,27 +1230,16 @@ export function explore(board: Board): Plan {
         const blk = fixes[0];
         const info = travelBlock(blk.el)!;
         resolve(blk, info.fix === 'pump' ? 'pump' : 'support', info.fix === 'pump' ? 'Missing persons unaccounted for: pump the water to explore beyond it' : 'Missing persons unaccounted for: support the unsafe roof to explore beyond it');
-        steps[steps.length - 1].actions.unshift({ text: 'All accessible areas are explored and missing persons are still unaccounted for, so inaccessible areas must be explored where the problem provides the materials.', rules: ['b-card-44'], level: 'must' });
+        ventFailed.clear();
+        [...steps].reverse().find((s) => s.kind === 'pump' || s.kind === 'support')?.actions.unshift({ text: 'All accessible areas are explored and missing persons are still unaccounted for, so inaccessible areas must be explored where the problem provides the materials.', rules: ['b-card-44'], level: 'must' });
         continue;
       }
     }
     break;
   }
 
-  // Bodies under unsafe roof: timber to them last, once all missing persons are found.
-  if (!withdrawal && personsTotal() >= p.missing) {
-    for (const id of found.keys()) {
-      const q = board.placed.get(id);
-      if (q?.el.kind !== 'body') continue;
-      const blk = underBlock(q);
-      if (blk && travelBlock(blk.el)?.fix === 'timber' && timbersAvailable()) {
-        const step = newStep('support', `Timber to the body under unsafe roof and examine it`, [cur]);
-        step.actions.push({ text: 'All missing persons are accounted for: provide roof support (Figure 3 method) to the body and examine it before the clock is stopped.', rules: ['b-card-32', 'b-card-30'], el: id, level: 'must' });
-        changed.set(blk.el.id, 'roof supported');
-        pushStep(step);
-      }
-    }
-  }
+  // A body found on the last move is timbered here if exploration had already finished.
+  if (!withdrawal) while (timberBodies()) {}
 
   // ------------------------------------------------------------ summary
 

@@ -3,9 +3,9 @@
  * - Smoke extends to a placard stating the "end of smoke" or a separation intended or indicated to be airtight.
  * - A gas placard in an intersection is confined to the intersection.
  * - Elsewhere a gas extends, in the direction of team travel, to a gas placard indicating a change, an airtight
- *   separation, or the next normal/required area to be tested (the imaginary line of the next intersection, an
- *   object or condition that prohibits further travel, or a face). A gas placard side by side with an
- *   inaccessible condition extends to the other side of the condition.
+ *   separation, or the next normal/required area to be tested (an open borehole, the imaginary line of the next
+ *   intersection, an object or condition that prohibits further travel, or a face). A gas placard side by side
+ *   with an inaccessible condition extends to the other side of the condition.
  */
 import { buildGraph, endOf, otherEnd, subOfPlaced, type Board, type Graph, type Placed } from './graph';
 import type { El } from './model';
@@ -91,6 +91,7 @@ function gasWalk(board: Board, g: Graph, edgeId: string, from: Placed, toward: '
     if (dir * (near - s) < -0.01 && dir * (far - s) < -0.01) continue; // behind the placard
     let stop: number | null = null;
     if (p.el.kind === 'gas' && Math.abs(p.s - s) > 0.5) stop = p.s;
+    else if (p.el.kind === 'x' && p.el.sub === 'borehole') stop = p.s;
     else if (airEffect(p.el) === 'block') stop = near;
     else if (travelBlock(p.el)?.type === 'inaccessible') stop = Math.abs(near - s) <= 6 ? far : near;
     if (stop !== null && dir * (stop - limit) < 0) limit = stop;
