@@ -2,7 +2,7 @@
 
 The solver in `src/builder/explore.ts` is checked against official step-by-step solutions that are already written down in this repo. `npm run score:solver` prints a score for each one, then the raw and recency-weighted overall (see Recency weighting below). A score of 100% means every counted check passed. The first check that disagrees is the divergence, and the report quotes the rule that applies.
 
-`npm test` runs the same checks and fails if any official fixture is under 100%.
+`npm test` runs the same checks and fails if any OFFICIAL fixture is under 100%. OPEN fixtures (2026 Day 2, 2019 Day 1) are still printed and scored but do not fail `npm test` if under 100%.
 
 ## Fixtures
 

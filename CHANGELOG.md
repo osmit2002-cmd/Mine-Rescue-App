@@ -4,7 +4,7 @@
 
 - **Solver accuracy: recency weighting.** Each official fixture has a contest year. `npm run score:solver` prints each raw score with its weight (`1 / (1 + (2026 − year) / 5)`, so 2026 is 1.00 and 2011 is 0.25) and the weighted overall next to the raw mean. The pass/fail gate is unchanged. See `docs/solver-accuracy.md`.
 - **Solver accuracy: 2026 National Day 2 is 18/18.** The row-2 and row-4 stops that the solver numbered in another order are a captain's choice under Rule 44B: contaminants are ahead in more than one entry there. The scorer accepts either order for those groups (`JudgeKey.captainOrder`), and the 2026 key cites Rule 44B for them. 2019 Day 1 is 11/15 counted: one stop (No. 3 at the first crosscut) is superseded by 2026 Rule 44D, which forbids leaving that crosscut for the fresh air base before tying across into the unexplored No. 2 crosscut. Four stops at the second and third crosscuts still do not match.
-- **Solver accuracy: superseded steps.** An older fixture can list a check that a newer key or the 2026 rule text overrides (`supersedes`). The check is reported with both rule texts and left out of the counted total. Each supersession must name a later fixture; a test checks it. No current divergence conflicts with a newer key, so none is in use.
+- **Solver accuracy: superseded steps.** An older fixture can list a check that a newer key or the 2026 rule text overrides (`supersedes`). The check is reported with both rule texts and left out of the counted total. Each supersession must name a later fixture; a test checks it. One supersession is in use: the 2019 Day 1 stop at No. 3, first crosscut (`stop:2,1`), is superseded by 2026 Rule 44D.
 
 ## 0.6.1
 

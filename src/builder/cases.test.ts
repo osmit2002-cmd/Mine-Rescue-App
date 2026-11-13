@@ -17,7 +17,9 @@ const KNOWN_GAPS: Record<string, string[]> = {
   // choice in those groups (JudgeKey.captainOrder). No known gaps.
   'national-2026-day2': [],
   // 2019 Day 1. The briefing's fixed stops (3 in No. 3 at the first crosscut, 6 in No. 3, 9 in No. 1) are the
-  // ones the lowest-open-entry order does not hit. Counted, not passed.
+  // ones the lowest-open-entry order does not hit. stop:2,1 (No. 3 at the first crosscut) is superseded by 2026
+  // Rule 44D and is not counted in the golden score, but it still fails against the judge key, so it stays listed
+  // here. The other four stops are counted failures.
   'national-2019-day1': ['stop:2,1', 'stop:0,2', 'stop:2,2', 'stop:0,3', 'stop:2,3']
 };
 
