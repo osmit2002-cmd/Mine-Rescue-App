@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Builder map pans and zooms.** The map sits centered in its pane, and on wide screens the pane fills the window below the toolbars, so Fit shows the whole problem on screen. The scroll wheel (or a trackpad pinch) zooms about the pointer, dragging the map background pans, and two-finger pinch zooms on touch screens (one finger still scrolls). The − and + buttons zoom about the middle of the view. Dragging items, side-room grips, tapping items for their options ring, and clicking openings in Edit layout work as before; a drag that pans does not place an item or clear the selection.
+
 ## 0.6.2
 
 - **Solver accuracy.** Official step-by-step solutions are scored with `npm run score:solver` (`src/builder/golden/`). Rule book Figure 7 and 2016 Post 5 & WV State Day 1 both score 100%. How to add another problem is in `docs/solver-accuracy.md`. Contest PDFs that have not been transcribed stay unverified; the harness does not invent a solution for them.
