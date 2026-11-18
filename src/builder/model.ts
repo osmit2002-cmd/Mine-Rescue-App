@@ -151,6 +151,14 @@ export function defaultLayout(entries = 3, rows = 6): Layout {
   return { entries, rows, entryWidth: 20, pillarWidth: 60, pillarLength: 60, stubLength: 40, cells: {}, entryNames: [], xcStart: 0, outbyPillars: true };
 }
 
+/**
+ * The map a new problem starts from: 3 entries, 4 crosscuts inby the FAB, no side rooms and nothing placed.
+ * Pillars 0 and 00 are drawn just outby the FAB (outbyPillars).
+ */
+export function blankLayout(): Layout {
+  return { ...defaultLayout(3, 5), sideLeft: 0, sideRight: 0 };
+}
+
 export function blankProblem(title = 'New problem'): Problem {
   return {
     schema: SCHEMA,
@@ -163,7 +171,7 @@ export function blankProblem(title = 'New problem'): Problem {
     fabFresh: true,
     fabMaterials: { timbers: 0, pump: false, brattice: true, lineCurtain: false },
     keyNotes: '',
-    layout: defaultLayout(),
+    layout: blankLayout(),
     elements: [],
     updated: new Date().toISOString()
   };
