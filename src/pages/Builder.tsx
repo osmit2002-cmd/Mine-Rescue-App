@@ -27,10 +27,11 @@ const closeMenu = (e: { currentTarget: Element }) => {
 const HISTORY = 80;
 
 function initialProblems(): { list: Problem[]; current: string } {
+  // First visit: start on a blank map. The sample problems stay one click away in the Samples menu.
   let list = loadProblems();
-  if (!list.length) list = SAMPLES.map((s) => s.make());
+  if (!list.length) list = [blankProblem('New problem')];
   const cur = loadCurrentId();
-  const current = list.find((p) => p.id === cur)?.id ?? list.find((p) => p.id === 'sample-practice-1')?.id ?? list[0].id;
+  const current = list.find((p) => p.id === cur)?.id ?? list[0].id;
   return { list, current };
 }
 

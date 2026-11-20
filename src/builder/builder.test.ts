@@ -252,3 +252,17 @@ describe('problem files', () => {
     expect(bad.checks.some((c) => /Air clear/i.test(c.text))).toBe(true);
   });
 });
+
+describe('the blank map a new problem starts from', () => {
+  it('has 3 entries, 4 crosscuts inby the FAB, no side rooms and nothing placed', () => {
+    const p = blankProblem();
+    expect(p.layout.entries).toBe(3);
+    expect(p.layout.rows - 1).toBe(4);
+    expect(p.layout.sideLeft).toBe(0);
+    expect(p.layout.sideRight).toBe(0);
+    expect(p.layout.outbyPillars).toBe(true);
+    expect(p.elements).toEqual([]);
+    const t = buildTopo(makeGeo(p.layout));
+    expect([...t.nodes.keys()].some((k) => k.startsWith('s'))).toBe(false);
+  });
+});
