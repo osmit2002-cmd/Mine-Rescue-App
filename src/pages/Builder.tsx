@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { applyXLabel, customXPatch, xCategory, type XCategory, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
 import { canLinkFolder, canShareFiles, fetchStarters, shareProblems, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
@@ -16,6 +16,7 @@ import { CableRing, OpeningRing, RadialMenu, type CablePick, type RadialAction }
 import { ProblemPicker } from '../builder/ui/ProblemPicker';
 import { XLabelPicker } from '../builder/ui/XLabelPicker';
 import { usePanZoom } from '../builder/ui/panZoom';
+import { areaPlacement, sideNormal, snapLinePoint } from '../builder/roofArea';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
 import { airflow, ventFindings } from '../builder/vent';
@@ -50,7 +51,12 @@ export default function Builder() {
   /** Element whose placement options ring is open on the map. */
   const [radialId, setRadialId] = useState<string | null>(null);
   /** X placard whose label picker is open beside it. */
-  const [labelFor, setLabelFor] = useState<string | null>(null);
+  const [labelFor, setLabelForState] = useState<string | null>(null);
+  const [labelCat, setLabelCat] = useState<XCategory>('object');
+  const setLabelFor = (id: string | null, cat?: XCategory) => {
+    setLabelForState(id);
+    if (cat) setLabelCat(cat);
+  };
   /** Problems folder on this computer: the linked folder (Chrome/Edge), which problem is in which file, status line. */
   const [folder, setFolder] = useState<DirHandle | null>(null);
   /** The folder was linked before but the browser needs a click to allow access again. */
@@ -162,6 +168,7 @@ export default function Builder() {
   const switchTo = (id: string) => {
     setCurrentId(id);
     setLabelFor(null);
+    setSideFor(null);
     setRadialId(null);
     setPast([]);
     setFuture([]);
@@ -211,12 +218,57 @@ export default function Builder() {
     if (el.kind === 'x' && !tool.sub) {
       // X placard: pick its label from the list beside it.
       setRadialId(null);
-      setLabelFor(el.id);
+      setLabelFor(el.id, tool.xcat ?? 'object');
       setTool({ type: 'select' });
       return;
     }
     setRadialId(el.id);
     if (!keep) setTool({ type: 'select' });
+  };
+
+  // ------------------------------------------------------------ unsafe roof / caved areas (two rib points)
+
+  /** Line for unsafe roof / caved: front line first, then which side, then optionally the back end. */
+  const [sideFor, setSideFor] = useState<string | null>(null);
+  const addAreaPoint = (x: number, y: number) => {
+    if (tool.type !== 'area') return;
+    const p = snapLinePoint(topo, x, y);
+    if (!p) return flash('Click inside an opening or on a rib.');
+    if (!tool.start) return setTool({ ...tool, start: p });
+    if (Math.hypot(p.x - tool.start.x, p.y - tool.start.y) < 2) return flash('Click the other end of the line.');
+    const line = { a: tool.start, b: p };
+    const old = tool.id ? problem.elements.find((e) => e.id === tool.id) : undefined;
+    const edges = tool.back && old?.edges?.length ? [old.edges[0], line] : [line];
+    const side = tool.back ? old?.side : undefined;
+    const at = areaPlacement(topo, { edges, side: side ?? 1 });
+    if (!at) return flash('That line is not in an opening. Try again.');
+    let id = tool.id;
+    if (old) patchEl(old.id, { ...at, edges, side });
+    else {
+      const el = { ...makeElement({ kind: tool.kind }, at.x, at.y, newId()), ...at, edges };
+      delete el.side;
+      update((pr) => ({ ...pr, elements: [...pr.elements, el] }));
+      id = el.id;
+    }
+    setSelectedId(id!);
+    setTool({ type: 'select' });
+    // A new front line: ask which side is unsafe / caved. A back end closes the area.
+    if (tool.back) setRadialId(id!);
+    else setSideFor(id!);
+  };
+  const sideEl = tab === 'build' && sideFor ? problem.elements.find((e) => e.id === sideFor && e.edges?.length) ?? null : null;
+  const pickSide = (side: 1 | -1) => {
+    if (!sideEl) return;
+    const at = areaPlacement(topo, { edges: sideEl.edges, side });
+    patchEl(sideEl.id, { side, ...(at ?? {}) });
+    setSideFor(null);
+    setRadialId(sideEl.id);
+  };
+  /** Patch an element, keeping a drawn area's solver placement in step with its lines and side. */
+  const patchArea = (el: El, patch: Partial<El>) => {
+    const next = { ...el, ...patch };
+    const at = next.edges?.length ? areaPlacement(topo, next) : null;
+    patchEl(el.id, { ...patch, ...(at ?? {}) });
   };
 
   // ------------------------------------------------------------ cable path drawing
@@ -303,6 +355,10 @@ export default function Builder() {
         redo();
         return;
       }
+      if (tool.type === 'area' && e.key === 'Escape') {
+        e.preventDefault();
+        return setTool(tool.start ? { ...tool, start: null } : { type: 'select' });
+      }
       if (tool.type === 'cable') {
         if (e.key === 'Enter' || e.key === 'Escape') {
           e.preventDefault();
@@ -314,6 +370,10 @@ export default function Builder() {
         }
       }
       if (e.key === 'Escape') {
+        if (sideFor) {
+          setSideFor(null);
+          return;
+        }
         if (labelFor) {
           setLabelFor(null);
           return;
@@ -364,7 +424,10 @@ export default function Builder() {
     else if (a === 'duplicate') setRadialId(duplicateEl(selected).id);
     else if (a === 'label') {
       setRadialId(null);
-      setLabelFor(selected.id);
+      setLabelFor(selected.id, xCategory(selected));
+    } else if ((a === 'redraw' || a === 'back') && (selected.kind === 'unsafe-roof' || selected.kind === 'caved')) {
+      setRadialId(null);
+      setTool({ type: 'area', kind: selected.kind, name: KIND_DEFS[selected.kind].name, start: null, id: selected.id, back: a === 'back' });
     } else if (a === 'path') {
       setRadialId(null);
       if (selected.path?.length) patchEl(selected.id, { path: [] });
@@ -884,10 +947,14 @@ export default function Builder() {
         {tab === 'build' && (
           <aside className="b-left">
             <Palette
-              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
+              active={tool.type === 'area' ? tool.kind : tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.xcat ? `x@${tool.xcat}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
               onPick={(it: PaletteItem) => {
-                const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub;
-                setTool(off ? { type: 'select' } : { type: 'place', kind: it.kind, sub: it.sub, name: it.name });
+                const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub && tool.xcat === it.xcat;
+                const areaKind = it.kind === 'unsafe-roof' || it.kind === 'caved' ? it.kind : null;
+                const onNow = areaKind ? tool.type === 'area' && tool.kind === areaKind && !tool.id : off;
+                setTool(
+                  onNow ? { type: 'select' } : areaKind ? { type: 'area', kind: areaKind, name: it.name, start: null } : { type: 'place', kind: it.kind, sub: it.sub, xcat: it.xcat, name: it.name }
+                );
                 // On phones the palette is below the map: bring the map back into view.
                 if (!off && window.innerWidth < 1000) scroller.current?.closest('.b-center')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
@@ -898,6 +965,13 @@ export default function Builder() {
           {tool.type === 'place' && tab === 'build' && (
             <p className="tool-hint" role="status">
               Click the map to place: <strong>{tool.name}</strong>. Shift-click to place several · Esc to stop.
+            </p>
+          )}
+          {tool.type === 'area' && tab === 'build' && (
+            <p className="tool-hint" role="status">
+              {tool.name}
+              {tool.back ? ' back end' : ''}: {tool.start ? 'click the other end of the line.' : 'click where the line starts.'} The line can run at any angle; a click near a rib snaps onto it.{' '}
+              {tool.back ? 'The area between the two lines becomes ' + (tool.kind === 'caved' ? 'caved.' : 'unsafe roof.') : 'Then choose which side is ' + (tool.kind === 'caved' ? 'caved.' : 'unsafe.')} Esc to cancel.
             </p>
           )}
           {tool.type === 'cable' && tab === 'build' && (
@@ -942,6 +1016,7 @@ export default function Builder() {
                 }}
                 onPlace={(x, y) => place(x, y, shiftDown.current)}
                 onCablePoint={addCablePoint}
+                onAreaPoint={addAreaPoint}
                 onCell={(cx, cy) => setActiveCell({ cx, cy })}
                 onRoom={(side, row, depth) => {
                   const l = problem.layout;
@@ -981,13 +1056,43 @@ export default function Builder() {
                   width={stage.w}
                   height={stage.h}
                   current={labelEl.text}
+                  cat={labelCat}
                   onPick={(l) => pickLabel(applyXLabel(l))}
-                  onCustom={(text) => pickLabel({ sub: 'other', text })}
-                  onClose={() => setLabelFor(null)}
+                  onCustom={(text) => pickLabel(customXPatch(labelCat, text))}
+                  onClose={() => {
+                    // Closing the list on a placard that never got a label takes the blank placard away again.
+                    if (!labelEl.text?.trim()) deleteEl(labelEl.id);
+                    setLabelFor(null);
+                  }}
                 />
               )}
-              {radialEl && !labelEl && tool.type !== 'cable' && (
-                <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchEl(radialEl.id, patch)} onAction={radialAction} />
+              {sideEl && (() => {
+                const s0 = sideEl.edges![0];
+                const mx = (s0.a.x + s0.b.x) / 2;
+                const my = (s0.a.y + s0.b.y) / 2;
+                const word = sideEl.kind === 'caved' ? 'Caved' : 'Unsafe';
+                return ([1, -1] as const).map((sd) => {
+                  const n = sideNormal(s0, sd);
+                  // A fixed distance on screen either side of the line's middle (screen y runs down).
+                  const off = 42;
+                  return (
+                    <button
+                      key={sd}
+                      type="button"
+                      className="side-btn"
+                      style={{ left: stage.px(mx) + n.x * off, top: stage.py(my) - n.y * off }}
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={() => pickSide(sd)}
+                      title={`${word} on this side of the line`}
+                      data-side={sd}
+                    >
+                      {word} side
+                    </button>
+                  );
+                });
+              })()}
+              {radialEl && !labelEl && !sideEl && tool.type !== 'cable' && (
+                <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchArea(radialEl, patch)} onAction={radialAction} />
               )}
             </div>
           </div>

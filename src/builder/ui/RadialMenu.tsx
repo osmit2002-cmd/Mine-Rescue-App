@@ -5,7 +5,7 @@
 import { elementName } from '../catalog';
 import type { El, SegState } from '../model';
 
-export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done' | 'label' | 'path';
+export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done' | 'label' | 'path' | 'redraw' | 'back';
 
 export interface RadialOption {
   id: string;
@@ -50,7 +50,12 @@ export function radialOptions(el: El): RadialOption[] {
   }
   if (k === 'barricade') out.push(toggle('response', 'Answers', 'A person answers from behind it', !!el.response, { response: !el.response }));
   if (k === 'door') out.push(toggle('open', el.open ? 'Open' : 'Closed', 'Door open', !!el.open, { open: !el.open }));
-  if (k === 'caved' || k === 'unsafe-roof' || k === 'water') out.push(toggle('across', 'Rib–rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
+  if ((k === 'caved' || k === 'unsafe-roof') && el.edges?.length) {
+    if (el.edges.length < 2) out.push({ id: 'back', label: 'Back end', title: 'Place the back end: draw the line where it ends', action: 'back' });
+    if (el.edges.length < 2) out.push({ id: 'flip', label: 'Flip', title: 'Unsafe / caved on the other side of the line', patch: { side: el.side === 1 ? -1 : 1 } });
+    out.push({ id: 'redraw', label: 'Redraw', title: 'Draw the line again', action: 'redraw' });
+  }
+  if (((k === 'caved' || k === 'unsafe-roof') && !el.edges?.length) || k === 'water') out.push(toggle('across', 'Rib–rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
   if (k === 'caved') out.push(toggle('airtight', 'Airtight', 'Placard states “airtight”', !!el.airtight, { airtight: !el.airtight }));
   if (k === 'water') {
     out.push(toggle('overKnee', 'Knee+', 'Over knee deep', !!el.overKnee, { overKnee: !el.overKnee }));

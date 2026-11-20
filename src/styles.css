@@ -722,3 +722,18 @@ button.danger { color: var(--bad); }
 .mine-map.tool-cable { cursor: crosshair; }
 .menu-note { display: block; padding: 0.4rem 0.5rem; }
 .link.inline { min-height: 0; padding: 0; font: inherit; }
+.map-area { stroke: #111; stroke-width: 0.5; cursor: pointer; }
+.map-area.unsafe-roof { stroke-dasharray: 1.6 1.1; }
+.map-area.sel { stroke: var(--accent, #a8780f); stroke-width: 0.9; }
+.map-area.preview { opacity: 0.6; }
+.rib-pt { fill: #a8780f; stroke: #fff; stroke-width: 0.4; }
+.rib-pt.hover { fill: #fff; stroke: #a8780f; }
+.mine-map.tool-area { cursor: crosshair; }
+.map-edge { stroke: #111; stroke-width: 0.9; stroke-linecap: round; cursor: pointer; }
+.map-edge.unsafe-roof { stroke-dasharray: 1.6 1.1; }
+.map-edge.sel { stroke: var(--accent, #a8780f); stroke-width: 1.3; }
+.map-edge.preview { opacity: 0.7; }
+.map-area.unknown { stroke: none; }
+.map-unknown { fill: #6b7280; font-weight: 700; font-family: Arial, sans-serif; }
+.side-btn { position: absolute; transform: translate(-50%, -50%); z-index: 6; max-width: none; min-height: 0; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; white-space: nowrap; background: var(--card); border: 1px solid var(--accent); box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); }
+.side-btn:hover { background: var(--accent); color: var(--accent-fg); }

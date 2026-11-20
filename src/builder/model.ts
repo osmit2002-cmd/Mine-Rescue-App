@@ -93,6 +93,13 @@ export interface El {
   note?: string;
   /** Cable: the points the cable runs through after the placard, in feet (drawn as a line from the placard). */
   path?: { x: number; y: number }[];
+  /**
+   * Unsafe roof / caved drawn as lines (see roofArea.ts): the front line, then the back end once placed.
+   * Each line runs from a to b, in feet.
+   */
+  edges?: { a: { x: number; y: number }; b: { x: number; y: number } }[];
+  /** Which side of the front line is unsafe / caved: 1 = left of a→b, -1 = right. Unset until chosen. */
+  side?: 1 | -1;
 }
 
 export type XSub =
@@ -233,6 +240,22 @@ export function normalizeElement(raw: unknown): El | null {
       .filter((q): q is { x: number; y: number } => !!q && q.x !== undefined && q.y !== undefined);
     if (pts.length) el.path = pts;
   }
+  if (Array.isArray(r.edges) && r.edges.length >= 1 && r.edges.length <= 2) {
+    const pt = (q: unknown) => {
+      const o = q && typeof q === 'object' ? (q as Record<string, unknown>) : {};
+      const x = num(o.x);
+      const y = num(o.y);
+      return x !== undefined && y !== undefined ? { x, y } : null;
+    };
+    const segs = r.edges.map((s) => {
+      const o = s && typeof s === 'object' ? (s as Record<string, unknown>) : {};
+      const a = pt(o.a);
+      const b = pt(o.b);
+      return a && b ? { a, b } : null;
+    });
+    if (segs.every((s) => !!s)) el.edges = segs as NonNullable<El['edges']>;
+  }
+  if (r.side === 1 || r.side === -1) el.side = r.side;
   return el;
 }
 

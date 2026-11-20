@@ -217,7 +217,12 @@ export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }
       )}
       {el.kind === 'barricade' && <Check label="A person answers from behind it" hint="verbal contact" checked={!!el.response} onChange={(v) => onChange({ response: v })} />}
       {el.kind === 'door' && <Check label="Open" checked={!!el.open} onChange={(v) => onChange({ open: v })} />}
-      {(el.kind === 'caved' || el.kind === 'unsafe-roof' || el.kind === 'water') && <Check label="Rib to rib (across the opening)" checked={el.across !== false} onChange={(v) => onChange({ across: v })} />}
+      {el.edges?.length ? (
+        <p className="small muted">
+          Drawn on the map{el.edges.length < 2 ? ': extent unknown past the line until the back end is placed (Back end on its ring)' : ' between the front line and the back end'}. Rib to rib: {el.across !== false ? 'yes' : 'no'}; {el.len} ft along the opening.
+        </p>
+      ) : null}
+      {!el.edges?.length && (el.kind === 'caved' || el.kind === 'unsafe-roof' || el.kind === 'water') && <Check label="Rib to rib (across the opening)" checked={el.across !== false} onChange={(v) => onChange({ across: v })} />}
       {el.kind === 'caved' && <Check label="Placard states “airtight”" checked={!!el.airtight} onChange={(v) => onChange({ airtight: v })} />}
       {el.kind === 'water' && (
         <>
@@ -225,7 +230,7 @@ export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }
           <Check label="Water roofed" hint="airtight" checked={!!el.roofed} onChange={(v) => onChange({ roofed: v })} />
         </>
       )}
-      {['caved', 'unsafe-roof', 'water', 'unsafe-rib', 'line-curtain-installed'].includes(el.kind) && <Num label="Length along the opening" suffix="ft" value={el.len} min={2} max={200} onChange={(v) => onChange({ len: v })} />}
+      {!el.edges?.length && ['caved', 'unsafe-roof', 'water', 'unsafe-rib', 'line-curtain-installed'].includes(el.kind) && <Num label="Length along the opening" suffix="ft" value={el.len} min={2} max={200} onChange={(v) => onChange({ len: v })} />}
       {el.kind === 'smoke' && (
         <label className="field">
           <span>Density</span>

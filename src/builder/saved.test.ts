@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { applyXLabel, makeElement, PALETTE, X_LABELS, xAutocomplete, xCategory } from './catalog';
+import { applyXLabel, customXPatch, makeElement, PALETTE, X_LABELS, xAutocomplete, xCategory } from './catalog';
 import { mergeIn, problemFileName, uniqueFileName } from './folder';
 import { blankProblem, normalizeElement, type El, type Problem } from './model';
 import { filterProblems } from './ui/ProblemPicker';
@@ -35,9 +35,19 @@ describe('stored problems', () => {
 });
 
 describe('X placard labels', () => {
-  it('has one X tool and one cable tool in the palette', () => {
+  it('has Equipment, Ignition source and Custom placards plus the cable tool', () => {
     const xs = PALETTE.filter((p) => p.kind === 'x');
-    expect(xs.map((p) => p.key)).toEqual(['x', 'x:cable']);
+    expect(xs.map((p) => p.key)).toEqual(['x@equipment', 'x@ignition', 'x@object', 'x:cable']);
+  });
+
+  it('keeps each placard to its own list, and own wording takes the placard type', () => {
+    const eq = X_LABELS.filter((l) => l.cat === 'equipment');
+    expect(xAutocomplete('bat', eq)?.text).toBe('BATTERY SCOOP');
+    expect(xAutocomplete('battery', X_LABELS.filter((l) => l.cat === 'ignition'))?.text).toBe('BATTERY');
+    expect(customXPatch('ignition', 'ENERGIZED DRILL')).toMatchObject({ sub: 'equipment', energized: true });
+    expect(customXPatch('ignition', 'SPLICED CABLE')).toMatchObject({ sub: 'cable', energized: true });
+    expect(customXPatch('equipment', 'GRADER')).toMatchObject({ sub: 'equipment', energized: false });
+    expect(customXPatch('object', 'BUCKET')).toMatchObject({ sub: 'other', text: 'BUCKET' });
   });
 
   it('groups labels as equipment, ignition source and object, without duplicates', () => {
