@@ -35,9 +35,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          # Google OAuth client ID for saving problems to Drive (docs/google-drive.md). Optional; set as a repository variable.
-          VITE_GOOGLE_CLIENT_ID: ${{ vars.VITE_GOOGLE_CLIENT_ID }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

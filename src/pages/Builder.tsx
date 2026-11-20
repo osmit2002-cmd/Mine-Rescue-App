@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
-import { getClientId, isSignedIn, loadDriveMap, saveDriveMap, setClientId, signIn, syncAll, trashRemote, uploadProblem, DRIVE_FOLDER, type DriveMap } from '../builder/drive';
+import { canLinkFolder, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
 import { editLayout, openingName, openingState, type LayoutOp } from '../builder/layoutEdit';
@@ -51,13 +51,16 @@ export default function Builder() {
   const [radialId, setRadialId] = useState<string | null>(null);
   /** X placard whose label picker is open beside it. */
   const [labelFor, setLabelFor] = useState<string | null>(null);
-  /** Google Drive: which problems have a file there, and what the last sync said. */
-  const [driveMap, setDriveMap] = useState<DriveMap>(() => loadDriveMap());
-  const [driveBusy, setDriveBusy] = useState(false);
-  const [driveOn, setDriveOn] = useState(false);
-  const [driveNote, setDriveNote] = useState<string | null>(null);
-  /** `updated` of the copy last written to Drive, per problem id (to skip unchanged uploads). */
-  const driveSent = useRef<Record<string, string>>({});
+  /** Problems folder on this computer: the linked folder (Chrome/Edge), which problem is in which file, status line. */
+  const [folder, setFolder] = useState<DirHandle | null>(null);
+  /** The folder was linked before but the browser needs a click to allow access again. */
+  const [folderAsk, setFolderAsk] = useState<DirHandle | null>(null);
+  const [fileMap, setFileMap] = useState<FileMap>(() => loadFileMap());
+  const [folderBusy, setFolderBusy] = useState(false);
+  const [folderNote, setFolderNote] = useState<string | null>(null);
+  /** `updated` of the copy last written to the folder, per problem id (to skip unchanged writes). */
+  const folderSent = useRef<Record<string, string>>({});
+  const openFiles = useRef<HTMLInputElement>(null);
   const [zoom, setZoom] = useState(3);
   const [showLabels, setShowLabels] = useState(true);
   const [showExtents, setShowExtents] = useState(true);
@@ -482,89 +485,121 @@ export default function Builder() {
     else setRadialId(labelEl.id);
   };
 
-  // ------------------------------------------------------------ Google Drive
+  // ------------------------------------------------------------ problems folder on this computer
 
-  const driveIds = useMemo(() => new Set(Object.keys(driveMap.files)), [driveMap]);
-  const driveRun = async (what: string, fn: () => Promise<string | void>) => {
-    if (driveBusy) return;
-    setDriveBusy(true);
-    setDriveNote(`${what}…`);
+  const savedIds = useMemo(() => new Set(Object.keys(fileMap)), [fileMap]);
+  const setMap = (m: FileMap) => {
+    setFileMap(m);
+    saveFileMap(m);
+  };
+  const folderRun = async (what: string, fn: () => Promise<string | void>) => {
+    if (folderBusy) return;
+    setFolderBusy(true);
+    setFolderNote(`${what}…`);
     try {
-      const note = await fn();
-      setDriveOn(isSignedIn());
-      setDriveNote(note || null);
+      setFolderNote((await fn()) || null);
     } catch (e) {
-      setDriveOn(isSignedIn());
-      setDriveNote((e as Error).message);
+      setFolderNote((e as Error).message);
     } finally {
-      setDriveBusy(false);
+      setFolderBusy(false);
     }
   };
-  const askClientId = () => {
-    const id = window.prompt(
-      'Paste the Google OAuth client ID for this app (Google Cloud console → APIs & Services → Credentials → OAuth 2.0 Client IDs, type "Web application"). It is kept on this device only.',
-      getClientId()
-    );
-    if (id === null) return false;
-    setClientId(id);
-    return !!id.trim();
+  /** Read every problem file in the folder into the list (newer copies replace older ones). */
+  const loadFrom = async (d: DirHandle) => {
+    const files = await readFolder(d);
+    const r = mergeIn(problems, files.map((f) => f.problem));
+    const m: FileMap = {};
+    for (const f of files) m[f.problem.id] = f.name;
+    setProblems(r.list);
+    setMap(m);
+    for (const f of files) folderSent.current[f.problem.id] = r.list.find((p) => p.id === f.problem.id)!.updated;
+    setFolder(d);
+    setFolderAsk(null);
+    return `Folder “${d.name}”: ${files.length} problem file${files.length === 1 ? '' : 's'}${r.added || r.updated ? ` (${r.added} new, ${r.updated} updated here)` : ''}.`;
   };
-  const driveSync = () =>
-    driveRun('Syncing with Google Drive', async () => {
-      if (!getClientId() && !askClientId()) return 'Drive not connected: no client ID.';
-      await signIn(true);
-      const r = await syncAll(problems, driveMap);
-      setProblems(r.list);
-      setDriveMap(r.map);
-      for (const p of r.list) if (r.map.files[p.id]) driveSent.current[p.id] = p.updated;
-      return `Synced with “${DRIVE_FOLDER}”: ${r.list.length} problems, ${r.uploaded} uploaded, ${r.downloaded} from Drive.`;
-    });
-  /** Write one problem to Drive now (used by Save, and by the auto-save while Drive is connected). */
-  const driveSave = useCallback(
-    async (p: Problem, map: DriveMap) => {
-      const folderId = map.folderId ?? (await syncAll([], map)).map.folderId!;
-      const fileId = await uploadProblem(p, folderId, map.files[p.id]);
-      const next = { folderId, files: { ...map.files, [p.id]: fileId } };
-      saveDriveMap(next);
-      setDriveMap(next);
-      driveSent.current[p.id] = p.updated;
-      return next;
-    },
-    []
-  );
-  // While Drive is connected, each edited problem is written to Drive a few seconds after the last change.
+  // Reconnect to the folder linked last time. Reading it right away works when the browser kept the permission;
+  // otherwise the folder button asks for it with one click.
   useEffect(() => {
-    if (!driveOn || driveBusy || !isSignedIn()) return;
-    const dirty = problems.filter((p) => driveMap.files[p.id] && driveSent.current[p.id] !== p.updated);
+    if (!canLinkFolder()) return;
+    loadFolder().then(async (d) => {
+      if (!d) return;
+      if (await ensurePermission(d, false).catch(() => false)) folderRun('Reading the problems folder', () => loadFrom(d));
+      else setFolderAsk(d);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const linkFolder = () =>
+    folderRun('Choosing a folder', async () => {
+      const d = await pickFolder();
+      return d ? loadFrom(d) : undefined;
+    });
+  const allowFolder = () =>
+    folderRun('Opening the problems folder', async () => {
+      if (!folderAsk) return;
+      if (!(await ensurePermission(folderAsk, true))) return 'The browser did not allow access to the folder.';
+      return loadFrom(folderAsk);
+    });
+  /** Write one problem to the linked folder. Returns the new file map. */
+  const writeOne = useCallback(async (d: DirHandle, p: Problem, map: FileMap) => {
+    const name = uniqueFileName(p, map);
+    await writeToFolder(d, p, name, map[p.id]);
+    folderSent.current[p.id] = p.updated;
+    return { ...map, [p.id]: name };
+  }, []);
+  // While a folder is linked, a saved problem's file is rewritten a couple of seconds after each edit.
+  useEffect(() => {
+    if (!folder || folderBusy) return;
+    const dirty = problems.filter((p) => fileMap[p.id] && folderSent.current[p.id] !== p.updated);
     if (!dirty.length) return;
     const t = setTimeout(async () => {
-      let map = driveMap;
+      let m = fileMap;
       try {
-        for (const p of dirty) map = await driveSave(p, map);
-        setDriveNote(`Saved to Drive ${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}.`);
+        for (const p of dirty) m = await writeOne(folder, p, m);
+        setMap(m);
+        setFolderNote(`Saved to “${folder.name}” ${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}.`);
       } catch (e) {
-        setDriveNote((e as Error).message);
+        setFolderNote((e as Error).message);
       }
-    }, 2500);
+    }, 2000);
     return () => clearTimeout(t);
-  }, [problems, driveOn, driveBusy, driveMap, driveSave]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [problems, folder, folderBusy, fileMap, writeOne]);
 
-  /** Name the problem (asking if it still has the default name) and save it to Drive. */
+  /** Name the problem (asking if it still has the default name) and save its file to the folder (or download it). */
   const saveNamed = () => {
     let title = problem.title;
     if (/^(new problem|untitled problem)$/i.test(title.trim()) || !title.trim()) {
       const t = window.prompt('Name this problem:', '');
       if (!t?.trim()) return;
       title = t.trim().slice(0, 120);
-      update((p) => ({ ...p, title }));
     }
     const p = { ...problem, title, updated: new Date().toISOString() };
-    driveRun('Saving to Google Drive', async () => {
-      if (!getClientId() && !askClientId()) return 'Saved on this device. Set up Drive to save it there too.';
-      await signIn(true);
-      await driveSave(p, driveMap);
-      return `Saved “${title}” to “${DRIVE_FOLDER}”.`;
+    setProblems((list) => list.map((x) => (x.id === p.id ? p : x)));
+    if (!folder) {
+      if (folderAsk) return folderRun('Saving', async () => {
+        if (!(await ensurePermission(folderAsk, true))) return 'The browser did not allow access to the folder.';
+        setFolder(folderAsk);
+        setFolderAsk(null);
+        setMap(await writeOne(folderAsk, p, fileMap));
+        return `Saved “${title}” to “${folderAsk.name}”.`;
+      });
+      downloadProblem(p);
+      setFolderNote(canLinkFolder() ? `Downloaded “${title}”. Link a folder (Folder menu) to save straight into it.` : `Downloaded “${title}”. Move it into your problems folder; Folder → Open files… brings files back in.`);
+      return;
+    }
+    const d = folder;
+    folderRun('Saving', async () => {
+      setMap(await writeOne(d, p, fileMap));
+      return `Saved “${title}” to “${d.name}”.`;
     });
+  };
+  const onOpenFiles = async (files: FileList | null) => {
+    if (!files?.length) return;
+    const r = await readPickedFiles(files);
+    const m = mergeIn(problems, r.problems);
+    setProblems(m.list);
+    if (r.problems.length === 1) switchTo(r.problems[0].id);
+    setFolderNote(`Opened ${r.problems.length} problem file${r.problems.length === 1 ? '' : 's'}${r.bad.length ? `; not problem files: ${r.bad.join(', ')}` : ''}.`);
   };
   const newNamed = () => {
     const t = window.prompt('Name for the new problem:', '');
@@ -621,29 +656,60 @@ export default function Builder() {
     <div className="builder">
       <div className="builder-top">
         <h1 className="sr-only">Mine rescue problem builder</h1>
-        <ProblemPicker problems={problems} currentId={currentId} inDrive={driveIds} onOpen={switchTo} />
+        <ProblemPicker problems={problems} currentId={currentId} saved={savedIds} onOpen={switchTo} />
         <div className="top-actions">
           <button type="button" onClick={newNamed} title="Start a new problem on a blank map and name it">
             New
           </button>
-          <button type="button" onClick={saveNamed} disabled={driveBusy} title={`Name this problem and save it to the Google Drive folder “${DRIVE_FOLDER}”`}>
+          <button type="button" onClick={saveNamed} disabled={folderBusy} title={folder ? `Name this problem and save it to the folder “${folder.name}”` : 'Name this problem and save it as a file'}>
             Save
           </button>
           <details className="menu">
-            <summary className="button" title="Google Drive">
-              Drive{driveOn ? ' ✓' : ''}
+            <summary className="button" title={folder ? `Problems folder: ${folder.name}` : 'Problems folder on this computer'}>
+              Folder{folder ? ' ✓' : ''}
             </summary>
             <div className="menu-pop">
-              <button type="button" disabled={driveBusy} onClick={(e) => (closeMenu(e), driveSync())}>
-                <strong>{driveOn ? 'Sync now' : 'Connect and sync'}</strong>
-                <span className="small muted">Uploads the problems on this device to “{DRIVE_FOLDER}” and brings in the ones already there (newer copy wins)</span>
+              {folderAsk && !folder && (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), allowFolder())}>
+                  <strong>Open “{folderAsk.name}” again</strong>
+                  <span className="small muted">The browser asks once per session before the app may use the folder</span>
+                </button>
+              )}
+              {canLinkFolder() ? (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), linkFolder())}>
+                  <strong>{folder ? 'Change folder…' : 'Link a folder…'}</strong>
+                  <span className="small muted">Choose the folder on this computer where problem files are kept. Save writes there, and every problem file in it shows in the list.</span>
+                </button>
+              ) : (
+                <span className="small muted menu-note">This browser cannot link a folder (Chrome or Edge can). Save downloads the file; move it to your problems folder.</span>
+              )}
+              {folder && (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), folderRun('Reading the problems folder', () => loadFrom(folder)))}>
+                  <strong>Reload from “{folder.name}”</strong>
+                  <span className="small muted">Picks up files added or changed in the folder outside the app</span>
+                </button>
+              )}
+              <button type="button" onClick={(e) => (closeMenu(e), openFiles.current?.click())}>
+                <strong>Open files…</strong>
+                <span className="small muted">Bring in one or more problem files (.mrs-problem.json)</span>
               </button>
-              <button type="button" onClick={(e) => (closeMenu(e), askClientId())}>
-                <strong>Google client ID…</strong>
-                <span className="small muted">{getClientId() ? 'Set. Change it here.' : 'Needed once before connecting'}</span>
-              </button>
+              {folder && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    closeMenu(e);
+                    forgetFolder();
+                    setFolder(null);
+                    setMap({});
+                    setFolderNote('Folder unlinked. Problems stay in this browser; the files stay in the folder.');
+                  }}
+                >
+                  <strong>Unlink folder</strong>
+                </button>
+              )}
             </div>
           </details>
+          <input ref={openFiles} type="file" accept=".json,application/json" multiple hidden onChange={(e) => onOpenFiles(e.target.files).finally(() => (e.target.value = ''))} />
           <details className="menu">
             <summary className="button">Samples</summary>
             <div className="menu-pop">
@@ -695,18 +761,13 @@ export default function Builder() {
             type="button"
             className="danger"
             onClick={() => {
-              const fileId = driveMap.files[problem.id];
-              if (!window.confirm(`Delete “${problem.title}” from this device${fileId ? ' and move its Google Drive copy to the Drive trash' : ''}?`)) return;
-              if (fileId) {
-                const files = { ...driveMap.files };
-                delete files[problem.id];
-                const next = { ...driveMap, files };
-                setDriveMap(next);
-                saveDriveMap(next);
-                driveRun('Moving the Drive copy to the trash', async () => {
-                  await trashRemote(fileId);
-                  return 'Drive copy moved to the Drive trash.';
-                });
+              const file = folder ? fileMap[problem.id] : undefined;
+              if (!window.confirm(`Delete “${problem.title}” from the list${file ? ` and delete its file “${file}” from the folder` : ''}?`)) return;
+              if (file && folder) {
+                const m = { ...fileMap };
+                delete m[problem.id];
+                setMap(m);
+                removeFromFolder(folder, file);
               }
               const rest = problems.filter((p) => p.id !== problem.id);
               const list = rest.length ? rest : [blankProblem('New problem')];
@@ -718,7 +779,7 @@ export default function Builder() {
           </button>
         </div>
       </div>
-      {driveNote && <p className="drive-status muted" role="status">{driveNote}</p>}
+      {folderNote && <p className="drive-status muted" role="status">{folderNote}</p>}
       {!saveOk && <p className="warn small">This browser is not saving problems (storage blocked). Use Export to keep your work.</p>}
       {sample && <p className="small muted">{problem.source}. Edits are saved on this device; open it again from Samples for a fresh copy.</p>}
 
@@ -969,7 +1030,7 @@ export default function Builder() {
         </div>
       )}
       <p className="small muted builder-foot">
-        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are saved on this device; Save (or Drive → Sync) also keeps them in your Google Drive folder “{DRIVE_FOLDER}”.
+        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are kept in this browser; Save writes a problem's file to your problems folder (Folder menu), or downloads it.
       </p>
     </div>
   );

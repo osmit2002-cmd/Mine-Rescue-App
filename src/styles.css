@@ -720,3 +720,4 @@ button.danger { color: var(--bad); }
 .map-cable { fill: none; stroke: #b91c1c; stroke-width: 0.9; stroke-linejoin: round; stroke-linecap: round; }
 .map-cable.drawing { stroke-dasharray: 2 1.4; }
 .mine-map.tool-cable { cursor: crosshair; }
+.menu-note { display: block; padding: 0.4rem 0.5rem; }

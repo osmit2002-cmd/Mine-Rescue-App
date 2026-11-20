@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { applyXLabel, makeElement, PALETTE, X_LABELS, xAutocomplete, xCategory } from './catalog';
-import { driveFileName, mergeProblems } from './drive';
+import { mergeIn, problemFileName, uniqueFileName } from './folder';
 import { blankProblem, normalizeElement, type El, type Problem } from './model';
 import { filterProblems } from './ui/ProblemPicker';
 import { cableOptions, MAX_WORD, openingOptions, radialOptions } from './ui/RadialMenu';
@@ -16,17 +16,20 @@ describe('stored problems', () => {
     expect(filterProblems(list, 'nothing')).toEqual([]);
   });
 
-  it('names Drive files after the problem title', () => {
-    expect(driveFileName({ title: 'Day 1: A/B test' })).toBe('Day 1- A-B test.mrs-problem.json');
-    expect(driveFileName({ title: '  ' })).toBe('Untitled problem.mrs-problem.json');
+  it('names problem files after the title, safely and without clashes', () => {
+    expect(problemFileName({ title: 'Day 1: A/B test.' })).toBe('Day 1- A-B test.mrs-problem.json');
+    expect(problemFileName({ title: '  ' })).toBe('Untitled problem.mrs-problem.json');
+    const taken = { a: 'Fire.mrs-problem.json', b: 'Fire (2).mrs-problem.json' };
+    expect(uniqueFileName({ id: 'a', title: 'Fire' }, taken)).toBe('Fire.mrs-problem.json');
+    expect(uniqueFileName({ id: 'c', title: 'fire' }, taken)).toBe('fire (3).mrs-problem.json');
   });
 
-  it('merges device and Drive copies: newer wins, new ones from either side are kept', () => {
-    const local = [prob('a', 'A local', '2026-01-02T00:00:00Z'), prob('b', 'B local', '2026-01-01T00:00:00Z'), prob('c', 'C only here', '2026-01-01T00:00:00Z')];
-    const remote = [prob('a', 'A drive', '2026-01-01T00:00:00Z'), prob('b', 'B drive', '2026-01-05T00:00:00Z'), prob('d', 'D only in Drive', '2026-01-01T00:00:00Z')];
-    const r = mergeProblems(local, remote);
-    expect(r.list.map((p) => p.title)).toEqual(['A local', 'B drive', 'C only here', 'D only in Drive']);
-    expect(r.upload.sort()).toEqual(['a', 'c']);
+  it('brings in files from the folder: newer copies replace older ones, new ones are added', () => {
+    const list = [prob('a', 'A here', '2026-01-02T00:00:00Z'), prob('b', 'B here', '2026-01-01T00:00:00Z')];
+    const files = [prob('a', 'A file', '2026-01-01T00:00:00Z'), prob('b', 'B file', '2026-01-05T00:00:00Z'), prob('d', 'D file', '2026-01-01T00:00:00Z')];
+    const r = mergeIn(list, files);
+    expect(r.list.map((p) => p.title)).toEqual(['A here', 'B file', 'D file']);
+    expect([r.added, r.updated]).toEqual([1, 1]);
   });
 });
 

@@ -1,5 +1,6 @@
 /**
- * Stored problems drop-down: one line per problem, newest first, with a search box at the top.
+ * Stored problems drop-down: one line per problem, newest first, with a search box at the top. A folder icon marks
+ * problems that have a file in the linked problems folder.
  * Arrow keys move through the list, Enter opens the highlighted problem, Esc closes.
  */
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -28,12 +29,12 @@ const shortDate = (iso: string) => {
 interface Props {
   problems: Problem[];
   currentId: string;
-  /** Problem ids that have a copy in Google Drive. */
-  inDrive: Set<string>;
+  /** Problem ids that have a file in the linked problems folder. */
+  saved: Set<string>;
   onOpen: (id: string) => void;
 }
 
-export function ProblemPicker({ problems, currentId, inDrive, onOpen }: Props) {
+export function ProblemPicker({ problems, currentId, saved, onOpen }: Props) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [hi, setHi] = useState(0);
@@ -115,9 +116,9 @@ export function ProblemPicker({ problems, currentId, inDrive, onOpen }: Props) {
                   title={p.source ? `${p.title} — ${p.source}` : p.title}
                 >
                   <span className="prob-row-title">{p.title}</span>
-                  {inDrive.has(p.id) && (
-                    <span className="prob-row-drive" title="Saved in Google Drive" aria-label="In Drive">
-                      ☁
+                  {saved.has(p.id) && (
+                    <span className="prob-row-drive" title="Saved in the problems folder" aria-label="Saved in folder">
+                      📁
                     </span>
                   )}
                   <span className="prob-row-date">{shortDate(p.updated)}</span>
