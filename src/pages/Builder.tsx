@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
@@ -12,6 +12,7 @@ import { downloadProblem, loadCurrentId, loadProblems, readProblemFile, saveCurr
 import { SelectField } from '../components/SelectField';
 import { mapMargins, MapView, type Overlays, type Tool } from '../builder/ui/MapView';
 import { OpeningRing, RadialMenu, type RadialAction } from '../builder/ui/RadialMenu';
+import { usePanZoom } from '../builder/ui/panZoom';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
 import { airflow, ventFindings } from '../builder/vent';
@@ -77,6 +78,10 @@ export default function Builder() {
     return () => clearTimeout(t);
   }, [problems, currentId]);
 
+  const pz = usePanZoom(scroller, zoom, setZoom);
+  const panZoom = useRef(pz);
+  panZoom.current = pz;
+
   const fit = useCallback(() => {
     const el = scroller.current;
     if (!el) return;
@@ -85,8 +90,22 @@ export default function Builder() {
     const vbW = g.width + M.l + M.r;
     const vbH = g.height + M.t + M.b;
     const z = Math.min((el.clientWidth - 4) / vbW, Math.max(320, el.clientHeight - 4) / vbH);
-    setZoom(Math.max(0.8, Math.min(12, z)));
+    panZoom.current.zoomCentered(Math.max(0.6, Math.min(12, z)));
   }, [problem.layout]);
+
+  // Wide screens: the map pane fills the window below the toolbars, so Fit shows the whole map on screen.
+  useLayoutEffect(() => {
+    const size = () => {
+      const el = scroller.current;
+      if (!el) return;
+      if (window.innerWidth < 1000) return void el.style.removeProperty('height');
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      el.style.height = `${Math.round(Math.max(360, Math.min(window.innerHeight - top - 12, window.innerHeight - 90)))}px`;
+    };
+    size();
+    window.addEventListener('resize', size);
+    return () => window.removeEventListener('resize', size);
+  }, [tool.type, tab]);
 
   // Fit the map when a problem is opened (not on every edit).
   const fitRef = useRef(fit);
@@ -527,10 +546,11 @@ export default function Builder() {
         />
         <span className="spacer" />
         <div className="view-ctl">
-          <button type="button" onClick={() => setZoom((z) => Math.max(0.6, z / 1.25))} aria-label="Zoom out">
+          <span className="map-hint">Scroll to zoom · drag to pan</span>
+          <button type="button" onClick={() => pz.zoomBy(1 / 1.25)} aria-label="Zoom out">
             −
           </button>
-          <button type="button" onClick={() => setZoom((z) => Math.min(16, z * 1.25))} aria-label="Zoom in">
+          <button type="button" onClick={() => pz.zoomBy(1.25)} aria-label="Zoom in">
             +
           </button>
           <button type="button" onClick={fit}>
@@ -591,7 +611,7 @@ export default function Builder() {
               {message}
             </p>
           )}
-          <div className="map-scroll" ref={scroller}>
+          <div className="map-scroll" ref={scroller} {...pz.handlers}>
             <div className="map-stage" style={{ width: stage.w, height: stage.h }}>
               <MapView
                 problem={problem}

@@ -545,7 +545,12 @@ button.danger { color: var(--bad); }
   .builder-grid.tab-solve, .builder-grid.tab-vent { grid-template-columns: minmax(0, 1fr) 420px; }
   .b-left, .b-right { max-height: calc(100vh - var(--header-h, 61px) - 24px); overflow: auto; position: sticky; top: calc(var(--header-h, 61px) + 8px); }
 }
-.map-scroll { overflow: auto; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; height: min(72vh, 900px); min-height: 320px; }
+.map-scroll { overflow: auto; overscroll-behavior: contain; display: flex; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; height: min(72vh, 900px); min-height: 320px; cursor: grab; }
+.map-scroll.panning, .map-scroll.panning * { cursor: grabbing !important; }
+/* Centered when smaller than the view; margin (not justify/align) keeps the overflow scrollable from the edges. */
+.map-scroll > .map-stage { flex: none; margin: auto; }
+.map-hint { font-size: 0.82rem; color: var(--muted); padding: 0 0.3rem; }
+@media (hover: none) { .map-hint { display: none; } }
 .mine-map { display: block; user-select: none; -webkit-user-select: none; }
 .map-solid { fill: #ece9e2; }
 .map-open { fill: transparent; }
