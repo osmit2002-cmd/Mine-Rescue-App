@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
-import { canLinkFolder, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
+import { canLinkFolder, canShareFiles, fetchStarters, shareProblems, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
 import { editLayout, openingName, openingState, type LayoutOp } from '../builder/layoutEdit';
@@ -583,8 +583,10 @@ export default function Builder() {
         setMap(await writeOne(folderAsk, p, fileMap));
         return `Saved “${title}” to “${folderAsk.name}”.`;
       });
+      if (canShareFiles())
+        return folderRun('Saving', async () => ((await shareProblems([p])) ? `Shared “${title}”. Folder → Open files… brings it back in from where you saved it.` : 'Not saved.'));
       downloadProblem(p);
-      setFolderNote(canLinkFolder() ? `Downloaded “${title}”. Link a folder (Folder menu) to save straight into it.` : `Downloaded “${title}”. Move it into your problems folder; Folder → Open files… brings files back in.`);
+      setFolderNote(canLinkFolder() ? `Downloaded “${title}” to your Downloads folder. Link a folder (Folder menu) to save straight into it.` : `Downloaded “${title}” to your Downloads folder. Folder → Open files… brings files back in.`);
       return;
     }
     const d = folder;
@@ -593,6 +595,38 @@ export default function Builder() {
       return `Saved “${title}” to “${d.name}”.`;
     });
   };
+  /**
+   * Starter problems (samples and past contests, kept in the repo): added to the list and saved where the user keeps
+   * problems: the linked folder, the share sheet on a phone, or the Downloads folder.
+   */
+  const getStarters = () =>
+    folderRun('Getting the starter problems', async () => {
+      const starters = await fetchStarters();
+      const m = mergeIn(problems, starters.map((s) => s.problem));
+      setProblems(m.list);
+      const d = folder ?? (folderAsk && (await ensurePermission(folderAsk, true)) ? folderAsk : null);
+      if (d) {
+        const have = new Set((await readFolder(d)).map((f) => f.problem.id));
+        let map = fileMap;
+        let wrote = 0;
+        for (const s of starters) {
+          if (have.has(s.problem.id)) continue;
+          map = await writeOne(d, s.problem, map);
+          wrote++;
+        }
+        setMap(map);
+        setFolder(d);
+        setFolderAsk(null);
+        return `Starter problems: ${wrote} saved to “${d.name}”${wrote < starters.length ? `, ${starters.length - wrote} already there` : ''}.`;
+      }
+      if (canShareFiles()) return (await shareProblems(starters.map((s) => s.problem))) ? `Added ${starters.length} starter problems and shared their files.` : `Added ${starters.length} starter problems to the list.`;
+      // One at a time: browsers drop or misname downloads started in the same instant.
+      for (const s of starters) {
+        downloadProblem(s.problem);
+        await new Promise((r) => setTimeout(r, 300));
+      }
+      return `Added ${starters.length} starter problems and downloaded their files to your Downloads folder.`;
+    });
   const onOpenFiles = async (files: FileList | null) => {
     if (!files?.length) return;
     const r = await readPickedFiles(files);
@@ -681,7 +715,11 @@ export default function Builder() {
                   <span className="small muted">Choose the folder on this computer where problem files are kept. Save writes there, and every problem file in it shows in the list.</span>
                 </button>
               ) : (
-                <span className="small muted menu-note">This browser cannot link a folder (Chrome or Edge can). Save downloads the file; move it to your problems folder.</span>
+                <span className="small muted menu-note">
+                  {canShareFiles()
+                    ? 'Save opens the share sheet: save the file to Files, iCloud Drive, Google Drive or the phone. Open files… brings files back in.'
+                    : 'This browser cannot link a folder (Chrome or Edge on a computer can). Save downloads the file to your Downloads folder; Open files… brings files back in.'}
+                </span>
               )}
               {folder && (
                 <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), folderRun('Reading the problems folder', () => loadFrom(folder)))}>
@@ -689,6 +727,10 @@ export default function Builder() {
                   <span className="small muted">Picks up files added or changed in the folder outside the app</span>
                 </button>
               )}
+              <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), getStarters())}>
+                <strong>Get starter problems</strong>
+                <span className="small muted">The sample and past contest problems, saved to {folder ? `“${folder.name}”` : canShareFiles() ? 'where you choose' : 'your Downloads folder'}</span>
+              </button>
               <button type="button" onClick={(e) => (closeMenu(e), openFiles.current?.click())}>
                 <strong>Open files…</strong>
                 <span className="small muted">Bring in one or more problem files (.mrs-problem.json)</span>
@@ -779,6 +821,11 @@ export default function Builder() {
           </button>
         </div>
       </div>
+      {!folderNote && !folder && !folderAsk && !Object.keys(fileMap).length && problems.length <= 1 && (
+        <p className="drive-status muted">
+          New here? <button type="button" className="link inline" onClick={getStarters}>Get the starter problems</button> (sample and past contest problems){canLinkFolder() ? ', and link a folder from the Folder menu to keep your own.' : '.'}
+        </p>
+      )}
       {folderNote && <p className="drive-status muted" role="status">{folderNote}</p>}
       {!saveOk && <p className="warn small">This browser is not saving problems (storage blocked). Use Export to keep your work.</p>}
       {sample && <p className="small muted">{problem.source}. Edits are saved on this device; open it again from Samples for a fresh copy.</p>}

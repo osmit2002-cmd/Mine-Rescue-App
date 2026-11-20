@@ -15,9 +15,16 @@ const HANDLE_KEY = 'problems-folder';
 
 // ------------------------------------------------------------ pure helpers (tested)
 
-/** File name for a problem: its title made safe for Windows, macOS and Linux, plus the problem file extension. */
+/** File name for a problem: its title made safe for Windows, macOS, Linux and downloads, plus the problem file extension. */
 export function problemFileName(p: Pick<Problem, 'title'>): string {
-  const t = p.title.replace(/[\\/:*?"<>|\u0000-\u001f]+/g, '-').replace(/\s+/g, ' ').replace(/[. ]+$/, '').trim().slice(0, 120);
+  // Plain ASCII: some browsers drop a download's name when it has other characters (dashes, quotes, accents).
+  const t = p.title
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[\u2010-\u2015]/g, '-')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[^\x20-\x7e]+/g, '')
+    .replace(/[\\/:*?"<>|]+/g, '-').replace(/\s+/g, ' ').replace(/[. ]+$/, '').trim().slice(0, 120);
   return `${t || 'Untitled problem'}.mrs-problem.json`;
 }
 
@@ -180,4 +187,45 @@ export async function readPickedFiles(files: FileList | File[]): Promise<{ probl
     }
   }
   return { problems, bad };
+}
+
+// ------------------------------------------------------------ phones and tablets
+
+/** A touch device whose browser can hand files to the share sheet (Save to Files, iCloud Drive, Google Drive, …). */
+export function canShareFiles(): boolean {
+  try {
+    const probe = new File(['{}'], 'x.json', { type: 'application/json' });
+    return typeof navigator !== 'undefined' && !!navigator.canShare?.({ files: [probe] }) && window.matchMedia('(pointer: coarse)').matches;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Hand problem files to the share sheet so the user can save them to their own cloud storage or to the phone.
+ * Returns false when the user cancelled.
+ */
+export async function shareProblems(list: Problem[]): Promise<boolean> {
+  const files = list.map((p) => new File([JSON.stringify(p, null, 2) + '\n'], problemFileName(p), { type: 'application/json' }));
+  try {
+    await navigator.share({ files, title: list.length === 1 ? list[0].title : 'Mine rescue problems' });
+    return true;
+  } catch (e) {
+    if ((e as DOMException).name === 'AbortError') return false;
+    throw e;
+  }
+}
+
+// ------------------------------------------------------------ starter problems (public/starter-problems)
+
+/** The starter problem files that ship with the app (sample and past contest problems). */
+export async function fetchStarters(base = 'starter-problems'): Promise<{ name: string; problem: Problem }[]> {
+  const idx = (await (await fetch(`${base}/index.json`)).json()) as { files: string[] };
+  return Promise.all(
+    idx.files.map(async (name) => {
+      const r = await fetch(`${base}/${encodeURIComponent(name)}`);
+      if (!r.ok) throw new Error(`Could not load the starter problem “${name}”.`);
+      return { name, problem: normalizeProblem(await r.json()) };
+    })
+  );
 }

@@ -1,0 +1,285 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "sample-practice-1",
+  "title": "Practice 1 — Fire on the 1st North section",
+  "statement": "At approximately 7:30 a.m. a fire was reported on the 1st North section. Five miners were working on the section; two escaped and reported light smoke in the No. 2 Entry. Three miners are unaccounted for. The main mine fan, at the air shaft off the No. 4 Entry at Crosscut 5, is running and exhausting. All power to the section has been removed at the power center. The fresh air base has been established at the mouth of the section; the team may enter the section in any of the four entries.",
+  "instructions": "Explore the section and locate and account for all missing persons. Bring all live persons to the fresh air base. Do not change the fan without the briefing officer’s approval. Timbers are not provided at the fresh air base.",
+  "missing": 3,
+  "timeLimit": 0,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": true,
+    "lineCurtain": false
+  },
+  "keyNotes": "Contaminant (25 PPM CO) in No. 2 Entry: advance in No. 2 or the entries next to it (Rule 44B). Smoke in No. 2 inby Crosscut 3: lifeline. Smoldering fire at the battery charger in Crosscut 4: put it out before passing. Explosive mixture at the No. 1 Entry face is not near evidence of fire (no withdrawal). Timbers in No. 3 Entry are needed to reach the unconscious person under unsafe roof in Crosscut 5. Barricade in No. 4 inby Crosscut 5 answers: airlock and breach promptly.",
+  "layout": {
+    "entries": 4,
+    "rows": 6,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 40,
+    "cells": {
+      "8,2": "open",
+      "8,10": "open"
+    },
+    "entryNames": [
+      "No. 1 Entry",
+      "No. 2 Entry",
+      "No. 3 Entry",
+      "No. 4 Entry"
+    ],
+    "xcStart": 0,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "p1-1",
+      "kind": "air",
+      "x": 130,
+      "y": 6,
+      "dir": 0,
+      "text": "AIR MOVING INBY",
+      "preMapped": true
+    },
+    {
+      "id": "p1-2",
+      "kind": "x",
+      "x": 170,
+      "y": 10,
+      "sub": "materials",
+      "text": "STOPPING MATERIAL",
+      "preMapped": true
+    },
+    {
+      "id": "p1-3",
+      "kind": "brattice",
+      "x": 250,
+      "y": 10,
+      "text": "BRATTICE CLOTH",
+      "preMapped": true
+    },
+    {
+      "id": "p1-4",
+      "kind": "body",
+      "x": 50,
+      "y": 130,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "p1-5",
+      "kind": "x",
+      "x": 210,
+      "y": 121,
+      "sub": "timbers",
+      "text": "TIMBERS",
+      "count": 8
+    },
+    {
+      "id": "p1-6",
+      "kind": "water",
+      "x": 210,
+      "y": 145,
+      "across": true,
+      "overKnee": false,
+      "roofed": false,
+      "len": 8,
+      "text": "WATER 6 INCHES DEEP"
+    },
+    {
+      "id": "p1-7",
+      "kind": "perm-stopping",
+      "x": 250,
+      "y": 90,
+      "intact": true,
+      "airtight": true,
+      "text": "PERMANENT STOPPING"
+    },
+    {
+      "id": "p1-8",
+      "kind": "perm-stopping",
+      "x": 250,
+      "y": 170,
+      "intact": true,
+      "airtight": true,
+      "text": "PERMANENT STOPPING"
+    },
+    {
+      "id": "p1-9",
+      "kind": "seal",
+      "x": 316,
+      "y": 90,
+      "intact": true,
+      "airtight": true,
+      "text": "SEAL - SAMPLING PIPE"
+    },
+    {
+      "id": "p1-10",
+      "kind": "gas",
+      "x": 130,
+      "y": 198,
+      "ch4": 0.2,
+      "co": 25,
+      "o2": 20.5
+    },
+    {
+      "id": "p1-11",
+      "kind": "x",
+      "x": 210,
+      "y": 170,
+      "sub": "lunch-pail",
+      "text": "LUNCH PAIL"
+    },
+    {
+      "id": "p1-12",
+      "kind": "x",
+      "x": 215,
+      "y": 170,
+      "sub": "note",
+      "text": "NOTE - WE WENT TO THE NO. 4 ENTRY AND BUILT A BARRICADE"
+    },
+    {
+      "id": "p1-13",
+      "kind": "caved",
+      "x": 250,
+      "y": 250,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "p1-14",
+      "kind": "smoke",
+      "x": 130,
+      "y": 269,
+      "density": "light",
+      "text": "LIGHT SMOKE"
+    },
+    {
+      "id": "p1-15",
+      "kind": "smoke-end",
+      "x": 111,
+      "y": 330,
+      "text": "END OF SMOKE"
+    },
+    {
+      "id": "p1-16",
+      "kind": "smoke-end",
+      "x": 130,
+      "y": 352,
+      "text": "END OF SMOKE"
+    },
+    {
+      "id": "p1-17",
+      "kind": "smoke-end",
+      "x": 191,
+      "y": 330,
+      "text": "END OF SMOKE"
+    },
+    {
+      "id": "p1-18",
+      "kind": "fire",
+      "x": 167,
+      "y": 330,
+      "extinguishable": true,
+      "text": "FIRE - SMOLDERING"
+    },
+    {
+      "id": "p1-19",
+      "kind": "x",
+      "x": 167,
+      "y": 334,
+      "sub": "equipment",
+      "text": "BATTERY CHARGER",
+      "energized": false
+    },
+    {
+      "id": "p1-20",
+      "kind": "door",
+      "x": 250,
+      "y": 330,
+      "open": false,
+      "intact": true,
+      "airtight": true,
+      "text": "MAN DOOR CLOSED"
+    },
+    {
+      "id": "p1-21",
+      "kind": "unsafe-roof",
+      "x": 90,
+      "y": 410,
+      "across": true,
+      "len": 14,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "p1-22",
+      "kind": "person",
+      "x": 90,
+      "y": 410,
+      "conscious": false,
+      "dir": 90,
+      "text": "LIVE PERSON UNCONSCIOUS"
+    },
+    {
+      "id": "p1-23",
+      "kind": "gas",
+      "x": 50,
+      "y": 448,
+      "ch4": 7.5,
+      "co": 0,
+      "o2": 19.8
+    },
+    {
+      "id": "p1-24",
+      "kind": "x",
+      "x": 50,
+      "y": 458,
+      "sub": "old-works",
+      "text": "CUT INTO OLD WORKS"
+    },
+    {
+      "id": "p1-25",
+      "kind": "barricade",
+      "x": 290,
+      "y": 430,
+      "intact": true,
+      "airtight": true,
+      "response": true,
+      "text": "BARRICADE - KNOCKING HEARD"
+    },
+    {
+      "id": "p1-26",
+      "kind": "person",
+      "x": 290,
+      "y": 448,
+      "conscious": true,
+      "dir": 0,
+      "text": "LIVE PERSON CONSCIOUS"
+    },
+    {
+      "id": "p1-27",
+      "kind": "x",
+      "x": 334,
+      "y": 410,
+      "sub": "shaft",
+      "text": "AIR SHAFT",
+      "preMapped": true
+    },
+    {
+      "id": "p1-28",
+      "kind": "fan",
+      "x": 324,
+      "y": 410,
+      "fanMode": "exhausting",
+      "on": true,
+      "text": "FAN ON EXHAUSTING"
+    }
+  ],
+  "updated": "2026-10-29T00:00:00.000Z",
+  "source": "Practice problem written for this app (not an official contest problem)"
+}

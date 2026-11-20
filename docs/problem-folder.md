@@ -20,7 +20,26 @@ The app remembers the folder. After the browser restarts it needs one click to o
 A folder synced by OneDrive, Google Drive for desktop or Dropbox works too, so problems can follow you between
 computers.
 
-## Firefox and Safari
+## Starter problems
 
-These browsers cannot link a folder. **Save** downloads the problem file; move it into your problems folder.
+The sample problems and the transcribed past contest problems are kept in the repo as problem files in
+`public/starter-problems/` (they are served with the app, so they work offline too). **Folder → Get starter
+problems** (or "Get the starter problems" on a first visit) adds them to the list and saves their files:
+
+- into the linked folder (files already there are left alone), or
+- to the Downloads folder when no folder is linked, or
+- through the share sheet on a phone or tablet.
+
+After changing a sample or a reference case in `src/builder`, run `npm run starters` to rewrite the files; a test
+fails while they are out of date.
+
+## Phones and tablets
+
+Phones cannot link a folder. **Save** opens the share sheet, so the file can go to Files / iCloud Drive / Google
+Drive / OneDrive / Dropbox or onto the phone. **Folder → Open files…** brings files back in from any of those.
+
+## Firefox and Safari on a computer
+
+These browsers cannot link a folder. **Save** downloads the problem file to the Downloads folder (or wherever the
+browser saves downloads).
 **Folder → Open files…** brings one or more problem files back into the builder.

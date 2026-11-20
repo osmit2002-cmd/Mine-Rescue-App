@@ -1,0 +1,246 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "case-national-2019-day1",
+  "title": "2019 National — Coal Day 1",
+  "source": "https://minerescuecenter.com/media/problems/2019_national_Coal_Day_1_Field.pdf",
+  "statement": "Superintendent of the Lexington No. 1 mine. Seven miners from the maintenance crew are missing on the No. 1 section of the northwest mains after rushing water was heard while they were moving the refuge alternative. The mine map is not up to date. The fresh air base is on the northwest mains at crosscut 34. The main fan is blowing, on, and cannot be turned off, reversed, or stalled. The seam height is about 6 feet.",
+  "instructions": "Find and locate all missing miners. Bring survivors to the fresh air base. Explore the entire mine if it is safe to do so. Do not stop, stall, or reverse the fan. The team can only carry 2 sets of building material at a time. 80 minutes.",
+  "missing": 5,
+  "timeLimit": 80,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": false,
+    "lineCurtain": false
+  },
+  "keyNotes": "Briefing plus the team-stop map: row 1 is 1/2, 2/3, 1/2; row 2 is 4/5, 4/5, 6; row 3 is 9, 7/8, 7/8; row 4 is 10/11, 10/11, 12.",
+  "layout": {
+    "entries": 3,
+    "rows": 6,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 40,
+    "cells": {},
+    "entryNames": [],
+    "xcStart": 1,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "n19-1",
+      "kind": "fan",
+      "x": 130,
+      "y": 10,
+      "fanMode": "blowing",
+      "on": true,
+      "text": "BLOWING FAN ON — cannot be stopped, stalled, or reversed",
+      "preMapped": true
+    },
+    {
+      "id": "n19-2",
+      "kind": "water",
+      "x": 130,
+      "y": 53,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "WATER OVER KNEE DEEP"
+    },
+    {
+      "id": "n19-3",
+      "kind": "unsafe-roof",
+      "x": 50,
+      "y": 127,
+      "across": false,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "n19-4",
+      "kind": "unsafe-roof",
+      "x": 210,
+      "y": 130,
+      "across": false,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "n19-5",
+      "kind": "door",
+      "x": 81,
+      "y": 170,
+      "open": true,
+      "intact": true,
+      "airtight": true,
+      "text": "DOOR OPEN"
+    },
+    {
+      "id": "person-45",
+      "kind": "person",
+      "x": 96,
+      "y": 170,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS LIVE PERSON"
+    },
+    {
+      "id": "n19-7",
+      "kind": "caved",
+      "x": 50,
+      "y": 222,
+      "across": true,
+      "airtight": true,
+      "len": 10,
+      "text": "CAVED AIRTIGHT"
+    },
+    {
+      "id": "pump-n3",
+      "kind": "x",
+      "x": 210,
+      "y": 204,
+      "sub": "pump",
+      "text": "OPERATIVE WATER PUMP"
+    },
+    {
+      "id": "n19-9",
+      "kind": "unsafe-roof",
+      "x": 210,
+      "y": 219,
+      "across": false,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "n19-10",
+      "kind": "refuge",
+      "x": 84,
+      "y": 250,
+      "dir": 180,
+      "text": "RA"
+    },
+    {
+      "id": "body-ra",
+      "kind": "body",
+      "x": 93,
+      "y": 250,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "n19-12",
+      "kind": "water",
+      "x": 210,
+      "y": 290,
+      "across": true,
+      "overKnee": true,
+      "roofed": true,
+      "len": 10,
+      "text": "WATER ROOFED"
+    },
+    {
+      "id": "n19-13",
+      "kind": "x",
+      "x": 50,
+      "y": 330,
+      "sub": "note",
+      "text": "LUNCHBOX — Shane is trapped in #3 entry"
+    },
+    {
+      "id": "n19-14",
+      "kind": "water",
+      "x": 50,
+      "y": 376,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "CHEST DEEP WATER"
+    },
+    {
+      "id": "body-n2",
+      "kind": "body",
+      "x": 130,
+      "y": 330,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "n19-16",
+      "kind": "water",
+      "x": 130,
+      "y": 376,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "CHEST DEEP WATER"
+    },
+    {
+      "id": "n19-17",
+      "kind": "x",
+      "x": 210,
+      "y": 330,
+      "sub": "old-works",
+      "text": "SMALL HOLE IN RIB INTO OLD WORKS"
+    },
+    {
+      "id": "gas-n3-outby",
+      "kind": "gas",
+      "x": 210,
+      "y": 355,
+      "ch4": 0,
+      "co": 0,
+      "o2": 19,
+      "text": "LOW IRRESPIRABLE AIR OUTBY THE STOPPING"
+    },
+    {
+      "id": "stopping-n3",
+      "kind": "perm-stopping",
+      "x": 210,
+      "y": 364,
+      "intact": true,
+      "airtight": true,
+      "text": "PERMANENT STOPPING"
+    },
+    {
+      "id": "gas-n3-face",
+      "kind": "gas",
+      "x": 210,
+      "y": 373,
+      "ch4": 6,
+      "co": 0,
+      "o2": 19,
+      "text": "0 PPM CO, 6.0% CH4, 19.0% O2"
+    },
+    {
+      "id": "body-n3",
+      "kind": "body",
+      "x": 210,
+      "y": 382,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "person-shane",
+      "kind": "person",
+      "x": 210,
+      "y": 391,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS LIVE PERSON"
+    },
+    {
+      "id": "n19-23",
+      "kind": "x",
+      "x": 210,
+      "y": 410,
+      "sub": "timbers",
+      "text": "8 TIMBERS",
+      "count": 8
+    }
+  ],
+  "updated": "2026-11-12T00:00:00.000Z"
+}

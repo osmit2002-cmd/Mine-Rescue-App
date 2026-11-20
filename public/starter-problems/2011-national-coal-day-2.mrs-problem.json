@@ -1,0 +1,371 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "case-national-2011-day2",
+  "title": "2011 National — Coal Day 2",
+  "source": "https://permanent.fdlp.gov/websites/www.msha.gov/MineRescue/PROBLEMS/coal/2011/NMRC%20Day%202%20Problem.pdf",
+  "statement": "Superintendent of the Cat's Paw Coal Co., Buckeye No. 1 Mine. Three repairmen, an examiner, and a foreman are missing from the 1st Right off 2 South Mains after smoke and a blast at the drifts. The blowing fan is off but operable and can be started, stopped, or reversed. It is in the No. 1 drift and is guarded. Power underground is locked out and guarded. The fresh air base has a safe haven for the briefing officer. All outby areas are explored and the mine map is up to date.",
+  "instructions": "Explore all of the mine that can be done safely. Account for all missing persons. Bring survivors to the fresh air base. Call out the lowest O2 readings to the briefing officer with 20 minute checks. The team can only carry three sets of building material at a time. You will have 70 minutes.",
+  "missing": 5,
+  "timeLimit": 70,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": false,
+    "lineCurtain": false
+  },
+  "keyNotes": "Judges' map: stops 1, 2, 3 across the first intersection; 8, 7, 4 across the second; 9, 6, 5 across the third; 10, 11, 12 at the last open crosscut.",
+  "layout": {
+    "entries": 3,
+    "rows": 5,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 40,
+    "cells": {},
+    "entryNames": [],
+    "xcStart": 1,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "n11-1",
+      "kind": "fan",
+      "x": 50,
+      "y": 10,
+      "fanMode": "blowing",
+      "on": false,
+      "text": "BLOWING FAN OFF — in the No. 1 drift, guarded; can be started, stopped, or reversed",
+      "preMapped": true
+    },
+    {
+      "id": "n11-2",
+      "kind": "caved",
+      "x": 210,
+      "y": 53,
+      "across": true,
+      "airtight": true,
+      "len": 10,
+      "text": "CAVED AIR TIGHT"
+    },
+    {
+      "id": "timbers-fab",
+      "kind": "x",
+      "x": 130,
+      "y": 10,
+      "sub": "timbers",
+      "text": "FOUR TIMBERS",
+      "count": 4
+    },
+    {
+      "id": "n11-4",
+      "kind": "x",
+      "x": 130,
+      "y": 10,
+      "sub": "borehole",
+      "text": "BOREHOLE TO SURFACE"
+    },
+    {
+      "id": "n11-5",
+      "kind": "unsafe-roof",
+      "x": 50,
+      "y": 47,
+      "across": false,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "n11-6",
+      "kind": "x",
+      "x": 50,
+      "y": 90,
+      "sub": "lunch-pail",
+      "text": "LUNCH BOX"
+    },
+    {
+      "id": "gas-n1-mouth",
+      "kind": "gas",
+      "x": 50,
+      "y": 65,
+      "ch4": 7,
+      "co": 2,
+      "o2": 19.6,
+      "text": "2 PPM CO, 7.0% CH4, 19.6% O2"
+    },
+    {
+      "id": "gas-n1-inby1",
+      "kind": "gas",
+      "x": 50,
+      "y": 115,
+      "ch4": 4,
+      "co": 4,
+      "o2": 19,
+      "text": "4 PPM CO, 4.0% CH4, 19.0% O2"
+    },
+    {
+      "id": "n11-9",
+      "kind": "caved",
+      "x": 50,
+      "y": 142,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "n11-10",
+      "kind": "water",
+      "x": 130,
+      "y": 130,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "WATER OVER KNEE DEEP"
+    },
+    {
+      "id": "n11-11",
+      "kind": "brattice",
+      "x": 130,
+      "y": 90,
+      "text": "BRATTICE CLOTH"
+    },
+    {
+      "id": "n11-12",
+      "kind": "line-curtain",
+      "x": 130,
+      "y": 90,
+      "text": "LINE CURTAIN"
+    },
+    {
+      "id": "person-stop3",
+      "kind": "person",
+      "x": 210,
+      "y": 121,
+      "conscious": true,
+      "dir": 0,
+      "text": "PERSON"
+    },
+    {
+      "id": "n11-14",
+      "kind": "unsafe-roof",
+      "x": 210,
+      "y": 127,
+      "across": true,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "gas-n3-stop3",
+      "kind": "gas",
+      "x": 210,
+      "y": 62,
+      "ch4": 7,
+      "co": 2,
+      "o2": 19.6,
+      "text": "2 PPM CO, 7.0% CH4, 19.6% O2"
+    },
+    {
+      "id": "n11-16",
+      "kind": "caved",
+      "x": 170,
+      "y": 170,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "body-stop7",
+      "kind": "body",
+      "x": 130,
+      "y": 170,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "gas-n2-stop7",
+      "kind": "gas",
+      "x": 130,
+      "y": 201,
+      "ch4": 5.8,
+      "co": 2,
+      "o2": 19.2,
+      "text": "2 PPM CO, 5.8% CH4, 19.2% O2"
+    },
+    {
+      "id": "n11-19",
+      "kind": "water",
+      "x": 130,
+      "y": 219,
+      "across": false,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "WATER OVER KNEE DEEP"
+    },
+    {
+      "id": "n11-20",
+      "kind": "unsafe-roof",
+      "x": 90,
+      "y": 250,
+      "across": true,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "body-stop9",
+      "kind": "body",
+      "x": 50,
+      "y": 250,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "n11-22",
+      "kind": "water",
+      "x": 130,
+      "y": 284,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "WATER OVER KNEE DEEP"
+    },
+    {
+      "id": "n11-23",
+      "kind": "x",
+      "x": 130,
+      "y": 293,
+      "sub": "equipment",
+      "text": "BATTERY RAM CAR",
+      "energized": false
+    },
+    {
+      "id": "gas-n3-84",
+      "kind": "gas",
+      "x": 210,
+      "y": 278,
+      "ch4": 5.4,
+      "co": 8,
+      "o2": 19.6,
+      "text": "8 PPM CO, 5.4% CH4, 19.6% O2"
+    },
+    {
+      "id": "gas-n3-74",
+      "kind": "gas",
+      "x": 210,
+      "y": 293,
+      "ch4": 5.4,
+      "co": 7,
+      "o2": 19.6,
+      "text": "7 PPM CO, 5.4% CH4, 19.6% O2"
+    },
+    {
+      "id": "n11-26",
+      "kind": "caved",
+      "x": 210,
+      "y": 308,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "gas-n1-face",
+      "kind": "gas",
+      "x": 50,
+      "y": 350,
+      "ch4": 6.4,
+      "co": 5,
+      "o2": 19,
+      "text": "5 PPM CO, 6.4% CH4, 19.0% O2"
+    },
+    {
+      "id": "barricade-n1",
+      "kind": "barricade",
+      "x": 50,
+      "y": 360,
+      "intact": true,
+      "airtight": true,
+      "response": true,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-n1",
+      "kind": "person",
+      "x": 50,
+      "y": 370,
+      "conscious": true,
+      "dir": 0,
+      "text": "LIVE CONSCIOUS PERSON"
+    },
+    {
+      "id": "gas-n2-face",
+      "kind": "gas",
+      "x": 130,
+      "y": 350,
+      "ch4": 4.4,
+      "co": 5,
+      "o2": 19,
+      "text": "5 PPM CO, 4.4% CH4, 19.0% O2"
+    },
+    {
+      "id": "barricade-n2",
+      "kind": "barricade",
+      "x": 130,
+      "y": 360,
+      "intact": true,
+      "airtight": true,
+      "response": false,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-n2",
+      "kind": "person",
+      "x": 130,
+      "y": 370,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS LIVE PERSON"
+    },
+    {
+      "id": "gas-n3-face",
+      "kind": "gas",
+      "x": 210,
+      "y": 352,
+      "ch4": 4.8,
+      "co": 3,
+      "o2": 19.6,
+      "text": "3 PPM CO, 4.8% CH4, 19.6% O2"
+    },
+    {
+      "id": "n11-34",
+      "kind": "x",
+      "x": 210,
+      "y": 362,
+      "sub": "equipment",
+      "text": "BATTERY RAM CAR",
+      "energized": false
+    },
+    {
+      "id": "shaft-n3",
+      "kind": "x",
+      "x": 210,
+      "y": 372,
+      "sub": "shaft",
+      "text": "6 FOOT SHAFT",
+      "preMapped": true
+    },
+    {
+      "id": "n11-36",
+      "kind": "x",
+      "x": 210,
+      "y": 330,
+      "sub": "timbers",
+      "text": "3 TIMBERS",
+      "count": 3
+    }
+  ],
+  "updated": "2026-11-12T00:00:00.000Z"
+}

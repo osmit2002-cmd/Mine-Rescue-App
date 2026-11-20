@@ -19,6 +19,7 @@ describe('stored problems', () => {
   it('names problem files after the title, safely and without clashes', () => {
     expect(problemFileName({ title: 'Day 1: A/B test.' })).toBe('Day 1- A-B test.mrs-problem.json');
     expect(problemFileName({ title: '  ' })).toBe('Untitled problem.mrs-problem.json');
+    expect(problemFileName({ title: 'Rule book Figure 7 — Systematic “exploration” café' })).toBe('Rule book Figure 7 - Systematic exploration cafe.mrs-problem.json');
     const taken = { a: 'Fire.mrs-problem.json', b: 'Fire (2).mrs-problem.json' };
     expect(uniqueFileName({ id: 'a', title: 'Fire' }, taken)).toBe('Fire.mrs-problem.json');
     expect(uniqueFileName({ id: 'c', title: 'fire' }, taken)).toBe('fire (3).mrs-problem.json');
