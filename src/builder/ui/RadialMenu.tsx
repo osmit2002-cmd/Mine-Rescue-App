@@ -5,11 +5,11 @@
 import { elementName } from '../catalog';
 import type { El, SegState } from '../model';
 
-export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done';
+export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done' | 'label' | 'path';
 
 export interface RadialOption {
   id: string;
-  /** Short text on the button. */
+  /** Short text on the button: at most two short words, so it fits inside the round button (see MAX_WORD). */
   label: string;
   /** Longer name for the tooltip and screen readers. */
   title: string;
@@ -36,7 +36,7 @@ export function radialOptions(el: El): RadialOption[] {
     const verb = k === 'body' || k === 'person' ? 'Head toward' : k === 'refuge' ? 'Door side' : 'Direction';
     const cur = (el.dir ?? 0) % 360;
     for (const [v, arrow, name] of DIRS) out.push({ id: `dir${v}`, label: arrow, title: `${verb}: ${name.toLowerCase()}`, on: cur === v, patch: { dir: v } });
-    out.push({ id: 'rot45', label: '↻ 45°', title: 'Rotate 45°', patch: { dir: (cur + 45) % 360 } });
+    out.push({ id: 'rot45', label: '↻45°', title: 'Rotate 45°', patch: { dir: (cur + 45) % 360 } });
   }
   if (k === 'diagonal') {
     out.push({ id: 'diag/', label: '／', title: 'Outby-left to inby-right', on: (el.diag ?? '/') === '/', patch: { diag: '/' } });
@@ -44,42 +44,48 @@ export function radialOptions(el: El): RadialOption[] {
   }
   if (['perm-stopping', 'temp-stopping', 'seal', 'barricade', 'diagonal', 'overcast'].includes(k)) {
     const intact = el.intact !== false;
-    out.push(toggle('intact', intact ? 'Intact' : 'Not intact', 'Intact', intact, { intact: !intact, airtight: intact ? false : el.airtight }));
+    out.push(toggle('intact', intact ? 'Intact' : 'Broken', intact ? 'Intact (click: not intact)' : 'Not intact (click: intact)', intact, { intact: !intact, airtight: intact ? false : el.airtight }));
     const airtight = el.airtight !== false && intact;
-    out.push(toggle('airtight', airtight ? 'Airtight' : 'Not airtight', 'Airtight', airtight, { airtight: !airtight, ...(airtight ? {} : { intact: true }) }));
+    out.push(toggle('airtight', airtight ? 'Airtight' : 'Leaks', airtight ? 'Airtight (click: not airtight)' : 'Not airtight (click: airtight)', airtight, { airtight: !airtight, ...(airtight ? {} : { intact: true }) }));
   }
   if (k === 'barricade') out.push(toggle('response', 'Answers', 'A person answers from behind it', !!el.response, { response: !el.response }));
   if (k === 'door') out.push(toggle('open', el.open ? 'Open' : 'Closed', 'Door open', !!el.open, { open: !el.open }));
-  if (k === 'caved' || k === 'unsafe-roof' || k === 'water') out.push(toggle('across', 'Rib to rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
+  if (k === 'caved' || k === 'unsafe-roof' || k === 'water') out.push(toggle('across', 'Rib–rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
   if (k === 'caved') out.push(toggle('airtight', 'Airtight', 'Placard states “airtight”', !!el.airtight, { airtight: !el.airtight }));
   if (k === 'water') {
-    out.push(toggle('overKnee', 'Over knee', 'Over knee deep', !!el.overKnee, { overKnee: !el.overKnee }));
+    out.push(toggle('overKnee', 'Knee+', 'Over knee deep', !!el.overKnee, { overKnee: !el.overKnee }));
     out.push(toggle('roofed', 'Roofed', 'Water roofed (airtight)', !!el.roofed, { roofed: !el.roofed }));
   }
   if (k === 'smoke') {
     out.push({ id: 'light', label: 'Light', title: 'Light smoke', on: el.density === 'light', patch: { density: el.density === 'light' ? '' : 'light' } });
     out.push({ id: 'dense', label: 'Dense', title: 'Dense smoke', on: el.density === 'dense', patch: { density: el.density === 'dense' ? '' : 'dense' } });
   }
-  if (k === 'fire') out.push(toggle('ext', 'Can put out', 'Can be extinguished', el.extinguishable !== false, { extinguishable: el.extinguishable === false }));
+  if (k === 'fire') out.push(toggle('ext', 'Put out', 'Can be extinguished', el.extinguishable !== false, { extinguishable: el.extinguishable === false }));
   if (k === 'fan') {
-    out.push(toggle('on', el.on !== false ? 'Running' : 'Off', 'Running', el.on !== false, { on: el.on === false }));
+    out.push(toggle('on', el.on !== false ? 'On' : 'Off', el.on !== false ? 'Running (click: off)' : 'Off (click: running)', el.on !== false, { on: el.on === false }));
     const blowing = el.fanMode === 'blowing';
-    out.push({ id: 'mode', label: blowing ? 'Blowing' : 'Exhausting', title: 'Switch exhausting / blowing', patch: { fanMode: blowing ? 'exhausting' : 'blowing' } });
+    out.push({ id: 'mode', label: blowing ? 'Blow' : 'Exhaust', title: blowing ? 'Blowing (click: exhausting)' : 'Exhausting (click: blowing)', patch: { fanMode: blowing ? 'exhausting' : 'blowing' } });
   }
-  if (k === 'person') out.push(toggle('conscious', el.conscious !== false ? 'Conscious' : 'Unconscious', 'Conscious', el.conscious !== false, { conscious: el.conscious === false }));
+  if (k === 'person') out.push(toggle('conscious', el.conscious !== false ? 'Awake' : 'Uncon.', el.conscious !== false ? 'Conscious (click: unconscious)' : 'Unconscious (click: conscious)', el.conscious !== false, { conscious: el.conscious === false }));
   if (k === 'x' && (el.sub === 'equipment' || el.sub === 'cable' || el.sub === 'battery' || el.sub === 'other')) {
     const energized = el.sub === 'battery' || el.sub === 'cable' ? el.energized !== false : !!el.energized;
-    out.push(toggle('energized', 'Energized', 'Energized (ignition source)', energized, { energized: !energized }));
+    out.push(toggle('energized', 'Live', 'Energized (ignition source)', energized, { energized: !energized }));
   }
-  out.push({ id: 'edit', label: k === 'gas' ? 'Readings…' : 'Edit…', title: k === 'gas' ? 'Enter the gas readings' : 'Edit wording and details', action: 'edit' });
+  if (k === 'x') out.push({ id: 'label', label: 'Label', title: 'Choose the placard label', action: 'label' });
+  if (k === 'x' && el.sub === 'cable') out.push({ id: 'path', label: el.path?.length ? 'Redraw' : 'Path', title: 'Draw the cable path (click points, Enter to end)', action: 'path' });
+  out.push({ id: 'edit', label: k === 'gas' ? 'Gas…' : 'Edit', title: k === 'gas' ? 'Enter the gas readings' : 'Edit wording and details', action: 'edit' });
   out.push({ id: 'duplicate', label: 'Copy', title: 'Duplicate', action: 'duplicate' });
   out.push({ id: 'delete', label: 'Delete', title: 'Delete', action: 'delete' });
   out.push({ id: 'done', label: '✓', title: 'Done', action: 'done' });
   return out;
 }
 
-/** Ring radius in pixels: wide enough that the buttons do not overlap. */
-export const ringRadius = (n: number) => Math.max(62, Math.round((n * 74) / (2 * Math.PI)));
+/** Diameter of a round ring button, in pixels (keep in step with .radial-btn in styles.css). */
+export const BTN = 58;
+/** Longest word a button label may have, in characters, so it fits inside BTN. */
+export const MAX_WORD = 8;
+/** Ring radius in pixels: wide enough that neighbouring round buttons keep a small gap. */
+export const ringRadius = (n: number) => Math.max(64, Math.ceil((BTN + 6) / 2 / Math.sin(Math.PI / Math.max(n, 3))));
 
 interface Props {
   el: El;
@@ -96,7 +102,7 @@ interface Props {
 export function RadialMenu({ el, x, y, width, height, onPatch, onAction }: Props) {
   const opts = radialOptions(el);
   const r = ringRadius(opts.length);
-  const pad = r + 34;
+  const pad = r + BTN / 2 + 4;
   const cx = Math.min(Math.max(x, pad), Math.max(pad, width - pad));
   const cy = Math.min(Math.max(y, pad), Math.max(pad, height - pad));
   return (
@@ -135,7 +141,7 @@ export type OpeningPick = SegState | 'done';
 export function openingOptions(state: SegState): { id: OpeningPick; label: string; title: string; on?: boolean }[] {
   return [
     { id: 'open', label: 'Mined', title: 'Mined: solid lines (actual, accurately measured workings)', on: state === 'open' },
-    { id: 'projected', label: 'Projected', title: 'Projected: dotted lines (may or may not be accurate)', on: state === 'projected' },
+    { id: 'projected', label: 'Dotted', title: 'Projected: dotted lines (may or may not be accurate)', on: state === 'projected' },
     { id: 'solid', label: 'Not mined', title: 'Not mined: solid coal', on: state === 'solid' },
     { id: 'done', label: '✓', title: 'Done' }
   ];
@@ -143,8 +149,8 @@ export function openingOptions(state: SegState): { id: OpeningPick; label: strin
 
 export function OpeningRing({ name, state, x, y, width, height, onPick }: { name: string; state: SegState; x: number; y: number; width: number; height: number; onPick: (p: OpeningPick) => void }) {
   const opts = openingOptions(state);
-  const r = 74;
-  const pad = r + 40;
+  const r = ringRadius(4);
+  const pad = r + BTN / 2 + 4;
   const cx = Math.min(Math.max(x, pad), Math.max(pad, width - pad));
   const cy = Math.min(Math.max(y, pad), Math.max(pad, height - pad));
   return (
@@ -167,6 +173,52 @@ export function OpeningRing({ name, state, x, y, width, height, onPick }: { name
             aria-checked={o.on}
             data-opt={o.id}
             onClick={() => onPick(o.id)}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ------------------------------------------------------------ cable drawing
+
+export type CablePick = 'end' | 'undo' | 'cancel';
+
+export function cableOptions(points: number): { id: CablePick; label: string; title: string }[] {
+  return [
+    { id: 'end', label: 'End', title: 'End the cable here (Enter)' },
+    ...(points ? [{ id: 'undo' as const, label: 'Undo', title: 'Remove the last point (Backspace)' }] : []),
+    { id: 'cancel', label: 'Clear', title: 'Clear the whole path' }
+  ];
+}
+
+/** Small ring beside the last cable point while the path is being drawn: end it, undo a point or clear it. */
+export function CableRing({ x, y, width, height, points, onPick }: { x: number; y: number; width: number; height: number; points: number; onPick: (p: CablePick) => void }) {
+  const opts = cableOptions(points);
+  // Offset up and to the right of the last point so the next click spot stays free.
+  const r = 44;
+  const cx = Math.min(Math.max(x + 70, r + BTN / 2), Math.max(r + BTN / 2, width - r - BTN / 2));
+  const cy = Math.min(Math.max(y - 70, r + BTN / 2), Math.max(r + BTN / 2, height - r - BTN / 2));
+  return (
+    <div className="radial cable-ring" style={{ left: cx, top: cy }} role="menu" aria-label="Cable path" onPointerDown={(e) => e.stopPropagation()}>
+      {opts.map((o, i) => {
+        const a = -Math.PI / 2 + (2 * Math.PI * i) / opts.length;
+        return (
+          <button
+            key={o.id}
+            type="button"
+            role="menuitem"
+            className={`radial-btn${o.id === 'end' ? ' done' : ''}${o.id === 'cancel' ? ' danger' : ''}`}
+            style={{ left: Math.cos(a) * r, top: Math.sin(a) * r }}
+            title={o.title}
+            aria-label={o.title}
+            data-opt={o.id}
+            onClick={(e) => {
+              e.stopPropagation();
+              onPick(o.id);
+            }}
           >
             {o.label}
           </button>

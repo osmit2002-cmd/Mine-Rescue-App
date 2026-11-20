@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { getClientId, isSignedIn, loadDriveMap, saveDriveMap, setClientId, signIn, syncAll, trashRemote, uploadProblem, DRIVE_FOLDER, type DriveMap } from '../builder/drive';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
 import { editLayout, openingName, openingState, type LayoutOp } from '../builder/layoutEdit';
@@ -11,7 +12,9 @@ import { designChecks, solve } from '../builder/solve';
 import { downloadProblem, loadCurrentId, loadProblems, readProblemFile, saveCurrentId, saveProblems } from '../builder/storage';
 import { SelectField } from '../components/SelectField';
 import { mapMargins, MapView, type Overlays, type Tool } from '../builder/ui/MapView';
-import { OpeningRing, RadialMenu, type RadialAction } from '../builder/ui/RadialMenu';
+import { CableRing, OpeningRing, RadialMenu, type CablePick, type RadialAction } from '../builder/ui/RadialMenu';
+import { ProblemPicker } from '../builder/ui/ProblemPicker';
+import { XLabelPicker } from '../builder/ui/XLabelPicker';
 import { usePanZoom } from '../builder/ui/panZoom';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
@@ -46,6 +49,15 @@ export default function Builder() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   /** Element whose placement options ring is open on the map. */
   const [radialId, setRadialId] = useState<string | null>(null);
+  /** X placard whose label picker is open beside it. */
+  const [labelFor, setLabelFor] = useState<string | null>(null);
+  /** Google Drive: which problems have a file there, and what the last sync said. */
+  const [driveMap, setDriveMap] = useState<DriveMap>(() => loadDriveMap());
+  const [driveBusy, setDriveBusy] = useState(false);
+  const [driveOn, setDriveOn] = useState(false);
+  const [driveNote, setDriveNote] = useState<string | null>(null);
+  /** `updated` of the copy last written to Drive, per problem id (to skip unchanged uploads). */
+  const driveSent = useRef<Record<string, string>>({});
   const [zoom, setZoom] = useState(3);
   const [showLabels, setShowLabels] = useState(true);
   const [showExtents, setShowExtents] = useState(true);
@@ -146,6 +158,8 @@ export default function Builder() {
 
   const switchTo = (id: string) => {
     setCurrentId(id);
+    setLabelFor(null);
+    setRadialId(null);
     setPast([]);
     setFuture([]);
     setSelectedId(null);
@@ -185,8 +199,41 @@ export default function Builder() {
     if (el.kind === 'gas') el.text = '';
     update((p) => ({ ...p, elements: [...p.elements, el] }));
     setSelectedId(el.id);
+    if (el.kind === 'x' && el.sub === 'cable') {
+      // Cable: the path starts at the placard; each click adds a point, Enter (or End on the ring) finishes.
+      setRadialId(null);
+      setTool({ type: 'cable', id: el.id });
+      return;
+    }
+    if (el.kind === 'x' && !tool.sub) {
+      // X placard: pick its label from the list beside it.
+      setRadialId(null);
+      setLabelFor(el.id);
+      setTool({ type: 'select' });
+      return;
+    }
     setRadialId(el.id);
     if (!keep) setTool({ type: 'select' });
+  };
+
+  // ------------------------------------------------------------ cable path drawing
+
+  const cableEl = tool.type === 'cable' ? problem.elements.find((e) => e.id === tool.id) ?? null : null;
+  const addCablePoint = (x: number, y: number) => {
+    if (!cableEl) return;
+    const s = snap(topo, x, y, 'point');
+    if (!s) return flash('Click inside an entry, crosscut or intersection.');
+    patchEl(cableEl.id, { path: [...(cableEl.path ?? []), { x: s.x, y: s.y }] });
+  };
+  const cablePick = (pick: CablePick) => {
+    if (!cableEl) return;
+    if (pick === 'undo') patchEl(cableEl.id, { path: (cableEl.path ?? []).slice(0, -1) });
+    else if (pick === 'cancel') patchEl(cableEl.id, { path: [] });
+    else {
+      setTool({ type: 'select' });
+      setSelectedId(cableEl.id);
+      setRadialId(cableEl.id);
+    }
   };
   const shiftDown = useRef(false);
 
@@ -253,7 +300,21 @@ export default function Builder() {
         redo();
         return;
       }
+      if (tool.type === 'cable') {
+        if (e.key === 'Enter' || e.key === 'Escape') {
+          e.preventDefault();
+          return cablePick('end');
+        }
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          e.preventDefault();
+          return cablePick('undo');
+        }
+      }
       if (e.key === 'Escape') {
+        if (labelFor) {
+          setLabelFor(null);
+          return;
+        }
         if (activeCell) {
           setActiveCell(null);
           return;
@@ -298,6 +359,14 @@ export default function Builder() {
     if (!selected) return;
     if (a === 'delete') deleteEl(selected.id);
     else if (a === 'duplicate') setRadialId(duplicateEl(selected).id);
+    else if (a === 'label') {
+      setRadialId(null);
+      setLabelFor(selected.id);
+    } else if (a === 'path') {
+      setRadialId(null);
+      if (selected.path?.length) patchEl(selected.id, { path: [] });
+      setTool({ type: 'cable', id: selected.id });
+    }
     else {
       setRadialId(null);
       // Edit: jump to the first field in the inspector (gas readings, placard wording, …).
@@ -401,6 +470,108 @@ export default function Builder() {
     else setScenario({ ...scenario, added: [...scenario.added, { ...makeElement({ kind: 'temp-stopping' }, s.x, s.y, newId('w')), text: 'TEMPORARY STOPPING (built)' }] });
   };
 
+  // ------------------------------------------------------------ X placard label
+
+  const labelEl = tab === 'build' && labelFor ? problem.elements.find((e) => e.id === labelFor && e.kind === 'x') ?? null : null;
+  const pickLabel = (patch: Partial<El>) => {
+    if (!labelEl) return;
+    patchEl(labelEl.id, patch);
+    setLabelFor(null);
+    setSelectedId(labelEl.id);
+    if (patch.sub === 'cable' && labelEl.sub !== 'cable' && !labelEl.path?.length) setTool({ type: 'cable', id: labelEl.id });
+    else setRadialId(labelEl.id);
+  };
+
+  // ------------------------------------------------------------ Google Drive
+
+  const driveIds = useMemo(() => new Set(Object.keys(driveMap.files)), [driveMap]);
+  const driveRun = async (what: string, fn: () => Promise<string | void>) => {
+    if (driveBusy) return;
+    setDriveBusy(true);
+    setDriveNote(`${what}…`);
+    try {
+      const note = await fn();
+      setDriveOn(isSignedIn());
+      setDriveNote(note || null);
+    } catch (e) {
+      setDriveOn(isSignedIn());
+      setDriveNote((e as Error).message);
+    } finally {
+      setDriveBusy(false);
+    }
+  };
+  const askClientId = () => {
+    const id = window.prompt(
+      'Paste the Google OAuth client ID for this app (Google Cloud console → APIs & Services → Credentials → OAuth 2.0 Client IDs, type "Web application"). It is kept on this device only.',
+      getClientId()
+    );
+    if (id === null) return false;
+    setClientId(id);
+    return !!id.trim();
+  };
+  const driveSync = () =>
+    driveRun('Syncing with Google Drive', async () => {
+      if (!getClientId() && !askClientId()) return 'Drive not connected: no client ID.';
+      await signIn(true);
+      const r = await syncAll(problems, driveMap);
+      setProblems(r.list);
+      setDriveMap(r.map);
+      for (const p of r.list) if (r.map.files[p.id]) driveSent.current[p.id] = p.updated;
+      return `Synced with “${DRIVE_FOLDER}”: ${r.list.length} problems, ${r.uploaded} uploaded, ${r.downloaded} from Drive.`;
+    });
+  /** Write one problem to Drive now (used by Save, and by the auto-save while Drive is connected). */
+  const driveSave = useCallback(
+    async (p: Problem, map: DriveMap) => {
+      const folderId = map.folderId ?? (await syncAll([], map)).map.folderId!;
+      const fileId = await uploadProblem(p, folderId, map.files[p.id]);
+      const next = { folderId, files: { ...map.files, [p.id]: fileId } };
+      saveDriveMap(next);
+      setDriveMap(next);
+      driveSent.current[p.id] = p.updated;
+      return next;
+    },
+    []
+  );
+  // While Drive is connected, each edited problem is written to Drive a few seconds after the last change.
+  useEffect(() => {
+    if (!driveOn || driveBusy || !isSignedIn()) return;
+    const dirty = problems.filter((p) => driveMap.files[p.id] && driveSent.current[p.id] !== p.updated);
+    if (!dirty.length) return;
+    const t = setTimeout(async () => {
+      let map = driveMap;
+      try {
+        for (const p of dirty) map = await driveSave(p, map);
+        setDriveNote(`Saved to Drive ${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}.`);
+      } catch (e) {
+        setDriveNote((e as Error).message);
+      }
+    }, 2500);
+    return () => clearTimeout(t);
+  }, [problems, driveOn, driveBusy, driveMap, driveSave]);
+
+  /** Name the problem (asking if it still has the default name) and save it to Drive. */
+  const saveNamed = () => {
+    let title = problem.title;
+    if (/^(new problem|untitled problem)$/i.test(title.trim()) || !title.trim()) {
+      const t = window.prompt('Name this problem:', '');
+      if (!t?.trim()) return;
+      title = t.trim().slice(0, 120);
+      update((p) => ({ ...p, title }));
+    }
+    const p = { ...problem, title, updated: new Date().toISOString() };
+    driveRun('Saving to Google Drive', async () => {
+      if (!getClientId() && !askClientId()) return 'Saved on this device. Set up Drive to save it there too.';
+      await signIn(true);
+      await driveSave(p, driveMap);
+      return `Saved “${title}” to “${DRIVE_FOLDER}”.`;
+    });
+  };
+  const newNamed = () => {
+    const t = window.prompt('Name for the new problem:', '');
+    if (t === null) return;
+    addProblem(blankProblem(t.trim().slice(0, 120) || 'New problem'));
+  };
+
   // ------------------------------------------------------------ problems menu
 
   const onImport = async (f: File | undefined) => {
@@ -450,20 +621,29 @@ export default function Builder() {
     <div className="builder">
       <div className="builder-top">
         <h1 className="sr-only">Mine rescue problem builder</h1>
-        <label className="prob-select">
-          <span className="sr-only">Problem</span>
-          <select value={currentId} onChange={(e) => switchTo(e.target.value)} data-testid="problem-select">
-            {problems.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.title}
-              </option>
-            ))}
-          </select>
-        </label>
+        <ProblemPicker problems={problems} currentId={currentId} inDrive={driveIds} onOpen={switchTo} />
         <div className="top-actions">
-          <button type="button" onClick={() => addProblem({ ...blankProblem('New problem') })}>
+          <button type="button" onClick={newNamed} title="Start a new problem on a blank map and name it">
             New
           </button>
+          <button type="button" onClick={saveNamed} disabled={driveBusy} title={`Name this problem and save it to the Google Drive folder “${DRIVE_FOLDER}”`}>
+            Save
+          </button>
+          <details className="menu">
+            <summary className="button" title="Google Drive">
+              Drive{driveOn ? ' ✓' : ''}
+            </summary>
+            <div className="menu-pop">
+              <button type="button" disabled={driveBusy} onClick={(e) => (closeMenu(e), driveSync())}>
+                <strong>{driveOn ? 'Sync now' : 'Connect and sync'}</strong>
+                <span className="small muted">Uploads the problems on this device to “{DRIVE_FOLDER}” and brings in the ones already there (newer copy wins)</span>
+              </button>
+              <button type="button" onClick={(e) => (closeMenu(e), askClientId())}>
+                <strong>Google client ID…</strong>
+                <span className="small muted">{getClientId() ? 'Set. Change it here.' : 'Needed once before connecting'}</span>
+              </button>
+            </div>
+          </details>
           <details className="menu">
             <summary className="button">Samples</summary>
             <div className="menu-pop">
@@ -515,7 +695,19 @@ export default function Builder() {
             type="button"
             className="danger"
             onClick={() => {
-              if (!window.confirm(`Delete “${problem.title}” from this device?`)) return;
+              const fileId = driveMap.files[problem.id];
+              if (!window.confirm(`Delete “${problem.title}” from this device${fileId ? ' and move its Google Drive copy to the Drive trash' : ''}?`)) return;
+              if (fileId) {
+                const files = { ...driveMap.files };
+                delete files[problem.id];
+                const next = { ...driveMap, files };
+                setDriveMap(next);
+                saveDriveMap(next);
+                driveRun('Moving the Drive copy to the trash', async () => {
+                  await trashRemote(fileId);
+                  return 'Drive copy moved to the Drive trash.';
+                });
+              }
               const rest = problems.filter((p) => p.id !== problem.id);
               const list = rest.length ? rest : [blankProblem('New problem')];
               setProblems(list);
@@ -526,6 +718,7 @@ export default function Builder() {
           </button>
         </div>
       </div>
+      {driveNote && <p className="drive-status muted" role="status">{driveNote}</p>}
       {!saveOk && <p className="warn small">This browser is not saving problems (storage blocked). Use Export to keep your work.</p>}
       {sample && <p className="small muted">{problem.source}. Edits are saved on this device; open it again from Samples for a fresh copy.</p>}
 
@@ -583,7 +776,7 @@ export default function Builder() {
         {tab === 'build' && (
           <aside className="b-left">
             <Palette
-              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : null}
+              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
               onPick={(it: PaletteItem) => {
                 const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub;
                 setTool(off ? { type: 'select' } : { type: 'place', kind: it.kind, sub: it.sub, name: it.name });
@@ -597,6 +790,11 @@ export default function Builder() {
           {tool.type === 'place' && tab === 'build' && (
             <p className="tool-hint" role="status">
               Click the map to place: <strong>{tool.name}</strong>. Shift-click to place several · Esc to stop.
+            </p>
+          )}
+          {tool.type === 'cable' && tab === 'build' && (
+            <p className="tool-hint" role="status">
+              Drawing the cable: click to add points along its path. <strong>Enter</strong> or <strong>End</strong> finishes · Backspace removes the last point.
             </p>
           )}
           {tool.type === 'layout' && tab === 'build' && (
@@ -626,6 +824,7 @@ export default function Builder() {
                 editable={tab === 'build'}
                 onSelect={(id) => {
                   setSelectedId(id);
+                  if (id !== labelFor) setLabelFor(null);
                   if (id !== radialId) setRadialId(null);
                 }}
                 onElementTap={setRadialId}
@@ -634,6 +833,7 @@ export default function Builder() {
                   setRadialId(null);
                 }}
                 onPlace={(x, y) => place(x, y, shiftDown.current)}
+                onCablePoint={addCablePoint}
                 onCell={(cx, cy) => setActiveCell({ cx, cy })}
                 onRoom={(side, row, depth) => {
                   const l = problem.layout;
@@ -661,7 +861,24 @@ export default function Builder() {
                   />
                 );
               })()}
-              {radialEl && (
+              {cableEl && tab === 'build' && (() => {
+                const last = cableEl.path?.length ? cableEl.path[cableEl.path.length - 1] : cableEl;
+                return <CableRing x={stage.px(last.x)} y={stage.py(last.y)} width={stage.w} height={stage.h} points={cableEl.path?.length ?? 0} onPick={cablePick} />;
+              })()}
+              {labelEl && (
+                <XLabelPicker
+                  key={labelEl.id}
+                  x={stage.px(labelEl.x)}
+                  y={stage.py(labelEl.y)}
+                  width={stage.w}
+                  height={stage.h}
+                  current={labelEl.text}
+                  onPick={(l) => pickLabel(applyXLabel(l))}
+                  onCustom={(text) => pickLabel({ sub: 'other', text })}
+                  onClose={() => setLabelFor(null)}
+                />
+              )}
+              {radialEl && !labelEl && tool.type !== 'cable' && (
                 <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchEl(radialEl.id, patch)} onAction={radialAction} />
               )}
             </div>
@@ -752,7 +969,7 @@ export default function Builder() {
         </div>
       )}
       <p className="small muted builder-foot">
-        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are saved on this device only; use Export to share them.
+        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are saved on this device; Save (or Drive → Sync) also keeps them in your Google Drive folder “{DRIVE_FOLDER}”.
       </p>
     </div>
   );

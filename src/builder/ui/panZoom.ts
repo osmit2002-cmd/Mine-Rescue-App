@@ -106,6 +106,8 @@ export function usePanZoom(scroller: RefObject<HTMLDivElement>, zoom: number, se
     if (!sc) return;
     const onWheel = (e: WheelEvent) => {
       if (!e.deltaY) return;
+      // Let pop-ups on the map (the X label list) scroll themselves.
+      if ((e.target as Element | null)?.closest?.('.xpick')) return;
       e.preventDefault();
       const a = anchorAt(e.clientX, e.clientY);
       zoomTo(zoomRef.current * wheelFactor(e.deltaY, e.deltaMode), a);
@@ -150,7 +152,7 @@ export function usePanZoom(scroller: RefObject<HTMLDivElement>, zoom: number, se
   const onPointerDown = (e: RPointerEvent<HTMLDivElement>) => {
     if (e.pointerType === 'touch' || (e.button !== 0 && e.button !== 1)) return;
     const t = e.target as Element;
-    if (t.closest('.radial, button, input, select, textarea, a, .room-grip, .map-el')) return;
+    if (t.closest('.radial, .xpick, button, input, select, textarea, a, .room-grip, .map-el')) return;
     const sc = scroller.current;
     if (!sc) return;
     if (e.button === 1) e.preventDefault(); // no autoscroll

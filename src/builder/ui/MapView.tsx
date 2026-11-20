@@ -12,7 +12,7 @@ export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
 /** Margins around the map in feet: the bottom one also holds the drawn row of pillars outby the FAB. */
 export const mapMargins = (layout: Layout) => ({ ...MARGIN, b: MARGIN.b + outbyBand(makeGeo(layout)) });
 
-export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' };
+export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' } | { type: 'cable'; id: string };
 
 export interface Overlays {
   hazards?: Hazard[];
@@ -54,6 +54,8 @@ interface Props {
   numbering?: PillarNumbering;
   /** Opening highlighted in the layout tool (its options ring is open), as "cx,cy". */
   activeCell?: string | null;
+  /** Cable tool: a point of the cable path was clicked (feet). */
+  onCablePoint?: (x: number, y: number) => void;
   /** Layout tool: a side room handle was dragged out to `depth` feet (under MIN_ROOM closes it), or tapped (depth null: toggle). */
   onRoom?: (side: 'left' | 'right', row: number, depth: number | null) => void;
 }
@@ -109,6 +111,8 @@ export function MapView(props: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const [drag, setDrag] = useState<{ id: string; dx: number; dy: number; x: number; y: number; moved: boolean } | null>(null);
   const [hoverCell, setHoverCell] = useState<string | null>(null);
+  /** Cable tool: pointer position, for the rubber-band segment from the last point. */
+  const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   /** Side room handle being dragged: depth in feet so far. */
   const [roomDrag, setRoomDrag] = useState<{ side: 'left' | 'right'; row: number; depth: number; moved: boolean } | null>(null);
   const H = geo.height;
@@ -161,6 +165,7 @@ export function MapView(props: Props) {
     setRoomDrag({ side, row, depth: roomDepthAt(side, toFeet(e).x), moved: false });
   };
   const onMoveP = (e: RPointerEvent) => {
+    if (tool.type === 'cable') setCursor(toFeet(e));
     if (roomDrag) {
       const d = roomDepthAt(roomDrag.side, toFeet(e).x);
       if (d !== roomDrag.depth) setRoomDrag({ ...roomDrag, depth: d, moved: true });
@@ -187,6 +192,7 @@ export function MapView(props: Props) {
     if (print) return;
     const f = toFeet(e);
     if (tool.type === 'place') props.onPlace?.(f.x, f.y);
+    else if (tool.type === 'cable') props.onCablePoint?.(f.x, f.y);
     else if (tool.type === 'vent-build') props.onOpeningClick?.(f.x, f.y);
     else if (tool.type === 'select') props.onSelect?.(null);
   };
@@ -468,6 +474,24 @@ export function MapView(props: Props) {
       {!print && overlays.route && overlays.route.length > 1 && (
         <polyline points={overlays.route.map((p) => `${p.x},${Y(p.y)}`).join(' ')} fill="none" stroke="#a8780f" strokeWidth={1.4} strokeDasharray="3 2" markerEnd="url(#route-arrow)" pointerEvents="none" />
       )}
+      {/* Cable paths: a line from the cable placard through its points */}
+      {els
+        .filter((el) => el.kind === 'x' && el.sub === 'cable' && el.path?.length)
+        .map((el) => (
+          <polyline
+            key={`cab${el.id}`}
+            className={`map-cable${tool.type === 'cable' && tool.id === el.id ? ' drawing' : ''}`}
+            points={[{ x: el.x, y: el.y }, ...el.path!].map((p) => `${p.x},${Y(p.y)}`).join(' ')}
+            stroke={print ? '#111' : undefined}
+            pointerEvents="none"
+          />
+        ))}
+      {!print && tool.type === 'cable' && cursor && (() => {
+        const el = problem.elements.find((e) => e.id === tool.id);
+        if (!el) return null;
+        const last = el.path?.length ? el.path[el.path.length - 1] : el;
+        return <line x1={last.x} y1={Y(last.y)} x2={cursor.x} y2={Y(cursor.y)} className="map-cable drawing" opacity={0.6} pointerEvents="none" />;
+      })()}
       {/* Elements */}
       <g>{els.map((el) => symbolFor(el, !!overlays.extras?.includes(el)))}</g>
       {!print &&
