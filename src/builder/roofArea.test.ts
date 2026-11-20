@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { buildTopo, cellRect, makeGeo } from './geometry';
 import { blankLayout, normalizeElement } from './model';
-import { areaPlacement, areaPolygon, ribBand, snapRib } from './roofArea';
+import { areaOutline, areaPlacement, closedArea, sideOf, snapLinePoint, unknownBand } from './roofArea';
 
 const geo = makeGeo(blankLayout());
 const topo = buildTopo(geo);
@@ -9,59 +9,52 @@ const W = geo.layout.entryWidth;
 // Pillars either side of No. 2 Entry, between the FAB and crosscut 1.
 const left = cellRect(geo, 2, 1);
 const right = cellRect(geo, 4, 1);
+const xl = left.x + left.w; // left rib of No. 2 Entry
+const xr = right.x; // right rib
+const y0 = left.y;
 
-describe('unsafe roof and caved drawn from rib points', () => {
-  it('snaps a click near a pillar side onto that rib', () => {
-    const p = snapRib(geo, left.x + left.w + 2, left.y + 20)!;
-    expect(p).toMatchObject({ x: left.x + left.w, y: left.y + 20, block: '2,1' });
-    expect(snapRib(geo, left.x + left.w + W / 2, left.y + 20)).not.toBeNull();
+describe('unsafe roof and caved drawn as lines', () => {
+  it('snaps a line end near a rib onto it, and keeps a click in the middle of the entry where it is', () => {
+    expect(snapLinePoint(topo, xl + 2, y0 + 20)).toEqual({ x: xl, y: y0 + 20 });
+    expect(snapLinePoint(topo, xl + W / 2, y0 + 20)).toEqual({ x: xl + W / 2, y: y0 + 20 });
   });
 
-  it('two different pillars: the area stretches from one point to the other and reaches rib to rib', () => {
-    const a = { x: left.x + left.w, y: left.y + 10, block: '2,1' };
-    const b = { x: right.x, y: left.y + 40, block: '4,1' };
-    const poly = areaPolygon(geo, a, b);
-    expect(poly).toEqual([
-      { x: a.x, y: a.y },
-      { x: b.x, y: a.y },
-      { x: b.x, y: b.y },
-      { x: a.x, y: b.y }
-    ]);
-    const at = areaPlacement(topo, a, b)!;
+  it('a diagonal front line: the chosen side shows as unknown extent until the back end is placed', () => {
+    const front = { a: { x: xl, y: y0 + 10 }, b: { x: xr, y: y0 + 20 } };
+    const inby = { x: xl + 10, y: y0 + 40 };
+    const side = sideOf(front, inby);
+    const band = unknownBand(front, side, W);
+    expect(band.slice(0, 2)).toEqual([front.a, front.b]);
+    // The band lies on the inby side of the line.
+    expect(sideOf(front, band[2])).toBe(side);
+    expect(areaOutline({ edges: [front], side }, W)).toMatchObject({ closed: false });
+    expect(areaOutline({ edges: [front] }, W)).toBeNull();
+  });
+
+  it('the back end closes the area between the two lines, without a crossed outline', () => {
+    const front = { a: { x: xl, y: y0 + 10 }, b: { x: xr, y: y0 + 20 } };
+    const back = { a: { x: xr, y: y0 + 45 }, b: { x: xl, y: y0 + 40 } };
+    expect(closedArea(front, back)).toEqual([front.a, front.b, back.a, back.b]);
+    expect(closedArea(front, { a: back.b, b: back.a })).toEqual([front.a, front.b, back.a, back.b]);
+    const o = areaOutline({ edges: [front, back], side: 1 }, W)!;
+    expect(o.closed).toBe(true);
+    const at = areaPlacement(topo, { edges: [front, back], side: 1 })!;
     expect(at.across).toBe(true);
-    expect(at.len).toBe(30);
-    expect(at.x).toBe(a.x + W / 2);
+    expect(at.len).toBe(35);
+    expect(at.x).toBe(xl + W / 2);
   });
 
-  it('facing points at the same height still give an area a third of the entry deep', () => {
-    const a = { x: left.x + left.w, y: left.y + 30, block: '2,1' };
-    const b = { x: right.x, y: left.y + 30, block: '4,1' };
-    const ys = areaPolygon(geo, a, b).map((p) => p.y);
-    expect(Math.max(...ys) - Math.min(...ys)).toBeCloseTo(W / 3);
+  it('with only the front line the solver takes a third of the entry width on the chosen side', () => {
+    const front = { a: { x: xl, y: y0 + 30 }, b: { x: xr, y: y0 + 30 } };
+    const at = areaPlacement(topo, { edges: [front], side: 1 })!;
+    expect(at.across).toBe(true);
+    expect(at.len).toBe(Math.round(W / 3));
   });
 
-  it('same pillar: a band W/3 wide along the rib, the short way round the corner', () => {
-    // From the right side, round the top-right corner, onto the top.
-    const a = { x: left.x + left.w, y: left.y + left.h - 10 };
-    const b = { x: left.x + left.w - 15, y: left.y + left.h };
-    const band = ribBand(left, a, b, W / 3);
-    expect(band.length).toBe(25);
-    expect(band.poly).toContainEqual({ x: left.x + left.w, y: left.y + left.h });
-    expect(band.poly).toContainEqual({ x: left.x + left.w + W / 3, y: left.y + left.h + W / 3 });
-    const at = areaPlacement(topo, { ...a, block: '2,1' }, { ...b, block: '2,1' })!;
-    expect(at.across).toBe(false);
-    expect(at.len).toBe(25);
-  });
-
-  it('goes the short way when the long way would wrap the whole pillar', () => {
-    const a = { x: left.x + 5, y: left.y };
-    const b = { x: left.x, y: left.y + 5 };
-    expect(ribBand(left, a, b, 2).length).toBe(10);
-  });
-
-  it('keeps the rib points through save and load', () => {
-    const el = normalizeElement({ id: 'u', kind: 'unsafe-roof', x: 1, y: 2, ribs: [{ x: 1, y: 2, block: '2,1' }, { x: 3, y: 4, block: '4,1' }] });
-    expect(el?.ribs).toHaveLength(2);
-    expect(normalizeElement({ id: 'u', kind: 'caved', x: 1, y: 2, ribs: [{ x: 1, y: 2, block: 'bad' }, { x: 3, y: 4, block: '4,1' }] })?.ribs).toBeUndefined();
+  it('keeps the lines and side through save and load', () => {
+    const el = normalizeElement({ id: 'u', kind: 'unsafe-roof', x: 1, y: 2, side: -1, edges: [{ a: { x: 1, y: 2 }, b: { x: 3, y: 4 } }] });
+    expect(el?.edges).toHaveLength(1);
+    expect(el?.side).toBe(-1);
+    expect(normalizeElement({ id: 'u', kind: 'caved', x: 1, y: 2, edges: [{ a: { x: 1 }, b: { x: 3, y: 4 } }] })?.edges).toBeUndefined();
   });
 });

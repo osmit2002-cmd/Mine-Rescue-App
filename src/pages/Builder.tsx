@@ -16,7 +16,7 @@ import { CableRing, OpeningRing, RadialMenu, type CablePick, type RadialAction }
 import { ProblemPicker } from '../builder/ui/ProblemPicker';
 import { XLabelPicker } from '../builder/ui/XLabelPicker';
 import { usePanZoom } from '../builder/ui/panZoom';
-import { areaPlacement, snapRib } from '../builder/roofArea';
+import { areaPlacement, sideNormal, snapLinePoint } from '../builder/roofArea';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
 import { airflow, ventFindings } from '../builder/vent';
@@ -168,6 +168,7 @@ export default function Builder() {
   const switchTo = (id: string) => {
     setCurrentId(id);
     setLabelFor(null);
+    setSideFor(null);
     setRadialId(null);
     setPast([]);
     setFuture([]);
@@ -227,25 +228,47 @@ export default function Builder() {
 
   // ------------------------------------------------------------ unsafe roof / caved areas (two rib points)
 
+  /** Line for unsafe roof / caved: front line first, then which side, then optionally the back end. */
+  const [sideFor, setSideFor] = useState<string | null>(null);
   const addAreaPoint = (x: number, y: number) => {
     if (tool.type !== 'area') return;
-    const p = snapRib(topo.geo, x, y);
-    if (!p) return flash('Click on a rib: the side of a pillar or of the coal next to an opening.');
+    const p = snapLinePoint(topo, x, y);
+    if (!p) return flash('Click inside an opening or on a rib.');
     if (!tool.start) return setTool({ ...tool, start: p });
-    const at = areaPlacement(topo, tool.start, p);
-    if (!at) return flash('Those two points do not mark an area in an opening. Try again.');
-    const ribs = [tool.start, p];
-    if (tool.id) {
-      patchEl(tool.id, { ...at, ribs });
-      setSelectedId(tool.id);
-      setRadialId(tool.id);
-    } else {
-      const el = { ...makeElement({ kind: tool.kind }, at.x, at.y, newId()), ...at, ribs };
+    if (Math.hypot(p.x - tool.start.x, p.y - tool.start.y) < 2) return flash('Click the other end of the line.');
+    const line = { a: tool.start, b: p };
+    const old = tool.id ? problem.elements.find((e) => e.id === tool.id) : undefined;
+    const edges = tool.back && old?.edges?.length ? [old.edges[0], line] : [line];
+    const side = tool.back ? old?.side : undefined;
+    const at = areaPlacement(topo, { edges, side: side ?? 1 });
+    if (!at) return flash('That line is not in an opening. Try again.');
+    let id = tool.id;
+    if (old) patchEl(old.id, { ...at, edges, side });
+    else {
+      const el = { ...makeElement({ kind: tool.kind }, at.x, at.y, newId()), ...at, edges };
+      delete el.side;
       update((pr) => ({ ...pr, elements: [...pr.elements, el] }));
-      setSelectedId(el.id);
-      setRadialId(el.id);
+      id = el.id;
     }
+    setSelectedId(id!);
     setTool({ type: 'select' });
+    // A new front line: ask which side is unsafe / caved. A back end closes the area.
+    if (tool.back) setRadialId(id!);
+    else setSideFor(id!);
+  };
+  const sideEl = tab === 'build' && sideFor ? problem.elements.find((e) => e.id === sideFor && e.edges?.length) ?? null : null;
+  const pickSide = (side: 1 | -1) => {
+    if (!sideEl) return;
+    const at = areaPlacement(topo, { edges: sideEl.edges, side });
+    patchEl(sideEl.id, { side, ...(at ?? {}) });
+    setSideFor(null);
+    setRadialId(sideEl.id);
+  };
+  /** Patch an element, keeping a drawn area's solver placement in step with its lines and side. */
+  const patchArea = (el: El, patch: Partial<El>) => {
+    const next = { ...el, ...patch };
+    const at = next.edges?.length ? areaPlacement(topo, next) : null;
+    patchEl(el.id, { ...patch, ...(at ?? {}) });
   };
 
   // ------------------------------------------------------------ cable path drawing
@@ -347,6 +370,10 @@ export default function Builder() {
         }
       }
       if (e.key === 'Escape') {
+        if (sideFor) {
+          setSideFor(null);
+          return;
+        }
         if (labelFor) {
           setLabelFor(null);
           return;
@@ -398,9 +425,9 @@ export default function Builder() {
     else if (a === 'label') {
       setRadialId(null);
       setLabelFor(selected.id, xCategory(selected));
-    } else if (a === 'redraw' && (selected.kind === 'unsafe-roof' || selected.kind === 'caved')) {
+    } else if ((a === 'redraw' || a === 'back') && (selected.kind === 'unsafe-roof' || selected.kind === 'caved')) {
       setRadialId(null);
-      setTool({ type: 'area', kind: selected.kind, name: KIND_DEFS[selected.kind].name, start: null, id: selected.id });
+      setTool({ type: 'area', kind: selected.kind, name: KIND_DEFS[selected.kind].name, start: null, id: selected.id, back: a === 'back' });
     } else if (a === 'path') {
       setRadialId(null);
       if (selected.path?.length) patchEl(selected.id, { path: [] });
@@ -942,7 +969,9 @@ export default function Builder() {
           )}
           {tool.type === 'area' && tab === 'build' && (
             <p className="tool-hint" role="status">
-              {tool.name}: {tool.start ? 'now click the second point on a rib.' : 'click a point on a rib (side of a pillar).'} Two different pillars: the area stretches from one point to the other. Same pillar: a strip ⅓ of the entry width runs along that rib between the points. Esc to cancel.
+              {tool.name}
+              {tool.back ? ' back end' : ''}: {tool.start ? 'click the other end of the line.' : 'click where the line starts.'} The line can run at any angle; a click near a rib snaps onto it.{' '}
+              {tool.back ? 'The area between the two lines becomes ' + (tool.kind === 'caved' ? 'caved.' : 'unsafe roof.') : 'Then choose which side is ' + (tool.kind === 'caved' ? 'caved.' : 'unsafe.')} Esc to cancel.
             </p>
           )}
           {tool.type === 'cable' && tab === 'build' && (
@@ -1037,8 +1066,33 @@ export default function Builder() {
                   }}
                 />
               )}
-              {radialEl && !labelEl && tool.type !== 'cable' && (
-                <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchEl(radialEl.id, patch)} onAction={radialAction} />
+              {sideEl && (() => {
+                const s0 = sideEl.edges![0];
+                const mx = (s0.a.x + s0.b.x) / 2;
+                const my = (s0.a.y + s0.b.y) / 2;
+                const word = sideEl.kind === 'caved' ? 'Caved' : 'Unsafe';
+                return ([1, -1] as const).map((sd) => {
+                  const n = sideNormal(s0, sd);
+                  // A fixed distance on screen either side of the line's middle (screen y runs down).
+                  const off = 42;
+                  return (
+                    <button
+                      key={sd}
+                      type="button"
+                      className="side-btn"
+                      style={{ left: stage.px(mx) + n.x * off, top: stage.py(my) - n.y * off }}
+                      onPointerDown={(e) => e.stopPropagation()}
+                      onClick={() => pickSide(sd)}
+                      title={`${word} on this side of the line`}
+                      data-side={sd}
+                    >
+                      {word} side
+                    </button>
+                  );
+                });
+              })()}
+              {radialEl && !labelEl && !sideEl && tool.type !== 'cable' && (
+                <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchArea(radialEl, patch)} onAction={radialAction} />
               )}
             </div>
           </div>

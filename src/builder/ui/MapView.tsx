@@ -6,7 +6,7 @@ import { entryName, type El, type Layout, type Problem } from '../model';
 import { outbyBand, pillarLabels, type PillarNumbering } from '../pillars';
 import { MIN_ROOM } from '../layoutEdit';
 import { mapLabel, SymbolShape } from './symbols';
-import { areaPolygon, snapRib, type RibPoint } from '../roofArea';
+import { areaOutline, sideNormal, snapLinePoint, type Pt } from '../roofArea';
 
 export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
 
@@ -14,8 +14,8 @@ export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
 export const mapMargins = (layout: Layout) => ({ ...MARGIN, b: MARGIN.b + outbyBand(makeGeo(layout)) });
 
 export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; xcat?: import('../catalog').XCategory; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' } | { type: 'cable'; id: string }
-  /** Unsafe roof / caved: click two rib points. `start` is the first one; `id` set when redrawing an existing area. */
-  | { type: 'area'; kind: 'unsafe-roof' | 'caved'; name: string; start: RibPoint | null; id?: string };
+  /** Unsafe roof / caved: click the two ends of a line. `id` is set when redrawing or adding the back end of an existing one. */
+  | { type: 'area'; kind: 'unsafe-roof' | 'caved'; name: string; start: Pt | null; id?: string; back?: boolean };
 
 export interface Overlays {
   hazards?: Hazard[];
@@ -180,7 +180,7 @@ export function MapView(props: Props) {
     const f = toFeet(e);
     const el = problem.elements.find((x) => x.id === drag.id);
     if (!el) return;
-    if (el.ribs) return; // drawn areas stay where they were drawn (Redraw on the ring moves them)
+    if (el.edges?.length) return; // drawn lines stay where they were drawn (Redraw on the ring moves them)
     const s = snap(topo, f.x + drag.dx, f.y + drag.dy, KIND_DEFS[el.kind].place);
     if (s && (Math.abs(s.x - drag.x) > 0.3 || Math.abs(s.y - drag.y) > 0.3)) setDrag({ ...drag, x: s.x, y: s.y, moved: true });
   };
@@ -234,7 +234,7 @@ export function MapView(props: Props) {
         {sel && <circle r={Math.max(6, W * 0.45)} className="map-sel-ring" />}
         {!print && <circle r={Math.max(4, W * 0.32)} fill="transparent" />}
         <g transform={rot ? `rotate(${rot})` : undefined} strokeDasharray={extra ? '2 1.4' : undefined}>
-          {!el.ribs && <SymbolShape el={el} W={W} k={k} />}
+          {!el.edges?.length && <SymbolShape el={el} W={W} k={k} />}
         </g>
         {label.length > 0 && (
           <text x={lx} y={ly} fontSize={3.4 * k} fill="#111" className="map-label" fontFamily="Arial, sans-serif">
@@ -283,6 +283,10 @@ export function MapView(props: Props) {
         <pattern id="pat-unsafe-roof" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <line x1="0" y1="0" x2="0" y2="2.2" stroke="#111" strokeWidth="0.4" />
         </pattern>
+        <linearGradient id="fade-unknown" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#9ca3af" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#9ca3af" stopOpacity="0.08" />
+        </linearGradient>
         <clipPath id="openings-clip">
           {cells
             .filter(({ cx, cy }) => cellType(geo, cx, cy) !== 'pillar' && cellState(geo, cx, cy) !== 'solid')
@@ -495,37 +499,55 @@ export function MapView(props: Props) {
       {!print && overlays.route && overlays.route.length > 1 && (
         <polyline points={overlays.route.map((p) => `${p.x},${Y(p.y)}`).join(' ')} fill="none" stroke="#a8780f" strokeWidth={1.4} strokeDasharray="3 2" markerEnd="url(#route-arrow)" pointerEvents="none" />
       )}
-      {/* Unsafe roof and caved areas drawn between two rib points, kept inside the openings */}
-      {els.some((el) => el.ribs) && (
-        <g clipPath="url(#openings-clip)">
+      {/* Unsafe roof and caved: the front line, the unknown extent past it (until the back end is placed) or the closed area */}
+      {els.some((el) => el.edges?.length) && (
+        <g>
+          <g clipPath="url(#openings-clip)">
+            {els
+              .filter((el) => el.edges?.length)
+              .map((el) => {
+                const o = areaOutline(el, W);
+                if (!o) return null;
+                const pts = o.poly.map((p) => `${p.x},${Y(p.y)}`).join(' ');
+                return o.closed ? (
+                  <polygon key={`area${el.id}`} points={pts} className={`map-area ${el.kind}${el.id === selectedId && !print ? ' sel' : ''}`} fill={`url(#pat-${el.kind})`} onPointerDown={print ? undefined : (e) => onElDown(e, el)} style={{ opacity: overlays.faded?.has(el.id) ? 0.3 : 1 }} />
+                ) : (
+                  <polygon key={`area${el.id}`} points={pts} className={`map-area unknown${el.id === selectedId && !print ? ' sel' : ''}`} fill="url(#fade-unknown)" onPointerDown={print ? undefined : (e) => onElDown(e, el)}>
+                    <title>Extent unknown until the back end is placed</title>
+                  </polygon>
+                );
+              })}
+          </g>
           {els
-            .filter((el) => el.ribs)
-            .map((el) => {
-              const poly = areaPolygon(geo, el.ribs![0] as RibPoint, el.ribs![1] as RibPoint);
-              return (
-                <polygon
-                  key={`area${el.id}`}
-                  points={poly.map((p) => `${p.x},${Y(p.y)}`).join(' ')}
-                  className={`map-area ${el.kind}${el.id === selectedId && !print ? ' sel' : ''}`}
-                  fill={`url(#pat-${el.kind})`}
-                  onPointerDown={print ? undefined : (e) => onElDown(e, el)}
-                  style={{ opacity: overlays.faded?.has(el.id) ? 0.3 : 1 }}
-                />
-              );
-            })}
+            .filter((el) => el.edges?.length)
+            .flatMap((el) =>
+              el.edges!.map((s, i) => (
+                <line key={`edge${el.id}${i}`} x1={s.a.x} y1={Y(s.a.y)} x2={s.b.x} y2={Y(s.b.y)} className={`map-edge ${el.kind}${el.id === selectedId && !print ? ' sel' : ''}`} onPointerDown={print ? undefined : (e) => onElDown(e, el)} />
+              ))
+            )}
+          {!print &&
+            els
+              .filter((el) => el.edges?.length === 1 && el.side)
+              .map((el) => {
+                const s = el.edges![0];
+                const n = sideNormal(s, el.side!);
+                const mx = (s.a.x + s.b.x) / 2 + n.x * W * 0.55;
+                const my = (s.a.y + s.b.y) / 2 + n.y * W * 0.55;
+                return (
+                  <text key={`unk${el.id}`} x={mx} y={Y(my) + 1.2} fontSize={3.4} textAnchor="middle" className="map-unknown" pointerEvents="none">
+                    ?
+                  </text>
+                );
+              })}
         </g>
       )}
       {!print && tool.type === 'area' && (() => {
-        const end = cursor ? snapRib(geo, cursor.x, cursor.y) : null;
+        const end = cursor ? snapLinePoint(topo, cursor.x, cursor.y) : null;
         return (
           <g pointerEvents="none">
-            {tool.start && end && (
-              <g clipPath="url(#openings-clip)">
-                <polygon points={areaPolygon(geo, tool.start, end).map((p) => `${p.x},${Y(p.y)}`).join(' ')} className={`map-area ${tool.kind} preview`} fill={`url(#pat-${tool.kind})`} />
-              </g>
-            )}
-            {tool.start && <circle cx={tool.start.x} cy={Y(tool.start.y)} r={1.6} className="rib-pt" />}
-            {end && <circle cx={end.x} cy={Y(end.y)} r={1.6} className="rib-pt hover" />}
+            {tool.start && end && <line x1={tool.start.x} y1={Y(tool.start.y)} x2={end.x} y2={Y(end.y)} className={`map-edge ${tool.kind} preview`} />}
+            {tool.start && <circle cx={tool.start.x} cy={Y(tool.start.y)} r={1.4} className="rib-pt" />}
+            {end && <circle cx={end.x} cy={Y(end.y)} r={1.4} className="rib-pt hover" />}
           </g>
         );
       })()}
