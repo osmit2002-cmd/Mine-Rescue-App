@@ -1,0 +1,97 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "sample-fig7",
+  "title": "Rule book Figure 7 — Systematic exploration (Rule 44)",
+  "statement": "Figure 7 of the rule book drawn as a problem: three entries from the fresh air base (FAB) at the bottom. Caved areas, water over knee deep and unsafe roof block several crosscuts and entries. Explore systematically.",
+  "instructions": "Explore all accessible areas systematically (Rule 44).",
+  "missing": 0,
+  "timeLimit": 0,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": true,
+    "lineCurtain": false
+  },
+  "keyNotes": "Rule book solution — team stops numbered in accordance with Rule 44D: #1 No. 1 Entry at the first crosscut; #2 No. 1 at the second; #3 No. 1 at the third; #4 No. 2 at the third; #5 No. 2 at the second; #6 No. 3 at the second; #7 No. 2 at the first; #8 No. 3 at the first; #9 No. 3 at the third.",
+  "layout": {
+    "entries": 3,
+    "rows": 4,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 30,
+    "cells": {
+      "1,7": "projected",
+      "3,7": "projected",
+      "5,7": "projected"
+    },
+    "entryNames": [],
+    "xcStart": 0,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "fig7-1",
+      "kind": "caved",
+      "x": 83,
+      "y": 90,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "fig7-2",
+      "kind": "water",
+      "x": 80,
+      "y": 170,
+      "across": true,
+      "overKnee": true,
+      "roofed": false,
+      "len": 10,
+      "text": "WATER OVER KNEE DEEP"
+    },
+    {
+      "id": "fig7-3",
+      "kind": "caved",
+      "x": 120,
+      "y": 50,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "fig7-4",
+      "kind": "caved",
+      "x": 200,
+      "y": 50,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "fig7-5",
+      "kind": "caved",
+      "x": 200,
+      "y": 130,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "fig7-6",
+      "kind": "unsafe-roof",
+      "x": 200,
+      "y": 210,
+      "across": true,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    }
+  ],
+  "updated": "2026-10-29T00:00:00.000Z",
+  "source": "2026 Coal Mine Rescue Rules, Figure 7, rule book page 49"
+}

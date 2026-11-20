@@ -1,5 +1,5 @@
 import { useState, type FocusEvent, type MouseEvent, type ReactNode } from 'react';
-import { elementName, GROUPS, KIND_DEFS, LEGEND_NOTE, PALETTE, placardText, X_DEFS, xDef, makeElement, type PaletteItem } from '../catalog';
+import { applyXLabel, elementName, GROUPS, KIND_DEFS, LEGEND_NOTE, PALETTE, placardText, X_CATEGORIES, X_DEFS, X_LABELS, xDef, makeElement, type PaletteItem } from '../catalog';
 import { locName, locate, type Topo } from '../geometry';
 import { entryName, LIMITS, sideDepth, type El, type Layout, type Problem, type XSub } from '../model';
 import type { NumberDirection, NumberOrder, PillarNumbering } from '../pillars';
@@ -268,13 +268,34 @@ export function Inspector({ el, topo, onChange, onDelete, onDuplicate, onClose }
       {el.kind === 'x' && (
         <>
           <label className="field">
-            <span>Object type</span>
+            <span>Label</span>
+            <select
+              value={X_LABELS.some((l) => l.text === el.text) ? el.text : ''}
+              onChange={(e) => {
+                const l = X_LABELS.find((x) => x.text === e.target.value);
+                if (l) onChange(applyXLabel(l));
+              }}
+            >
+              <option value="">{el.text ? `${el.text} (own wording)` : 'Choose…'}</option>
+              {X_CATEGORIES.map((c) => (
+                <optgroup key={c.id} label={c.name}>
+                  {X_LABELS.filter((l) => l.cat === c.id).map((l) => (
+                    <option key={l.text} value={l.text}>
+                      {l.text}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <label className="field">
+            <span>Treated by the solver as</span>
             <select
               value={el.sub ?? 'other'}
               onChange={(e) => {
                 const sub = e.target.value as XSub;
                 const xd = xDef(sub);
-                onChange({ sub, text: el.text && el.text !== xDef(el.sub).text ? el.text : xd.text, ...(xd.defaults ?? {}) });
+                onChange({ sub, ...(xd.defaults ?? {}) });
               }}
             >
               {X_DEFS.map((x) => (

@@ -1,0 +1,32 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "sample-fig5",
+  "title": "Rule book Figure 5 — Initial exploration (Rule 29)",
+  "statement": "Figure 5 of the rule book drawn as a problem: an open three-entry section with no placards. Use it to see the 25-ft limit at each team stop and the tie-across / tie-outby order for open crosscuts.",
+  "instructions": "Explore all accessible areas systematically.",
+  "missing": 0,
+  "timeLimit": 0,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": true,
+    "lineCurtain": false
+  },
+  "keyNotes": "At each team stop exploration into the openings is limited to 25 ft from the captain’s or No. 5’s stopping point, or to the imaginary line of the next intersection, whichever is less. Open crosscuts must be tied across into the next intersection and teams cannot advance from that intersection before tying outby (Rule 44D).",
+  "layout": {
+    "entries": 3,
+    "rows": 4,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 40,
+    "cells": {},
+    "entryNames": [],
+    "xcStart": 0,
+    "outbyPillars": true
+  },
+  "elements": [],
+  "updated": "2026-10-29T00:00:00.000Z",
+  "source": "2026 Coal Mine Rescue Rules, Figure 5, rule book page 47"
+}

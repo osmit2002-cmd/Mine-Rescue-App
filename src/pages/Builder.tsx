@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { canLinkFolder, canShareFiles, fetchStarters, shareProblems, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
 import { editLayout, openingName, openingState, type LayoutOp } from '../builder/layoutEdit';
@@ -11,7 +12,9 @@ import { designChecks, solve } from '../builder/solve';
 import { downloadProblem, loadCurrentId, loadProblems, readProblemFile, saveCurrentId, saveProblems } from '../builder/storage';
 import { SelectField } from '../components/SelectField';
 import { mapMargins, MapView, type Overlays, type Tool } from '../builder/ui/MapView';
-import { OpeningRing, RadialMenu, type RadialAction } from '../builder/ui/RadialMenu';
+import { CableRing, OpeningRing, RadialMenu, type CablePick, type RadialAction } from '../builder/ui/RadialMenu';
+import { ProblemPicker } from '../builder/ui/ProblemPicker';
+import { XLabelPicker } from '../builder/ui/XLabelPicker';
 import { usePanZoom } from '../builder/ui/panZoom';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
@@ -46,6 +49,18 @@ export default function Builder() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   /** Element whose placement options ring is open on the map. */
   const [radialId, setRadialId] = useState<string | null>(null);
+  /** X placard whose label picker is open beside it. */
+  const [labelFor, setLabelFor] = useState<string | null>(null);
+  /** Problems folder on this computer: the linked folder (Chrome/Edge), which problem is in which file, status line. */
+  const [folder, setFolder] = useState<DirHandle | null>(null);
+  /** The folder was linked before but the browser needs a click to allow access again. */
+  const [folderAsk, setFolderAsk] = useState<DirHandle | null>(null);
+  const [fileMap, setFileMap] = useState<FileMap>(() => loadFileMap());
+  const [folderBusy, setFolderBusy] = useState(false);
+  const [folderNote, setFolderNote] = useState<string | null>(null);
+  /** `updated` of the copy last written to the folder, per problem id (to skip unchanged writes). */
+  const folderSent = useRef<Record<string, string>>({});
+  const openFiles = useRef<HTMLInputElement>(null);
   const [zoom, setZoom] = useState(3);
   const [showLabels, setShowLabels] = useState(true);
   const [showExtents, setShowExtents] = useState(true);
@@ -146,6 +161,8 @@ export default function Builder() {
 
   const switchTo = (id: string) => {
     setCurrentId(id);
+    setLabelFor(null);
+    setRadialId(null);
     setPast([]);
     setFuture([]);
     setSelectedId(null);
@@ -185,8 +202,41 @@ export default function Builder() {
     if (el.kind === 'gas') el.text = '';
     update((p) => ({ ...p, elements: [...p.elements, el] }));
     setSelectedId(el.id);
+    if (el.kind === 'x' && el.sub === 'cable') {
+      // Cable: the path starts at the placard; each click adds a point, Enter (or End on the ring) finishes.
+      setRadialId(null);
+      setTool({ type: 'cable', id: el.id });
+      return;
+    }
+    if (el.kind === 'x' && !tool.sub) {
+      // X placard: pick its label from the list beside it.
+      setRadialId(null);
+      setLabelFor(el.id);
+      setTool({ type: 'select' });
+      return;
+    }
     setRadialId(el.id);
     if (!keep) setTool({ type: 'select' });
+  };
+
+  // ------------------------------------------------------------ cable path drawing
+
+  const cableEl = tool.type === 'cable' ? problem.elements.find((e) => e.id === tool.id) ?? null : null;
+  const addCablePoint = (x: number, y: number) => {
+    if (!cableEl) return;
+    const s = snap(topo, x, y, 'point');
+    if (!s) return flash('Click inside an entry, crosscut or intersection.');
+    patchEl(cableEl.id, { path: [...(cableEl.path ?? []), { x: s.x, y: s.y }] });
+  };
+  const cablePick = (pick: CablePick) => {
+    if (!cableEl) return;
+    if (pick === 'undo') patchEl(cableEl.id, { path: (cableEl.path ?? []).slice(0, -1) });
+    else if (pick === 'cancel') patchEl(cableEl.id, { path: [] });
+    else {
+      setTool({ type: 'select' });
+      setSelectedId(cableEl.id);
+      setRadialId(cableEl.id);
+    }
   };
   const shiftDown = useRef(false);
 
@@ -253,7 +303,21 @@ export default function Builder() {
         redo();
         return;
       }
+      if (tool.type === 'cable') {
+        if (e.key === 'Enter' || e.key === 'Escape') {
+          e.preventDefault();
+          return cablePick('end');
+        }
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+          e.preventDefault();
+          return cablePick('undo');
+        }
+      }
       if (e.key === 'Escape') {
+        if (labelFor) {
+          setLabelFor(null);
+          return;
+        }
         if (activeCell) {
           setActiveCell(null);
           return;
@@ -298,6 +362,14 @@ export default function Builder() {
     if (!selected) return;
     if (a === 'delete') deleteEl(selected.id);
     else if (a === 'duplicate') setRadialId(duplicateEl(selected).id);
+    else if (a === 'label') {
+      setRadialId(null);
+      setLabelFor(selected.id);
+    } else if (a === 'path') {
+      setRadialId(null);
+      if (selected.path?.length) patchEl(selected.id, { path: [] });
+      setTool({ type: 'cable', id: selected.id });
+    }
     else {
       setRadialId(null);
       // Edit: jump to the first field in the inspector (gas readings, placard wording, …).
@@ -401,6 +473,174 @@ export default function Builder() {
     else setScenario({ ...scenario, added: [...scenario.added, { ...makeElement({ kind: 'temp-stopping' }, s.x, s.y, newId('w')), text: 'TEMPORARY STOPPING (built)' }] });
   };
 
+  // ------------------------------------------------------------ X placard label
+
+  const labelEl = tab === 'build' && labelFor ? problem.elements.find((e) => e.id === labelFor && e.kind === 'x') ?? null : null;
+  const pickLabel = (patch: Partial<El>) => {
+    if (!labelEl) return;
+    patchEl(labelEl.id, patch);
+    setLabelFor(null);
+    setSelectedId(labelEl.id);
+    if (patch.sub === 'cable' && labelEl.sub !== 'cable' && !labelEl.path?.length) setTool({ type: 'cable', id: labelEl.id });
+    else setRadialId(labelEl.id);
+  };
+
+  // ------------------------------------------------------------ problems folder on this computer
+
+  const savedIds = useMemo(() => new Set(Object.keys(fileMap)), [fileMap]);
+  const setMap = (m: FileMap) => {
+    setFileMap(m);
+    saveFileMap(m);
+  };
+  const folderRun = async (what: string, fn: () => Promise<string | void>) => {
+    if (folderBusy) return;
+    setFolderBusy(true);
+    setFolderNote(`${what}…`);
+    try {
+      setFolderNote((await fn()) || null);
+    } catch (e) {
+      setFolderNote((e as Error).message);
+    } finally {
+      setFolderBusy(false);
+    }
+  };
+  /** Read every problem file in the folder into the list (newer copies replace older ones). */
+  const loadFrom = async (d: DirHandle) => {
+    const files = await readFolder(d);
+    const r = mergeIn(problems, files.map((f) => f.problem));
+    const m: FileMap = {};
+    for (const f of files) m[f.problem.id] = f.name;
+    setProblems(r.list);
+    setMap(m);
+    for (const f of files) folderSent.current[f.problem.id] = r.list.find((p) => p.id === f.problem.id)!.updated;
+    setFolder(d);
+    setFolderAsk(null);
+    return `Folder “${d.name}”: ${files.length} problem file${files.length === 1 ? '' : 's'}${r.added || r.updated ? ` (${r.added} new, ${r.updated} updated here)` : ''}.`;
+  };
+  // Reconnect to the folder linked last time. Reading it right away works when the browser kept the permission;
+  // otherwise the folder button asks for it with one click.
+  useEffect(() => {
+    if (!canLinkFolder()) return;
+    loadFolder().then(async (d) => {
+      if (!d) return;
+      if (await ensurePermission(d, false).catch(() => false)) folderRun('Reading the problems folder', () => loadFrom(d));
+      else setFolderAsk(d);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const linkFolder = () =>
+    folderRun('Choosing a folder', async () => {
+      const d = await pickFolder();
+      return d ? loadFrom(d) : undefined;
+    });
+  const allowFolder = () =>
+    folderRun('Opening the problems folder', async () => {
+      if (!folderAsk) return;
+      if (!(await ensurePermission(folderAsk, true))) return 'The browser did not allow access to the folder.';
+      return loadFrom(folderAsk);
+    });
+  /** Write one problem to the linked folder. Returns the new file map. */
+  const writeOne = useCallback(async (d: DirHandle, p: Problem, map: FileMap) => {
+    const name = uniqueFileName(p, map);
+    await writeToFolder(d, p, name, map[p.id]);
+    folderSent.current[p.id] = p.updated;
+    return { ...map, [p.id]: name };
+  }, []);
+  // While a folder is linked, a saved problem's file is rewritten a couple of seconds after each edit.
+  useEffect(() => {
+    if (!folder || folderBusy) return;
+    const dirty = problems.filter((p) => fileMap[p.id] && folderSent.current[p.id] !== p.updated);
+    if (!dirty.length) return;
+    const t = setTimeout(async () => {
+      let m = fileMap;
+      try {
+        for (const p of dirty) m = await writeOne(folder, p, m);
+        setMap(m);
+        setFolderNote(`Saved to “${folder.name}” ${new Date().toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}.`);
+      } catch (e) {
+        setFolderNote((e as Error).message);
+      }
+    }, 2000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [problems, folder, folderBusy, fileMap, writeOne]);
+
+  /** Name the problem (asking if it still has the default name) and save its file to the folder (or download it). */
+  const saveNamed = () => {
+    let title = problem.title;
+    if (/^(new problem|untitled problem)$/i.test(title.trim()) || !title.trim()) {
+      const t = window.prompt('Name this problem:', '');
+      if (!t?.trim()) return;
+      title = t.trim().slice(0, 120);
+    }
+    const p = { ...problem, title, updated: new Date().toISOString() };
+    setProblems((list) => list.map((x) => (x.id === p.id ? p : x)));
+    if (!folder) {
+      if (folderAsk) return folderRun('Saving', async () => {
+        if (!(await ensurePermission(folderAsk, true))) return 'The browser did not allow access to the folder.';
+        setFolder(folderAsk);
+        setFolderAsk(null);
+        setMap(await writeOne(folderAsk, p, fileMap));
+        return `Saved “${title}” to “${folderAsk.name}”.`;
+      });
+      if (canShareFiles())
+        return folderRun('Saving', async () => ((await shareProblems([p])) ? `Shared “${title}”. Folder → Open files… brings it back in from where you saved it.` : 'Not saved.'));
+      downloadProblem(p);
+      setFolderNote(canLinkFolder() ? `Downloaded “${title}” to your Downloads folder. Link a folder (Folder menu) to save straight into it.` : `Downloaded “${title}” to your Downloads folder. Folder → Open files… brings files back in.`);
+      return;
+    }
+    const d = folder;
+    folderRun('Saving', async () => {
+      setMap(await writeOne(d, p, fileMap));
+      return `Saved “${title}” to “${d.name}”.`;
+    });
+  };
+  /**
+   * Starter problems (samples and past contests, kept in the repo): added to the list and saved where the user keeps
+   * problems: the linked folder, the share sheet on a phone, or the Downloads folder.
+   */
+  const getStarters = () =>
+    folderRun('Getting the starter problems', async () => {
+      const starters = await fetchStarters();
+      const m = mergeIn(problems, starters.map((s) => s.problem));
+      setProblems(m.list);
+      const d = folder ?? (folderAsk && (await ensurePermission(folderAsk, true)) ? folderAsk : null);
+      if (d) {
+        const have = new Set((await readFolder(d)).map((f) => f.problem.id));
+        let map = fileMap;
+        let wrote = 0;
+        for (const s of starters) {
+          if (have.has(s.problem.id)) continue;
+          map = await writeOne(d, s.problem, map);
+          wrote++;
+        }
+        setMap(map);
+        setFolder(d);
+        setFolderAsk(null);
+        return `Starter problems: ${wrote} saved to “${d.name}”${wrote < starters.length ? `, ${starters.length - wrote} already there` : ''}.`;
+      }
+      if (canShareFiles()) return (await shareProblems(starters.map((s) => s.problem))) ? `Added ${starters.length} starter problems and shared their files.` : `Added ${starters.length} starter problems to the list.`;
+      // One at a time: browsers drop or misname downloads started in the same instant.
+      for (const s of starters) {
+        downloadProblem(s.problem);
+        await new Promise((r) => setTimeout(r, 300));
+      }
+      return `Added ${starters.length} starter problems and downloaded their files to your Downloads folder.`;
+    });
+  const onOpenFiles = async (files: FileList | null) => {
+    if (!files?.length) return;
+    const r = await readPickedFiles(files);
+    const m = mergeIn(problems, r.problems);
+    setProblems(m.list);
+    if (r.problems.length === 1) switchTo(r.problems[0].id);
+    setFolderNote(`Opened ${r.problems.length} problem file${r.problems.length === 1 ? '' : 's'}${r.bad.length ? `; not problem files: ${r.bad.join(', ')}` : ''}.`);
+  };
+  const newNamed = () => {
+    const t = window.prompt('Name for the new problem:', '');
+    if (t === null) return;
+    addProblem(blankProblem(t.trim().slice(0, 120) || 'New problem'));
+  };
+
   // ------------------------------------------------------------ problems menu
 
   const onImport = async (f: File | undefined) => {
@@ -450,20 +690,68 @@ export default function Builder() {
     <div className="builder">
       <div className="builder-top">
         <h1 className="sr-only">Mine rescue problem builder</h1>
-        <label className="prob-select">
-          <span className="sr-only">Problem</span>
-          <select value={currentId} onChange={(e) => switchTo(e.target.value)} data-testid="problem-select">
-            {problems.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.title}
-              </option>
-            ))}
-          </select>
-        </label>
+        <ProblemPicker problems={problems} currentId={currentId} saved={savedIds} onOpen={switchTo} />
         <div className="top-actions">
-          <button type="button" onClick={() => addProblem({ ...blankProblem('New problem') })}>
+          <button type="button" onClick={newNamed} title="Start a new problem on a blank map and name it">
             New
           </button>
+          <button type="button" onClick={saveNamed} disabled={folderBusy} title={folder ? `Name this problem and save it to the folder “${folder.name}”` : 'Name this problem and save it as a file'}>
+            Save
+          </button>
+          <details className="menu">
+            <summary className="button" title={folder ? `Problems folder: ${folder.name}` : 'Problems folder on this computer'}>
+              Folder{folder ? ' ✓' : ''}
+            </summary>
+            <div className="menu-pop">
+              {folderAsk && !folder && (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), allowFolder())}>
+                  <strong>Open “{folderAsk.name}” again</strong>
+                  <span className="small muted">The browser asks once per session before the app may use the folder</span>
+                </button>
+              )}
+              {canLinkFolder() ? (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), linkFolder())}>
+                  <strong>{folder ? 'Change folder…' : 'Link a folder…'}</strong>
+                  <span className="small muted">Choose the folder on this computer where problem files are kept. Save writes there, and every problem file in it shows in the list.</span>
+                </button>
+              ) : (
+                <span className="small muted menu-note">
+                  {canShareFiles()
+                    ? 'Save opens the share sheet: save the file to Files, iCloud Drive, Google Drive or the phone. Open files… brings files back in.'
+                    : 'This browser cannot link a folder (Chrome or Edge on a computer can). Save downloads the file to your Downloads folder; Open files… brings files back in.'}
+                </span>
+              )}
+              {folder && (
+                <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), folderRun('Reading the problems folder', () => loadFrom(folder)))}>
+                  <strong>Reload from “{folder.name}”</strong>
+                  <span className="small muted">Picks up files added or changed in the folder outside the app</span>
+                </button>
+              )}
+              <button type="button" disabled={folderBusy} onClick={(e) => (closeMenu(e), getStarters())}>
+                <strong>Get starter problems</strong>
+                <span className="small muted">The sample and past contest problems, saved to {folder ? `“${folder.name}”` : canShareFiles() ? 'where you choose' : 'your Downloads folder'}</span>
+              </button>
+              <button type="button" onClick={(e) => (closeMenu(e), openFiles.current?.click())}>
+                <strong>Open files…</strong>
+                <span className="small muted">Bring in one or more problem files (.mrs-problem.json)</span>
+              </button>
+              {folder && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    closeMenu(e);
+                    forgetFolder();
+                    setFolder(null);
+                    setMap({});
+                    setFolderNote('Folder unlinked. Problems stay in this browser; the files stay in the folder.');
+                  }}
+                >
+                  <strong>Unlink folder</strong>
+                </button>
+              )}
+            </div>
+          </details>
+          <input ref={openFiles} type="file" accept=".json,application/json" multiple hidden onChange={(e) => onOpenFiles(e.target.files).finally(() => (e.target.value = ''))} />
           <details className="menu">
             <summary className="button">Samples</summary>
             <div className="menu-pop">
@@ -515,7 +803,14 @@ export default function Builder() {
             type="button"
             className="danger"
             onClick={() => {
-              if (!window.confirm(`Delete “${problem.title}” from this device?`)) return;
+              const file = folder ? fileMap[problem.id] : undefined;
+              if (!window.confirm(`Delete “${problem.title}” from the list${file ? ` and delete its file “${file}” from the folder` : ''}?`)) return;
+              if (file && folder) {
+                const m = { ...fileMap };
+                delete m[problem.id];
+                setMap(m);
+                removeFromFolder(folder, file);
+              }
               const rest = problems.filter((p) => p.id !== problem.id);
               const list = rest.length ? rest : [blankProblem('New problem')];
               setProblems(list);
@@ -526,6 +821,12 @@ export default function Builder() {
           </button>
         </div>
       </div>
+      {!folderNote && !folder && !folderAsk && !Object.keys(fileMap).length && problems.length <= 1 && (
+        <p className="drive-status muted">
+          New here? <button type="button" className="link inline" onClick={getStarters}>Get the starter problems</button> (sample and past contest problems){canLinkFolder() ? ', and link a folder from the Folder menu to keep your own.' : '.'}
+        </p>
+      )}
+      {folderNote && <p className="drive-status muted" role="status">{folderNote}</p>}
       {!saveOk && <p className="warn small">This browser is not saving problems (storage blocked). Use Export to keep your work.</p>}
       {sample && <p className="small muted">{problem.source}. Edits are saved on this device; open it again from Samples for a fresh copy.</p>}
 
@@ -583,7 +884,7 @@ export default function Builder() {
         {tab === 'build' && (
           <aside className="b-left">
             <Palette
-              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : null}
+              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
               onPick={(it: PaletteItem) => {
                 const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub;
                 setTool(off ? { type: 'select' } : { type: 'place', kind: it.kind, sub: it.sub, name: it.name });
@@ -597,6 +898,11 @@ export default function Builder() {
           {tool.type === 'place' && tab === 'build' && (
             <p className="tool-hint" role="status">
               Click the map to place: <strong>{tool.name}</strong>. Shift-click to place several · Esc to stop.
+            </p>
+          )}
+          {tool.type === 'cable' && tab === 'build' && (
+            <p className="tool-hint" role="status">
+              Drawing the cable: click to add points along its path. <strong>Enter</strong> or <strong>End</strong> finishes · Backspace removes the last point.
             </p>
           )}
           {tool.type === 'layout' && tab === 'build' && (
@@ -626,6 +932,7 @@ export default function Builder() {
                 editable={tab === 'build'}
                 onSelect={(id) => {
                   setSelectedId(id);
+                  if (id !== labelFor) setLabelFor(null);
                   if (id !== radialId) setRadialId(null);
                 }}
                 onElementTap={setRadialId}
@@ -634,6 +941,7 @@ export default function Builder() {
                   setRadialId(null);
                 }}
                 onPlace={(x, y) => place(x, y, shiftDown.current)}
+                onCablePoint={addCablePoint}
                 onCell={(cx, cy) => setActiveCell({ cx, cy })}
                 onRoom={(side, row, depth) => {
                   const l = problem.layout;
@@ -661,7 +969,24 @@ export default function Builder() {
                   />
                 );
               })()}
-              {radialEl && (
+              {cableEl && tab === 'build' && (() => {
+                const last = cableEl.path?.length ? cableEl.path[cableEl.path.length - 1] : cableEl;
+                return <CableRing x={stage.px(last.x)} y={stage.py(last.y)} width={stage.w} height={stage.h} points={cableEl.path?.length ?? 0} onPick={cablePick} />;
+              })()}
+              {labelEl && (
+                <XLabelPicker
+                  key={labelEl.id}
+                  x={stage.px(labelEl.x)}
+                  y={stage.py(labelEl.y)}
+                  width={stage.w}
+                  height={stage.h}
+                  current={labelEl.text}
+                  onPick={(l) => pickLabel(applyXLabel(l))}
+                  onCustom={(text) => pickLabel({ sub: 'other', text })}
+                  onClose={() => setLabelFor(null)}
+                />
+              )}
+              {radialEl && !labelEl && tool.type !== 'cable' && (
                 <RadialMenu el={radialEl} x={stage.px(radialEl.x)} y={stage.py(radialEl.y)} width={stage.w} height={stage.h} onPatch={(patch) => patchEl(radialEl.id, patch)} onAction={radialAction} />
               )}
             </div>
@@ -752,7 +1077,7 @@ export default function Builder() {
         </div>
       )}
       <p className="small muted builder-foot">
-        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are saved on this device only; use Export to share them.
+        Symbols follow the MSHA Mine Map Legend (2026 Coal Mine Rescue Rules, pp. 51–55). Problems are kept in this browser; Save writes a problem's file to your problems folder (Folder menu), or downloads it.
       </p>
     </div>
   );

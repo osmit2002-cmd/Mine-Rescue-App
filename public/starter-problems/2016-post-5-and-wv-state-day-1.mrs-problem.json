@@ -1,0 +1,572 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "case-post5-2016-day1",
+  "title": "2016 Post 5 & WV State — Day 1",
+  "source": "problems/msha-archive/coal/2016/2016_Post_5_Day_1_Mine_Rescue.pdf",
+  "statement": "You are located in the first crosscut of WVS # 1 mine. This mine just reopened after several years of being idle due to bad roof and high methane liberations. Thanks for answering our call for help. The RP reported over an hour ago that the blowing fan had stopped suddenly and that he called underground and did not get a response. He said that six miners was sent to the unit early this morning to prepare for day shift coal production. The RP also reported high concentrations of methane in the no.1 entry after the fan stopped and a decision was made by management to call for professional help. The fan has been checked by electricians and has been deemed safe for use if needed. We do have an airshaft in the no.3 entry that can be use for ventilation. The power inby the fresh air base has been locked out and is being guarded. A trained mine rescue team is here to back you up and the mine maps that you will receive once the clock is started are up to date. We have had constant trouble with our methane monitor on the continuous miner giving false readings. We believe this may have contributed to our emergency situation here today. Please find the six missing miners and bring survivors to the fresh air base. Be careful and explore with safety.",
+  "instructions": "EXPLORE THE ENTIRE MINE THAT CAN BE SAFELY EXPLORED. FAN SWITCH IS CONTROLLED BY THE COMMAND CENTER / BO. THE BLOWING FAN CANNOT BE REVERSED. THE BLOWING FAN CANNOT BE STOPPED OR STALLED AFTER STARTING. YOU CANNOT CARRY MORE THAN 3 BRATTICE CLOTH WHILE ADVANCING OR RETREATING. BO/CCA IS OUTSIDE AND ISOLATED.",
+  "missing": 6,
+  "timeLimit": 0,
+  "fabFresh": true,
+  "boOutside": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": true,
+    "lineCurtain": false
+  },
+  "keyNotes": "Team must rescue patient in first Barricade before entire team goes inby fresh air base. Team must rescue patient in Barricade at team stop #10 before going to next team stop. Team must ventilate to get patient in 2nd Barricade in no.1 entry before going to team stop # 12. 4 broken timbers in no.1 face area cannot be used for timbering. Team must put first Barricade back up in no.1 entry to wing out explosive mixture (see vent 1 map) on first vent. Then team can take first barricade down to vent irrespirable 19.0 %O2 (see second vent map) going to second barricade. Team must not send low O2 over person in unsafe roof in no.3 entry. Team must use the three timbers in barricade to timber to person in unsafe roof before exploring team stop # 12. Team must explore team stop #12 before stopping the clock.",
+  "layout": {
+    "entries": 3,
+    "rows": 5,
+    "entryWidth": 20,
+    "pillarWidth": 40,
+    "pillarLength": 40,
+    "stubLength": 20,
+    "cells": {
+      "6,0": "solid"
+    },
+    "entryNames": [],
+    "xcStart": 1,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "fan",
+      "kind": "fan",
+      "x": 9.6,
+      "y": 10,
+      "fanMode": "blowing",
+      "on": false,
+      "text": "BLOWING FAN - SWITCH OFF",
+      "preMapped": true
+    },
+    {
+      "id": "bc-fab-1",
+      "kind": "brattice",
+      "x": 59.6,
+      "y": 3.6,
+      "preMapped": true
+    },
+    {
+      "id": "bc-fab-2",
+      "kind": "brattice",
+      "x": 119.5,
+      "y": 3.6,
+      "preMapped": true
+    },
+    {
+      "id": "shaft",
+      "kind": "x",
+      "x": 150,
+      "y": 271.5,
+      "sub": "shaft",
+      "text": "8' AIR SHAFT",
+      "preMapped": true
+    },
+    {
+      "id": "outby-3",
+      "kind": "x",
+      "x": 150,
+      "y": 1.8,
+      "sub": "outby",
+      "text": "NO. 3 ENTRY OPEN OUTBY",
+      "preMapped": true
+    },
+    {
+      "id": "gas-b1-outby",
+      "kind": "gas",
+      "x": 29.8,
+      "y": 26.4,
+      "ch4": 5.5,
+      "co": 5,
+      "o2": 19.5
+    },
+    {
+      "id": "barricade-1",
+      "kind": "barricade",
+      "x": 30.2,
+      "y": 29.1,
+      "response": true,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-b1",
+      "kind": "person",
+      "x": 36.4,
+      "y": 31.8,
+      "conscious": true,
+      "dir": 90,
+      "text": "CONSCIOUS - HELP! THERE IS AN AIRTIGHT BARRICADE BEHIND ME."
+    },
+    {
+      "id": "gas-b1",
+      "kind": "gas",
+      "x": 22.7,
+      "y": 36.4,
+      "ch4": 4.8,
+      "co": 5,
+      "o2": 19
+    },
+    {
+      "id": "barricade-2",
+      "kind": "barricade",
+      "x": 30.2,
+      "y": 38.7,
+      "response": true,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-b2",
+      "kind": "person",
+      "x": 36.2,
+      "y": 45.5,
+      "conscious": true,
+      "text": "CONSCIOUS - HELP! GET ME OUT OF HERE!"
+    },
+    {
+      "id": "body-b2",
+      "kind": "body",
+      "x": 23.1,
+      "y": 46.9,
+      "text": "BODY"
+    },
+    {
+      "id": "timbers-b2",
+      "kind": "x",
+      "x": 30.4,
+      "y": 49.8,
+      "sub": "timbers",
+      "text": "THREE TIMBERS",
+      "count": 3
+    },
+    {
+      "id": "roof-n1-1",
+      "kind": "unsafe-roof",
+      "x": 30.2,
+      "y": 56,
+      "across": true,
+      "len": 8,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "lc",
+      "kind": "line-curtain",
+      "x": 90,
+      "y": 50.7
+    },
+    {
+      "id": "gas-n2-r1",
+      "kind": "gas",
+      "x": 90,
+      "y": 69.6,
+      "ch4": 4.5,
+      "co": 9,
+      "o2": 19.9
+    },
+    {
+      "id": "water-n2-1",
+      "kind": "water",
+      "x": 98.2,
+      "y": 80.9,
+      "overKnee": true,
+      "across": false,
+      "len": 6,
+      "text": "OVER KNEE DEEP"
+    },
+    {
+      "id": "timber-set-n3-1",
+      "kind": "x",
+      "x": 150,
+      "y": 26.9,
+      "sub": "other",
+      "text": "TIMBER SET"
+    },
+    {
+      "id": "roof-n3-1",
+      "kind": "unsafe-roof",
+      "x": 142.7,
+      "y": 39.8,
+      "across": false,
+      "len": 18,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "body-n3",
+      "kind": "body",
+      "x": 142.4,
+      "y": 34.5,
+      "text": "PERSON"
+    },
+    {
+      "id": "timber-set-n3-2",
+      "kind": "x",
+      "x": 149.6,
+      "y": 51.6,
+      "sub": "other",
+      "text": "TIMBER SET"
+    },
+    {
+      "id": "stop-xc2-12",
+      "kind": "temp-stopping",
+      "x": 62.7,
+      "y": 69.6,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "saw",
+      "kind": "x",
+      "x": 78.2,
+      "y": 62.2,
+      "sub": "other",
+      "text": "SAW"
+    },
+    {
+      "id": "stop-xc2-23",
+      "kind": "temp-stopping",
+      "x": 123.6,
+      "y": 69.6,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "timber-set-n1",
+      "kind": "x",
+      "x": 37.6,
+      "y": 88,
+      "sub": "other",
+      "text": "TIMBER SET"
+    },
+    {
+      "id": "gas-n1-b1",
+      "kind": "gas",
+      "x": 37.3,
+      "y": 114,
+      "ch4": 4.5,
+      "co": 9,
+      "o2": 19.9
+    },
+    {
+      "id": "roof-n2-scoop",
+      "kind": "unsafe-roof",
+      "x": 98.2,
+      "y": 119.1,
+      "across": false,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "scoop-1",
+      "kind": "x",
+      "x": 97.3,
+      "y": 119.5,
+      "sub": "equipment",
+      "text": "BATTERY SCOOP",
+      "energized": false
+    },
+    {
+      "id": "stop-xc3-12",
+      "kind": "temp-stopping",
+      "x": 62.7,
+      "y": 129.6,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "stop-xc3-23",
+      "kind": "temp-stopping",
+      "x": 123.6,
+      "y": 129.6,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "gas-xc3-23",
+      "kind": "gas",
+      "x": 129.6,
+      "y": 137.3,
+      "ch4": 4.5,
+      "co": 9,
+      "o2": 19.9
+    },
+    {
+      "id": "gas-n1-r2",
+      "kind": "gas",
+      "x": 37.1,
+      "y": 142.2,
+      "ch4": 5.5,
+      "co": 10,
+      "o2": 18.5
+    },
+    {
+      "id": "roof-n1-2",
+      "kind": "unsafe-roof",
+      "x": 30.2,
+      "y": 158.9,
+      "across": true,
+      "len": 10,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "gas-n3-b2",
+      "kind": "gas",
+      "x": 142.7,
+      "y": 173.3,
+      "ch4": 4.5,
+      "co": 9,
+      "o2": 19.9
+    },
+    {
+      "id": "rib-n2",
+      "kind": "unsafe-rib",
+      "x": 99.5,
+      "y": 181.3,
+      "text": "UNSAFE RIB"
+    },
+    {
+      "id": "bc-n1-r3",
+      "kind": "brattice",
+      "x": 24.4,
+      "y": 188.7
+    },
+    {
+      "id": "hammer",
+      "kind": "x",
+      "x": 42.2,
+      "y": 182.2,
+      "sub": "other",
+      "text": "HAMMER"
+    },
+    {
+      "id": "stop-xc4-12",
+      "kind": "temp-stopping",
+      "x": 62.2,
+      "y": 189.5,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "scoop-2",
+      "kind": "x",
+      "x": 128.7,
+      "y": 196.9,
+      "sub": "equipment",
+      "text": "BATTERY SCOOP",
+      "energized": false
+    },
+    {
+      "id": "stop-n2",
+      "kind": "temp-stopping",
+      "x": 90,
+      "y": 205.1,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING DOWN"
+    },
+    {
+      "id": "glue",
+      "kind": "x",
+      "x": 29.3,
+      "y": 208.7,
+      "sub": "other",
+      "text": "GLUE STICK"
+    },
+    {
+      "id": "axe-n2",
+      "kind": "x",
+      "x": 97.8,
+      "y": 200.9,
+      "sub": "other",
+      "text": "AXE"
+    },
+    {
+      "id": "tape",
+      "kind": "x",
+      "x": 82,
+      "y": 210.7,
+      "sub": "other",
+      "text": "BLACK TAPE"
+    },
+    {
+      "id": "body-n2",
+      "kind": "body",
+      "x": 97.8,
+      "y": 212.7,
+      "text": "BODY"
+    },
+    {
+      "id": "pump-float",
+      "kind": "x",
+      "x": 90.4,
+      "y": 217.6,
+      "sub": "other",
+      "text": "PUMP FLOAT"
+    },
+    {
+      "id": "water-n2-2",
+      "kind": "water",
+      "x": 90.4,
+      "y": 223.3,
+      "overKnee": false,
+      "across": true,
+      "len": 10,
+      "text": "KNEE DEEP"
+    },
+    {
+      "id": "roof-n3-2",
+      "kind": "unsafe-roof",
+      "x": 150,
+      "y": 223.6,
+      "across": true,
+      "len": 20,
+      "text": "UNSAFE ROOF"
+    },
+    {
+      "id": "gas-n3-b3",
+      "kind": "gas",
+      "x": 157.3,
+      "y": 227.6,
+      "ch4": 5.5,
+      "co": 10,
+      "o2": 19.7
+    },
+    {
+      "id": "ax-n1",
+      "kind": "x",
+      "x": 38.2,
+      "y": 237.3,
+      "sub": "other",
+      "text": "AX"
+    },
+    {
+      "id": "bc-xc5",
+      "kind": "brattice",
+      "x": 43.6,
+      "y": 243.6
+    },
+    {
+      "id": "roof-bolter",
+      "kind": "x",
+      "x": 58.4,
+      "y": 249.6,
+      "sub": "equipment",
+      "text": "ROOF BOLTER",
+      "energized": false
+    },
+    {
+      "id": "roof-bolt-1",
+      "kind": "x",
+      "x": 67.1,
+      "y": 249.6,
+      "sub": "materials",
+      "text": "ROOF BOLT"
+    },
+    {
+      "id": "roof-bolt-2",
+      "kind": "x",
+      "x": 73.6,
+      "y": 241.8,
+      "sub": "materials",
+      "text": "ROOF BOLT"
+    },
+    {
+      "id": "water-xc5",
+      "kind": "water",
+      "x": 118.2,
+      "y": 249.1,
+      "overKnee": false,
+      "across": true,
+      "len": 9,
+      "text": "KNEE DEEP"
+    },
+    {
+      "id": "timbers-broken",
+      "kind": "x",
+      "x": 22.7,
+      "y": 274.4,
+      "sub": "timbers",
+      "text": "FOUR TIMBERS BROKEN (CANNOT USE)",
+      "count": 0
+    },
+    {
+      "id": "bc-n1-face",
+      "kind": "brattice",
+      "x": 28.2,
+      "y": 274.4
+    },
+    {
+      "id": "face-1",
+      "kind": "x",
+      "x": 30.4,
+      "y": 278.2,
+      "sub": "face",
+      "text": "FACE"
+    },
+    {
+      "id": "gas-n2-face",
+      "kind": "gas",
+      "x": 90,
+      "y": 261.8,
+      "ch4": 5.5,
+      "co": 10,
+      "o2": 19.5
+    },
+    {
+      "id": "barricade-3",
+      "kind": "barricade",
+      "x": 90,
+      "y": 268.5,
+      "response": true,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-n2",
+      "kind": "person",
+      "x": 97.3,
+      "y": 274,
+      "conscious": true,
+      "text": "CONSCIOUS - HELP! GET ME OUT OF HERE!"
+    },
+    {
+      "id": "miner",
+      "kind": "x",
+      "x": 82.7,
+      "y": 272.7,
+      "sub": "equipment",
+      "text": "CONTINUOUS MINER WITH BROKEN CH4 SENSOR",
+      "energized": false
+    },
+    {
+      "id": "face-2",
+      "kind": "x",
+      "x": 90.4,
+      "y": 278.2,
+      "sub": "face",
+      "text": "FACE"
+    },
+    {
+      "id": "ram-car",
+      "kind": "x",
+      "x": 141.8,
+      "y": 262.7,
+      "sub": "equipment",
+      "text": "BATTERY RAM CAR",
+      "energized": false
+    },
+    {
+      "id": "face-3",
+      "kind": "x",
+      "x": 150,
+      "y": 278.2,
+      "sub": "face",
+      "text": "FACE"
+    }
+  ],
+  "updated": "2026-10-29T00:00:00.000Z"
+}

@@ -1,0 +1,359 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "case-national-2024-day1",
+  "title": "2024 National — Coal Day 1",
+  "source": "https://minerescuecenter.com/media/problems/2024_national_Coal_Mine_Rescue_2024_National_Coal_Rescue_Day_1.pdf",
+  "statement": "The 1st West Mains crew of 4 miners is missing after a seismic event and a power outage. Explore from the fresh air base. The exhausting main fan is on and cannot be shut down, stalled, or reversed. Power is energized up to the fresh air base and cannot be cut. This is a 3-entry section, numbered left to right: No. 1 and No. 2 intakes, No. 3 the return. Mine maps are not up to date. A backup team is available but cannot assist.",
+  "instructions": "Explore all areas in the 1st West Mains Section if it can be accomplished safely. Account for all missing persons and evacuate all survivors to the Fresh Air Base. The exhausting main fan is on and cannot be stopped, stalled, or reversed. Your backup team will relieve you in 75 minutes.",
+  "missing": 4,
+  "timeLimit": 75,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": false,
+    "lineCurtain": false
+  },
+  "keyNotes": "Judges: first stop is up No. 2 because the No. 1 and No. 3 openings are blocked. Airlock the permanent stopping at stop 1 before breaking the two-break limit at stop 4. Do not breach the barricade while 18.3% oxygen is immediately outby it.",
+  "layout": {
+    "entries": 3,
+    "rows": 5,
+    "entryWidth": 20,
+    "pillarWidth": 40,
+    "pillarLength": 50,
+    "stubLength": 30,
+    "cells": {
+      "4,4": "solid"
+    },
+    "entryNames": [],
+    "xcStart": 1,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "n24-1",
+      "kind": "fan",
+      "x": 160,
+      "y": 10,
+      "fanMode": "exhausting",
+      "on": true,
+      "text": "EXHAUSTING MAIN FAN ON — cannot be stopped, stalled, or reversed",
+      "preMapped": true
+    },
+    {
+      "id": "intake-shaft",
+      "kind": "x",
+      "x": 40,
+      "y": 317,
+      "sub": "shaft",
+      "text": "INTAKE AIR SHAFT",
+      "preMapped": true
+    },
+    {
+      "id": "n24-3",
+      "kind": "caved",
+      "x": 40,
+      "y": 45,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "n24-4",
+      "kind": "x",
+      "x": 100,
+      "y": 28,
+      "sub": "cable",
+      "text": "ENERGIZED POWER CABLE",
+      "energized": true
+    },
+    {
+      "id": "gas-57",
+      "kind": "gas",
+      "x": 100,
+      "y": 40,
+      "ch4": 5.7,
+      "co": 5,
+      "o2": 19.4,
+      "text": "5.7% CH4, 5 PPM CO, 19.4% O2"
+    },
+    {
+      "id": "pump-cable",
+      "kind": "x",
+      "x": 100,
+      "y": 48,
+      "sub": "cable",
+      "text": "PUMP CABLE",
+      "energized": false
+    },
+    {
+      "id": "n24-7",
+      "kind": "x",
+      "x": 100,
+      "y": 56,
+      "sub": "borehole",
+      "text": "OPEN BOREHOLE"
+    },
+    {
+      "id": "n24-8",
+      "kind": "unsafe-roof",
+      "x": 160,
+      "y": 45,
+      "across": true,
+      "len": 10,
+      "text": "DIAGONAL UNSAFE ROOF"
+    },
+    {
+      "id": "n24-9",
+      "kind": "x",
+      "x": 100,
+      "y": 80,
+      "sub": "equipment",
+      "text": "BATTERY RAM CAR",
+      "energized": true
+    },
+    {
+      "id": "perm-xc",
+      "kind": "perm-stopping",
+      "x": 130,
+      "y": 80,
+      "intact": true,
+      "airtight": true,
+      "text": "PERMANENT STOPPING"
+    },
+    {
+      "id": "gas-v1a",
+      "kind": "gas",
+      "x": 40,
+      "y": 103,
+      "ch4": 5.3,
+      "co": 6,
+      "o2": 19.3,
+      "text": "5.3% CH4, 6 PPM CO, 19.3% O2"
+    },
+    {
+      "id": "n24-12",
+      "kind": "x",
+      "x": 40,
+      "y": 150,
+      "sub": "lunch-pail",
+      "text": "LUNCH BOX — note inside: We gassed up and flooded."
+    },
+    {
+      "id": "gas-v1b",
+      "kind": "gas",
+      "x": 40,
+      "y": 175,
+      "ch4": 5.1,
+      "co": 7,
+      "o2": 19.1,
+      "text": "5.1% CH4, 7 PPM CO, 19.1% O2"
+    },
+    {
+      "id": "water-stop3",
+      "kind": "water",
+      "x": 40,
+      "y": 196,
+      "across": true,
+      "overKnee": true,
+      "roofed": true,
+      "len": 10,
+      "text": "WATER ROOFED"
+    },
+    {
+      "id": "n24-15",
+      "kind": "brattice",
+      "x": 100,
+      "y": 150,
+      "text": "BRATTICE CLOTH"
+    },
+    {
+      "id": "n24-16",
+      "kind": "overcast",
+      "x": 100,
+      "y": 133,
+      "intact": true,
+      "airtight": true,
+      "text": "OVERCAST"
+    },
+    {
+      "id": "n24-17",
+      "kind": "overcast",
+      "x": 160,
+      "y": 133,
+      "intact": true,
+      "airtight": true,
+      "text": "OVERCAST WALL"
+    },
+    {
+      "id": "gas-v2b",
+      "kind": "gas",
+      "x": 160,
+      "y": 125,
+      "ch4": 5.1,
+      "co": 5,
+      "o2": 19.5,
+      "text": "5.1% CH4, 5 PPM CO, 19.5% O2"
+    },
+    {
+      "id": "gas-v2a",
+      "kind": "gas",
+      "x": 160,
+      "y": 198,
+      "ch4": 5.3,
+      "co": 7,
+      "o2": 19.5,
+      "text": "5.3% CH4, 7 PPM CO, 19.5% O2"
+    },
+    {
+      "id": "n24-20",
+      "kind": "x",
+      "x": 160,
+      "y": 220,
+      "sub": "borehole",
+      "text": "OPEN BOREHOLE"
+    },
+    {
+      "id": "n24-21",
+      "kind": "x",
+      "x": 160,
+      "y": 188,
+      "sub": "pump",
+      "text": "SUBMERSIBLE PUMP"
+    },
+    {
+      "id": "n24-22",
+      "kind": "temp-stopping",
+      "x": 130,
+      "y": 220,
+      "intact": false,
+      "airtight": false,
+      "text": "TEMPORARY STOPPING NOT INTACT"
+    },
+    {
+      "id": "n24-23",
+      "kind": "caved",
+      "x": 70,
+      "y": 220,
+      "across": true,
+      "airtight": true,
+      "len": 10,
+      "text": "CAVED AIRTIGHT"
+    },
+    {
+      "id": "gas-barricade",
+      "kind": "gas",
+      "x": 160,
+      "y": 307,
+      "ch4": 4.7,
+      "co": 9,
+      "o2": 18.3,
+      "text": "4.7% CH4, 9 PPM CO, 18.3% O2"
+    },
+    {
+      "id": "barricade-face",
+      "kind": "barricade",
+      "x": 160,
+      "y": 312,
+      "intact": true,
+      "airtight": true,
+      "response": true,
+      "text": "BARRICADE"
+    },
+    {
+      "id": "person-barricade",
+      "kind": "person",
+      "x": 160,
+      "y": 319,
+      "conscious": true,
+      "dir": 0,
+      "text": "CONSCIOUS — Help! Get me out!"
+    },
+    {
+      "id": "body-barricade",
+      "kind": "body",
+      "x": 160,
+      "y": 323,
+      "dir": 0,
+      "text": "BODY"
+    },
+    {
+      "id": "timbers-barricade",
+      "kind": "x",
+      "x": 160,
+      "y": 321,
+      "sub": "timbers",
+      "text": "2 TIMBERS",
+      "count": 2
+    },
+    {
+      "id": "water-stop9",
+      "kind": "water",
+      "x": 100,
+      "y": 258,
+      "across": true,
+      "overKnee": true,
+      "roofed": true,
+      "len": 10,
+      "text": "WATER ROOFED"
+    },
+    {
+      "id": "gas-v3",
+      "kind": "gas",
+      "x": 40,
+      "y": 270,
+      "ch4": 5.1,
+      "co": 5,
+      "o2": 19.1,
+      "text": "5.1% CH4, 5 PPM CO, 19.1% O2"
+    },
+    {
+      "id": "n24-31",
+      "kind": "gas",
+      "x": 100,
+      "y": 314,
+      "ch4": 4.9,
+      "co": 7,
+      "o2": 18.5,
+      "text": "4.9% CH4, 7 PPM CO, 18.5% O2"
+    },
+    {
+      "id": "person-unconscious",
+      "kind": "person",
+      "x": 100,
+      "y": 318,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS"
+    },
+    {
+      "id": "n24-33",
+      "kind": "caved",
+      "x": 130,
+      "y": 290,
+      "across": true,
+      "airtight": false,
+      "len": 10,
+      "text": "CAVED"
+    },
+    {
+      "id": "n24-34",
+      "kind": "unsafe-roof",
+      "x": 66,
+      "y": 290,
+      "across": false,
+      "len": 12,
+      "text": "ELONGATED UNSAFE ROOF"
+    },
+    {
+      "id": "body-elongated",
+      "kind": "body",
+      "x": 68,
+      "y": 290,
+      "dir": 0,
+      "text": "BODY"
+    }
+  ],
+  "updated": "2026-11-12T00:00:00.000Z"
+}

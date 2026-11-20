@@ -91,6 +91,8 @@ export interface El {
   preMapped?: boolean;
   /** Free notes for the problem designer (not on the placard). */
   note?: string;
+  /** Cable: the points the cable runs through after the placard, in feet (drawn as a line from the placard). */
+  path?: { x: number; y: number }[];
 }
 
 export type XSub =
@@ -224,6 +226,13 @@ export function normalizeElement(raw: unknown): El | null {
   if (r.diag === '/' || r.diag === '\\') el.diag = r.diag;
   if (r.fanMode === 'exhausting' || r.fanMode === 'blowing') el.fanMode = r.fanMode;
   if (X_SUBS.includes(r.sub as XSub)) el.sub = r.sub as XSub;
+  if (Array.isArray(r.path)) {
+    const pts = r.path
+      .slice(0, 500)
+      .map((q) => (q && typeof q === 'object' ? { x: num((q as Record<string, unknown>).x), y: num((q as Record<string, unknown>).y) } : null))
+      .filter((q): q is { x: number; y: number } => !!q && q.x !== undefined && q.y !== undefined);
+    if (pts.length) el.path = pts;
+  }
   return el;
 }
 

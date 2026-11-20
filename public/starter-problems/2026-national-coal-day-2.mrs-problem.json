@@ -1,0 +1,291 @@
+{
+  "schema": "mrs-problem/1",
+  "id": "case-national-2026-day2",
+  "title": "2026 National — Coal Day 2",
+  "source": "https://minerescuecenter.com/media/problems/2026_national_Coal_Day_2_Field_26_Nationals_Day_2.pdf",
+  "statement": "Wild Eagle Mine, fresh air base at the Timber Ridge Section. A five-man crew is missing after high CO readings at about 2:00 AM. An air shaft was just completed in the No. 3 entry; it is not in use but is available. The mine has a blowing fan. Air comes up the No. 3 entry and exits in the No. 1 and No. 2 entries. The fan is running and cannot be stopped, stalled, or reversed. Power to this area has been de-energized but can be re-energized. The team has 75 minutes.",
+  "instructions": "Account for all missing miners. Bring all survivors to the fresh air base. Explore all areas of the mine that can be explored safely. The team can only carry two brattice cloths at a time. Report the name and location of any missing miner to the Superintendent before leaving that team stop. The team cannot leave the field with materials it picked up.",
+  "missing": 4,
+  "timeLimit": 75,
+  "fabFresh": true,
+  "fabMaterials": {
+    "timbers": 0,
+    "pump": false,
+    "brattice": false,
+    "lineCurtain": false
+  },
+  "keyNotes": "Page 5 circles: row 1 is 1, 2/3, 2/3; row 2 is 6, 5, 4; row 3 is 7/9, 7/8, 8/9; row 4 is 12, 10/11, 10/11. Faces are inby of row 4.",
+  "layout": {
+    "entries": 3,
+    "rows": 6,
+    "entryWidth": 20,
+    "pillarWidth": 60,
+    "pillarLength": 60,
+    "stubLength": 40,
+    "cells": {},
+    "entryNames": [],
+    "xcStart": 1,
+    "outbyPillars": true
+  },
+  "elements": [
+    {
+      "id": "n26-1",
+      "kind": "fan",
+      "x": 210,
+      "y": 10,
+      "fanMode": "blowing",
+      "on": true,
+      "text": "BLOWING FAN RUNNING — air up No. 3, out No. 1 and No. 2; cannot be stopped, stalled, or reversed",
+      "preMapped": true
+    },
+    {
+      "id": "n26-2",
+      "kind": "perm-stopping",
+      "x": 130,
+      "y": 53,
+      "intact": false,
+      "airtight": false,
+      "text": "NOT INTACT"
+    },
+    {
+      "id": "gas-stop1",
+      "kind": "gas",
+      "x": 50,
+      "y": 112,
+      "ch4": 5.2,
+      "co": 8,
+      "o2": 12,
+      "text": "8 PPM CO, 5.2% CH4, 12.0% O2"
+    },
+    {
+      "id": "person-phil",
+      "kind": "person",
+      "x": 50,
+      "y": 127,
+      "conscious": true,
+      "dir": 0,
+      "text": "CONSCIOUS PHIL BILLY"
+    },
+    {
+      "id": "barricade-phil-xc",
+      "kind": "barricade",
+      "x": 75,
+      "y": 90,
+      "intact": true,
+      "airtight": true,
+      "response": false,
+      "text": "B"
+    },
+    {
+      "id": "n26-6",
+      "kind": "perm-stopping",
+      "x": 50,
+      "y": 148,
+      "intact": true,
+      "airtight": true,
+      "text": "AIRTIGHT"
+    },
+    {
+      "id": "gas-23-n2",
+      "kind": "gas",
+      "x": 130,
+      "y": 90,
+      "ch4": 5.2,
+      "co": 8,
+      "o2": 19,
+      "text": "8 PPM CO, 5.2% CH4, 19.0% O2"
+    },
+    {
+      "id": "n26-8",
+      "kind": "door",
+      "x": 90,
+      "y": 170,
+      "open": true,
+      "intact": true,
+      "airtight": true,
+      "text": "OPEN"
+    },
+    {
+      "id": "n26-9",
+      "kind": "door",
+      "x": 170,
+      "y": 170,
+      "open": true,
+      "intact": true,
+      "airtight": true,
+      "text": "OPEN"
+    },
+    {
+      "id": "n26-10",
+      "kind": "x",
+      "x": 130,
+      "y": 170,
+      "sub": "timbers",
+      "text": "4 TIMBERS",
+      "count": 4
+    },
+    {
+      "id": "barricade-jeff-a",
+      "kind": "barricade",
+      "x": 158,
+      "y": 170,
+      "intact": true,
+      "airtight": true,
+      "response": false,
+      "text": "B"
+    },
+    {
+      "id": "person-jeff",
+      "kind": "person",
+      "x": 173,
+      "y": 170,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS JEFF BATTY"
+    },
+    {
+      "id": "barricade-jeff-b",
+      "kind": "barricade",
+      "x": 185,
+      "y": 170,
+      "intact": true,
+      "airtight": true,
+      "response": false,
+      "text": "B"
+    },
+    {
+      "id": "gas-n3-mid",
+      "kind": "gas",
+      "x": 210,
+      "y": 222,
+      "ch4": 5.2,
+      "co": 8,
+      "o2": 19,
+      "text": "8 PPM CO, 5.2% CH4, 19.0% O2"
+    },
+    {
+      "id": "gas-79",
+      "kind": "gas",
+      "x": 50,
+      "y": 228,
+      "ch4": 5.2,
+      "co": 0,
+      "o2": 19,
+      "text": "0 PPM CO, 5.2% CH4, 19.0% O2"
+    },
+    {
+      "id": "n26-16",
+      "kind": "door",
+      "x": 90,
+      "y": 250,
+      "open": true,
+      "intact": true,
+      "airtight": true,
+      "text": "OPEN"
+    },
+    {
+      "id": "n26-17",
+      "kind": "door",
+      "x": 170,
+      "y": 250,
+      "open": true,
+      "intact": true,
+      "airtight": true,
+      "text": "OPEN"
+    },
+    {
+      "id": "gas-78",
+      "kind": "gas",
+      "x": 130,
+      "y": 228,
+      "ch4": 5.2,
+      "co": 8,
+      "o2": 19,
+      "text": "8 PPM CO, 5.2% CH4, 19.0% O2"
+    },
+    {
+      "id": "n26-19",
+      "kind": "overcast",
+      "x": 90,
+      "y": 330,
+      "intact": true,
+      "airtight": true,
+      "text": "OVERCAST"
+    },
+    {
+      "id": "person-jerry",
+      "kind": "person",
+      "x": 75,
+      "y": 330,
+      "conscious": false,
+      "dir": 0,
+      "text": "UNCONSCIOUS JERRY MATTHERS"
+    },
+    {
+      "id": "gas-face-n1",
+      "kind": "gas",
+      "x": 50,
+      "y": 358,
+      "ch4": 2.5,
+      "co": 20,
+      "o2": 19,
+      "text": "20 PPM CO, 2.5% CH4, 19.0% O2"
+    },
+    {
+      "id": "barricade-shawn",
+      "kind": "barricade",
+      "x": 50,
+      "y": 373,
+      "intact": true,
+      "airtight": true,
+      "response": false,
+      "text": "B"
+    },
+    {
+      "id": "person-shawn",
+      "kind": "person",
+      "x": 50,
+      "y": 388,
+      "conscious": true,
+      "dir": 0,
+      "text": "CONSCIOUS SHAWN MAXWELL"
+    },
+    {
+      "id": "n26-24",
+      "kind": "x",
+      "x": 50,
+      "y": 410,
+      "sub": "timbers",
+      "text": "8 TIMBERS",
+      "count": 8
+    },
+    {
+      "id": "n26-25",
+      "kind": "x",
+      "x": 50,
+      "y": 410,
+      "sub": "other",
+      "text": "SHOVEL"
+    },
+    {
+      "id": "gas-1011-n3",
+      "kind": "gas",
+      "x": 210,
+      "y": 361,
+      "ch4": 2.5,
+      "co": 8,
+      "o2": 19.5,
+      "text": "8 PPM CO, 2.5% CH4, 19.5% O2"
+    },
+    {
+      "id": "shaft-n3",
+      "kind": "x",
+      "x": 210,
+      "y": 385,
+      "sub": "shaft",
+      "text": "AIR SHAFT — not in use, available if needed",
+      "preMapped": true
+    }
+  ],
+  "updated": "2026-11-12T00:00:00.000Z"
+}

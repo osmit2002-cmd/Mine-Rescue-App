@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "score:solver": "vitest run src/builder/golden/score.test.ts --disableConsoleIntercept",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "starters": "node scripts/starters.mjs"
   },
   "dependencies": {
     "minisearch": "^7.2.0",

@@ -1,4 +1,5 @@
 /** Saved problems in localStorage, plus JSON import/export. All access is guarded: bad or missing storage never crashes. */
+import { problemFileName } from './folder';
 import { normalizeProblem, type Problem } from './model';
 
 export const PROBLEMS_KEY = 'mrs.builder.problems.v1';
@@ -65,7 +66,7 @@ export function downloadProblem(p: Problem) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `${p.title.replace(/[^\w-]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase() || 'problem'}.mrs-problem.json`;
+  a.download = problemFileName(p);
   document.body.appendChild(a);
   a.click();
   a.remove();

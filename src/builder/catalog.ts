@@ -338,6 +338,69 @@ export const X_DEFS: XDef[] = [
 
 export const xDef = (sub?: XSub) => X_DEFS.find((d) => d.sub === sub) ?? X_DEFS[X_DEFS.length - 1];
 
+/** Placard label categories for the X tool (Odin's grouping). */
+export type XCategory = 'equipment' | 'ignition' | 'object';
+export const X_CATEGORIES: { id: XCategory; name: string }[] = [
+  { id: 'equipment', name: 'Equipment' },
+  { id: 'ignition', name: 'Ignition source' },
+  { id: 'object', name: 'Object' }
+];
+
+/** One label in the X placard picker: the wording written by the X, and what the solver treats it as. */
+export interface XLabel {
+  text: string;
+  cat: XCategory;
+  sub: XSub;
+  defaults?: Partial<El>;
+}
+
+const L = (cat: XCategory, sub: XSub, texts: string[], defaults?: Partial<El>): XLabel[] => texts.map((text) => ({ text, cat, sub, ...(defaults ? { defaults } : {}) }));
+
+/** Every label offered by the X picker, by category and then alphabetically. */
+export const X_LABELS: XLabel[] = [
+  ...L('equipment', 'equipment', ['BATTERY SCOOP', 'BELT DRIVE', 'BELT TAILPIECE', 'COMPRESSOR', 'CONTINUOUS MINER', 'FEEDER', 'LOCOMOTIVE', 'MANTRIP', 'RAM CAR', 'ROCK DUSTER', 'ROOF BOLTER', 'SCOOP', 'SHUTTLE CAR', 'TRACTOR'], { energized: false }),
+  ...L('equipment', 'pump', ['PUMP', 'WATER PUMP']),
+  ...L('ignition', 'cable', ['ENERGIZED CABLE', 'ENERGIZED TRAILING CABLE'], { energized: true }),
+  ...L('ignition', 'battery', ['BATTERY', 'BATTERY CHARGER'], { energized: true }),
+  ...L('ignition', 'equipment', ['ENERGIZED EQUIPMENT', 'ENERGIZED PUMP', 'ENERGIZED SCOOP', 'POWER CENTER', 'TRANSFORMER', 'WELDER', 'CUTTING TORCH'], { energized: true }),
+  ...L('object', 'lunch-pail', ['LUNCH PAIL']),
+  ...L('object', 'note', ['NOTE']),
+  ...L('object', 'timbers', ['TIMBERS'], { count: 6 }),
+  ...L('object', 'materials', ['STOPPING MATERIAL', 'CRIB BLOCKS', 'ROCK DUST']),
+  ...L('object', 'borehole', ['OPEN BOREHOLE', 'CASED BOREHOLE']),
+  ...L('object', 'shaft', ['AIR SHAFT'], { preMapped: true }),
+  ...L('object', 'outby', ['OPENING OUTBY'], { preMapped: true }),
+  ...L('object', 'face', ['FACE']),
+  ...L('object', 'old-works', ['CUT INTO OLD WORKS']),
+  ...L('object', 'cable', ['DE-ENERGIZED CABLE'], { energized: false }),
+  ...L('object', 'other', ['FIRE EXTINGUISHER', 'FIRST AID KIT', 'HARD HAT', 'SELF-RESCUER', 'CAP LAMP', 'TOOL BOX', 'WATER LINE', 'HOSE', 'TRACK', 'BELT', 'EXPLOSIVES', 'RAIL'])
+].sort((a, b) => X_CATEGORIES.findIndex((c) => c.id === a.cat) - X_CATEGORIES.findIndex((c) => c.id === b.cat) || a.text.localeCompare(b.text));
+
+/**
+ * Type-ahead: the label that best matches what has been typed. A label starting with the typed text wins (shortest
+ * first), then one with a word starting with it, then one containing it. Null when nothing matches.
+ */
+export function xAutocomplete(typed: string, labels: XLabel[] = X_LABELS): XLabel | null {
+  const t = typed.trim().toUpperCase();
+  if (!t) return null;
+  const by = (f: (l: XLabel) => boolean) => labels.filter(f).sort((a, b) => a.text.length - b.text.length || a.text.localeCompare(b.text))[0];
+  return by((l) => l.text.startsWith(t)) ?? by((l) => l.text.split(/[\s-]+/).some((w) => w.startsWith(t))) ?? by((l) => l.text.includes(t)) ?? null;
+}
+
+/** The patch that gives an X placard this label. */
+export function applyXLabel(l: XLabel): Partial<El> {
+  return { sub: l.sub, text: l.text, energized: undefined, count: undefined, preMapped: undefined, ...(l.defaults ?? {}) };
+}
+
+/** Category of a placed X placard (from its label, else from its type). */
+export function xCategory(el: Pick<El, 'sub' | 'text' | 'energized'>): XCategory {
+  const l = X_LABELS.find((x) => x.text === el.text?.trim().toUpperCase());
+  if (l) return l.cat;
+  if (el.sub === 'cable' || el.sub === 'battery' || (el.sub === 'equipment' && el.energized)) return 'ignition';
+  if (el.sub === 'equipment' || el.sub === 'pump') return 'equipment';
+  return 'object';
+}
+
 /** One button in the palette. */
 export interface PaletteItem {
   key: string;
@@ -349,7 +412,10 @@ export interface PaletteItem {
 
 export const PALETTE: PaletteItem[] = [
   ...(Object.values(KIND_DEFS).filter((d) => d.kind !== 'x') as KindDef[]).map((d) => ({ key: d.kind, kind: d.kind, name: d.name, group: d.group })),
-  ...X_DEFS.map((x) => ({ key: `x:${x.sub}`, kind: 'x' as const, sub: x.sub, name: x.name, group: x.sub === 'equipment' || x.sub === 'cable' || x.sub === 'battery' ? ('fire' as const) : ('objects' as const) }))
+  // One X tool: the label (equipment, ignition source or object) is picked right after the placard is placed.
+  { key: 'x', kind: 'x', name: 'Object (X placard)', group: 'objects' },
+  // Cable: place the placard, then click out the cable's path.
+  { key: 'x:cable', kind: 'x', sub: 'cable', name: 'Cable (draw path)', group: 'fire' }
 ];
 
 /** A new element of this palette item at (x, y), with the kind's defaults. */
