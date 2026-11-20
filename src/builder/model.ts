@@ -93,6 +93,8 @@ export interface El {
   note?: string;
   /** Cable: the points the cable runs through after the placard, in feet (drawn as a line from the placard). */
   path?: { x: number; y: number }[];
+  /** Unsafe roof / caved drawn as an area: the two rib points it was drawn between (see roofArea.ts). */
+  ribs?: { x: number; y: number; block: string }[];
 }
 
 export type XSub =
@@ -232,6 +234,11 @@ export function normalizeElement(raw: unknown): El | null {
       .map((q) => (q && typeof q === 'object' ? { x: num((q as Record<string, unknown>).x), y: num((q as Record<string, unknown>).y) } : null))
       .filter((q): q is { x: number; y: number } => !!q && q.x !== undefined && q.y !== undefined);
     if (pts.length) el.path = pts;
+  }
+  if (Array.isArray(r.ribs) && r.ribs.length === 2) {
+    const rb = r.ribs.map((q) => (q && typeof q === 'object' ? (q as Record<string, unknown>) : {}));
+    if (rb.every((q) => num(q.x) !== undefined && num(q.y) !== undefined && typeof q.block === 'string' && /^\d+,\d+$/.test(q.block as string)))
+      el.ribs = rb.map((q) => ({ x: q.x as number, y: q.y as number, block: q.block as string }));
   }
   return el;
 }

@@ -5,7 +5,7 @@
 import { elementName } from '../catalog';
 import type { El, SegState } from '../model';
 
-export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done' | 'label' | 'path';
+export type RadialAction = 'edit' | 'duplicate' | 'delete' | 'done' | 'label' | 'path' | 'redraw';
 
 export interface RadialOption {
   id: string;
@@ -50,7 +50,8 @@ export function radialOptions(el: El): RadialOption[] {
   }
   if (k === 'barricade') out.push(toggle('response', 'Answers', 'A person answers from behind it', !!el.response, { response: !el.response }));
   if (k === 'door') out.push(toggle('open', el.open ? 'Open' : 'Closed', 'Door open', !!el.open, { open: !el.open }));
-  if (k === 'caved' || k === 'unsafe-roof' || k === 'water') out.push(toggle('across', 'Rib–rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
+  if ((k === 'caved' || k === 'unsafe-roof') && el.ribs) out.push({ id: 'redraw', label: 'Redraw', title: 'Draw the area again: click two points on the ribs', action: 'redraw' });
+  if ((k === 'caved' || k === 'unsafe-roof') && !el.ribs || k === 'water') out.push(toggle('across', 'Rib–rib', 'Rib to rib (across the opening)', el.across !== false, { across: el.across === false }));
   if (k === 'caved') out.push(toggle('airtight', 'Airtight', 'Placard states “airtight”', !!el.airtight, { airtight: !el.airtight }));
   if (k === 'water') {
     out.push(toggle('overKnee', 'Knee+', 'Over knee deep', !!el.overKnee, { overKnee: !el.overKnee }));

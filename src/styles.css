@@ -722,3 +722,10 @@ button.danger { color: var(--bad); }
 .mine-map.tool-cable { cursor: crosshair; }
 .menu-note { display: block; padding: 0.4rem 0.5rem; }
 .link.inline { min-height: 0; padding: 0; font: inherit; }
+.map-area { stroke: #111; stroke-width: 0.5; cursor: pointer; }
+.map-area.unsafe-roof { stroke-dasharray: 1.6 1.1; }
+.map-area.sel { stroke: var(--accent, #a8780f); stroke-width: 0.9; }
+.map-area.preview { opacity: 0.6; }
+.rib-pt { fill: #a8780f; stroke: #fff; stroke-width: 0.4; }
+.rib-pt.hover { fill: #fff; stroke: #a8780f; }
+.mine-map.tool-area { cursor: crosshair; }

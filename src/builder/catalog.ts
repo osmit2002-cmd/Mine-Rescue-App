@@ -343,8 +343,15 @@ export type XCategory = 'equipment' | 'ignition' | 'object';
 export const X_CATEGORIES: { id: XCategory; name: string }[] = [
   { id: 'equipment', name: 'Equipment' },
   { id: 'ignition', name: 'Ignition source' },
-  { id: 'object', name: 'Object' }
+  { id: 'object', name: 'Custom / object' }
 ];
+
+/** The patch for wording typed into a placard's label list that is not in the list. */
+export function customXPatch(cat: XCategory, text: string): Partial<El> {
+  if (cat === 'equipment') return { sub: 'equipment', text, energized: false, count: undefined, preMapped: undefined };
+  if (cat === 'ignition') return { sub: /CABLE/i.test(text) ? 'cable' : /BATTER/i.test(text) ? 'battery' : 'equipment', text, energized: true, count: undefined, preMapped: undefined };
+  return { sub: 'other', text, energized: undefined, count: undefined, preMapped: undefined };
+}
 
 /** One label in the X placard picker: the wording written by the X, and what the solver treats it as. */
 export interface XLabel {
@@ -406,14 +413,18 @@ export interface PaletteItem {
   key: string;
   kind: Kind;
   sub?: XSub;
+  /** X placards: which label list opens after placing (equipment, ignition sources, or custom wording / objects). */
+  xcat?: XCategory;
   name: string;
   group: GroupId;
 }
 
 export const PALETTE: PaletteItem[] = [
   ...(Object.values(KIND_DEFS).filter((d) => d.kind !== 'x') as KindDef[]).map((d) => ({ key: d.kind, kind: d.kind, name: d.name, group: d.group })),
-  // One X tool: the label (equipment, ignition source or object) is picked right after the placard is placed.
-  { key: 'x', kind: 'x', name: 'Object (X placard)', group: 'objects' },
+  // X placards: three tools, each with its own short label list that opens right after the placard is placed.
+  { key: 'x@equipment', kind: 'x', xcat: 'equipment', name: 'Equipment (X)', group: 'objects' },
+  { key: 'x@ignition', kind: 'x', xcat: 'ignition', name: 'Ignition source (X)', group: 'fire' },
+  { key: 'x@object', kind: 'x', xcat: 'object', name: 'Custom placard (X)', group: 'objects' },
   // Cable: place the placard, then click out the cable's path.
   { key: 'x:cable', kind: 'x', sub: 'cable', name: 'Cable (draw path)', group: 'fire' }
 ];

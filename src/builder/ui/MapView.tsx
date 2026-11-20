@@ -6,13 +6,16 @@ import { entryName, type El, type Layout, type Problem } from '../model';
 import { outbyBand, pillarLabels, type PillarNumbering } from '../pillars';
 import { MIN_ROOM } from '../layoutEdit';
 import { mapLabel, SymbolShape } from './symbols';
+import { areaPolygon, snapRib, type RibPoint } from '../roofArea';
 
 export const MARGIN = { l: 34, r: 14, t: 14, b: 30 };
 
 /** Margins around the map in feet: the bottom one also holds the drawn row of pillars outby the FAB. */
 export const mapMargins = (layout: Layout) => ({ ...MARGIN, b: MARGIN.b + outbyBand(makeGeo(layout)) });
 
-export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' } | { type: 'cable'; id: string };
+export type Tool = { type: 'select' } | { type: 'place'; kind: El['kind']; sub?: El['sub']; xcat?: import('../catalog').XCategory; name: string } | { type: 'layout' } | { type: 'vent-build' } | { type: 'vent-toggle' } | { type: 'cable'; id: string }
+  /** Unsafe roof / caved: click two rib points. `start` is the first one; `id` set when redrawing an existing area. */
+  | { type: 'area'; kind: 'unsafe-roof' | 'caved'; name: string; start: RibPoint | null; id?: string };
 
 export interface Overlays {
   hazards?: Hazard[];
@@ -54,6 +57,8 @@ interface Props {
   numbering?: PillarNumbering;
   /** Opening highlighted in the layout tool (its options ring is open), as "cx,cy". */
   activeCell?: string | null;
+  /** Area tool: the map was clicked (feet); the page snaps it to a rib. */
+  onAreaPoint?: (x: number, y: number) => void;
   /** Cable tool: a point of the cable path was clicked (feet). */
   onCablePoint?: (x: number, y: number) => void;
   /** Layout tool: a side room handle was dragged out to `depth` feet (under MIN_ROOM closes it), or tapped (depth null: toggle). */
@@ -165,7 +170,7 @@ export function MapView(props: Props) {
     setRoomDrag({ side, row, depth: roomDepthAt(side, toFeet(e).x), moved: false });
   };
   const onMoveP = (e: RPointerEvent) => {
-    if (tool.type === 'cable') setCursor(toFeet(e));
+    if (tool.type === 'cable' || tool.type === 'area') setCursor(toFeet(e));
     if (roomDrag) {
       const d = roomDepthAt(roomDrag.side, toFeet(e).x);
       if (d !== roomDrag.depth) setRoomDrag({ ...roomDrag, depth: d, moved: true });
@@ -175,6 +180,7 @@ export function MapView(props: Props) {
     const f = toFeet(e);
     const el = problem.elements.find((x) => x.id === drag.id);
     if (!el) return;
+    if (el.ribs) return; // drawn areas stay where they were drawn (Redraw on the ring moves them)
     const s = snap(topo, f.x + drag.dx, f.y + drag.dy, KIND_DEFS[el.kind].place);
     if (s && (Math.abs(s.x - drag.x) > 0.3 || Math.abs(s.y - drag.y) > 0.3)) setDrag({ ...drag, x: s.x, y: s.y, moved: true });
   };
@@ -193,6 +199,7 @@ export function MapView(props: Props) {
     const f = toFeet(e);
     if (tool.type === 'place') props.onPlace?.(f.x, f.y);
     else if (tool.type === 'cable') props.onCablePoint?.(f.x, f.y);
+    else if (tool.type === 'area') props.onAreaPoint?.(f.x, f.y);
     else if (tool.type === 'vent-build') props.onOpeningClick?.(f.x, f.y);
     else if (tool.type === 'select') props.onSelect?.(null);
   };
@@ -227,7 +234,7 @@ export function MapView(props: Props) {
         {sel && <circle r={Math.max(6, W * 0.45)} className="map-sel-ring" />}
         {!print && <circle r={Math.max(4, W * 0.32)} fill="transparent" />}
         <g transform={rot ? `rotate(${rot})` : undefined} strokeDasharray={extra ? '2 1.4' : undefined}>
-          <SymbolShape el={el} W={W} k={k} />
+          {!el.ribs && <SymbolShape el={el} W={W} k={k} />}
         </g>
         {label.length > 0 && (
           <text x={lx} y={ly} fontSize={3.4 * k} fill="#111" className="map-label" fontFamily="Arial, sans-serif">
@@ -270,6 +277,20 @@ export function MapView(props: Props) {
             <line x1="0" y1="0" x2="0" y2="3" stroke={c} strokeWidth="1.1" />
           </pattern>
         ))}
+        <pattern id="pat-caved" width="4" height="4" patternUnits="userSpaceOnUse">
+          <path d="M0.8 0.8L3.2 3.2M0.8 3.2L3.2 0.8" stroke="#111" strokeWidth="0.4" />
+        </pattern>
+        <pattern id="pat-unsafe-roof" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="2.2" stroke="#111" strokeWidth="0.4" />
+        </pattern>
+        <clipPath id="openings-clip">
+          {cells
+            .filter(({ cx, cy }) => cellType(geo, cx, cy) !== 'pillar' && cellState(geo, cx, cy) !== 'solid')
+            .map(({ cx, cy }) => {
+              const r = cellRect(geo, cx, cy);
+              return <rect key={`cl${cx},${cy}`} x={r.x} y={Y(r.y + r.h)} width={r.w} height={r.h} />;
+            })}
+        </clipPath>
         <marker id="route-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
           <path d="M0 0L10 5L0 10z" fill="#a8780f" />
         </marker>
@@ -474,6 +495,40 @@ export function MapView(props: Props) {
       {!print && overlays.route && overlays.route.length > 1 && (
         <polyline points={overlays.route.map((p) => `${p.x},${Y(p.y)}`).join(' ')} fill="none" stroke="#a8780f" strokeWidth={1.4} strokeDasharray="3 2" markerEnd="url(#route-arrow)" pointerEvents="none" />
       )}
+      {/* Unsafe roof and caved areas drawn between two rib points, kept inside the openings */}
+      {els.some((el) => el.ribs) && (
+        <g clipPath="url(#openings-clip)">
+          {els
+            .filter((el) => el.ribs)
+            .map((el) => {
+              const poly = areaPolygon(geo, el.ribs![0] as RibPoint, el.ribs![1] as RibPoint);
+              return (
+                <polygon
+                  key={`area${el.id}`}
+                  points={poly.map((p) => `${p.x},${Y(p.y)}`).join(' ')}
+                  className={`map-area ${el.kind}${el.id === selectedId && !print ? ' sel' : ''}`}
+                  fill={`url(#pat-${el.kind})`}
+                  onPointerDown={print ? undefined : (e) => onElDown(e, el)}
+                  style={{ opacity: overlays.faded?.has(el.id) ? 0.3 : 1 }}
+                />
+              );
+            })}
+        </g>
+      )}
+      {!print && tool.type === 'area' && (() => {
+        const end = cursor ? snapRib(geo, cursor.x, cursor.y) : null;
+        return (
+          <g pointerEvents="none">
+            {tool.start && end && (
+              <g clipPath="url(#openings-clip)">
+                <polygon points={areaPolygon(geo, tool.start, end).map((p) => `${p.x},${Y(p.y)}`).join(' ')} className={`map-area ${tool.kind} preview`} fill={`url(#pat-${tool.kind})`} />
+              </g>
+            )}
+            {tool.start && <circle cx={tool.start.x} cy={Y(tool.start.y)} r={1.6} className="rib-pt" />}
+            {end && <circle cx={end.x} cy={Y(end.y)} r={1.6} className="rib-pt hover" />}
+          </g>
+        );
+      })()}
       {/* Cable paths: a line from the cable placard through its points */}
       {els
         .filter((el) => el.kind === 'x' && el.sub === 'cable' && el.path?.length)

@@ -4,7 +4,7 @@
  * a label is applied only when it is clicked.
  */
 import { useEffect, useRef, useState } from 'react';
-import { X_CATEGORIES, X_LABELS, xAutocomplete, type XLabel } from '../catalog';
+import { X_CATEGORIES, X_LABELS, xAutocomplete, type XCategory, type XLabel } from '../catalog';
 
 interface Props {
   /** Placard centre, in pixels within the map stage. */
@@ -13,6 +13,8 @@ interface Props {
   width: number;
   height: number;
   current?: string;
+  /** Which placard: equipment, ignition source, or custom (objects plus own wording). */
+  cat: XCategory;
   onPick: (l: XLabel) => void;
   /** Use the typed words as the label (not in the list). */
   onCustom: (text: string) => void;
@@ -22,11 +24,13 @@ interface Props {
 const W = 250;
 const H = 300;
 
-export function XLabelPicker({ x, y, width, height, current, onPick, onCustom, onClose }: Props) {
+export function XLabelPicker({ x, y, width, height, current, cat, onPick, onCustom, onClose }: Props) {
   const [typed, setTyped] = useState('');
   const box = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const match = xAutocomplete(typed);
+  const labels = X_LABELS.filter((l) => l.cat === cat);
+  const match = xAutocomplete(typed, labels);
+  const custom = cat === 'object';
 
   useEffect(() => {
     box.current?.focus({ preventScroll: true });
@@ -78,14 +82,14 @@ export function XLabelPicker({ x, y, width, height, current, onPick, onCustom, o
             <span className="xpick-rest">{rest}</span>
           </>
         ) : (
-          <span className="muted">Type to jump to a label · click to choose</span>
+          <span className="muted">{custom ? 'Type the wording, or pick a common object' : 'Type to jump to a label · click to choose'}</span>
         )}
       </div>
       <div className="xpick-list" ref={listRef}>
-        {X_CATEGORIES.map((c) => (
+        {X_CATEGORIES.filter((c) => c.id === cat).map((c) => (
           <div key={c.id} className="xpick-group">
             <div className="xpick-cat">{c.name}</div>
-            {X_LABELS.filter((l) => l.cat === c.id).map((l) => (
+            {labels.map((l) => (
               <button
                 key={l.text}
                 type="button"

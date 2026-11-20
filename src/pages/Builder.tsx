@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { applyXLabel, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
+import { applyXLabel, customXPatch, xCategory, type XCategory, KIND_DEFS, makeElement, type PaletteItem } from '../builder/catalog';
 import { canLinkFolder, canShareFiles, fetchStarters, shareProblems, ensurePermission, forgetFolder, loadFileMap, loadFolder, mergeIn, pickFolder, readFolder, readPickedFiles, removeFromFolder, saveFileMap, uniqueFileName, writeToFolder, type DirHandle, type FileMap } from '../builder/folder';
 import { hazards } from '../builder/extents';
 import { buildTopo, cellRect, makeGeo, snap } from '../builder/geometry';
@@ -16,6 +16,7 @@ import { CableRing, OpeningRing, RadialMenu, type CablePick, type RadialAction }
 import { ProblemPicker } from '../builder/ui/ProblemPicker';
 import { XLabelPicker } from '../builder/ui/XLabelPicker';
 import { usePanZoom } from '../builder/ui/panZoom';
+import { areaPlacement, snapRib } from '../builder/roofArea';
 import { Checks, ElementList, Inspector, LayoutBar, NumberingPanel, Palette, ProblemPanel, Section, type LayoutBarOp } from '../builder/ui/panels';
 import { applyScenario, emptyScenario, SolvePanel, VentPanel, type Scenario } from '../builder/ui/solvePanels';
 import { airflow, ventFindings } from '../builder/vent';
@@ -50,7 +51,12 @@ export default function Builder() {
   /** Element whose placement options ring is open on the map. */
   const [radialId, setRadialId] = useState<string | null>(null);
   /** X placard whose label picker is open beside it. */
-  const [labelFor, setLabelFor] = useState<string | null>(null);
+  const [labelFor, setLabelForState] = useState<string | null>(null);
+  const [labelCat, setLabelCat] = useState<XCategory>('object');
+  const setLabelFor = (id: string | null, cat?: XCategory) => {
+    setLabelForState(id);
+    if (cat) setLabelCat(cat);
+  };
   /** Problems folder on this computer: the linked folder (Chrome/Edge), which problem is in which file, status line. */
   const [folder, setFolder] = useState<DirHandle | null>(null);
   /** The folder was linked before but the browser needs a click to allow access again. */
@@ -211,12 +217,35 @@ export default function Builder() {
     if (el.kind === 'x' && !tool.sub) {
       // X placard: pick its label from the list beside it.
       setRadialId(null);
-      setLabelFor(el.id);
+      setLabelFor(el.id, tool.xcat ?? 'object');
       setTool({ type: 'select' });
       return;
     }
     setRadialId(el.id);
     if (!keep) setTool({ type: 'select' });
+  };
+
+  // ------------------------------------------------------------ unsafe roof / caved areas (two rib points)
+
+  const addAreaPoint = (x: number, y: number) => {
+    if (tool.type !== 'area') return;
+    const p = snapRib(topo.geo, x, y);
+    if (!p) return flash('Click on a rib: the side of a pillar or of the coal next to an opening.');
+    if (!tool.start) return setTool({ ...tool, start: p });
+    const at = areaPlacement(topo, tool.start, p);
+    if (!at) return flash('Those two points do not mark an area in an opening. Try again.');
+    const ribs = [tool.start, p];
+    if (tool.id) {
+      patchEl(tool.id, { ...at, ribs });
+      setSelectedId(tool.id);
+      setRadialId(tool.id);
+    } else {
+      const el = { ...makeElement({ kind: tool.kind }, at.x, at.y, newId()), ...at, ribs };
+      update((pr) => ({ ...pr, elements: [...pr.elements, el] }));
+      setSelectedId(el.id);
+      setRadialId(el.id);
+    }
+    setTool({ type: 'select' });
   };
 
   // ------------------------------------------------------------ cable path drawing
@@ -303,6 +332,10 @@ export default function Builder() {
         redo();
         return;
       }
+      if (tool.type === 'area' && e.key === 'Escape') {
+        e.preventDefault();
+        return setTool(tool.start ? { ...tool, start: null } : { type: 'select' });
+      }
       if (tool.type === 'cable') {
         if (e.key === 'Enter' || e.key === 'Escape') {
           e.preventDefault();
@@ -364,7 +397,10 @@ export default function Builder() {
     else if (a === 'duplicate') setRadialId(duplicateEl(selected).id);
     else if (a === 'label') {
       setRadialId(null);
-      setLabelFor(selected.id);
+      setLabelFor(selected.id, xCategory(selected));
+    } else if (a === 'redraw' && (selected.kind === 'unsafe-roof' || selected.kind === 'caved')) {
+      setRadialId(null);
+      setTool({ type: 'area', kind: selected.kind, name: KIND_DEFS[selected.kind].name, start: null, id: selected.id });
     } else if (a === 'path') {
       setRadialId(null);
       if (selected.path?.length) patchEl(selected.id, { path: [] });
@@ -884,10 +920,14 @@ export default function Builder() {
         {tab === 'build' && (
           <aside className="b-left">
             <Palette
-              active={tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
+              active={tool.type === 'area' ? tool.kind : tool.type === 'place' ? (tool.sub ? `x:${tool.sub}` : tool.xcat ? `x@${tool.xcat}` : tool.kind) : tool.type === 'cable' ? 'x:cable' : null}
               onPick={(it: PaletteItem) => {
-                const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub;
-                setTool(off ? { type: 'select' } : { type: 'place', kind: it.kind, sub: it.sub, name: it.name });
+                const off = tool.type === 'place' && tool.kind === it.kind && tool.sub === it.sub && tool.xcat === it.xcat;
+                const areaKind = it.kind === 'unsafe-roof' || it.kind === 'caved' ? it.kind : null;
+                const onNow = areaKind ? tool.type === 'area' && tool.kind === areaKind && !tool.id : off;
+                setTool(
+                  onNow ? { type: 'select' } : areaKind ? { type: 'area', kind: areaKind, name: it.name, start: null } : { type: 'place', kind: it.kind, sub: it.sub, xcat: it.xcat, name: it.name }
+                );
                 // On phones the palette is below the map: bring the map back into view.
                 if (!off && window.innerWidth < 1000) scroller.current?.closest('.b-center')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
@@ -898,6 +938,11 @@ export default function Builder() {
           {tool.type === 'place' && tab === 'build' && (
             <p className="tool-hint" role="status">
               Click the map to place: <strong>{tool.name}</strong>. Shift-click to place several · Esc to stop.
+            </p>
+          )}
+          {tool.type === 'area' && tab === 'build' && (
+            <p className="tool-hint" role="status">
+              {tool.name}: {tool.start ? 'now click the second point on a rib.' : 'click a point on a rib (side of a pillar).'} Two different pillars: the area stretches from one point to the other. Same pillar: a strip ⅓ of the entry width runs along that rib between the points. Esc to cancel.
             </p>
           )}
           {tool.type === 'cable' && tab === 'build' && (
@@ -942,6 +987,7 @@ export default function Builder() {
                 }}
                 onPlace={(x, y) => place(x, y, shiftDown.current)}
                 onCablePoint={addCablePoint}
+                onAreaPoint={addAreaPoint}
                 onCell={(cx, cy) => setActiveCell({ cx, cy })}
                 onRoom={(side, row, depth) => {
                   const l = problem.layout;
@@ -981,9 +1027,14 @@ export default function Builder() {
                   width={stage.w}
                   height={stage.h}
                   current={labelEl.text}
+                  cat={labelCat}
                   onPick={(l) => pickLabel(applyXLabel(l))}
-                  onCustom={(text) => pickLabel({ sub: 'other', text })}
-                  onClose={() => setLabelFor(null)}
+                  onCustom={(text) => pickLabel(customXPatch(labelCat, text))}
+                  onClose={() => {
+                    // Closing the list on a placard that never got a label takes the blank placard away again.
+                    if (!labelEl.text?.trim()) deleteEl(labelEl.id);
+                    setLabelFor(null);
+                  }}
                 />
               )}
               {radialEl && !labelEl && tool.type !== 'cable' && (
